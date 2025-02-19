@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --primary-color: #be7d3f;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  color: var(--foreground);
+  // background: var(--background);
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  // Option 1
+  // background: rgb(167,159,162);
+  // background: linear-gradient(90deg, rgba(167,159,162,1) 0%, rgba(255,255,255,1) 2%, rgba(236,236,238,1) 5%, rgba(235,235,235,1) 95%, rgba(255,255,255,1) 99%, rgba(167,159,162,1) 100%);
+  // Option 2
+  // background: rgb(255, 255, 255);
+  // background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(235, 235, 235, 1) 5%, rgba(235, 235, 235, 1) 97%, rgba(255, 255, 255, 1) 100%);
+  // Option 3
+  // background: rgb(255, 255, 255);
+  // background: linear-gradient(90deg, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 5%, rgba(255, 255, 255, 1) 97%, rgba(235, 235, 235, 1) 100%);
+  // option 4
+  // background: url("https://www.transparenttextures.com/patterns/brushed-alum.png");
+  background-image: url("../../public/app-bg.jpg");
+  // lighten the background image
+  // background-color: rgba(255, 255, 255, 0.5);
+  // background-blend-mode: lighten;
+  background-size: cover;
+  position: relative;
+  overflow-y: scroll;
+  height: 100vh;
+  max-height: 100vh;
+}
+
+h1,
+h2 {
+  color: var(--primary-color);
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  &.main-title {
+    font-size: 3rem;
+    // font-weight: 400;
+  }
+}
+
+main {
+  height: 100%;
+  width: 100%;
+  // padding: 10px;
+}
+
+.frosted-card {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 15px;
+  margin-bottom: 0.6rem;
+}
+// Bubble animation
+// @keyframes bubbleAnimation {
+//   0% {
+//     opacity: 0;
+//     transform: translateY(0) scale(0.5);
+//   }
+//   50% {
+//     opacity: 1;
+//     transform: translateY(-50px) scale(1);
+//   }
+//   100% {
+//     opacity: 0;
+//     transform: translateY(-100px) scale(1.5);
+//   }
+// }
+
+// // Generate random bubbles (1-2 per cycle)
+// @for $i from 1 through 2 {
+//   $delay: random(10) + s; // Random delay between 1s and 10s
+//   $left: random(100) * 1%; // Random horizontal position
+//   $size: random(10) + px; // Bubble size (1px - 10px)
+
+//   .bubble-#{$i} {
+//     position: absolute;
+//     bottom: -10px;
+//     left: $left;
+//     width: $size;
+//     height: $size;
+//     background-color: rgba(255, 255, 255, 0.6);
+//     border-radius: 50%;
+//     animation: bubbleAnimation 10s ease-in-out infinite;
+//     animation-delay: $delay;
+//     pointer-events: none;
+//   }
+// }
+
+// // Add multiple bubble elements inside body dynamically
+// body {
+//   @for $i from 1 through 2 {
+//     &::before {
+//       content: "";
+//       display: block;
+//       @extend .bubble-#{$i};
+//     }
+//     &::after {
+//       content: "";
+//       display: block;
+//       @extend .bubble-#{$i};
+//     }
+//   }
+// }
