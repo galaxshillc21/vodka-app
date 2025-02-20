@@ -42,8 +42,8 @@ body {
   background-size: cover;
   position: relative;
   overflow-y: scroll;
-  height: 100vh;
-  max-height: 100vh;
+  height: auto;
+  min-height: 100vh;
 }
 
 h1,

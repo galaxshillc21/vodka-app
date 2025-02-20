@@ -10,6 +10,7 @@ import stores from "@/data/stores.json";
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
   const [closestStore, setClosestStore] = useState(null);
+  const [closestStores, setClosestStores] = useState([]);
 
   useEffect(() => {
     // Load the zipcode from local storage when the component mounts
@@ -39,12 +40,15 @@ export default function Home() {
 
       if (data.length > 0) {
         const { lat, lon } = data[0];
-        const closest = stores.reduce((prev, curr) => {
-          const prevDistance = haversineDistance([lat, lon], [prev.latitude, prev.longitude]);
-          const currDistance = haversineDistance([lat, lon], [curr.latitude, curr.longitude]);
-          return prevDistance < currDistance ? prev : curr;
-        });
-        setClosestStore(closest);
+        const sortedStores = stores
+          .map((store) => ({
+            ...store,
+            distance: haversineDistance([lat, lon], [store.latitude, store.longitude]),
+          }))
+          .sort((a, b) => a.distance - b.distance);
+
+        setClosestStore(sortedStores[0]);
+        setClosestStores(sortedStores.slice(1, 4)); // Get the next three closest stores
       }
     } catch (error) {
       console.error("Error finding closest store:", error);
@@ -86,6 +90,25 @@ export default function Home() {
             <p>{closestStore.phone}</p>
             <p>{closestStore.hours}</p>
             <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.latitude, closestStore.longitude]} zoom={13} />
+          </div>
+        )}
+        {closestStores.length > 0 && (
+          <div className="mt-4">
+            <h2>Other Nearby Stores</h2>
+            <ul>
+              {closestStores.map((store) => (
+                <li key={store.id} className="frosted-card">
+                  <Link href={`/stores/${store.id}`}>
+                    <p>
+                      <strong>{store.name}</strong>
+                    </p>
+                    <p>{store.address}</p>
+                    <p>{store.phone}</p>
+                    <p>{store.hours}</p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         )}
       </div>
