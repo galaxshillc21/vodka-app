@@ -18,6 +18,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --text-color: #ededed;
   }
 }
 html,
@@ -75,6 +76,7 @@ h6 {
   font-family: var(--font-montserrat);
   text-transform: uppercase;
   font-weight: 700;
+  color: var(--text-color);
 }
 
 h1.main-title {
@@ -107,6 +109,7 @@ main {
 
 p.store-title {
   font-weight: 700;
+  color: var(--text-color);
 }
 
 .frosted-card {
