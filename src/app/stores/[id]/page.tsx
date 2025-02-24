@@ -1,30 +1,46 @@
 "use client";
 
-import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import Link from "next/link";
-import Map from "@/components/Map";
+import { useParams, useRouter } from "next/navigation";
 import stores from "@/data/stores.json";
+import Map from "@/components/Map";
 
 const StoreDetails = () => {
-  const pathname = usePathname();
-  const id = pathname.split("/").pop();
+  const router = useRouter();
+  const params = useParams(); // Correct way to get dynamic route params
+  const { id } = params; // id is now properly extracted
+
   const [store, setStore] = useState(null);
 
   useEffect(() => {
-    if (id) {
-      const foundStore = stores.find((store) => store.id === parseInt(id as string));
-      setStore(foundStore);
-    }
-  }, [id]);
+    if (!id) return;
 
-  if (!store) {
-    return <p>Loading...</p>;
-  }
+    console.log("Fetching store details for ID:", id);
+
+    const selectedStore = stores.find((s) => s.id.toString() === id);
+
+    if (!selectedStore) {
+      console.warn("Store not found for ID:", id);
+      router.push("/stores"); // Redirect if not found
+      return;
+    }
+
+    setStore(selectedStore);
+    console.log("Store data loaded:", selectedStore);
+  }, [id, router]);
+
+  if (!store) return <p>Loading...</p>;
+
+  const latitude = parseFloat(store.latitude);
+  const longitude = parseFloat(store.longitude);
+
+  console.log("Latitude:", latitude, "Longitude:", longitude);
 
   return (
     <div className="container mx-auto p-4">
-      <Link href="/">Back to Home</Link>
+      <button onClick={() => router.push("/")} className="p-2 bg-blue-500 text-white rounded">
+        Back to Home
+      </button>
       <h2 className="main-title text-center font-extrabold frosted-card">{store.name}</h2>
       <div className="frosted-card">
         <p>
@@ -36,7 +52,10 @@ const StoreDetails = () => {
         <p>
           <strong>Hours:</strong> {store.hours}
         </p>
-        <Map center={[store.latitude, store.longitude]} zoom={13} />
+        <p>
+          <strong>Latitude:</strong> {latitude}, <strong>Longitude:</strong> {longitude}
+        </p>
+        <Map key={`${latitude}-${longitude}`} center={[longitude, latitude]} zoom={13} />
       </div>
     </div>
   );

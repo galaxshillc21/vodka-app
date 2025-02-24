@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Map from "@/components/Map";
 import Disclaimer from "@/components/Disclaimer";
-import Info from "@/components/Info";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
 
@@ -12,6 +12,11 @@ export default function Home() {
   const [zipcode, setZipcode] = useState("");
   const [closestStore, setClosestStore] = useState(null);
   const [closestStores, setClosestStores] = useState([]);
+  const router = useRouter(); // Initialize router
+
+  const handleStoreClick = (storeId) => {
+    router.push(`/stores/${storeId}`);
+  };
 
   const findClosestStore = useCallback(async (zipcode: string) => {
     try {
@@ -77,25 +82,35 @@ export default function Home() {
     await findClosestStore(zipcode);
   };
 
+  const formatDistance = (distance: number) => {
+    if (distance < 1) {
+      return `${(distance * 1000).toFixed(0)} m`;
+    }
+    return `${distance.toFixed(2)} km`;
+  };
+
   return (
     <main className="container mx-auto p-4">
-      <div className="frosted-card">
+      <div className="frosted-card" id="Hero">
         <h1 className="main-title text-center font-extrabold">BLAT</h1>
-      </div>
-      <Info />
-      <div className="frosted-card">
-        <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-center mb-4">
+        <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
+        <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
           <label htmlFor="zipcode" className="block">
-            Ingresa tu código postal para encontrar la tienda más cercana:
+            Codigo Postal:
           </label>
           <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 border rounded" />
           <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded">
             Buscar
           </button>
+          <button type="button" className="mt-2 mb-2 p-2 bg-blue-500 text-white rounded">
+            Usar mi localización
+          </button>
         </form>
-        <Link href="/stores" className="text-center">
+        <Link href="/stores" className="text-center w-100">
           Ver todas las tiendas
         </Link>
+      </div>
+      <div className="frosted-card">
         {closestStore && (
           <div className="mt-4">
             <h2 className="mb-3">Tienda más cercana</h2>
@@ -103,12 +118,15 @@ export default function Home() {
             <a className="link address" href={`https://www.google.com/maps/search/?api=1&query=${closestStore.address}`} target="_blank" rel="noopener noreferrer">
               {closestStore.address}
             </a>
-            <br />
             <a className="link tel" href={`tel:${closestStore.phone.replace(/\s+/g, "")}`}>
               {closestStore.phone}
             </a>
             <p>{closestStore.hours}</p>
+            <p>Distancia: {formatDistance(closestStore.distance)}</p>
             <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.longitude, closestStore.latitude]} zoom={13} />
+            <button onClick={() => handleStoreClick(closestStore.id)} className="mt-2 p-2 bg-blue-500 text-white rounded">
+              Ver Detalles
+            </button>
           </div>
         )}
         {closestStores.length > 0 && (
@@ -117,12 +135,13 @@ export default function Home() {
             <ul>
               {closestStores.map((store) => (
                 <li key={store.id} className="frosted-card">
-                  <Link href={`/stores/${store.id}`}>
-                    <p className="store-title">{store.name}</p>
+                  <button onClick={() => handleStoreClick(store.id)} className="store-title w-full text-left">
+                    <p>{store.name}</p>
                     <p>{store.address}</p>
                     <p>{store.phone}</p>
                     <p>{store.hours}</p>
-                  </Link>
+                    <p>Distancia: {formatDistance(store.distance)}</p>
+                  </button>
                 </li>
               ))}
             </ul>
