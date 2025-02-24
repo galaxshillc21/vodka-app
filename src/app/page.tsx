@@ -1,39 +1,19 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import Map from "@/components/Map";
 import Disclaimer from "@/components/Disclaimer";
 import Info from "@/components/Info";
 import stores from "@/data/stores.json";
+import { haversineDistance } from "@/utils/distance";
 
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
   const [closestStore, setClosestStore] = useState(null);
   const [closestStores, setClosestStores] = useState([]);
 
-  useEffect(() => {
-    // Load the zipcode from local storage when the component mounts
-    const savedZipcode = localStorage.getItem("zipcode");
-    if (savedZipcode) {
-      setZipcode(savedZipcode);
-      findClosestStore(savedZipcode);
-    }
-  }, []);
-
-  const handleZipcodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setZipcode(e.target.value);
-  };
-
-  const handleZipcodeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Save the zipcode to local storage
-    localStorage.setItem("zipcode", zipcode);
-    console.log("Zipcode submitted:", zipcode);
-    await findClosestStore(zipcode);
-  };
-
-  const findClosestStore = async (zipcode: string) => {
+  const findClosestStore = useCallback(async (zipcode: string) => {
     try {
       const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${zipcode}&format=json&addressdetails=1&countrycodes=ES`);
       const data = await response.json();
@@ -53,16 +33,27 @@ export default function Home() {
     } catch (error) {
       console.error("Error finding closest store:", error);
     }
+  }, []);
+
+  useEffect(() => {
+    // Load the zipcode from local storage when the component mounts
+    const savedZipcode = localStorage.getItem("zipcode");
+    if (savedZipcode) {
+      setZipcode(savedZipcode);
+      findClosestStore(savedZipcode);
+    }
+  }, [findClosestStore]);
+
+  const handleZipcodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setZipcode(e.target.value);
   };
 
-  const haversineDistance = ([lat1, lon1]: [number, number], [lat2, lon2]: [number, number]) => {
-    const toRad = (x: number) => (x * Math.PI) / 180;
-    const R = 6371; // Earth radius in km
-    const dLat = toRad(lat2 - lat1);
-    const dLon = toRad(lon2 - lon1);
-    const a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    return R * c;
+  const handleZipcodeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Save the zipcode to local storage
+    localStorage.setItem("zipcode", zipcode);
+    console.log("Zipcode submitted:", zipcode);
+    await findClosestStore(zipcode);
   };
 
   return (
