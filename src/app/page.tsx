@@ -72,20 +72,20 @@ export default function Home() {
       <div className="frosted-card">
         <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-center mb-4">
           <label htmlFor="zipcode" className="block">
-            Enter your zip code to find the closest store:
+            Ingresa tu código postal para encontrar la tienda más cercana:
           </label>
           <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 border rounded" />
           <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded">
-            Search
+            Buscar
           </button>
         </form>
         <Link href="/stores" className="text-center">
-          View All Stores
+          Ver todas las tiendas
         </Link>
         {closestStore && (
           <div className="mt-4">
-            <h2>Closest Store</h2>
-            <p>{closestStore.name}</p>
+            <h2>Tienda más cercana</h2>
+            <h3>{closestStore.name}</h3>
             <p>{closestStore.address}</p>
             <p>{closestStore.phone}</p>
             <p>{closestStore.hours}</p>
@@ -94,14 +94,12 @@ export default function Home() {
         )}
         {closestStores.length > 0 && (
           <div className="mt-4">
-            <h2>Other Nearby Stores</h2>
+            <h2>Otras tiendas cercanas</h2>
             <ul>
               {closestStores.map((store) => (
                 <li key={store.id} className="frosted-card">
                   <Link href={`/stores/${store.id}`}>
-                    <p>
-                      <strong>{store.name}</strong>
-                    </p>
+                    <p className="store-title">{store.name}</p>
                     <p>{store.address}</p>
                     <p>{store.phone}</p>
                     <p>{store.hours}</p>

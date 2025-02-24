@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "leaflet": "^1.9.4",
-    "next": "15.1.7",
+    "next": "^15.1.7",
     "nominatim-geocoder": "^0.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

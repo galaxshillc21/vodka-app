@@ -2,7 +2,7 @@
   {
     "id": 1,
     "name": "Mercadona Las Palmas",
-    "address": "Calle León y Castillo, 200, 35004 Las Palmas de Gran Canaria, Las Palmas, Spain",
+    "address": "Calle León y Castillo, 200, 35004 Las Palmas de Gran Canaria, Las Palmas, España",
     "latitude": 28.1234,
     "longitude": -15.4321,
     "phone": "+34 928 123 456",
@@ -11,7 +11,7 @@
   {
     "id": 2,
     "name": "Zara Triana",
-    "address": "Calle Mayor de Triana, 46, 35002 Las Palmas de Gran Canaria, Las Palmas, Spain",
+    "address": "Calle Mayor de Triana, 46, 35002 Las Palmas de Gran Canaria, Las Palmas, España",
     "latitude": 28.1005,
     "longitude": -15.4132,
     "phone": "+34 928 234 567",
@@ -20,7 +20,7 @@
   {
     "id": 3,
     "name": "MediaMarkt Las Arenas",
-    "address": "Calle Eduardo Benot, 3, 35007 Las Palmas de Gran Canaria, Las Palmas, Spain",
+    "address": "Calle Eduardo Benot, 3, 35007 Las Palmas de Gran Canaria, Las Palmas, España",
     "latitude": 28.1356,
     "longitude": -15.4456,
     "phone": "+34 928 345 678",
@@ -29,7 +29,7 @@
   {
     "id": 4,
     "name": "Carrefour Vecindario",
-    "address": "Centro Comercial Atlántico, 35110 Vecindario, Las Palmas, Spain",
+    "address": "Centro Comercial Atlántico, 35110 Vecindario, Las Palmas, España",
     "latitude": 27.8567,
     "longitude": -15.4432,
     "phone": "+34 928 456 789",
@@ -38,7 +38,7 @@
   {
     "id": 5,
     "name": "Decathlon Telde",
-    "address": "Polígono Industrial de Salinetas, 35220 Telde, Las Palmas, Spain",
+    "address": "Polígono Industrial de Salinetas, 35220 Telde, Las Palmas, España",
     "latitude": 27.9987,
     "longitude": -15.4123,
     "phone": "+34 928 567 890",
@@ -47,7 +47,7 @@
   {
     "id": 6,
     "name": "El Corte Inglés Las Palmas",
-    "address": "Av. José Mesa y López, 7, 35006 Las Palmas de Gran Canaria, Las Palmas, Spain",
+    "address": "Av. José Mesa y López, 7, 35006 Las Palmas de Gran Canaria, Las Palmas, España",
     "latitude": 28.1304,
     "longitude": -15.4398,
     "phone": "+34 928 678 901",
@@ -56,7 +56,7 @@
   {
     "id": 7,
     "name": "Lidl Vecindario",
-    "address": "Calle Juan Carlos I, 35110 Vecindario, Las Palmas, Spain",
+    "address": "Calle Juan Carlos I, 35110 Vecindario, Las Palmas, España",
     "latitude": 27.8601,
     "longitude": -15.4412,
     "phone": "+34 928 789 012",
@@ -65,7 +65,7 @@
   {
     "id": 8,
     "name": "Pull & Bear Las Arenas",
-    "address": "Centro Comercial Las Arenas, 35007 Las Palmas de Gran Canaria, Las Palmas, Spain",
+    "address": "Centro Comercial Las Arenas, 35007 Las Palmas de Gran Canaria, Las Palmas, España",
     "latitude": 28.1378,
     "longitude": -15.4476,
     "phone": "+34 928 890 123",
@@ -74,7 +74,7 @@
   {
     "id": 9,
     "name": "Leroy Merlin Telde",
-    "address": "Polígono Industrial de Salinetas, 35220 Telde, Las Palmas, Spain",
+    "address": "Polígono Industrial de Salinetas, 35220 Telde, Las Palmas, España",
     "latitude": 27.9965,
     "longitude": -15.4101,
     "phone": "+34 928 901 234",
@@ -83,7 +83,7 @@
   {
     "id": 10,
     "name": "SuperDumbo Maspalomas",
-    "address": "Av. de Tirajana, 35100 Maspalomas, Las Palmas, Spain",
+    "address": "Av. de Tirajana, 35100 Maspalomas, Las Palmas, España",
     "latitude": 27.7606,
     "longitude": -15.5867,
     "phone": "+34 928 012 345",

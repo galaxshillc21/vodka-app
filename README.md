@@ -34,3 +34,14 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+#TODO:
+
+- when using geolocation, for closest store and stores, add a "distance" Metric
+- Pin has to be more instructive
+- Pin and address should take to navigation app
+- Stores should have links to Navigation app
+- Option to save store as favorite
+- List view or map view (not sure because)
+- Check for a specific store name (complex)
+- GA4 integration
