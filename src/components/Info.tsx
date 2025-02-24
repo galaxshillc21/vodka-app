@@ -1,10 +1,10 @@
 const Info = () => {
   return (
     <div className="frosted-card text-center">
-      <h2 className="">How to use app</h2>
-      {/* Add actual instructions, like either give location access or add your zip code */}
-      <p className="">Enter your zip code to find stores near you.</p>
-      <p>Test Zip Codes:</p>
+      <h2 className="">Cómo usar la app</h2>
+      {/* Agrega instrucciones reales, como permitir acceso a la ubicación o ingresar tu código postal */}
+      <p className="">Ingresa tu código postal para encontrar tiendas cerca de ti.</p>
+      <p>Códigos postales de prueba:</p>
       <ul>
         <li>35002</li>
         <li>35212</li>
