@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-// import Map from "@/components/Map";
+import Map from "@/components/Map";
 import Disclaimer from "@/components/Disclaimer";
 import Info from "@/components/Info";
 import stores from "@/data/stores.json";
@@ -15,21 +15,34 @@ export default function Home() {
 
   const findClosestStore = useCallback(async (zipcode: string) => {
     try {
+      console.log("Fetching coordinates for zipcode:", zipcode);
       const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${zipcode}&format=json&addressdetails=1&countrycodes=ES`);
       const data = await response.json();
 
-      if (data.length > 0) {
-        const { lat, lon } = data[0];
-        const sortedStores = stores
-          .map((store) => ({
-            ...store,
-            distance: haversineDistance([lat, lon], [store.latitude, store.longitude]),
-          }))
-          .sort((a, b) => a.distance - b.distance);
-
-        setClosestStore(sortedStores[0]);
-        setClosestStores(sortedStores.slice(1, 4)); // Get the next three closest stores
+      if (data.length === 0) {
+        console.warn("No coordinates found for given zipcode.");
+        return;
       }
+
+      const { lon, lat } = data[0];
+      console.log(`Fetched coordinates: lon=${lon}, lat=${lat}`);
+
+      // Convert to numbers to avoid string issues
+      const userCoords: [number, number] = [parseFloat(lat), parseFloat(lon)];
+      console.log("User coordinates parsed:", userCoords);
+
+      // Sort stores based on distance
+      const sortedStores = stores
+        .map((store) => {
+          const storeCoords: [number, number] = [store.latitude, store.longitude];
+          const distance = haversineDistance(userCoords, storeCoords);
+          console.log(`Store: ${store.name} | Distance: ${distance} km`);
+          return { ...store, distance };
+        })
+        .sort((a, b) => a.distance - b.distance);
+
+      setClosestStore(sortedStores[0]);
+      setClosestStores(sortedStores.slice(1, 4)); // Get next three closest stores
     } catch (error) {
       console.error("Error finding closest store:", error);
     }
@@ -51,6 +64,11 @@ export default function Home() {
 
   const handleZipcodeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!zipcode.trim()) {
+      console.warn("Zipcode field is empty.");
+      return;
+    }
+
     // Save the zipcode to local storage
     if (typeof window !== "undefined") {
       localStorage.setItem("zipcode", zipcode);
@@ -61,7 +79,9 @@ export default function Home() {
 
   return (
     <main className="container mx-auto p-4">
-      <h1 className="main-title text-center font-extrabold frosted-card">BLAT</h1>
+      <div className="frosted-card">
+        <h1 className="main-title text-center font-extrabold">BLAT</h1>
+      </div>
       <Info />
       <div className="frosted-card">
         <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-center mb-4">
@@ -78,17 +98,22 @@ export default function Home() {
         </Link>
         {closestStore && (
           <div className="mt-4">
-            <h2>Tienda más cercana</h2>
+            <h2 className="mb-3">Tienda más cercana</h2>
             <h3>{closestStore.name}</h3>
-            <p>{closestStore.address}</p>
-            <p>{closestStore.phone}</p>
+            <a className="link address" href={`https://www.google.com/maps/search/?api=1&query=${closestStore.address}`} target="_blank" rel="noopener noreferrer">
+              {closestStore.address}
+            </a>
+            <br />
+            <a className="link tel" href={`tel:${closestStore.phone.replace(/\s+/g, "")}`}>
+              {closestStore.phone}
+            </a>
             <p>{closestStore.hours}</p>
-            {/* <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.latitude, closestStore.longitude]} zoom={13} /> */}
+            <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.longitude, closestStore.latitude]} zoom={13} />
           </div>
         )}
         {closestStores.length > 0 && (
           <div className="mt-4">
-            <h2>Otras tiendas cercanas</h2>
+            <h2 className="mb-3">Otras tiendas cercanas</h2>
             <ul>
               {closestStores.map((store) => (
                 <li key={store.id} className="frosted-card">

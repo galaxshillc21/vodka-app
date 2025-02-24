@@ -3,8 +3,8 @@
     "id": 1,
     "name": "Mercadona Las Palmas",
     "address": "Calle León y Castillo, 200, 35004 Las Palmas de Gran Canaria, Las Palmas, España",
-    "latitude": 28.1234,
-    "longitude": -15.4321,
+    "latitude": 28.10101,
+    "longitude": -15.41912,
     "phone": "+34 928 123 456",
     "hours": "8:30 AM - 9:30 PM"
   },
@@ -12,8 +12,8 @@
     "id": 2,
     "name": "Zara Triana",
     "address": "Calle Mayor de Triana, 46, 35002 Las Palmas de Gran Canaria, Las Palmas, España",
-    "latitude": 28.1005,
-    "longitude": -15.4132,
+    "latitude": 28.10464,
+    "longitude": -15.41551,
     "phone": "+34 928 234 567",
     "hours": "10:00 AM - 9:00 PM"
   },

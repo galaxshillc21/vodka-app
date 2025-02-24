@@ -79,17 +79,14 @@ h1.main-title {
   font-size: 3rem;
   font-weight: 700;
   color: var(--primary-color);
-  margin-bottom: 20px;
 }
 h2 {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: var(--primary-color);
-  margin-bottom: 20px;
 }
 h3 {
   font-size: 1.25rem;
-  margin-bottom: 0px;
 }
 main {
   position: relative;
@@ -114,4 +111,13 @@ p {
   position: relative;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+}
+
+.maplibregl-map {
+  margin-top: 10px;
+  margin-bottom: 30px;
+  canvas {
+    border: 1px solid white;
+    border-radius: 10px;
+  }
 }

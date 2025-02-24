@@ -1,44 +1,37 @@
 "use client";
 
-import { useEffect } from "react";
-import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-
-// Fix for missing marker icons
-delete L.Icon.Default.prototype._getIconUrl;
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png",
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png",
-});
+import { useEffect, useRef } from "react";
+import maplibregl from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
 
 interface MapProps {
   center: [number, number];
   zoom: number;
 }
 
-const SetView = ({ center, zoom }: { center: [number, number]; zoom: number }) => {
-  const map = useMap();
-  useEffect(() => {
-    map.setView(center, zoom);
-  }, [center, zoom, map]);
-  return null;
-};
-
 const Map: React.FC<MapProps> = ({ center, zoom }) => {
-  return (
-    <MapContainer style={{ height: "400px", width: "100%" }}>
-      <SetView center={center} zoom={zoom} />
-      <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-      <Marker position={center}>
-        <Popup>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-    </MapContainer>
-  );
+  const mapContainerRef = useRef<HTMLDivElement>(null);
+  const mapInstance = useRef<maplibregl.Map | null>(null);
+
+  useEffect(() => {
+    if (!mapContainerRef.current || mapInstance.current) return;
+
+    mapInstance.current = new maplibregl.Map({
+      container: mapContainerRef.current,
+      style: "https://api.maptiler.com/maps/streets-v2/style.json?key=1vVunb6izrFWlkamr2Is", // Use the "streets" style
+      center,
+      zoom,
+    });
+
+    new maplibregl.Marker().setLngLat(center).addTo(mapInstance.current);
+
+    return () => {
+      mapInstance.current?.remove();
+      mapInstance.current = null; // Prevent memory leaks
+    };
+  }, [center, zoom]);
+
+  return <div ref={mapContainerRef} style={{ height: "400px", width: "100%" }} />;
 };
 
 export default Map;

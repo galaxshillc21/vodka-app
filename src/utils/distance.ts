@@ -1,4 +1,4 @@
-export const haversineDistance = ([lat1, lon1]: [number, number], [lat2, lon2]: [number, number]) => {
+export const haversineDistance = ([lon1, lat1]: [number, number], [lon2, lat2]: [number, number]) => {
   const toRad = (x: number) => (x * Math.PI) / 180;
   const R = 6371; // Earth radius in km
   const dLat = toRad(lat2 - lat1);

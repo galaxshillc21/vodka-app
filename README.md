@@ -1,47 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## TO DO
 
-## Getting Started
+For the top-down design layout, here’s what I’d include after the centered logo:
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-
-#TODO:
-
-- when using geolocation, for closest store and stores, add a "distance" Metric
-- Pin has to be more instructive
-- Pin and address should take to navigation app
-- Stores should have links to Navigation app
-- Option to save store as favorite
-- List view or map view (not sure because)
-- Check for a specific store name (complex)
-- GA4 integration
+1. Hero Section (Zip Code Input & Location Detection)
+   Below the centered logo, a tagline like:
+   “Find Your Nearest Vodka Retailer” (Subtle, elegant text)
+   A frosted glass input box for users to enter their zip code
+   A “Use My Location” button (small GPS icon next to it)
+2. Featured Store (Closest Store Highlighted)
+   A large frosted glass card showcasing the closest store
+   Store name (bold)
+   Address
+   Distance (e.g., "1.2 miles away")
+   "View Details" button
+3. Additional Closest Stores (Horizontal Scroll or List)
+   Below the featured store, show the next three closest stores
+   Each store in a smaller frosted glass card
+   Store name
+   Distance
+   "More Info" button
+4. Map View Button (Floating Action Button - FAB)
+   A floating button on the bottom right corner with a map icon
+   Clicking it switches the list view to interactive map view
+5. Bottom Navigation (if needed for Multi-Page Experience)
+   If the app has more features (e.g., saved stores, promotions), include a minimal bottom nav bar with icons for:
+   Home (store locator)
+   Map
+   Favorites
+   Settings
