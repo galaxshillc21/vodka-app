@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Map from "@/components/Map";
+// import Map from "@/components/Map";
 import Disclaimer from "@/components/Disclaimer";
 import Info from "@/components/Info";
 import stores from "@/data/stores.json";
@@ -36,11 +36,12 @@ export default function Home() {
   }, []);
 
   useEffect(() => {
-    // Load the zipcode from local storage when the component mounts
-    const savedZipcode = localStorage.getItem("zipcode");
-    if (savedZipcode) {
-      setZipcode(savedZipcode);
-      findClosestStore(savedZipcode);
+    if (typeof window !== "undefined") {
+      const savedZipcode = localStorage.getItem("zipcode");
+      if (savedZipcode) {
+        setZipcode(savedZipcode);
+        findClosestStore(savedZipcode);
+      }
     }
   }, [findClosestStore]);
 
@@ -51,7 +52,9 @@ export default function Home() {
   const handleZipcodeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // Save the zipcode to local storage
-    localStorage.setItem("zipcode", zipcode);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("zipcode", zipcode);
+    }
     console.log("Zipcode submitted:", zipcode);
     await findClosestStore(zipcode);
   };
@@ -80,7 +83,7 @@ export default function Home() {
             <p>{closestStore.address}</p>
             <p>{closestStore.phone}</p>
             <p>{closestStore.hours}</p>
-            <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.latitude, closestStore.longitude]} zoom={13} />
+            {/* <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.latitude, closestStore.longitude]} zoom={13} /> */}
           </div>
         )}
         {closestStores.length > 0 && (
