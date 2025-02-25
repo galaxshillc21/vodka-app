@@ -117,8 +117,8 @@ export default function Home() {
           </form>
         </div>
       </div>
-      <Tabs defaultValue="tiendas" className="w-full tiendas-tabs">
-        <TabsList className="w-full">
+      <Tabs defaultValue="tiendas" className="w-full ">
+        <TabsList className="w-full tiendas-tabs mt-4 mb-3">
           <TabsTrigger className="w-1/3" value="tiendas">
             Tiendas
           </TabsTrigger>
@@ -130,6 +130,7 @@ export default function Home() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="tiendas">
+          <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
           <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
           {/* <TiendasTab closestStores={closestStores} formatDistance={formatDistance} handleStoreClick={handleStoreClick} /> */}
           <div className="flex items-center justify-center">

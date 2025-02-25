@@ -5,6 +5,7 @@
 :root {
   --background: #ededed;
   --foreground: 262.5deg 7.48% 41.96%;
+  --links: 262.5deg 7.48% 26;
   --primary-color: #be7d3f;
   --text-color: 262.5deg 7.48% 41.96%;
   --font-montserrat: "Montserrat", sans-serif;
@@ -42,7 +43,7 @@
   --primary-foreground: 0 0% 98%;
   --secondary: 240 4.8% 95.9%;
   --secondary-foreground: 240 5.9% 10%;
-  --muted: 205.21deg 80.95% 28.82%;
+  --muted: 184.85deg 80.95% 28.82% / 40%;
   --muted-foreground: 0deg 0% 100%;
   --accent: 240 4.8% 95.9%;
   --accent-foreground: 240 5.9% 10%;
@@ -86,15 +87,13 @@ body {
   font-family: var(--font-poppins);
   background-size: contain;
   position: relative;
-
+  backdrop-filter: blur(3px);
   &.light {
-    text-shadow: 1px 1px 0px white;
     background-image: url("../../public/images/BLATVODKA-app-bg.jpg");
-    background-color: white;
     background-repeat: no-repeat;
     background-position: center -70px;
-    background-size: 130%;
-
+    background-size: 160%;
+    text-shadow: 1px 1px 0px white;
     &::before {
       content: "";
       position: absolute;
@@ -102,7 +101,6 @@ body {
       left: 0;
       width: 100%;
       height: 100%;
-      backdrop-filter: blur(5px);
       background: white;
       opacity: 0.5;
       pointer-events: none;
@@ -118,6 +116,9 @@ body {
   }
 }
 
+a {
+  color: hsl(var(--links));
+}
 /* Typography */
 h1,
 h2,
@@ -193,8 +194,8 @@ main {
     position: relative;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
-    backdrop-filter: blur(3px); /* Slight blur */
-    -webkit-backdrop-filter: blur(3px); /* Slight blur for Safari */
+    backdrop-filter: blur(6px); /* Slight blur */
+    -webkit-backdrop-filter: blur(6px); /* Slight blur for Safari */
     height: 230px;
 
     .lower-zip {
@@ -236,15 +237,15 @@ main {
 
 /* Frosted Card */
 .frosted-card {
-  background-color: rgba(255, 255, 255, 0.2);
+  background-color: rgba(255, 255, 255, 0.5);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 0.6rem;
   position: relative;
-  backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 
   &.selected-store {
     border-color: var(--primary-color);
@@ -305,6 +306,8 @@ button {
 }
 
 .tiendas-tabs {
+  // background-color: #0f766d52;
+  backdrop-filter: blur(7px);
   .data-\[state\=active\]\:shadow[data-state="active"] {
     font-weight: 600;
   }
