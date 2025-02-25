@@ -318,6 +318,23 @@ button {
 .hours {
   font-size: 0.9rem;
 }
+.store-address {
+  &.pill {
+    position: absolute;
+    background: #f7f7f761;
+    border-radius: 50px;
+    box-shadow: 0px 3px 10px rgb(0 0 0 / 24%);
+    padding: 4px 20px;
+    bottom: 8px;
+    width: 95%;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    backdrop-filter: blur(4px);
+    line-height: 1.2rem;
+    border: 1px solid white;
+  }
+}
 
 /* Navigation Button */
 .navigate-btn {
@@ -338,4 +355,9 @@ button {
   a {
     font-size: 0.9rem;
   }
+}
+
+/* Maps */
+.maplibregl-ctrl-bottom-right {
+  display: none;
 }

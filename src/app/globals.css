@@ -304,6 +304,23 @@ button.outline {
   font-size: 0.9rem;
 }
 
+.store-address.pill {
+  position: absolute;
+  background: rgba(247, 247, 247, 0.3803921569);
+  border-radius: 50px;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.24);
+  padding: 4px 20px;
+  bottom: 8px;
+  width: 95%;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  -webkit-backdrop-filter: blur(4px);
+          backdrop-filter: blur(4px);
+  line-height: 1.2rem;
+  border: 1px solid white;
+}
+
 /* Navigation Button */
 .navigate-btn {
   display: flex;
@@ -321,4 +338,9 @@ button.outline {
 /* Action Links */
 .action-links a {
   font-size: 0.9rem;
+}
+
+/* Maps */
+.maplibregl-ctrl-bottom-right {
+  display: none;
 }/*# sourceMappingURL=globals.css.map */

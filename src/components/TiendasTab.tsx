@@ -29,8 +29,11 @@ const TiendasTab = ({ closestStores, formatDistance }) => {
                     </p>
                   </div>
                 </TabsContent>
-                <TabsContent value="mapa">
+                <TabsContent value="mapa" className="relative">
                   <Map key={`${store.latitude}-${store.longitude}`} center={[store.longitude, store.latitude]} zoom={13} />
+                  <div className="store-address pill">
+                    <span className="distance">{formatDistance(store.distance)}</span> • <span className="address">{store.address}</span>
+                  </div>
                 </TabsContent>
                 <div className="action-links flex gap-4 mt-3">
                   <a href={`tel:${store.phone.replace(/\s+/g, "")}`} className="text-bronze">
