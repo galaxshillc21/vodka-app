@@ -31,7 +31,7 @@ const Map: React.FC<MapProps> = ({ center, zoom }) => {
     };
   }, [center, zoom]);
 
-  return <div ref={mapContainerRef} style={{ height: "400px", width: "100%" }} />;
+  return <div ref={mapContainerRef} style={{ height: "200px", width: "100%" }} />;
 };
 
 export default Map;

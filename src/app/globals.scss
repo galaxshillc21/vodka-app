@@ -3,12 +3,15 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #696373;
+  --background: #ededed;
+  --foreground: 262.5deg 7.48% 41.96%;
   --primary-color: #be7d3f;
-  --text-color: #696373;
+  --text-color: 262.5deg 7.48% 41.96%;
   --font-montserrat: "Montserrat", sans-serif;
   --font-poppins: "Poppins", sans-serif;
+  --muted-background: 240 3.8% 46.1%;
+  --muted-teal: #0f766e;
+  --soft-bronze: #996515;
 }
 
 * {
@@ -19,8 +22,54 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
-    --text-color: #ededed; // Ensure consistent color value
   }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ededed;
+    --foreground: 262.5deg 7.48% 41.96%;
+  }
+}
+
+:root {
+  --background: 0 0% 100%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 205.21deg 80.95% 28.82%;
+  --muted-foreground: 0deg 0% 100%;
+  --accent: 240 4.8% 95.9%;
+  --accent-foreground: 240 5.9% 10%;
+  --destructive: 0 72.22% 50.59%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 240 5.9% 90%;
+  --input: 240 5.9% 90%;
+  --ring: 240 5% 64.9%;
+  --radius: 0.5rem;
+  --chart-1: 12 76% 61%;
+  --chart-2: 173 58% 39%;
+  --chart-3: 197 37% 24%;
+  --chart-4: 43 74% 66%;
+  --chart-5: 27 87% 67%;
+  --sidebar-background: 0 0% 98%;
+  --sidebar-foreground: 240 5.3% 26.1%;
+  --sidebar-primary: 240 5.9% 10%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 240 4.8% 95.9%;
+  --sidebar-accent-foreground: 240 5.9% 10%;
+  --sidebar-border: 220 13% 91%;
+  --sidebar-ring: 240 5% 64.9%;
+}
+
+/* Global Styles */
+* {
+  box-sizing: border-box;
 }
 
 html,
@@ -33,10 +82,11 @@ body {
 }
 
 body {
-  color: var(--foreground);
+  color: hsl(var(--foreground));
   font-family: var(--font-poppins);
   background-size: contain;
   position: relative;
+
   &.light {
     text-shadow: 1px 1px 0px white;
     background-image: url("../../public/images/BLATVODKA-app-bg.jpg");
@@ -44,6 +94,7 @@ body {
     background-repeat: no-repeat;
     background-position: center -70px;
     background-size: 130%;
+
     &::before {
       content: "";
       position: absolute;
@@ -58,6 +109,7 @@ body {
       user-select: none;
     }
   }
+
   &.dark {
     background-repeat: no-repeat;
     background-color: black;
@@ -66,6 +118,7 @@ body {
   }
 }
 
+/* Typography */
 h1,
 h2,
 h3,
@@ -75,7 +128,6 @@ h6 {
   font-family: var(--font-montserrat);
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--text-color); // Ensure consistent color value
 }
 
 h1.main-title {
@@ -94,25 +146,95 @@ h3 {
   font-size: 1.25rem;
 }
 
-a {
-  display: block;
-  width: 100%;
+p {
+  &.store-title {
+    font-weight: 700;
+  }
 }
 
+/* Main Container */
 main {
   position: relative;
   height: 100%;
   width: 100%;
   overflow-y: auto;
-}
+  padding-bottom: 80px !important;
+  padding-left: 15px;
+  padding-right: 15px;
 
-p {
-  &.store-title {
-    font-weight: 700;
-    color: var(--text-color); // Ensure consistent color value
+  .heroBG {
+    background-image: url("../../public/images/colored-glass.jpg");
+    background-color: linear-gradient(red, white);
+    background-size: contain;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 50px;
+    border-bottom-right-radius: 50px;
+    margin-left: -16px;
+    margin-right: -16px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  #Hero {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
+    position: relative;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
+    backdrop-filter: blur(3px); /* Slight blur */
+    -webkit-backdrop-filter: blur(3px); /* Slight blur for Safari */
+    height: 230px;
+
+    .lower-zip {
+      position: absolute;
+      bottom: 10px;
+      width: 92%;
+      left: 0;
+      right: 0;
+      margin: 0 auto;
+
+      button {
+        position: absolute;
+        border-radius: 50px;
+        opacity: 0.7;
+        right: 4px;
+        bottom: 3px;
+        height: 38px;
+        z-index: 2;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 50px;
+        border: 1px solid var(--text-color);
+        color: var(--primary-color);
+        font-weight: 600;
+        padding-right: 150px;
+        text-align: left;
+        padding-left: 20px;
+
+        &::placeholder {
+          font-weight: 600;
+        }
+      }
+    }
   }
 }
 
+/* Frosted Card */
 .frosted-card {
   background-color: rgba(255, 255, 255, 0.2);
   box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -123,13 +245,94 @@ p {
   position: relative;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
+
+  &.selected-store {
+    border-color: var(--primary-color);
+  }
 }
 
+/* Map */
 .maplibregl-map {
   margin-top: 10px;
   margin-bottom: 30px;
+
   canvas {
     border: 1px solid white;
     border-radius: 10px;
+  }
+}
+
+/* Text Colors */
+.text-teal {
+  color: var(--muted-teal) !important;
+}
+
+.text-bronze {
+  color: var(--soft-bronze) !important;
+}
+
+/* Components */
+button {
+  &.bg-primary {
+    background-color: var(--primary-color);
+  }
+
+  &.outline {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    outline: none;
+  }
+}
+
+.star {
+  &.starred svg {
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+  }
+}
+
+/* Tabs */
+.store-tabs {
+  background-color: transparent;
+
+  .ring-offset-background {
+    color: hsl(var(--foreground));
+  }
+
+  button {
+    font-weight: 600 !important;
+  }
+}
+
+.tiendas-tabs {
+  .data-\[state\=active\]\:shadow[data-state="active"] {
+    font-weight: 600;
+  }
+}
+
+/* Store Address and Hours */
+.store-address,
+.hours {
+  font-size: 0.9rem;
+}
+
+/* Navigation Button */
+.navigate-btn {
+  display: flex;
+  background-color: #0f766eb8;
+  padding: 2px;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
+  text-shadow: none;
+  border-radius: 50px;
+  color: white;
+  text-shadow: none;
+}
+
+/* Action Links */
+.action-links {
+  a {
+    font-size: 0.9rem;
   }
 }

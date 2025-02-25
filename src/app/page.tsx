@@ -3,14 +3,16 @@
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Map from "@/components/Map";
-import Disclaimer from "@/components/Disclaimer";
+import { Store } from "lucide-react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import TiendasTab from "@/components/TiendasTab";
+import EventosTab from "@/components/EventosTab";
+import FavoritosTab from "@/components/FavoritosTab";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
 
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
-  const [closestStore, setClosestStore] = useState(null);
   const [closestStores, setClosestStores] = useState([]);
   const router = useRouter(); // Initialize router
 
@@ -46,8 +48,7 @@ export default function Home() {
         })
         .sort((a, b) => a.distance - b.distance);
 
-      setClosestStore(sortedStores[0]);
-      setClosestStores(sortedStores.slice(1, 4)); // Get next three closest stores
+      setClosestStores(sortedStores.slice(0, 4)); // Get the four closest stores
     } catch (error) {
       console.error("Error finding closest store:", error);
     }
@@ -90,65 +91,60 @@ export default function Home() {
   };
 
   return (
-    <main className="container mx-auto p-4">
-      <div className="frosted-card" id="Hero">
-        <h1 className="main-title text-center font-extrabold">BLAT</h1>
-        <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
-        <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
-          <label htmlFor="zipcode" className="block">
-            Codigo Postal:
-          </label>
-          <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 border rounded" />
-          <button type="submit" className="ml-2 p-2 bg-blue-500 text-white rounded">
-            Buscar
-          </button>
-          <button type="button" className="mt-2 mb-2 p-2 bg-blue-500 text-white rounded">
-            Usar mi localización
-          </button>
-        </form>
-        <Link href="/stores" className="text-center w-100">
-          Ver todas las tiendas
-        </Link>
+    <main className="container mx-auto">
+      <div className="heroBG">
+        <div className="frosted-card" id="Hero">
+          <h1 className="main-title text-center font-extrabold">BLAT</h1>
+          <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
+          <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
+            <div className="flex items-center flex-wrap gap-2 w-3/4 m-auto">
+              {/* <label htmlFor="zipcode" className="block w-full">
+                Codigo Postal:
+              </label> */}
+              {/* <div className="flex">
+                <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 border rounded w-2/3 " />
+                <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded">
+                  Buscar
+                </button>
+              </div> */}
+              <div className="flex lower-zip">
+                <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 w-2/3 " />
+                <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded">
+                  Buscar
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
-      <div className="frosted-card">
-        {closestStore && (
-          <div className="mt-4">
-            <h2 className="mb-3">Tienda más cercana</h2>
-            <h3>{closestStore.name}</h3>
-            <a className="link address" href={`https://www.google.com/maps/search/?api=1&query=${closestStore.address}`} target="_blank" rel="noopener noreferrer">
-              {closestStore.address}
-            </a>
-            <a className="link tel" href={`tel:${closestStore.phone.replace(/\s+/g, "")}`}>
-              {closestStore.phone}
-            </a>
-            <p>{closestStore.hours}</p>
-            <p>Distancia: {formatDistance(closestStore.distance)}</p>
-            <Map key={`${closestStore.latitude}-${closestStore.longitude}`} center={[closestStore.longitude, closestStore.latitude]} zoom={13} />
-            <button onClick={() => handleStoreClick(closestStore.id)} className="mt-2 p-2 bg-blue-500 text-white rounded">
-              Ver Detalles
-            </button>
+      <Tabs defaultValue="tiendas" className="w-full tiendas-tabs">
+        <TabsList className="w-full">
+          <TabsTrigger className="w-1/3" value="tiendas">
+            Tiendas
+          </TabsTrigger>
+          <TabsTrigger className="w-1/3" value="eventos">
+            Eventos
+          </TabsTrigger>
+          <TabsTrigger className="w-1/3" value="favoritos">
+            Favoritos
+          </TabsTrigger>
+        </TabsList>
+        <TabsContent value="tiendas">
+          <TiendasTab closestStores={closestStores} formatDistance={formatDistance} handleStoreClick={handleStoreClick} />
+          <div className="flex align-center justify-center">
+            <Link href="/stores" className="text-center w-100">
+              <span className="font-medium">Ver todas las tiendas</span>
+            </Link>
           </div>
-        )}
-        {closestStores.length > 0 && (
-          <div className="mt-4">
-            <h2 className="mb-3">Otras tiendas cercanas</h2>
-            <ul>
-              {closestStores.map((store) => (
-                <li key={store.id} className="frosted-card">
-                  <button onClick={() => handleStoreClick(store.id)} className="store-title w-full text-left">
-                    <p>{store.name}</p>
-                    <p>{store.address}</p>
-                    <p>{store.phone}</p>
-                    <p>{store.hours}</p>
-                    <p>Distancia: {formatDistance(store.distance)}</p>
-                  </button>
-                </li>
-              ))}
-            </ul>
-          </div>
-        )}
-      </div>
-      <Disclaimer />
+        </TabsContent>
+        <TabsContent value="eventos">
+          <EventosTab />
+        </TabsContent>
+        <TabsContent value="favoritos">
+          <FavoritosTab />
+        </TabsContent>
+      </Tabs>
+      {/* <Disclaimer /> */}
     </main>
   );
 }
