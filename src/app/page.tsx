@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { Store } from "lucide-react";
+import { Search } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TiendasTab from "@/components/TiendasTab";
 import EventosTab from "@/components/EventosTab";
@@ -14,11 +14,11 @@ import { haversineDistance } from "@/utils/distance";
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
   const [closestStores, setClosestStores] = useState([]);
-  const router = useRouter(); // Initialize router
+  // const router = useRouter(); // Initialize router
 
-  const handleStoreClick = (storeId) => {
-    router.push(`/stores/${storeId}`);
-  };
+  // const handleStoreClick = (storeId) => {
+  //   router.push(`/stores/${storeId}`);
+  // };
 
   const findClosestStore = useCallback(async (zipcode: string) => {
     try {
@@ -109,8 +109,8 @@ export default function Home() {
               </div> */}
               <div className="flex lower-zip">
                 <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 w-2/3 " />
-                <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded">
-                  Buscar
+                <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded flex flex items-center justify-center gap-1">
+                  <Search size={15} className="inline" /> Buscar
                 </button>
               </div>
             </div>
@@ -130,8 +130,9 @@ export default function Home() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="tiendas">
-          <TiendasTab closestStores={closestStores} formatDistance={formatDistance} handleStoreClick={handleStoreClick} />
-          <div className="flex align-center justify-center">
+          <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
+          {/* <TiendasTab closestStores={closestStores} formatDistance={formatDistance} handleStoreClick={handleStoreClick} /> */}
+          <div className="flex items-center justify-center">
             <Link href="/stores" className="text-center w-100">
               <span className="font-medium">Ver todas las tiendas</span>
             </Link>

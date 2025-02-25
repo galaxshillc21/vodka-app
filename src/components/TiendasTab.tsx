@@ -1,8 +1,9 @@
-import { Phone, Clock10, MapPin, Star, Navigation } from "lucide-react";
+import { Phone, Clock10, Star, Navigation } from "lucide-react";
 import Map from "@/components/Map";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const TiendasTab = ({ closestStores, formatDistance, handleStoreClick }) => {
+const TiendasTab = ({ closestStores, formatDistance }) => {
+  // const TiendasTab = ({ closestStores, formatDistance, handleStoreClick }) => {
   return (
     <div id="Stores">
       {closestStores.length > 0 && (
