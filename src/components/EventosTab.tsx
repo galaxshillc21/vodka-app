@@ -1,4 +1,4 @@
-import { Phone, Clock10, MapPin, Navigation, Calendar, Globe } from "lucide-react";
+import { Navigation, Calendar, Globe } from "lucide-react";
 import Map from "@/components/Map";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import events from "@/data/events.json";
