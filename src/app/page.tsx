@@ -123,7 +123,13 @@ export default function Home() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="tiendas">
+          <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
           <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
+          <div className="flex align-center justify-center">
+            <Link href="/stores" className="text-center w-100">
+              Ver todas las tiendas
+            </Link>
+          </div>
         </TabsContent>
         <TabsContent value="eventos">
           <EventosTab userCoords={userCoords} formatDistance={formatDistance} />
@@ -132,11 +138,7 @@ export default function Home() {
           <FavoritosTab />
         </TabsContent>
       </Tabs>
-      <div className="flex align-center justify-center">
-        <Link href="/stores" className="text-center w-100">
-          Ver todas las tiendas
-        </Link>
-      </div>
+
       {/* <Disclaimer /> */}
     </main>
   );
