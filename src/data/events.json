@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Gran Cata de Vodka en Playa del Inglés",
+    "date": "2025-07-15",
+    "description": "Un evento exclusivo en el corazón de Playa del Inglés donde los asistentes podrán disfrutar de una cata guiada de vodka premium, maridado con aperitivos gourmet.",
+    "location": {
+      "town": "Playa del Inglés",
+      "municipality": "San Bartolomé de Tirajana",
+      "latitude": 27.76056,
+      "longitude": -15.57064
+    },
+    "website": "https://granvodkaevent.com",
+    "image": "https://fakeimage.com/event1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Festival Nocturno de Vodka y Música",
+    "date": "2025-09-20",
+    "description": "Una noche vibrante en Las Palmas con música en vivo, DJ’s internacionales y una selección exclusiva de cócteles preparados con nuestra vodka premium.",
+    "location": {
+      "town": "Las Palmas de Gran Canaria",
+      "municipality": "Las Palmas",
+      "latitude": 28.12355,
+      "longitude": -15.43626
+    },
+    "website": "https://vodkanightfest.com",
+    "image": "https://fakeimage.com/event2.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Mercado Artesanal y Degustación de Vodka",
+    "date": "2025-11-10",
+    "description": "Un evento único en Teror donde se fusiona la tradición del mercado artesanal con la degustación de innovadores cócteles de vodka.",
+    "location": {
+      "town": "Teror",
+      "municipality": "Teror",
+      "latitude": 28.05833,
+      "longitude": -15.55028
+    },
+    "website": "https://mercadovodkateror.com",
+    "image": "https://fakeimage.com/event3.jpg"
+  }
+]

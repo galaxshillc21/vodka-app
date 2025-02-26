@@ -13,7 +13,7 @@ const TiendasTab = ({ closestStores, formatDistance }) => {
             <li key={store.id} className="frosted-card store relative">
               <Tabs defaultValue="info" className="w-full">
                 <div className="flex justify-center items-center">
-                  <TabsList className="store-tabs mb-2">
+                  <TabsList className="frosted-tabs mb-2">
                     <TabsTrigger value="info">Información</TabsTrigger>
                     <TabsTrigger value="mapa">Mapa</TabsTrigger>
                   </TabsList>

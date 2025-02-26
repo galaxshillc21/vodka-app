@@ -2,6 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ededed;
+    --foreground: 262.5deg 7.48% 41.96%;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: rgb(17, 22, 29) !important;
+    --foreground: #999caa !important;
+  }
+  body {
+    // background-image: url("../../public/images/vodka-blat.jpg") !important;
+    background: black !important;
+    background-size: 220%;
+    background-position: 60% -10%;
+    color: white !important;
+    text-shadow: none !important;
+    &::before {
+      content: none !important;
+    }
+  }
+  /* Frosted Card */
+  .frosted-card {
+    background-color: #818181c9;
+    border: 1px solid #959595;
+    text-shadow: 0px 2px 1px #676767d4 !important;
+    &.selected-store {
+      border-color: var(--primary-color);
+    }
+  }
+  a {
+    color: hsl(var(--foreground)) !important;
+  }
+}
+
 :root {
   --background: #ededed;
   --foreground: 262.5deg 7.48% 41.96%;
@@ -13,24 +54,6 @@
   --muted-background: 240 3.8% 46.1%;
   --muted-teal: #0f766e;
   --soft-bronze: #996515;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ededed;
-    --foreground: 262.5deg 7.48% 41.96%;
-  }
 }
 
 :root {
@@ -87,32 +110,22 @@ body {
   font-family: var(--font-poppins);
   background-size: contain;
   position: relative;
-  backdrop-filter: blur(3px);
-  &.light {
-    background-image: url("../../public/images/BLATVODKA-app-bg.jpg");
-    background-repeat: no-repeat;
-    background-position: center -70px;
-    background-size: 160%;
-    text-shadow: 1px 1px 0px white;
-    &::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: white;
-      opacity: 0.5;
-      pointer-events: none;
-      user-select: none;
-    }
-  }
-
-  &.dark {
-    background-repeat: no-repeat;
-    background-color: black;
-    background-position: 58%;
-    background-size: 200%;
+  // backdrop-filter: blur(3px);
+  background-image: url("../../public/images/BLATVODKA-app-bg.jpg");
+  background-repeat: no-repeat;
+  background-position: center -70px;
+  background-size: 160%;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0.5;
+    pointer-events: none;
+    user-select: none;
   }
 }
 
@@ -246,7 +259,7 @@ main {
   position: relative;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-
+  text-shadow: 1px 1px 0px white;
   &.selected-store {
     border-color: var(--primary-color);
   }
@@ -293,7 +306,7 @@ button {
 }
 
 /* Tabs */
-.store-tabs {
+.frosted-tabs {
   background-color: transparent;
 
   .ring-offset-background {
@@ -318,7 +331,8 @@ button {
 .hours {
   font-size: 0.9rem;
 }
-.store-address {
+.store-address,
+.event-location {
   &.pill {
     position: absolute;
     background: #f7f7f761;

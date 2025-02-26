@@ -14,6 +14,7 @@ import { haversineDistance } from "@/utils/distance";
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
   const [closestStores, setClosestStores] = useState([]);
+  const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   // const router = useRouter(); // Initialize router
 
   // const handleStoreClick = (storeId) => {
@@ -37,6 +38,7 @@ export default function Home() {
       // Convert to numbers to avoid string issues
       const userCoords: [number, number] = [parseFloat(lat), parseFloat(lon)];
       console.log("User coordinates parsed:", userCoords);
+      setUserCoords(userCoords);
 
       // Sort stores based on distance
       const sortedStores = stores
@@ -98,15 +100,6 @@ export default function Home() {
           <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
           <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
             <div className="flex items-center flex-wrap gap-2 w-3/4 m-auto">
-              {/* <label htmlFor="zipcode" className="block w-full">
-                Codigo Postal:
-              </label> */}
-              {/* <div className="flex">
-                <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 border rounded w-2/3 " />
-                <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded">
-                  Buscar
-                </button>
-              </div> */}
               <div className="flex lower-zip">
                 <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 w-2/3 " />
                 <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded flex flex items-center justify-center gap-1">
@@ -117,8 +110,8 @@ export default function Home() {
           </form>
         </div>
       </div>
-      <Tabs defaultValue="tiendas" className="w-full ">
-        <TabsList className="w-full tiendas-tabs mt-4 mb-3">
+      <Tabs defaultValue="tiendas" className="w-full">
+        <TabsList className="w-full">
           <TabsTrigger className="w-1/3" value="tiendas">
             Tiendas
           </TabsTrigger>
@@ -130,22 +123,20 @@ export default function Home() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="tiendas">
-          <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
           <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
-          {/* <TiendasTab closestStores={closestStores} formatDistance={formatDistance} handleStoreClick={handleStoreClick} /> */}
-          <div className="flex items-center justify-center">
-            <Link href="/stores" className="text-center w-100">
-              <span className="font-medium">Ver todas las tiendas</span>
-            </Link>
-          </div>
         </TabsContent>
         <TabsContent value="eventos">
-          <EventosTab />
+          <EventosTab userCoords={userCoords} formatDistance={formatDistance} />
         </TabsContent>
         <TabsContent value="favoritos">
           <FavoritosTab />
         </TabsContent>
       </Tabs>
+      <div className="flex align-center justify-center">
+        <Link href="/stores" className="text-center w-100">
+          Ver todas las tiendas
+        </Link>
+      </div>
       {/* <Disclaimer /> */}
     </main>
   );

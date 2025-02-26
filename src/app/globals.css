@@ -1,6 +1,44 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+* {
+  box-sizing: border-box;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #ededed;
+    --foreground: 262.5deg 7.48% 41.96%;
+  }
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: rgb(17, 22, 29) !important;
+    --foreground: #999caa !important;
+  }
+  body {
+    background: black !important;
+    background-size: 220%;
+    background-position: 60% -10%;
+    color: white !important;
+    text-shadow: none !important;
+  }
+  body::before {
+    content: none !important;
+  }
+  /* Frosted Card */
+  .frosted-card {
+    background-color: rgba(129, 129, 129, 0.7882352941);
+    border: 1px solid #959595;
+    text-shadow: 0px 2px 1px rgba(103, 103, 103, 0.831372549) !important;
+  }
+  .frosted-card.selected-store {
+    border-color: var(--primary-color);
+  }
+  a {
+    color: hsl(var(--foreground)) !important;
+  }
+}
 :root {
   --background: #ededed;
   --foreground: 262.5deg 7.48% 41.96%;
@@ -14,22 +52,6 @@
   --soft-bronze: #996515;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --background: #ededed;
-    --foreground: 262.5deg 7.48% 41.96%;
-  }
-}
 :root {
   --background: 0 0% 100%;
   --card: 0 0% 100%;
@@ -84,17 +106,12 @@ body {
   font-family: var(--font-poppins);
   background-size: contain;
   position: relative;
-  -webkit-backdrop-filter: blur(3px);
-          backdrop-filter: blur(3px);
-}
-body.light {
   background-image: url("../../public/images/BLATVODKA-app-bg.jpg");
   background-repeat: no-repeat;
   background-position: center -70px;
   background-size: 160%;
-  text-shadow: 1px 1px 0px white;
 }
-body.light::before {
+body::before {
   content: "";
   position: absolute;
   top: 0;
@@ -107,12 +124,6 @@ body.light::before {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-}
-body.dark {
-  background-repeat: no-repeat;
-  background-color: black;
-  background-position: 58%;
-  background-size: 200%;
 }
 
 a {
@@ -240,6 +251,7 @@ main #Hero .lower-zip input::placeholder {
   position: relative;
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  text-shadow: 1px 1px 0px white;
 }
 .frosted-card.selected-store {
   border-color: var(--primary-color);
@@ -280,13 +292,13 @@ button.outline {
 }
 
 /* Tabs */
-.store-tabs {
+.frosted-tabs {
   background-color: transparent;
 }
-.store-tabs .ring-offset-background {
+.frosted-tabs .ring-offset-background {
   color: hsl(var(--foreground));
 }
-.store-tabs button {
+.frosted-tabs button {
   font-weight: 600 !important;
 }
 
@@ -304,7 +316,8 @@ button.outline {
   font-size: 0.9rem;
 }
 
-.store-address.pill {
+.store-address.pill,
+.event-location.pill {
   position: absolute;
   background: rgba(247, 247, 247, 0.3803921569);
   border-radius: 50px;
