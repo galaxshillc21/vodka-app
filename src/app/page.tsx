@@ -1,13 +1,13 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-// import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Search } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TiendasTab from "@/components/TiendasTab";
 import EventosTab from "@/components/EventosTab";
 import FavoritosTab from "@/components/FavoritosTab";
+import { SkeletonTiendas, SkeletonEventos } from "@/components/SkeletonCard";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
 
@@ -15,11 +15,7 @@ export default function Home() {
   const [zipcode, setZipcode] = useState("");
   const [closestStores, setClosestStores] = useState([]);
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
-  // const router = useRouter(); // Initialize router
-
-  // const handleStoreClick = (storeId) => {
-  //   router.push(`/stores/${storeId}`);
-  // };
+  const [loading, setLoading] = useState(false);
 
   const findClosestStore = useCallback(async (zipcode: string) => {
     try {
@@ -35,12 +31,10 @@ export default function Home() {
       const { lon, lat } = data[0];
       console.log(`Fetched coordinates: lon=${lon}, lat=${lat}`);
 
-      // Convert to numbers to avoid string issues
       const userCoords: [number, number] = [parseFloat(lat), parseFloat(lon)];
       console.log("User coordinates parsed:", userCoords);
       setUserCoords(userCoords);
 
-      // Sort stores based on distance
       const sortedStores = stores
         .map((store) => {
           const storeCoords: [number, number] = [store.latitude, store.longitude];
@@ -50,9 +44,11 @@ export default function Home() {
         })
         .sort((a, b) => a.distance - b.distance);
 
-      setClosestStores(sortedStores.slice(0, 4)); // Get the four closest stores
+      setClosestStores(sortedStores.slice(0, 4));
     } catch (error) {
       console.error("Error finding closest store:", error);
+    } finally {
+      setLoading(false);
     }
   }, []);
 
@@ -77,12 +73,14 @@ export default function Home() {
       return;
     }
 
-    // Save the zipcode to local storage
     if (typeof window !== "undefined") {
       localStorage.setItem("zipcode", zipcode);
     }
     console.log("Zipcode submitted:", zipcode);
-    await findClosestStore(zipcode);
+    setLoading(true);
+    setTimeout(async () => {
+      await findClosestStore(zipcode);
+    }, 1000);
   };
 
   const formatDistance = (distance: number) => {
@@ -123,23 +121,34 @@ export default function Home() {
           </TabsTrigger>
         </TabsList>
         <TabsContent value="tiendas">
-          <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
-          <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
-          <div className="flex align-center justify-center">
-            <Link href="/stores" className="text-center w-100">
-              Ver todas las tiendas
-            </Link>
-          </div>
+          {loading ? (
+            <SkeletonTiendas />
+          ) : (
+            <>
+              <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
+              <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
+              <div className="flex align-center justify-center">
+                <Link href="/stores" className="text-center w-100">
+                  Ver todas las tiendas
+                </Link>
+              </div>
+            </>
+          )}
         </TabsContent>
         <TabsContent value="eventos">
-          <EventosTab userCoords={userCoords} formatDistance={formatDistance} />
+          {loading ? (
+            <SkeletonEventos />
+          ) : (
+            <>
+              <h3 className="mb-3 text-center">Eventos más cercanos</h3>
+              <EventosTab userCoords={userCoords} formatDistance={formatDistance} />
+            </>
+          )}
         </TabsContent>
         <TabsContent value="favoritos">
           <FavoritosTab />
         </TabsContent>
       </Tabs>
-
-      {/* <Disclaimer /> */}
     </main>
   );
 }
