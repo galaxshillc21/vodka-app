@@ -10,6 +10,7 @@ import FavoritosTab from "@/components/FavoritosTab";
 import { SkeletonTiendas, SkeletonEventos } from "@/components/SkeletonCard";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
@@ -92,7 +93,12 @@ export default function Home() {
 
   return (
     <main className="container mx-auto">
-      <div className="heroBG">
+      <motion.div
+        initial={{ y: -50, opacity: 0 }} // Start slightly above and invisible
+        animate={{ y: 0, opacity: 1 }} // Slide down and become visible
+        transition={{ duration: 0.5, ease: "easeOut" }} // Adjust speed and easing
+        className="heroBG animate-slide-down"
+      >
         <div className="frosted-card" id="Hero">
           <h1 className="main-title text-center font-extrabold">BLAT</h1>
           <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
@@ -107,19 +113,21 @@ export default function Home() {
             </div>
           </form>
         </div>
-      </div>
+      </motion.div>
       <Tabs defaultValue="tiendas" className="w-full">
-        <TabsList className="w-full">
-          <TabsTrigger className="w-1/3" value="tiendas">
-            Tiendas
-          </TabsTrigger>
-          <TabsTrigger className="w-1/3" value="eventos">
-            Eventos
-          </TabsTrigger>
-          <TabsTrigger className="w-1/3" value="favoritos">
-            Favoritos
-          </TabsTrigger>
-        </TabsList>
+        <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }}>
+          <TabsList className="w-full">
+            <TabsTrigger className="w-1/3" value="tiendas">
+              Tiendas
+            </TabsTrigger>
+            <TabsTrigger className="w-1/3" value="eventos">
+              Eventos
+            </TabsTrigger>
+            <TabsTrigger className="w-1/3" value="favoritos">
+              Favoritos
+            </TabsTrigger>
+          </TabsList>
+        </motion.div>
         <TabsContent value="tiendas">
           {loading ? (
             <SkeletonTiendas />
