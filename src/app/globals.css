@@ -216,11 +216,22 @@ main #Hero .lower-zip {
 main #Hero .lower-zip button {
   position: absolute;
   border-radius: 50px;
-  opacity: 0.7;
-  right: 4px;
+  opacity: 1;
   bottom: 3px;
   height: 38px;
   z-index: 2;
+}
+main #Hero .lower-zip button.useZip {
+  right: 23px;
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  z-index: 1;
+}
+main #Hero .lower-zip button.useLocation {
+  right: 4px;
+  width: 38px;
+  outline: 2px solid white;
+  z-index: 9;
 }
 main #Hero .lower-zip input {
   width: 100%;
@@ -356,11 +367,4 @@ button.outline {
 /* Maps */
 .maplibregl-ctrl-bottom-right {
   display: none;
-}@layer base {}@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-}
+}/*# sourceMappingURL=globals.css.map */

@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import { Search } from "lucide-react";
+import { Search, LocateFixed } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import TiendasTab from "@/components/TiendasTab";
 import EventosTab from "@/components/EventosTab";
@@ -11,6 +11,7 @@ import { SkeletonTiendas, SkeletonEventos } from "@/components/SkeletonCard";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
 import { motion } from "framer-motion";
+import { log } from "console";
 
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
@@ -18,29 +19,12 @@ export default function Home() {
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
 
-  const findClosestStore = useCallback(async (zipcode: string) => {
+  const findClosestStore = useCallback(async (coords: [number, number]) => {
     try {
-      console.log("Fetching coordinates for zipcode:", zipcode);
-      const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${zipcode}&format=json&addressdetails=1&countrycodes=ES`);
-      const data = await response.json();
-
-      if (data.length === 0) {
-        console.warn("No coordinates found for given zipcode.");
-        return;
-      }
-
-      const { lon, lat } = data[0];
-      console.log(`Fetched coordinates: lon=${lon}, lat=${lat}`);
-
-      const userCoords: [number, number] = [parseFloat(lat), parseFloat(lon)];
-      console.log("User coordinates parsed:", userCoords);
-      setUserCoords(userCoords);
-
       const sortedStores = stores
         .map((store) => {
           const storeCoords: [number, number] = [store.latitude, store.longitude];
-          const distance = haversineDistance(userCoords, storeCoords);
-          console.log(`Store: ${store.name} | Distance: ${distance} km`);
+          const distance = haversineDistance(coords, storeCoords);
           return { ...store, distance };
         })
         .sort((a, b) => a.distance - b.distance);
@@ -58,10 +42,34 @@ export default function Home() {
       const savedZipcode = localStorage.getItem("zipcode");
       if (savedZipcode) {
         setZipcode(savedZipcode);
-        findClosestStore(savedZipcode);
+        findClosestStoreByZipcode(savedZipcode);
       }
     }
   }, [findClosestStore]);
+
+  const findClosestStoreByZipcode = useCallback(
+    async (zipcode: string) => {
+      try {
+        const response = await fetch(`https://nominatim.openstreetmap.org/search?q=${zipcode}&format=json&addressdetails=1&countrycodes=ES`);
+        const data = await response.json();
+
+        if (data.length === 0) {
+          console.warn("No coordinates found for given zipcode.");
+          return;
+        }
+
+        const { lon, lat } = data[0];
+        const userCoords: [number, number] = [parseFloat(lat), parseFloat(lon)];
+        setUserCoords(userCoords);
+        await findClosestStore(userCoords);
+      } catch (error) {
+        console.error("Error finding closest store:", error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [findClosestStore]
+  );
 
   const handleZipcodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setZipcode(e.target.value);
@@ -69,6 +77,7 @@ export default function Home() {
 
   const handleZipcodeSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("Searching for zipcode...");
     if (!zipcode.trim()) {
       console.warn("Zipcode field is empty.");
       return;
@@ -77,11 +86,30 @@ export default function Home() {
     if (typeof window !== "undefined") {
       localStorage.setItem("zipcode", zipcode);
     }
-    console.log("Zipcode submitted:", zipcode);
     setLoading(true);
     setTimeout(async () => {
-      await findClosestStore(zipcode);
+      await findClosestStoreByZipcode(zipcode);
     }, 1000);
+  };
+
+  const handleLocationShare = () => {
+    console.log("Getting user location...");
+    if (navigator.geolocation) {
+      setLoading(true);
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const coords: [number, number] = [position.coords.latitude, position.coords.longitude];
+          setUserCoords(coords);
+          await findClosestStore(coords);
+        },
+        (error) => {
+          console.error("Error getting location:", error);
+          setLoading(false);
+        }
+      );
+    } else {
+      console.warn("Geolocation is not supported by this browser.");
+    }
   };
 
   const formatDistance = (distance: number) => {
@@ -93,12 +121,7 @@ export default function Home() {
 
   return (
     <main className="container mx-auto">
-      <motion.div
-        initial={{ y: -50, opacity: 0 }} // Start slightly above and invisible
-        animate={{ y: 0, opacity: 1 }} // Slide down and become visible
-        transition={{ duration: 0.5, ease: "easeOut" }} // Adjust speed and easing
-        className="heroBG animate-slide-down"
-      >
+      <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }} className="heroBG animate-slide-down">
         <div className="frosted-card" id="Hero">
           <h1 className="main-title text-center font-extrabold">BLAT</h1>
           <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
@@ -106,8 +129,11 @@ export default function Home() {
             <div className="flex items-center flex-wrap gap-2 w-3/4 m-auto">
               <div className="flex lower-zip">
                 <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 w-2/3 " />
-                <button type="submit" className="ml-2 p-2 w-1/3 bg-primary text-white rounded flex flex items-center justify-center gap-1">
+                <button type="submit" className="useZip ml-2 p-2 w-1/3 bg-primary text-white rounded flex flex items-center justify-center gap-1">
                   <Search size={15} className="inline" /> Buscar
+                </button>
+                <button type="button" onClick={handleLocationShare} className="useLocation ml-2 p-2 bg-primary text-white rounded flex flex items-center justify-center gap-1">
+                  <LocateFixed size={15} className="inline" />
                 </button>
               </div>
             </div>
