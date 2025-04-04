@@ -11,7 +11,6 @@ import { SkeletonTiendas, SkeletonEventos } from "@/components/SkeletonCard";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
 import { motion } from "framer-motion";
-import { log } from "console";
 
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
@@ -38,16 +37,6 @@ export default function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedZipcode = localStorage.getItem("zipcode");
-      if (savedZipcode) {
-        setZipcode(savedZipcode);
-        findClosestStoreByZipcode(savedZipcode);
-      }
-    }
-  }, [findClosestStore]);
-
   const findClosestStoreByZipcode = useCallback(
     async (zipcode: string) => {
       try {
@@ -71,7 +60,15 @@ export default function Home() {
     },
     [findClosestStore]
   );
-
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedZipcode = localStorage.getItem("zipcode");
+      if (savedZipcode) {
+        setZipcode(savedZipcode);
+        findClosestStoreByZipcode(savedZipcode);
+      }
+    }
+  }, [findClosestStore, findClosestStoreByZipcode]);
   const handleZipcodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setZipcode(e.target.value);
   };
