@@ -17,6 +17,7 @@ export default function Home() {
   const [closestStores, setClosestStores] = useState([]);
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const findClosestStore = useCallback(async (zipcode: string) => {
     try {
@@ -91,6 +92,29 @@ export default function Home() {
     return `${distance.toFixed(2)} km`;
   };
 
+  const toggleFavorite = (store) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.some((fav) => fav.id === store.id)) {
+        // Remove from favorites
+        return prevFavorites.filter((fav) => fav.id !== store.id);
+      } else {
+        // Add to favorites
+        return [...prevFavorites, store];
+      }
+    });
+  };
+
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem("favorites");
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
     <main className="container mx-auto">
       <motion.div
@@ -134,7 +158,7 @@ export default function Home() {
           ) : (
             <>
               <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
-              <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
+              <TiendasTab closestStores={closestStores} formatDistance={formatDistance} favorites={favorites} toggleFavorite={toggleFavorite} />
               <div className="flex align-center justify-center">
                 <Link href="/stores" className="text-center w-100">
                   Ver todas las tiendas
@@ -154,7 +178,7 @@ export default function Home() {
           )}
         </TabsContent>
         <TabsContent value="favoritos">
-          <FavoritosTab />
+          <FavoritosTab favorites={favorites} formatDistance={formatDistance} toggleFavorite={toggleFavorite} />
         </TabsContent>
       </Tabs>
     </main>

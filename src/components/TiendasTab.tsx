@@ -1,8 +1,7 @@
 import { Phone, Clock10, Star, Navigation } from "lucide-react";
 import Map from "@/components/Map";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const TiendasTab = ({ closestStores, formatDistance }) => {
+const TiendasTab = ({ closestStores, formatDistance, favorites, toggleFavorite }) => {
   // const TiendasTab = ({ closestStores, formatDistance, handleStoreClick }) => {
   return (
     <div id="Stores">
@@ -44,9 +43,15 @@ const TiendasTab = ({ closestStores, formatDistance }) => {
                   </a>
                 </div>
               </Tabs>
-              <div className="star not-starred absolute top-1 right-2">
-                <Star size={15} className="inline" />
-              </div>
+              {favorites.some((fav) => fav.id === store.id) ? (
+                <div className="star starred absolute top-1 right-2" onClick={() => toggleFavorite(store)}>
+                  <Star size={15} className="inline" />
+                </div>
+              ) : (
+                <div className="star not-starred absolute top-1 right-2" onClick={() => toggleFavorite(store)}>
+                  <Star size={15} className="inline" />
+                </div>
+              )}
             </li>
           ))}
         </ul>
