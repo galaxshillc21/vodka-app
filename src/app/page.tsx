@@ -18,6 +18,7 @@ export default function Home() {
   const [closestStores, setClosestStores] = useState([]);
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
+  const [favorites, setFavorites] = useState([]);
 
   const findClosestStore = useCallback(async (coords: [number, number]) => {
     try {
@@ -119,12 +120,38 @@ export default function Home() {
     return `${distance.toFixed(2)} km`;
   };
 
+  const toggleFavorite = (store) => {
+    setFavorites((prevFavorites) => {
+      if (prevFavorites.some((fav) => fav.id === store.id)) {
+        // Remove from favorites
+        return prevFavorites.filter((fav) => fav.id !== store.id);
+      } else {
+        // Add to favorites
+        return [...prevFavorites, store];
+      }
+    });
+  };
+
+  useEffect(() => {
+    const savedFavorites = localStorage.getItem("favorites");
+    if (savedFavorites) {
+      setFavorites(JSON.parse(savedFavorites));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
+
   return (
     <main className="container mx-auto">
       <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }} className="heroBG animate-slide-down">
         <div className="frosted-card" id="Hero">
           <h1 className="main-title text-center font-extrabold">BLAT</h1>
-          <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
+          <h4 className="subTitle text-center">
+            Encuentre su distribuidor de Blat <br />
+            más cercano
+          </h4>
           <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
             <div className="flex items-center flex-wrap gap-2 w-3/4 m-auto">
               <div className="flex lower-zip">
@@ -160,7 +187,7 @@ export default function Home() {
           ) : (
             <>
               <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
-              <TiendasTab closestStores={closestStores} formatDistance={formatDistance} />
+              <TiendasTab closestStores={closestStores} formatDistance={formatDistance} favorites={favorites} toggleFavorite={toggleFavorite} />
               <div className="flex align-center justify-center">
                 <Link href="/stores" className="text-center w-100">
                   Ver todas las tiendas
@@ -180,7 +207,7 @@ export default function Home() {
           )}
         </TabsContent>
         <TabsContent value="favoritos">
-          <FavoritosTab />
+          <FavoritosTab favorites={favorites} formatDistance={formatDistance} toggleFavorite={toggleFavorite} />
         </TabsContent>
       </Tabs>
     </main>

@@ -173,13 +173,13 @@ main {
   padding-right: 15px;
 }
 main .heroBG {
-  background-image: url("../../public/images/colored-glass.jpg");
+  background-image: url("../../public/images/muted-glass.jpg");
   background-color: linear-gradient(red, white);
-  background-size: contain;
+  background-size: cover;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  border-bottom-left-radius: 50px;
-  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 40px;
+  border-bottom-right-radius: 40px;
   margin-left: -16px;
   margin-right: -16px;
   position: relative;
@@ -191,7 +191,9 @@ main .heroBG::before {
   right: 0;
   width: 100%;
   height: 100%;
+  inset: 0;
   background: rgba(255, 255, 255, 0.2);
+  z-index: 0;
 }
 main #Hero {
   border-top-left-radius: 0;
@@ -201,7 +203,7 @@ main #Hero {
   position: relative;
   overflow: hidden;
   background-color: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
-  backdrop-filter: blur(6px); /* Slight blur */
+  backdrop-filter: blur(0px); /* Slight blur 6px */
   -webkit-backdrop-filter: blur(6px); /* Slight blur for Safari */
   height: 230px;
 }
@@ -243,6 +245,7 @@ main #Hero .lower-zip input {
   padding-right: 150px;
   text-align: left;
   padding-left: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
 }
 main #Hero .lower-zip input::-moz-placeholder {
   font-weight: 600;
@@ -254,7 +257,7 @@ main #Hero .lower-zip input::placeholder {
 /* Frosted Card */
 .frosted-card {
   background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   border: 1px solid rgb(255, 255, 255);
   border-radius: 10px;
   padding: 15px;
