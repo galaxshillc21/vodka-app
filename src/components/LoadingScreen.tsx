@@ -17,7 +17,7 @@ export default function LoadingScreen() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-white text-black">
-      <div className="text-3xl font-semibold animate-in fade-in zoom-in duration-700">Loading...</div>
+      <h1 className="text-3xl main-title text-center font-extrabold font-semibold animate-in fade-in zoom-in duration-700">BLAT</h1>
     </div>
   );
 }

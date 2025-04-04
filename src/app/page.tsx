@@ -125,7 +125,10 @@ export default function Home() {
       >
         <div className="frosted-card" id="Hero">
           <h1 className="main-title text-center font-extrabold">BLAT</h1>
-          <h4 className="subTitle text-center">Encuentre su distribuidor de Blat más cercano</h4>
+          <h4 className="subTitle text-center">
+            Encuentre su distribuidor de Blat <br />
+            más cercano
+          </h4>
           <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
             <div className="flex items-center flex-wrap gap-2 w-3/4 m-auto">
               <div className="flex lower-zip">
