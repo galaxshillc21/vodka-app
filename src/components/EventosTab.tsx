@@ -18,7 +18,7 @@ const EventosTab = ({ userCoords, formatDistance }) => {
       {sortedEvents.length > 0 && (
         <ul>
           {sortedEvents.map((event) => (
-            <li key={event.id} className="frosted-card event relative">
+            <li key={event.id} className="frosted-card event relative shadow-md">
               <Tabs defaultValue="info" className="w-full">
                 <div className="flex justify-center items-center">
                   <TabsList className="frosted-tabs">

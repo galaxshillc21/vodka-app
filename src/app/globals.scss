@@ -54,6 +54,9 @@
   --muted-background: 240 3.8% 46.1%;
   --muted-teal: #0f766e;
   --soft-bronze: #996515;
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(12px);
 }
 
 :root {
@@ -89,6 +92,7 @@
   --sidebar-accent-foreground: 240 5.9% 10%;
   --sidebar-border: 220 13% 91%;
   --sidebar-ring: 240 5% 64.9%;
+  --bg-bronze-muted: 29 50% 50% / 50%;
 }
 
 /* Global Styles */
@@ -111,10 +115,7 @@ body {
   background-size: contain;
   position: relative;
   // backdrop-filter: blur(3px);
-  background-image: url("../../public/images/blat_bottle.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+
   &::before {
     // content: "";
     position: absolute;
@@ -128,6 +129,15 @@ body {
     user-select: none;
   }
 }
+
+.bg-bottle {
+  background-image: url("../../public/images/blat_bottle.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-attachment: fixed;
+}
+
 #LoadingScreen {
   // background-image: url("../../public/images/blat_bottle.jpg");
   // background-repeat: no-repeat;
@@ -174,16 +184,35 @@ p {
     font-weight: 700;
   }
 }
+.frosted-sm {
+  backdrop-filter: var(--blur-sm);
+  -webkit-backdrop-filter: var(--blur-sm);
+}
 
+.frosted-md {
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
+}
+
+.frosted-lg {
+  backdrop-filter: var(--blur-lg);
+  -webkit-backdrop-filter: var(--blur-lg);
+}
+.bg-bronze-muted {
+  background-color: hsl(var(--bg-bronze-muted));
+}
+.text-bronze {
+  color: var(--primary-color);
+}
 /* Main Container */
 main {
   position: relative;
   height: 100%;
   width: 100%;
   overflow-y: auto;
-  padding-bottom: 80px !important;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-bottom: 56px !important;
+  // padding-left: 15px;
+  // padding-right: 15px;
 
   .heroBG {
     background-image: url("../../public/images/muted-glass.jpg");
@@ -218,8 +247,8 @@ main {
     position: relative;
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.2); /* Frosted glass effect */
-    backdrop-filter: blur(0px); /* Slight blur 6px */
-    -webkit-backdrop-filter: blur(6px); /* Slight blur for Safari */
+    backdrop-filter: var(--blur-sm); /* Slight blur 6px */
+    -webkit-backdrop-filter: var(--blur-sm); /* Slight blur for Safari */
     height: 230px;
 
     .lower-zip {
@@ -273,14 +302,14 @@ main {
 /* Frosted Card */
 .frosted-card {
   background-color: rgba(255, 255, 255, 0.5);
-  box-shadow: 0 2px 8px #00000033;
+  // box-shadow: 0 2px 8px #00000033;
   border: 1px solid rgba(255, 255, 255, 1);
   border-radius: 10px;
   padding: 15px;
   margin-bottom: 0.6rem;
   position: relative;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: var(--blur-md);
+  -webkit-backdrop-filter: var(--blur-md);
   text-shadow: 1px 1px 0px white;
   &.selected-store {
     border-color: var(--primary-color);
@@ -342,7 +371,7 @@ button {
 
 .tiendas-tabs {
   // background-color: #0f766d52;
-  backdrop-filter: blur(7px);
+  backdrop-filter: var(--blur-md);
   .data-\[state\=active\]\:shadow[data-state="active"] {
     font-weight: 600;
   }
@@ -366,7 +395,7 @@ button {
     left: 0;
     right: 0;
     margin: 0 auto;
-    backdrop-filter: blur(4px);
+    backdrop-filter: var(--blur-sm);
     line-height: 1.2rem;
     border: 1px solid white;
   }

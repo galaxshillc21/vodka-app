@@ -16,7 +16,7 @@ const FavoritosTab = ({ favorites, formatDistance, toggleFavorite }) => {
       <h3 className="mb-3 text-center">Tus Tiendas Favoritas</h3>
       <ul>
         {favorites.map((store) => (
-          <li key={store.id} className="frosted-card store relative">
+          <li key={store.id} className="frosted-card store relative shadow-md">
             <Tabs defaultValue="info" className="w-full">
               <div className="flex justify-center items-center">
                 <TabsList className="frosted-tabs mb-2">

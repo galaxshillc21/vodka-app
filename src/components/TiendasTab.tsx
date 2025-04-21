@@ -9,7 +9,7 @@ const TiendasTab = ({ closestStores, formatDistance, favorites, toggleFavorite }
         <ul>
           {closestStores.map((store) => (
             //  onClick={() => handleStoreClick(store.id)}
-            <li key={store.id} className="frosted-card store relative">
+            <li key={store.id} className="frosted-card store relative shadow-md">
               <Tabs defaultValue="info" className="w-full">
                 <div className="flex justify-center items-center">
                   <TabsList className="frosted-tabs mb-2">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Montserrat, Poppins } from "next/font/google";
 import "./globals.css";
 import LoadingScreen from "@/components/LoadingScreen";
+import NavBottom from "@/components/ui/navBottom";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -29,7 +30,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${montserrat.variable} ${poppins.variable} antialiased lang-es`}>
         <LoadingScreen />
-        {children}
+        <main>{children}</main>
+        <NavBottom />
       </body>
     </html>
   );
