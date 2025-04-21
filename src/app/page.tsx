@@ -11,6 +11,7 @@ import { SkeletonTiendas, SkeletonEventos } from "@/components/SkeletonCard";
 import stores from "@/data/stores.json";
 import { haversineDistance } from "@/utils/distance";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Home() {
   const [zipcode, setZipcode] = useState("");
@@ -144,7 +145,15 @@ export default function Home() {
     <main className="container mx-auto">
       <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }} className="heroBG animate-slide-down">
         <div className="frosted-card" id="Hero">
-          <h1 className="main-title text-center font-extrabold">BLAT</h1>
+          <div className="flex justify-center mb-4">
+            <Image
+              src="/images/blat_logo_bronze.png" // Path to your image in the public directory
+              alt="Blat Logo Bronze"
+              width={100} // Adjust the width as needed
+              height={100}
+              priority // Ensures the image is loaded quickly
+            />
+          </div>
           <h4 className="subTitle text-center">
             Encuentre su distribuidor de Blat <br />
             más cercano

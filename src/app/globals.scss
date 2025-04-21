@@ -111,12 +111,12 @@ body {
   background-size: contain;
   position: relative;
   // backdrop-filter: blur(3px);
-  background-image: url("../../public/images/BLATVODKA-app-bg.jpg");
+  background-image: url("../../public/images/blat_bottle.jpg");
   background-repeat: no-repeat;
-  background-position: center -70px;
-  background-size: 160%;
+  background-position: center;
+  background-size: cover;
   &::before {
-    content: "";
+    // content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -126,6 +126,15 @@ body {
     opacity: 0.5;
     pointer-events: none;
     user-select: none;
+  }
+}
+#LoadingScreen {
+  // background-image: url("../../public/images/blat_bottle.jpg");
+  // background-repeat: no-repeat;
+  // background-position: center;
+  // background-size: cover;
+  p {
+    color: hsl(var(--foreground));
   }
 }
 
