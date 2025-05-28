@@ -11,5 +11,17 @@
   "NotFound": {
     "title": "Página no encontrada",
     "description": "La página que buscas no existe."
+  },
+  "SearchPage": {
+    "heroTitlePart1": "Encuentre su distribuidor de Blat",
+    "heroTitlePart2": "más cercano",
+    "zipcodePlaceholder": "Introduzca Código Postal",
+    "searchButton": "Buscar",
+    "tabStores": "Tiendas",
+    "tabEvents": "Eventos",
+    "tabFavorites": "Favoritos",
+    "closestStoresHeading": "Tiendas más cercanas",
+    "viewAllStoresLink": "Ver todas las tiendas",
+    "closestEventsHeading": "Eventos más cercanos"
   }
 }

@@ -12,8 +12,10 @@ import stores from "@/src/data/stores.json";
 import { haversineDistance } from "@/src/utils/distance";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl"; // Import useTranslations
 
 export default function Search() {
+  const t = useTranslations("SearchPage"); // Initialize translation function for "SearchPage" namespace
   const [zipcode, setZipcode] = useState("");
   const [closestStores, setClosestStores] = useState([]);
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
@@ -154,16 +156,14 @@ export default function Search() {
               priority // Ensures the image is loaded quickly
             />
           </div>
-          <h4 className="subTitle text-center">
-            Encuentre su distribuidor de Blat <br />
-            más cercano
-          </h4>
+          <h4 className="subTitle text-center">{t("heroTitlePart1")}</h4>
           <form name="zipcode" id="zipcodeForm" onSubmit={handleZipcodeSubmit} className="text-left mb-4 mt-4">
             <div className="flex items-center flex-wrap gap-2 w-3/4 m-auto">
               <div className="flex lower-zip">
-                <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder="Enter Zipcode" className="p-2 w-2/3 " />
+                <input type="text" value={zipcode} onChange={handleZipcodeChange} placeholder={t("zipcodePlaceholder")} className="p-2 w-2/3 " />
                 <button type="submit" className="useZip ml-2 p-2 w-1/3 bg-primary text-white rounded flex flex items-center justify-center gap-1">
-                  <SearchIcon size={15} className="inline" /> Buscar
+                  <SearchIcon size={15} className="inline" />
+                  {t("searchButton")}
                 </button>
                 <button type="button" onClick={handleLocationShare} className="useLocation ml-2 p-2 bg-primary text-white rounded flex flex items-center justify-center gap-1">
                   <LocateFixed size={15} className="inline" />
@@ -177,13 +177,13 @@ export default function Search() {
         <motion.div initial={{ y: -50, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: "easeOut" }}>
           <TabsList className="w-full bg-bronze-muted frosted-sm">
             <TabsTrigger className="w-1/3" value="tiendas">
-              Tiendas
+              {t("tabStores")}
             </TabsTrigger>
             <TabsTrigger className="w-1/3" value="eventos">
-              Eventos
+              {t("tabEvents")}
             </TabsTrigger>
             <TabsTrigger className="w-1/3" value="favoritos">
-              Favoritos
+              {t("tabFavorites")}
             </TabsTrigger>
           </TabsList>
         </motion.div>
@@ -192,11 +192,11 @@ export default function Search() {
             <SkeletonTiendas />
           ) : (
             <>
-              <h3 className="mb-3 text-center">Tiendas más cercanas</h3>
+              <h3 className="mb-3 text-center">{t("closestStoresHeading")}</h3>
               <TiendasTab closestStores={closestStores} formatDistance={formatDistance} favorites={favorites} toggleFavorite={toggleFavorite} />
               <div className="flex align-center justify-center">
                 <Link href="/stores" className="text-center w-100">
-                  Ver todas las tiendas
+                  {t("viewAllStoresLink")}
                 </Link>
               </div>
             </>
@@ -207,7 +207,7 @@ export default function Search() {
             <SkeletonEventos />
           ) : (
             <>
-              <h3 className="mb-3 text-center">Eventos más cercanos</h3>
+              <h3 className="mb-3 text-center">{t("closestEventsHeading")}</h3>
               <EventosTab userCoords={userCoords} formatDistance={formatDistance} />
             </>
           )}

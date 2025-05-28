@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation"; // Import usePathname hook
 import { Home, Newspaper, Search } from "lucide-react";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 
 export default function NavBottom() {
   const pathname = usePathname(); // Get the current route
@@ -27,6 +28,8 @@ export default function NavBottom() {
           <Search size={20} />
           <span className="text-xs">Buscar</span>
         </Link>
+        {/* Locale Switcher */}
+        <LocaleSwitcher />
       </div>
     </nav>
   );
