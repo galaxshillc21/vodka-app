@@ -1,5 +1,5 @@
 import Link from "next/link";
-import stores from "../../data/stores.json";
+import stores from "../../../data/stores.json";
 
 export default function Stores() {
   return (

@@ -3,13 +3,13 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { Search as SearchIcon, LocateFixed } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import TiendasTab from "@/components/TiendasTab";
-import EventosTab from "@/components/EventosTab";
-import FavoritosTab from "@/components/FavoritosTab";
-import { SkeletonTiendas, SkeletonEventos } from "@/components/SkeletonCard";
-import stores from "@/data/stores.json";
-import { haversineDistance } from "@/utils/distance";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
+import TiendasTab from "@/src/components/TiendasTab";
+import EventosTab from "@/src/components/EventosTab";
+import FavoritosTab from "@/src/components/FavoritosTab";
+import { SkeletonTiendas, SkeletonEventos } from "@/src/components/SkeletonCard";
+import stores from "@/src/data/stores.json";
+import { haversineDistance } from "@/src/utils/distance";
 import { motion } from "framer-motion";
 import Image from "next/image";
 

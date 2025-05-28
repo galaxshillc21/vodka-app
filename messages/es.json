@@ -1,0 +1,15 @@
+{
+  "Index": {
+    "title": "¡Bienvenido a mi aplicación!",
+    "description": "Esta es una aplicación multilingüe de Next.js."
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "contact": "Contacto"
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe."
+  }
+}

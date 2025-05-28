@@ -1,6 +1,6 @@
 import { Phone, Clock10, Star, Navigation } from "lucide-react";
-import Map from "@/components/Map";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Map from "@/src/components/Map";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
 
 const FavoritosTab = ({ favorites, formatDistance, toggleFavorite }) => {
   if (favorites.length === 0) {

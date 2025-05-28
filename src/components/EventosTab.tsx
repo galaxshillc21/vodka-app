@@ -1,8 +1,8 @@
 import { Navigation, Calendar, Globe } from "lucide-react";
-import Map from "@/components/Map";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import events from "@/data/events.json";
-import { haversineDistance } from "@/utils/distance";
+import Map from "@/src/components/Map";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
+import events from "@/src/data/events.json";
+import { haversineDistance } from "@/src/utils/distance";
 
 const EventosTab = ({ userCoords, formatDistance }) => {
   const sortedEvents = events
