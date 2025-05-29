@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation"; // Import usePathname hook
 import { Home, Newspaper, Search } from "lucide-react";
 import { useTranslations } from "next-intl"; // Import useTranslations
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
+import LocaleSwitcherFooter from "@/src/components/LocaleFooter"; // Import LocaleSwitcher component
 
 export default function NavBottom() {
 	const t = useTranslations("Navigation"); // Fetch translations for Navigation
@@ -12,7 +12,7 @@ export default function NavBottom() {
 	const currentPageClass = "current-page text-bronze"; // Class for the current page
 	return (
 		<nav
-			className="block lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-[20px] bg-white/40 shadow-md border-t border-gray-200 frosted-md"
+			className="block lg:hidden fixed bottom-0 left-0 right-0 z-50 rounded-t-[20px] bg-background/20 backdrop-blur-lg shadow-md  border-t border-gray-200 frosted-md"
 			id="footer-nav"
 		>
 			<div className="flex justify-around items-center h-14">
@@ -48,7 +48,7 @@ export default function NavBottom() {
 					<Search size={20} />
 					<span className="text-xs">{t("search")}</span>
 				</Link>
-				<LocaleSwitcher />
+				<LocaleSwitcherFooter />
 			</div>
 		</nav>
 	);

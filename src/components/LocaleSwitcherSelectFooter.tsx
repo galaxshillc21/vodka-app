@@ -27,7 +27,7 @@ type Props = {
 // Helper function to get the flag image path
 const getFlagPath = (localeCode: string) => `/flags/4x3/${localeCode}.svg`; // Assumes flags are in public/flags/
 
-export default function LocaleSwitcherSelect({ value }: Props) {
+export default function LocaleSwitcherSelectFooter({ value }: Props) {
 	const router = useRouter();
 	const [isPending, startTransition] = useTransition();
 	const pathname = usePathname();
@@ -55,17 +55,17 @@ export default function LocaleSwitcherSelect({ value }: Props) {
 			)}
 		>
 			<Select onValueChange={onValueChange} defaultValue={value} disabled={isPending}>
-				<SelectTrigger className="w-[50px] h-full border-none focus:ring-0 flex items-center gap-1 px-3 py-2 rounded-full transition-colors duration-200 align-middle hover:cursor-pointer hover:bg-gray-600/20 hover:text-foreground shadow-none">
+				<SelectTrigger className="w-auto h-full border-none focus:ring-0 flex items-center gap-1 px-3 py-2 rounded-full transition-colors duration-200 align-middle shadow-none">
 					<SelectValue placeholder={t("label")}>
-						<span className="flex items-center">
+						<span className="flex items-center justify-center flex-col">
 							<Image
 								src={getFlagPath(value)}
 								alt={`${value} flag`}
 								width={20}
 								height={15}
-								className="h-4 w-5 rounded-sm mr-2 inline"
+								className="h-4 w-5 rounded-sm inline"
 							/>
-							{/* {t(value)} */}
+							<span className="text-xs text-gray-600">{t(value)}</span>
 						</span>
 					</SelectValue>
 				</SelectTrigger>

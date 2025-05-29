@@ -1,16 +1,14 @@
 // src/components/Header.tsx
 "use client";
 
-import {
-	Menubar,
-	MenubarMenu,
-	MenubarSeparator,
-	MenubarTrigger,
-} from "@/src/components/ui/menubar";
+import { Menubar, MenubarMenu, MenubarSeparator } from "@/src/components/ui/menubar";
 import { Home, Newspaper, Search } from "lucide-react";
 import { Link, usePathname } from "@/src/i18n/navigation";
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 
 export default function Header() {
+	const t = useTranslations("Navigation");
 	const pathname = usePathname();
 	const isActive = (href: string) => {
 		if (href === "/") {
@@ -20,35 +18,29 @@ export default function Header() {
 	};
 
 	return (
-		<nav className="hidden lg:block fixed top-5 left-0 right-0 m-auto z-[999] max-w-[300px]">
-			<Menubar className="justify-center">
-				{" "}
-				<MenubarMenu>
-					<MenubarTrigger asChild>
+		<nav className="hidden lg:block fixed top-0 left-0 py-3 right-0 m-auto z-[999] bg-gradient-to-b from-white from-20% to-transparent to-90%">
+			<div className="max-w-[400px] flex justify-center mx-auto">
+				<Menubar className="h-[50px] w-auto rounded-full border bg-background/20 p-1 shadow-md justify-between">
+					{" "}
+					<MenubarMenu>
 						<Link
 							href="/"
 							className={`
-                flex items-center gap-1 hover:cursor-pointer         /* 1. Icon and text inline with a small gap */
-                px-3 py-2                        /* Padding for the pill shape */
-                rounded-full                     /* 2. Pill form */
-                transition-colors duration-200   /* Smooth transition for hover/active */
+                flex items-center gap-1 
+                px-3 py-2 rounded-full transition-colors duration-200 hover:cursor-pointer
                 ${
 									isActive("/")
 										? "bg-gray-600/20 text-foreground"
-										: "hover:bg-gray-600/20 hover:text-foreground"
+										: "hover:bg-gray-600/10 hover:text-foreground"
 								}
-                /* 3. Active state (bg-gray-600/20) or hover state (bg-gray-600/20) */
               `}
 						>
 							<Home size={20} />
-							<span>Home</span>
+							<span>{t("home")}</span>
 						</Link>
-					</MenubarTrigger>
-				</MenubarMenu>
-				<MenubarSeparator /> {/* Separator after Home */}
-				{/* News link */}
-				<MenubarMenu>
-					<MenubarTrigger asChild>
+					</MenubarMenu>
+					{/* News link */}
+					<MenubarMenu>
 						<Link
 							href="/news"
 							className={`
@@ -59,38 +51,40 @@ export default function Header() {
                 ${
 									isActive("/news")
 										? "bg-gray-600/20 text-foreground"
-										: "hover:bg-gray-600/20 hover:text-foreground"
+										: "hover:bg-gray-600/10 hover:text-foreground"
 								}
               `}
 						>
 							<Newspaper size={20} />
-							<span>News</span>
+							<span>{t("news")}</span>
 						</Link>
-					</MenubarTrigger>
-				</MenubarMenu>
-				{/* Search link */}
-				<MenubarMenu>
-					<MenubarTrigger asChild>
+					</MenubarMenu>
+					{/* Search link */}
+					<MenubarMenu>
 						<Link
 							href="/search"
 							className={`
                 flex items-center gap-1
                 px-3 py-2 hover:cursor-pointer
                 rounded-full
-                transition-colors duration-200 hover:bg-gray-600/20
+                transition-colors duration-200
                 ${
 									isActive("/search")
 										? "bg-gray-600/20 text-foreground"
-										: "hover:bg-gray-600/20 hover:text-foreground"
+										: "hover:bg-gray-600/10 hover:text-foreground"
 								}
               `}
 						>
 							<Search size={20} />
-							<span>Search</span>
+							<span>{t("search")}</span>
 						</Link>
-					</MenubarTrigger>
-				</MenubarMenu>
-			</Menubar>
+					</MenubarMenu>
+					<MenubarSeparator className="h-[60%] border-[1px]" /> {/* Separator after Home */}
+					<MenubarMenu>
+						<LocaleSwitcher />
+					</MenubarMenu>
+				</Menubar>
+			</div>
 		</nav>
 	);
 }
