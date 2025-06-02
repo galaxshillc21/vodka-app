@@ -3,8 +3,20 @@
 
 declare const messages: {
   "Index": {
-    "title": "Welcome to my app!",
-    "description": "This is a multilingual Next.js application."
+    "title": "Blat Vodka",
+    "description": "The purest Vodka in the world.",
+    "heroButton": "Read more",
+    "qualities": {
+      "quality1": "0.0 mg/L of Impurities",
+      "quality2": "100% French wheat",
+      "quality3": "Atlantic water",
+      "sub1": "No detected impurities",
+      "sub2": "Non-genetically modified",
+      "sub3": "Filtered through volcanic rock",
+      "desc1": "The only vodka on the market with certified analysis guaranteeing total absence of impurities.",
+      "desc2": "Premium ingredient approved by the French government, ensuring natural and high-quality origin.",
+      "desc3": "Sourced from horizontal rain in the Canary Islands, delivering exceptional purity to the product."
+    }
   },
   "Navigation": {
     "home": "Home",
@@ -46,10 +58,6 @@ declare const messages: {
   "Error": {
     "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
     "title": "Something went wrong!"
-  },
-  "IndexPage": {
-    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes.",
-    "title": "next-intl example"
   },
   "Manifest": {
     "name": "next-intl example"

@@ -1,11 +1,22 @@
 {
   "Index": {
-    "title": "¡Bienvenido a mi aplicación!",
-    "description": "Esta es una aplicación multilingüe de Next.js."
+    "title": "Blat Vodka",
+    "description": "El vodka más puro del mundo.",
+    "qualities": {
+      "quality1": "0.0 mg/L de Impurezas",
+      "quality2": "100% trigo francés",
+      "quality3": "Agua del Atlántico",
+      "sub1": "Sin impurezas detectadas",
+      "sub2": "Sin modificación genética",
+      "sub3": "Filtrada por roca volcánica",
+      "desc1": "Es el único vodka del mercado con análisis certificados que garantizan ausencia total de impurezas.",
+      "desc2": "Ingrediente premium aprobado por el gobierno francés, asegurando calidad y origen natural.",
+      "desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
+    }
   },
   "Navigation": {
     "home": "Inicio",
-    "about": "Sobre nosotros",
+    "about": "Sobre Nosotros",
     "contact": "Contacto",
     "news": "Noticias",
     "search": "Buscar",
@@ -14,7 +25,7 @@
   "SearchPage": {
     "heroTitlePart1": "Encuentra tu distribuidor de Blat",
     "heroTitlePart2": "más cercano a ti",
-    "zipcodePlaceholder": "Introduce el código postal",
+    "zipcodePlaceholder": "Ingresa el código postal",
     "searchButton": "Buscar",
     "tabStores": "Tiendas",
     "tabEvents": "Eventos",
@@ -25,7 +36,7 @@
     "error1": "Ocurrió un error al obtener los datos."
   },
   "NewsPage": {
-    "title": "Últimas noticias",
+    "title": "Últimas Noticias",
     "description": "Mantente al día con las últimas noticias sobre Blat Vodka."
   },
   "NotFound": {
@@ -41,18 +52,14 @@
     "es": "Español"
   },
   "Error": {
-    "description": "<p>Lamentablemente hemos encontrado un error.</p><p>Puedes intentar <retry>recargar la página</retry> que estabas visitando.</p>",
+    "description": "<p>Desafortunadamente, hemos encontrado un error.</p><p>Puedes intentar <retry>recargar la página</retry> que estabas visitando.</p>",
     "title": "¡Algo salió mal!"
-  },
-  "IndexPage": {
-    "description": "Este es un ejemplo básico que demuestra el uso de <code>next-intl</code> con el App Router de Next.js. Prueba cambiar el idioma en la esquina superior derecha y observa cómo cambia el contenido.",
-    "title": "Ejemplo de next-intl"
   },
   "Manifest": {
     "name": "Ejemplo de next-intl"
   },
   "NotFoundPage": {
-    "description": "Por favor, revisa la barra de direcciones del navegador o utiliza la navegación para ir a una página conocida.",
+    "description": "Verifica que la dirección en la barra del navegador sea correcta o usa la navegación para ir a una página conocida.",
     "title": "Página no encontrada"
   },
   "PageLayout": {
@@ -63,14 +70,14 @@
         "title": "Documentación"
       },
       "source": {
-        "description": "Consulta el código fuente de este ejemplo en GitHub.",
+        "description": "Explora el código fuente de este ejemplo en GitHub.",
         "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
         "title": "Código fuente"
       }
     }
   },
   "PathnamesPage": {
-    "description": "<p>Los nombres de las rutas también están internacionalizados.</p><p>Si usas el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a español, la URL se localiza en consecuencia (<code>/es/pathnames</code>).</p>",
-    "title": "Nombres de rutas"
+    "description": "<p>Los nombres de ruta también están internacionalizados.</p><p>Si estás usando el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a alemán, la URL se localiza en consecuencia (<code>/de/pfadnamen</code>).</p>",
+    "title": "Nombres de ruta"
   }
 }
