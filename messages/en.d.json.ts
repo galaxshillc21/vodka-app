@@ -6,6 +6,14 @@ declare const messages: {
     "title": "Welcome to my app!",
     "description": "This is a multilingual Next.js application."
   },
+  "Navigation": {
+    "home": "Home",
+    "about": "About Us",
+    "contact": "Contact",
+    "news": "News",
+    "search": "Search",
+    "backToHome": "Back to Home"
+  },
   "SearchPage": {
     "heroTitlePart1": "Find your Blat distributor",
     "heroTitlePart2": "closest to you",
@@ -23,12 +31,6 @@ declare const messages: {
     "title": "Latest News",
     "description": "Stay updated with the latest news about Blat Vodka."
   },
-  "Navigation": {
-    "home": "Home",
-    "about": "About Us",
-    "contact": "Contact",
-    "backToHome": "Back to Home"
-  },
   "NotFound": {
     "title": "Page Not Found",
     "description": "The page you're looking for doesn't exist."
@@ -37,12 +39,17 @@ declare const messages: {
     "title": "next-intl example"
   },
   "LocaleSwitcher": {
-    "label": "Change language",
-    "locale": "{locale, select, es {🇪🇸 Español} en {🇺🇸 English} other {Unknown}}"
+    "label": "Language",
+    "en": "English",
+    "es": "Spanish"
   },
   "Error": {
     "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
     "title": "Something went wrong!"
+  },
+  "IndexPage": {
+    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes.",
+    "title": "next-intl example"
   },
   "Manifest": {
     "name": "next-intl example"
