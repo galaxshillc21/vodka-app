@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Hero3 } from "@/src/components/Hero";
 import BottleShow from "@/src/components/BottleShow";
 import PuritySection from "@/src/components/PuritySection";
+import About from "@/src/components/About";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -36,11 +37,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
 
       <PuritySection />
 
-      <section className="py-20 bg-white text-center relative">
-        <div className="SectionSeparator rounded-t-[50px] mt-[-2em] h-8 bg-white absolute top-0 w-full"></div>
-        <h2 className="text-4xl font-bold mb-4 text-amber-600">About Us</h2>
-        <p className="max-w-2xl mx-auto text-lg">We’re passionate about vodka. Blat Vodka is distilled with the purest intentions and zero sugar.</p>
-      </section>
+      <About />
 
       <section className="py-20 bg-gray-100 text-center">
         <h2 className="text-4xl font-bold mb-4">Contact</h2>
