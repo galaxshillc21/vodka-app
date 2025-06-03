@@ -52,13 +52,16 @@ export function Hero3() {
   return (
     <section id="Hero" className="min-h-screen bg-contain bg-no-repeat bg-left flex flex-col items-center justify-center relative">
       <div className="container mx-auto px-4">
-        <div className="flex flex-row relative justify-between items-center gap-12">
-          <div className="imageWrapper overflow-hidden flex-1 flex justify-end">
-            <Image src="/images/blat-hero-foam.webp" alt="Blat Logo Bronze" width={600} height={600} priority className="rounded-3xl" />
+        <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-8 lg:gap-12">
+          {/* Image goes last on mobile, side-by-side on desktop */}
+          <div className="imageWrapper overflow-hidden w-full flex justify-center lg:justify-end">
+            <Image src="/images/blat-hero-foam.webp" alt="Blat Logo Bronze" width={600} height={600} priority className="rounded-3xl w-full max-w-[400px] sm:max-w-[500px] lg:max-w-none" />
           </div>
-          <div className="flex flex-col items-start justify-center flex-1">
-            <h1 className="text-7xl font-bold mt-6 text-amber-600 mb-6">{t("description")}</h1>
-            <Button size="lg" className="rounded-full h-12 px-12 bg-amber-600 text-white text-xl hover:bg-amber-700 transition-colors">
+
+          {/* Text content */}
+          <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left w-full">
+            <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mt-6 text-amber-600 mb-6 leading-tight">{t("description")}</h1>
+            <Button size="lg" className="rounded-full h-12 px-12 bg-amber-600 text-white text-lg sm:text-xl hover:bg-amber-700 transition-colors">
               {t("heroButton")}
             </Button>
           </div>
