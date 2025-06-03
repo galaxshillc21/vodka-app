@@ -2,22 +2,58 @@
 
 import React from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
+import Image from "next/image";
 
-{
-  /* <section className="py-20 bg-white text-center relative">
-  <div className="SectionSeparator rounded-t-[50px] mt-[-2em] h-8 bg-white absolute top-0 w-full"></div>
-  <h2 className="text-4xl font-bold mb-4 text-amber-600">About Us</h2>
-  <p className="max-w-2xl mx-auto text-lg">We’re passionate about vodka. Blat Vodka is distilled with the purest intentions and zero sugar.</p>
-</section>; */
-}
 export default function About() {
-  const t = useTranslations("About"); // Use the translations for the About section
+	const t = useTranslations("About"); // Use the translations for the About section
 
-  return (
-    <section className="py-20 bg-white text-center relative">
-      <div className="SectionSeparator rounded-t-[50px] mt-[-2em] h-8 bg-white absolute top-0 w-full"></div>
-      <h2 className="text-4xl font-bold mb-4 text-amber-600">{t("title")}</h2>
-      <p className="max-w-2xl mx-auto text-lg">{t("description")}</p>
-    </section>
-  );
+	return (
+		<section className="container mx-auto relative bg-white py-20">
+			<div className="grid grid-cols-1 md:grid-cols-3 items-center w-full mx-auto gap-8">
+				{/* Botella izquierda */}
+				<div className="hidden md:flex justify-center">
+					<Image
+						src="/images/blatvodka-bottle-full.webp"
+						alt="Botella izquierda"
+						className="drop-shadow-lg"
+						width={400}
+						height={800}
+						priority
+					/>
+				</div>
+
+				{/* Contenido central */}
+				<div className="text-center space-y-14 px-4">
+					<h2 className="text-4xl font-bold text-amber-600">{t("title")}</h2>
+
+					<div>
+						<h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading1")}</h3>
+						<p className="text-gray-700 text-base">{t("description1")}</p>
+					</div>
+
+					<div>
+						<h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading2")}</h3>
+						<p className="text-gray-700 text-base">{t("description2")}</p>
+					</div>
+
+					<div>
+						<h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading3")}</h3>
+						<p className="text-gray-700 text-base">{t("description3")}</p>
+					</div>
+				</div>
+
+				{/* Botella derecha */}
+				<div className="hidden md:flex justify-center">
+					<Image
+						src="/images/blatvodka-bottle-full.webp"
+						alt="Botella derecha"
+						className="drop-shadow-lg"
+						width={400}
+						height={800}
+						priority
+					/>
+				</div>
+			</div>
+		</section>
+	);
 }

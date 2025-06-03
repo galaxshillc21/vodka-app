@@ -1,93 +1,111 @@
 {
-  "Index": {
-    "title": "Blat Vodka",
-    "description": "The purest Vodka in the world.",
-    "heroButton": "Read more",
-    "purityHeading": "What does Purity add?",
-    "puritySabor": "Better Taste",
-    "purityCalidad": "Better Quality",
-    "purityCombinar": "Better for Mixing",
-    "puritySuavidad": "More Smoothness",
-    "purity1": "with and without ice",
-    "purity2": "reduces the negative effects of a hangover",
-    "purity3": "flavors are enhanced",
-    "purity4": "short or long, it's the ideal drink",
-    "qualities": {
-      "quality1": "0.0 mg/L <br/>of Impurities",
-      "quality2": "100% French<br />wheat",
-      "quality3": "Water from <br />the Atlantic",
-      "sub1": "No detected impurities",
-      "sub2": "Non-genetically modified",
-      "sub3": "Filtered through volcanic rock",
-      "desc1": "The only vodka on the market with certified analysis guaranteeing total absence of impurities.",
-      "desc2": "Premium ingredient approved by the French government, ensuring natural and high-quality origin.",
-      "desc3": "Sourced from horizontal rain in the Canary Islands, delivering exceptional purity to the product."
-    }
-  },
-  "Navigation": {
-    "home": "Home",
-    "about": "About Us",
-    "contact": "Contact",
-    "news": "News",
-    "search": "Search",
-    "backToHome": "Back to Home"
-  },
-  "SearchPage": {
-    "heroTitlePart1": "Find your Blat distributor",
-    "heroTitlePart2": "closest to you",
-    "zipcodePlaceholder": "Enter Zipcode",
-    "searchButton": "Search",
-    "tabStores": "Stores",
-    "tabEvents": "Events",
-    "tabFavorites": "Favorites",
-    "closestStoresHeading": "Closest Stores",
-    "viewAllStoresLink": "View all stores",
-    "closestEventsHeading": "Closest Events",
-    "error1": "An error occurred while fetching the data."
-  },
-  "NewsPage": {
-    "title": "Latest News",
-    "description": "Stay updated with the latest news about Blat Vodka."
-  },
-  "NotFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for doesn't exist."
-  },
-  "LocaleLayout": {
-    "title": "next-intl example"
-  },
-  "LocaleSwitcher": {
-    "label": "Language",
-    "en": "English",
-    "es": "Spanish"
-  },
-  "Error": {
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
-    "title": "Something went wrong!"
-  },
-  "Manifest": {
-    "name": "next-intl example"
-  },
-  "NotFoundPage": {
-    "description": "Please double-check the browser address bar or use the navigation to go to a known page.",
-    "title": "Page not found"
-  },
-  "PageLayout": {
-    "links": {
-      "docs": {
-        "description": "Learn more about next-intl in the official docs.",
-        "href": "https://next-intl.dev",
-        "title": "Docs"
-      },
-      "source": {
-        "description": "Browse the source code of this example on GitHub.",
-        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
-        "title": "Source code"
-      }
-    }
-  },
-  "PathnamesPage": {
-    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
-    "title": "Pathnames"
-  }
+	"Index": {
+		"title": "Blat Vodka",
+		"description": "The purest Vodka in the world.",
+		"heroButton": "Read more",
+		"purityHeading": "What does Purity add?",
+		"puritySabor": "Better Taste",
+		"purityCalidad": "Better Quality",
+		"purityCombinar": "Better for Mixing",
+		"puritySuavidad": "More Smoothness",
+		"purity1": "with and without ice",
+		"purity2": "reduces the negative effects of a hangover",
+		"purity3": "flavors are enhanced",
+		"purity4": "short or long, it's the ideal drink",
+		"qualities": {
+			"quality1": "0.0 mg/L <br/>of Impurities",
+			"quality2": "100% French<br />wheat",
+			"quality3": "Water from <br />the Atlantic",
+			"sub1": "No detected impurities",
+			"sub2": "Non-genetically modified",
+			"sub3": "Filtered through volcanic rock",
+			"desc1": "The only vodka on the market with certified analysis guaranteeing total absence of impurities.",
+			"desc2": "Premium ingredient approved by the French government, ensuring natural and high-quality origin.",
+			"desc3": "Sourced from horizontal rain in the Canary Islands, delivering exceptional purity to the product."
+		}
+	},
+	"BottleShow": {
+		"title": "Blat Vodka achieves<br/>what no other<br/>Premium Vodka has"
+	},
+
+	"About": {
+		"title": "About Blat Vodka",
+		"heading1": "Creators with Legacy",
+		"description1": "Fernando and Esteban Banús, third-generation distillers, transformed their family heritage into Blat Vodka — a revolutionary vodka born in the Canary Islands.",
+		"heading2": "Uncompromising Quality",
+		"description2": "Crafted with French wheat and water filtered through volcanic rock, Blat Vodka achieves a certified purity of 0.0%. Its smoothness and flavor make it the purest vodka in the world.",
+		"heading3": "Design with Essence",
+		"description3": "The bottle, designed by the Peter Schmidt Group, reflects the vodka’s purity. It has won international awards for its elegance and crystal-clear simplicity."
+	},
+	"Agua": {
+		"title": "Pure Essence of the Atlantic",
+		"description": "Our vodka is diluted with pure Atlantic rainwater, naturally filtered through the volcanic rocks of the Canary Islands. A unique environment that delivers unmatched purity and authentic character to the spirit."
+	},
+
+	"Navigation": {
+		"home": "Home",
+		"about": "About Us",
+		"contact": "Contact",
+		"news": "News",
+		"search": "Search",
+		"backToHome": "Back to Home"
+	},
+	"SearchPage": {
+		"heroTitlePart1": "Find your Blat distributor",
+		"heroTitlePart2": "closest to you",
+		"zipcodePlaceholder": "Enter Zipcode",
+		"searchButton": "Search",
+		"tabStores": "Stores",
+		"tabEvents": "Events",
+		"tabFavorites": "Favorites",
+		"closestStoresHeading": "Closest Stores",
+		"viewAllStoresLink": "View all stores",
+		"closestEventsHeading": "Closest Events",
+		"error1": "An error occurred while fetching the data."
+	},
+	"NewsPage": {
+		"title": "Latest News",
+		"description": "Stay updated with the latest news about Blat Vodka."
+	},
+	"NotFound": {
+		"title": "Page Not Found",
+		"description": "The page you're looking for doesn't exist."
+	},
+	"LocaleLayout": {
+		"title": "next-intl example"
+	},
+	"LocaleSwitcher": {
+		"label": "Language",
+		"en": "English",
+		"es": "Spanish"
+	},
+	"Error": {
+		"description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
+		"title": "Something went wrong!"
+	},
+	"Manifest": {
+		"name": "next-intl example"
+	},
+	"NotFoundPage": {
+		"description": "Please double-check the browser address bar or use the navigation to go to a known page.",
+		"title": "Page not found"
+	},
+	"PageLayout": {
+		"links": {
+			"docs": {
+				"description": "Learn more about next-intl in the official docs.",
+				"href": "https://next-intl.dev",
+				"title": "Docs"
+			},
+			"source": {
+				"description": "Browse the source code of this example on GitHub.",
+				"href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
+				"title": "Source code"
+			}
+		}
+	},
+	"PathnamesPage": {
+		"description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
+		"title": "Pathnames"
+	}
 }
