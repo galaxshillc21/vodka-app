@@ -37,8 +37,14 @@
     "description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
   },
   "Agua": {
-    "title": "Pura Esencia del Atlántico",
-    "description": "Nuestro vodka se diluye con agua pura de lluvia atlántica, filtrada naturalmente por las rocas volcánicas de las Islas Canarias. Un entorno único que aporta una pureza incomparable y un carácter auténtico al destilado."
+    "heading1": "De la Tierra a su Copa:",
+    "heading2": "La Esencia de Blat Vodka",
+
+    "title1": "Trigo Francés Premium",
+    "description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
+
+    "title2": "Pura Esencia del Atlántico",
+    "description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
   },
   "Navigation": {
     "home": "Inicio",
