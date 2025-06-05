@@ -39,7 +39,7 @@ export interface RotatingTextProps extends Omit<React.ComponentPropsWithoutRef<t
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
   const {
     texts,
-    colors = ["text-gray-800", "text-blue-600", "text-green-600", "text-purple-600", "text-red-600"], // Default Tailwind color classes
+    colors = ["text-gray-800", "text-blue-600", "text-green-600", "text-purple-600"], // Default Tailwind color classes
     transition = { type: "spring", damping: 25, stiffness: 300 },
     initial = { y: "100%", opacity: 0, filter: "blur(4px)" },
     animate = { y: 0, opacity: 1, filter: "blur(3px)" },
