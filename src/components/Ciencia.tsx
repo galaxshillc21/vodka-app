@@ -11,41 +11,49 @@ export function Ciencia() {
       marca: "Blat Vodka",
       impurezas: "0.0",
       porciento: "0.3",
+      color: "0.03",
     },
     {
       marca: "Skyy",
       impurezas: "0.8",
       porciento: "8",
+      color: "0.08",
     },
     {
       marca: "Grey Goose",
       impurezas: "1.1",
       porciento: "11",
+      color: "0.11",
     },
     {
       marca: "Absolut",
       impurezas: "1.1",
       porciento: "11",
+      color: "0.11",
     },
     {
       marca: "Smirnoff",
       impurezas: "1.5",
       porciento: "15",
+      color: "0.15",
     },
     {
       marca: "Belvedere",
       impurezas: "2.5",
       porciento: "25",
+      color: "0.25",
     },
     {
       marca: "Ketel One",
       impurezas: "5.3",
       porciento: "53",
+      color: "0.53",
     },
     {
       marca: "Stolichnaya",
       impurezas: "5.7",
       porciento: "57",
+      color: "0.57",
     },
   ];
   return (
@@ -78,7 +86,7 @@ export function Ciencia() {
                     {/* if marca.marca is Blat Vodka make it bold */}
                     <TableCell className={`font-medium ${marca.marca === "Blat Vodka" ? "text-gray-900 font-bold" : ""}`}>{marca.marca}</TableCell>
                     <TableCell className={`relative font-medium ${marca.impurezas === "0.0" ? "text-gray-900 font-bold" : ""}`}>
-                      <div className={`h-[20px] bg-red-200 z-0 absolute`} style={{ width: `${marca.porciento}%` }}></div>
+                      <div className={`h-[20px] z-0 absolute`} style={{ background: `rgba(255,0,0,${marca.color})`, width: `${marca.porciento}%` }}></div>
                       <span className="left-1 relative z-10">{marca.impurezas}</span>
                     </TableCell>
                   </TableRow>
