@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl"; // Import useTranslations
 import { Button } from "@/src/components/ui/button";
+import BlurText from "@/src/components/BlurText";
 
 export function Hero() {
   const t = useTranslations("Index");
@@ -48,7 +49,9 @@ export function Hero2() {
 
 export function Hero3() {
   const t = useTranslations("Index");
-
+  const handleAnimationComplete = () => {
+    console.log("Animation completed!");
+  };
   return (
     <section id="Hero" className="min-h-screen bg-contain bg-no-repeat bg-left flex flex-col items-center justify-center relative">
       <div className="container mx-auto px-4">
@@ -60,7 +63,8 @@ export function Hero3() {
 
           {/* Text content */}
           <div className="flex flex-col items-center lg:items-start justify-center text-center lg:text-left w-full">
-            <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mt-6 text-amber-600 mb-6 leading-tight">{t("description")}</h1>
+            <BlurText text={t("description")} delay={80} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete} className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mt-6 text-amber-600 mb-6 leading-tight" />
+            {/* <h1 className="text-4xl sm:text-4xl md:text-5xl lg:text-7xl font-bold mt-6 text-amber-600 mb-6 leading-tight">{t("description")}</h1> */}
             <Button size="lg" className="rounded-full h-12 px-12 bg-amber-600 text-white text-lg sm:text-xl hover:bg-amber-700 transition-colors">
               {t("heroButton")}
             </Button>

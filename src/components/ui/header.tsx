@@ -7,6 +7,7 @@ import { Link, usePathname } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
 import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 import Image from "next/image";
+import { Logo } from "../Logo";
 
 export default function Header() {
   const t = useTranslations("Navigation");
@@ -22,27 +23,17 @@ export default function Header() {
     <nav className="fixed top-0 left-0 py-3 right-0 m-auto z-[999] bg-gradient-to-b from-orange-50 from-40% to-transparent to-90%">
       <div className="flex flex-row sm:flex lg:hidden justify-center items-center backdrop-blur-sm border-b border-white/20 pb-2">
         <Link href="/">
-          <Image
-            src="/images/blat_vodka_logo_bronze.png" // Path to your image in the public directory
-            alt="Blat Logo Bronze"
-            width={100} // Adjust the width as needed
-            height={100}
-            priority // Ensures the image is loaded quickly
-            className="drop-shadow-sm nav-logo logo"
-          />
+          <div className="w-[100px]">
+            <Logo hexColor="#d87500" hideSecondPart={false} />
+          </div>
         </Link>
       </div>
       <div className="hidden lg:flex flex-row">
         <div className="flex-1 flex items-center justify-end">
           <Link href="/">
-            <Image
-              src="/images/blat_vodka_logo_bronze.png" // Path to your image in the public directory
-              alt="Blat Logo Bronze"
-              width={100} // Adjust the width as needed
-              height={100}
-              priority // Ensures the image is loaded quickly
-              className="drop-shadow-sm nav-logo logo"
-            />
+            <div className="w-[100px]">
+              <Logo hexColor="#d87500" hideSecondPart={false} />
+            </div>
           </Link>
         </div>
         <div className="flex-1">
@@ -59,7 +50,7 @@ export default function Header() {
               `}
                 >
                   <Home size={20} />
-                  <span>{t("home")}</span>
+                  <span className="">{t("home")}</span>
                 </Link>
               </MenubarMenu>
               {/* News link */}
@@ -75,7 +66,7 @@ export default function Header() {
               `}
                 >
                   <Newspaper size={20} />
-                  <span>{t("news")}</span>
+                  <span className="">{t("news")}</span>
                 </Link>
               </MenubarMenu>
               {/* Search link */}
@@ -91,7 +82,7 @@ export default function Header() {
               `}
                 >
                   <Search size={20} />
-                  <span>{t("search")}</span>
+                  <span className="">{t("search")}</span>
                 </Link>
               </MenubarMenu>
               <MenubarSeparator className="h-[60%] border-[1px]" /> {/* Separator after Home */}

@@ -3,57 +3,111 @@
 import React from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
 import Image from "next/image";
+import { motion, useAnimation, useInView } from "framer-motion";
+import { useEffect } from "react";
 
-export default function About() {
-	const t = useTranslations("About"); // Use the translations for the About section
+export function About1() {
+  const t = useTranslations("About"); // Use the translations for the About section
+  const controls = useAnimation();
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        x: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        transition: { duration: 0.5, ease: "easeOut" },
+      });
+    }
+  }, [controls, inView]);
 
-	return (
-		<section className="container mx-auto relative bg-white py-20">
-			<div className="grid grid-cols-1 md:grid-cols-3 items-center w-full mx-auto gap-8">
-				{/* Botella izquierda */}
-				<div className="hidden md:flex justify-center">
-					<Image
-						src="/images/blatvodka-bottle-full.webp"
-						alt="Botella izquierda"
-						className="drop-shadow-lg"
-						width={400}
-						height={800}
-						priority
-					/>
-				</div>
+  return (
+    <section className="relative bg-white py-20">
+      <h2 className="text-4xl text-center font-bold text-amber-600">{t("title")}</h2>
+      <div className="w-full h-12 absolute bg-white top-[-35px] rounded-t-[50px]"></div>
+      <div className="grid grid-cols-1 md:grid-cols-3 items-center w-full mx-auto gap-8">
+        {/* Botella izquierda */}
+        <motion.div ref={ref} initial={{ x: -100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full">
+          <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={300} height={600} />
+        </motion.div>
 
-				{/* Contenido central */}
-				<div className="text-center space-y-14 px-4">
-					<h2 className="text-4xl font-bold text-amber-600">{t("title")}</h2>
+        {/* Contenido central */}
+        <div className="text-center space-y-14 px-4">
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading1")}</h3>
+            <p className="text-gray-600 text-base">{t("description1")}</p>
+          </div>
 
-					<div>
-						<h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading1")}</h3>
-						<p className="text-gray-700 text-base">{t("description1")}</p>
-					</div>
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading2")}</h3>
+            <p className="text-gray-600 text-base">{t("description2")}</p>
+          </div>
 
-					<div>
-						<h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading2")}</h3>
-						<p className="text-gray-700 text-base">{t("description2")}</p>
-					</div>
+          <div>
+            <h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading3")}</h3>
+            <p className="text-gray-600 text-base">{t("description3")}</p>
+          </div>
+        </div>
 
-					<div>
-						<h3 className="text-2xl font-semibold text-gray-900 mb-3">{t("heading3")}</h3>
-						<p className="text-gray-700 text-base">{t("description3")}</p>
-					</div>
-				</div>
+        {/* Botella derecha */}
+        <motion.div ref={ref} initial={{ x: 100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full">
+          <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={300} height={600} />
+        </motion.div>
+      </div>
+    </section>
+  );
+}
 
-				{/* Botella derecha */}
-				<div className="hidden md:flex justify-center">
-					<Image
-						src="/images/blatvodka-bottle-full.webp"
-						alt="Botella derecha"
-						className="drop-shadow-lg"
-						width={400}
-						height={800}
-						priority
-					/>
-				</div>
-			</div>
-		</section>
-	);
+export function About2() {
+  const t = useTranslations("About"); // Use the translations for the About section
+  const controls = useAnimation();
+  const ref = React.useRef<HTMLDivElement>(null);
+  const inView = useInView(ref);
+  useEffect(() => {
+    if (inView) {
+      controls.start({
+        x: 0,
+        opacity: 1,
+        filter: "blur(0px)",
+        transition: { duration: 0.5, ease: "easeOut" },
+      });
+    }
+  }, [controls, inView]);
+
+  return (
+    <section className="relative py-10 bg-gradient-to-b from-white from-40% to-orange-50 to-90%">
+      <h1 className="text-4xl text-center font-bold text-amber-600">{t("title")}</h1>
+      <div className="w-full h-12 absolute bg-white top-[-35px] rounded-t-[50px]"></div>
+      <div className="grid grid-cols-1 md:grid-cols-3 items-start w-full mx-auto gap-8 relative">
+        {/* Botella izquierda */}
+        <motion.div ref={ref} initial={{ x: -100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full sticky top-2">
+          <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} />
+        </motion.div>
+
+        {/* Contenido central */}
+        <div className="px-2 py-4 mt-12">
+          <h2 className="text-3xl text-center font-semibold text-gray-700 mb-3">{t("heading1")}</h2>
+          <p className="text-gray-600 text-lg mt-10">Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.</p>
+          <p className="text-gray-600 text-lg mt-2">Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.</p>
+          <Image src="/images/blatvodka-barrels.webp" alt="Botella izquierda" className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
+          <p className="text-gray-600 text-lg mt-10">
+            En 1993 Esteban y Fernando decidieron hacerse con la destilería familiar ubicada en las Islas Canarias y estable- cieron su propia empresa, COGRAMI CANARIAS S.L. En la actualidad, siguen fabricando sus propios productos y los distribuyen a nivel mundial.
+          </p>
+          <p className="text-gray-600 text-lg mt-2">
+            Durante estos años, los hermanos Banús se han dedi- cado a investigar diferentes procesos para eliminar las impurezas de las fermentaciones y dieron con una elaboración única. Utilizando este proceso han consegui- do elaborar el vodka más puro del mundo, Blat Vodka.
+          </p>
+          <Image src="/images/agua.webp" alt="Botella izquierda" className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
+          <p className="text-gray-600 text-lg mt-4">Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.</p>
+          <p className="text-gray-600 text-lg mt-2">Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.</p>
+          <Image src="/images/blatvodka-barrels.webp" alt="Botella izquierda" className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
+        </div>
+
+        {/* Botella derecha */}
+        <motion.div ref={ref} initial={{ x: 100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full sticky top-2">
+          <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} />
+        </motion.div>
+      </div>
+    </section>
+  );
 }
