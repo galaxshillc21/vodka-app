@@ -38,10 +38,15 @@
     "description3": "The bottle, designed by the Peter Schmidt Group, reflects the vodka’s purity. It has won international awards for its elegance and crystal-clear simplicity."
   },
   "Agua": {
-    "title": "Pure Essence of the Atlantic",
-    "description": "Our vodka is diluted with pure Atlantic rainwater, naturally filtered through the volcanic rocks of the Canary Islands. A unique environment that delivers unmatched purity and authentic character to the spirit."
-  },
+    "heading1": "From the Earth to Your Glass:",
+    "heading2": "The Essence of Blat Vodka",
 
+    "title1": "Premium French Wheat",
+    "description1": "We exclusively select the finest French wheat grains for the distillation of Blat Vodka. Strict control by the French government ensures our wheat is non-genetically modified, guaranteeing the exceptional quality of our ingredients.",
+
+    "title2": "Pure Essence of the Atlantic",
+    "description2": "The distillate is blended with pure Atlantic water, known as horizontal rain, which is naturally filtered through the volcanic rocks of the Canary Islands mountains. This unique environment and the pure Atlantic air are key to the final purity of our product."
+  },
   "Navigation": {
     "home": "Home",
     "about": "About Us",
