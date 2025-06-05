@@ -54,7 +54,7 @@ export default async function RootLayout({ children, params: { locale } }: Reado
       <body className={`${montserrat.variable} ${poppins.variable} antialiased lang-${locale}`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main>{children}</main>
+          <main className="mt-[40px]">{children}</main>
           <NavBottom />
         </NextIntlClientProvider>
       </body>
