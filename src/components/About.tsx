@@ -79,14 +79,14 @@ export function About2() {
     <section className="relative py-10 bg-gradient-to-b from-white from-40% to-orange-50 to-90%">
       <h1 className="text-4xl text-center font-bold text-amber-600">{t("title")}</h1>
       <div className="w-full h-12 absolute bg-white top-[-35px] rounded-t-[50px]"></div>
-      <div className="grid grid-cols-1 md:grid-cols-3 items-start w-full mx-auto gap-8 relative">
+      <div className="grid grid-cols-1 md:grid-cols-4 items-start w-full mx-auto gap-8 relative">
         {/* Botella izquierda */}
         <motion.div ref={ref} initial={{ x: -100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full sticky top-2">
           <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} />
         </motion.div>
 
         {/* Contenido central */}
-        <div className="px-2 py-4 mt-12">
+        <div className="px-2 py-4 mt-12 col-span-2">
           <h2 className="text-3xl text-center font-semibold text-gray-700 mb-3">{t("heading1")}</h2>
           <p className="text-gray-600 text-lg mt-10">Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.</p>
           <p className="text-gray-600 text-lg mt-2">Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.</p>
@@ -98,9 +98,6 @@ export function About2() {
             Durante estos años, los hermanos Banús se han dedi- cado a investigar diferentes procesos para eliminar las impurezas de las fermentaciones y dieron con una elaboración única. Utilizando este proceso han consegui- do elaborar el vodka más puro del mundo, Blat Vodka.
           </p>
           <Image src="/images/agua.webp" alt="Botella izquierda" className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
-          <p className="text-gray-600 text-lg mt-4">Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.</p>
-          <p className="text-gray-600 text-lg mt-2">Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.</p>
-          <Image src="/images/blatvodka-barrels.webp" alt="Botella izquierda" className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
         </div>
 
         {/* Botella derecha */}

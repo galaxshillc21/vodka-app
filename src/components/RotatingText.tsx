@@ -17,6 +17,7 @@ export interface RotatingTextRef {
 
 export interface RotatingTextProps extends Omit<React.ComponentPropsWithoutRef<typeof motion.span>, "children" | "transition" | "initial" | "animate" | "exit"> {
   texts: string[];
+  colors?: string[];
   transition?: Transition;
   initial?: boolean | Target | VariantLabels;
   animate?: boolean | VariantLabels | AnimationControls | TargetAndTransition;
@@ -38,10 +39,11 @@ export interface RotatingTextProps extends Omit<React.ComponentPropsWithoutRef<t
 const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref) => {
   const {
     texts,
+    colors = ["text-gray-800", "text-blue-600", "text-green-600", "text-purple-600", "text-red-600"], // Default Tailwind color classes
     transition = { type: "spring", damping: 25, stiffness: 300 },
-    initial = { y: "100%", opacity: 0 },
-    animate = { y: 0, opacity: 1 },
-    exit = { y: "-120%", opacity: 0 },
+    initial = { y: "100%", opacity: 0, filter: "blur(4px)" },
+    animate = { y: 0, opacity: 1, filter: "blur(3px)" },
+    exit = { y: "-120%", opacity: 0, filter: "blur(4px)" },
     animatePresenceMode = "wait",
     animatePresenceInitial = false,
     rotationInterval = 2000,
@@ -58,6 +60,7 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   } = props;
 
   const [currentTextIndex, setCurrentTextIndex] = useState<number>(0);
+  const [currentColorIndex, setCurrentColorIndex] = useState<number>(0); // New state for color index
 
   const splitIntoCharacters = (text: string): string[] => {
     if (typeof Intl !== "undefined" && Intl.Segmenter) {
@@ -116,9 +119,11 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
   const handleIndexChange = useCallback(
     (newIndex: number) => {
       setCurrentTextIndex(newIndex);
+      // Update color index when text changes
+      setCurrentColorIndex((prevColorIndex) => (prevColorIndex + 1) % colors.length);
       if (onNext) onNext(newIndex);
     },
-    [onNext]
+    [onNext, colors.length]
   );
 
   const next = useCallback(() => {
@@ -172,11 +177,11 @@ const RotatingText = forwardRef<RotatingTextRef, RotatingTextProps>((props, ref)
     <motion.span className={cn("text-rotate", mainClassName)} {...rest} layout transition={transition}>
       <span className="text-rotate-sr-only">{texts[currentTextIndex]}</span>
       <AnimatePresence mode={animatePresenceMode} initial={animatePresenceInitial}>
-        <motion.div key={currentTextIndex} className={cn(splitBy === "lines" ? "text-rotate-lines" : "text-rotate")} layout aria-hidden="true">
+        <motion.div key={currentTextIndex} className={cn(splitBy === "lines" ? "text-rotate-lines" : "text-rotate", colors[currentColorIndex])} layout aria-hidden="true">
           {elements.map((wordObj, wordIndex, array) => {
             const previousCharsCount = array.slice(0, wordIndex).reduce((sum, word) => sum + word.characters.length, 0);
             return (
-              <span key={wordIndex} className={cn("text-rotate-word", splitLevelClassName)}>
+              <span key={wordIndex} className={cn("text-rotate-word", splitLevelClassName, colors[currentColorIndex])}>
                 {wordObj.characters.map((char, charIndex) => (
                   <motion.span
                     key={charIndex}

@@ -96,13 +96,16 @@
   box-sizing: border-box;
 }
 
+html {
+  @apply scroll-smooth;
+}
+
 html,
 body {
   height: 100vh; /* Full viewport height */
   max-height: 100vh;
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent body from scrolling */
 }
 
 body {
@@ -123,6 +126,9 @@ body::before {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+}
+body grid {
+  overflow-x: hidden;
 }
 
 .bg-bottle {

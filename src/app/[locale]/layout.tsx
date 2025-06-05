@@ -50,7 +50,7 @@ export default async function RootLayout({ children, params: { locale } }: Reado
   const messages = await getMessages();
 
   return (
-    <html className="h-full" lang={locale}>
+    <html className="h-full scroll-smooth" lang={locale}>
       <body className={`${montserrat.variable} ${poppins.variable} antialiased lang-${locale}`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
