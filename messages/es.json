@@ -1,115 +1,118 @@
 {
-  "Index": {
-    "title": "Blat Vodka",
-    "description": "El vodka más puro del mundo.",
-    "purityHeading": "Que añade la Pureza?",
-    "heroButton": "Leer más",
-    "puritySabor": "Mejor Sabor",
-    "purityCalidad": "Mejor Calidad",
-    "purityCombinar": "Mejor para Combinar",
-    "puritySuavidad": "Mas Suavidad",
-    "purity1": "con y sin hielo",
-    "purity2": "reduce los efectos negativos de la resaca",
-    "purity3": "los sabores se realzan",
-    "purity4": "corto o largo, es la bebida ideal",
-    "qualities": {
-      "quality1": "0.0 mg/L <br/>de Impurezas",
-      "quality2": "100% trigo<br/>francés",
-      "quality3": "Agua del <br/>Atlántico",
-      "sub1": "Sin impurezas detectadas",
-      "sub2": "Sin modificación genética",
-      "sub3": "Filtrada por roca volcánica",
-      "desc1": "Es el único vodka del mercado con análisis certificados que garantizan ausencia total de impurezas.",
-      "desc2": "Ingrediente premium aprobado por el gobierno francés, asegurando calidad y origen natural.",
-      "desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
-    }
-  },
-  "BottleShow": {
-    "title": "Blat Vodka logra lo que ningún otro Vodka Premium ha logrado"
-  },
-  "About": {
-    "title": "Nuestra Herencia de Excelencia",
-    "heading1": "Creadores con Legado",
-    "description1": "Fernando y Esteban Banús, tercera generación en el arte de la destilación, transformaron su herencia familiar en Blat Vodka: un vodka revolucionario nacido en las Islas Canarias.",
-    "heading2": "Calidad sin compromisos",
-    "description2": "Con trigo francés y agua filtrada por rocas volcánicas, Blat Vodka alcanza una pureza certificada del 0.0%. Su suavidad y sabor lo convierten en el vodka más puro del mundo.",
-    "heading3": "Diseño con esencia",
-    "description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
-  },
-  "Agua": {
-    "heading1": "De la Tierra a su Copa:",
-    "heading2": "La Esencia de Blat Vodka",
+	"Index": {
+		"title": "Blat Vodka",
+		"description": "El vodka más puro del mundo.",
+		"purityHeading": "Que añade la Pureza?",
+		"heroButton": "Leer más",
+		"puritySabor": "Mejor Sabor",
+		"purityCalidad": "Mejor Calidad",
+		"purityCombinar": "Mejor para Combinar",
+		"puritySuavidad": "Mas Suavidad",
+		"purity1": "con y sin hielo",
+		"purity2": "reduce los efectos negativos de la resaca",
+		"purity3": "los sabores se realzan",
+		"purity4": "corto o largo, es la bebida ideal",
+		"qualities": {
+			"quality1": "0.0 mg/L <br/>de Impurezas",
+			"quality2": "100% trigo<br/>francés",
+			"quality3": "Agua del <br/>Atlántico",
+			"sub1": "Sin impurezas detectadas",
+			"sub2": "Sin modificación genética",
+			"sub3": "Filtrada por roca volcánica",
+			"desc1": "Es el único vodka del mercado con análisis certificados que garantizan ausencia total de impurezas.",
+			"desc2": "Ingrediente premium aprobado por el gobierno francés, asegurando calidad y origen natural.",
+			"desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
+		}
+	},
+	"BottleShow": {
+		"title": "Blat Vodka logra lo que ningún otro Vodka Premium ha logrado"
+	},
+	"About": {
+		"title": "Nuestra Herencia de Excelencia",
+		"heading1": "Creadores con Legado",
+		"description1": "Fernando y Esteban Banús, tercera generación en el arte de la destilación, transformaron su herencia familiar en Blat Vodka: un vodka revolucionario nacido en las Islas Canarias.",
+		"heading2": "Calidad sin compromisos",
+		"description2": "Con trigo francés y agua filtrada por rocas volcánicas, Blat Vodka alcanza una pureza certificada del 0.0%. Su suavidad y sabor lo convierten en el vodka más puro del mundo.",
+		"heading3": "Diseño con esencia",
+		"description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
+	},
+	"Agua": {
+		"heading1": "De la Tierra a su Copa",
+		"heading2": "La Esencia de Blat Vodka",
 
-    "title1": "Trigo Francés Premium",
-    "description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
+		"title1": "Trigo Francés Premium",
+		"description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
 
-    "title2": "Pura Esencia del Atlántico",
-    "description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
-  },
-  "Navigation": {
-    "home": "Inicio",
-    "about": "Sobre Nosotros",
-    "contact": "Contacto",
-    "news": "Noticias",
-    "search": "Buscar",
-    "backToHome": "Volver al inicio"
-  },
-  "SearchPage": {
-    "heroTitlePart1": "Encuentra tu distribuidor de Blat",
-    "heroTitlePart2": "más cercano a ti",
-    "zipcodePlaceholder": "Ingresa el código postal",
-    "searchButton": "Buscar",
-    "tabStores": "Tiendas",
-    "tabEvents": "Eventos",
-    "tabFavorites": "Favoritos",
-    "closestStoresHeading": "Tiendas más cercanas",
-    "viewAllStoresLink": "Ver todas las tiendas",
-    "closestEventsHeading": "Eventos más cercanos",
-    "error1": "Ocurrió un error al obtener los datos."
-  },
-  "NewsPage": {
-    "title": "Últimas Noticias",
-    "description": "Mantente al día con las últimas noticias sobre Blat Vodka."
-  },
-  "NotFound": {
-    "title": "Página no encontrada",
-    "description": "La página que buscas no existe."
-  },
-  "LocaleLayout": {
-    "title": "Ejemplo de next-intl"
-  },
-  "LocaleSwitcher": {
-    "label": "Idioma",
-    "en": "Inglés",
-    "es": "Español"
-  },
-  "Error": {
-    "description": "<p>Desafortunadamente, hemos encontrado un error.</p><p>Puedes intentar <retry>recargar la página</retry> que estabas visitando.</p>",
-    "title": "¡Algo salió mal!"
-  },
-  "Manifest": {
-    "name": "Ejemplo de next-intl"
-  },
-  "NotFoundPage": {
-    "description": "Verifica que la dirección en la barra del navegador sea correcta o usa la navegación para ir a una página conocida.",
-    "title": "Página no encontrada"
-  },
-  "PageLayout": {
-    "links": {
-      "docs": {
-        "description": "Aprende más sobre next-intl en la documentación oficial.",
-        "href": "https://next-intl.dev",
-        "title": "Documentación"
-      },
-      "source": {
-        "description": "Explora el código fuente de este ejemplo en GitHub.",
-        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
-        "title": "Código fuente"
-      }
-    }
-  },
-  "PathnamesPage": {
-    "description": "<p>Los nombres de ruta también están internacionalizados.</p><p>Si estás usando el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a alemán, la URL se localiza en consecuencia (<code>/de/pfadnamen</code>).</p>",
-    "title": "Nombres de ruta"
-  }
+		"title2": "Pura Esencia del Atlántico",
+		"description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
+	},
+	"Navigation": {
+		"home": "Inicio",
+		"about": "Sobre Nosotros",
+		"contact": "Contacto",
+		"news": "Noticias",
+		"search": "Buscar",
+		"tiendas": "Tiendas",
+		"events": "Eventos",
+		"cocktails": "Cócteles",
+		"backToHome": "Volver al inicio"
+	},
+	"SearchPage": {
+		"heroTitlePart1": "Encuentra tu distribuidor de Blat",
+		"heroTitlePart2": "más cercano a ti",
+		"zipcodePlaceholder": "Ingresa el código postal",
+		"searchButton": "Buscar",
+		"tabStores": "Tiendas",
+		"tabEvents": "Eventos",
+		"tabFavorites": "Favoritos",
+		"closestStoresHeading": "Tiendas más cercanas",
+		"viewAllStoresLink": "Ver todas las tiendas",
+		"closestEventsHeading": "Eventos más cercanos",
+		"error1": "Ocurrió un error al obtener los datos."
+	},
+	"NewsPage": {
+		"title": "Últimas Noticias",
+		"description": "Mantente al día con las últimas noticias sobre Blat Vodka."
+	},
+	"NotFound": {
+		"title": "Página no encontrada",
+		"description": "La página que buscas no existe."
+	},
+	"LocaleLayout": {
+		"title": "Ejemplo de next-intl"
+	},
+	"LocaleSwitcher": {
+		"label": "Idioma",
+		"en": "Inglés",
+		"es": "Español"
+	},
+	"Error": {
+		"description": "<p>Desafortunadamente, hemos encontrado un error.</p><p>Puedes intentar <retry>recargar la página</retry> que estabas visitando.</p>",
+		"title": "¡Algo salió mal!"
+	},
+	"Manifest": {
+		"name": "Ejemplo de next-intl"
+	},
+	"NotFoundPage": {
+		"description": "Verifica que la dirección en la barra del navegador sea correcta o usa la navegación para ir a una página conocida.",
+		"title": "Página no encontrada"
+	},
+	"PageLayout": {
+		"links": {
+			"docs": {
+				"description": "Aprende más sobre next-intl en la documentación oficial.",
+				"href": "https://next-intl.dev",
+				"title": "Documentación"
+			},
+			"source": {
+				"description": "Explora el código fuente de este ejemplo en GitHub.",
+				"href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
+				"title": "Código fuente"
+			}
+		}
+	},
+	"PathnamesPage": {
+		"description": "<p>Los nombres de ruta también están internacionalizados.</p><p>Si estás usando el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a alemán, la URL se localiza en consecuencia (<code>/de/pfadnamen</code>).</p>",
+		"title": "Nombres de ruta"
+	}
 }
