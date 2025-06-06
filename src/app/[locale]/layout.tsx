@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { Fraunces, Poppins } from "next/font/google";
 import "../globals.css"; // Adjust path as needed
 import NavBottom from "@/src/components/ui/navBottom";
-import Header from "@/src/components/ui/header"; // Import Header component
+import Header from "@/src/components/ui/Header";
+import Footer from "@/src/components/ui/Footer";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server"; // Changed unstable_setRequestLocale to setRequestLocale [1]
 import { NextIntlClientProvider } from "next-intl";
@@ -64,6 +65,7 @@ export default async function RootLayout({ children, params: { locale } }: Reado
 					<Header />
 					<main className="mt-0 lg:mt-[40px]">{children}</main>
 					<NavBottom />
+					<Footer />
 				</NextIntlClientProvider>
 			</body>
 		</html>
