@@ -5,29 +5,29 @@ import Image from "next/image";
 import RotatingText from "@/src/components/RotatingText";
 
 export default function PuritySection() {
-  const t = useTranslations("Index");
+  const t = useTranslations("Purity");
   return (
     <section className="h-auto py-20 bg-gray-100 text-center Purity flex items-center justify-center relative">
       <div className="absolute w-full h-full bottom-[10%] overflow-x-hidden object-cover pointer-events-none user-select-none top-[40%] z-0">
         <Image src="/images/curvy-line.svg" alt="Curvy Line" width={102} height={100} className="w-[104vw] max-w-[104vw] mx-auto absolute left-[-2]" priority />
       </div>
-      <div className="container  relative z-10">
-        <div className="flex flex-row gap-12">
+      <div className="container relative z-10  px-4 lg:py-0">
+        <div className="flex flex-col lg:flex-row gap-12">
           <div className="left flex-1 max-w-[380px]">
-            <div className="PurityBg drop-shadow-xl w-[380px] h-[600px] mx-auto flex flex-col items-center justify-center relative overflow-hidden bg-[url('/images/bartender.webp')] bg-cover bg-no-repeat rounded-full bg-center z-20">
+            <div className="PurityBg drop-shadow-xl w-[250px] lg:w-[380px] h-[410px] lg:h-[600px] mx-auto flex flex-col items-center justify-center relative overflow-hidden bg-[url('/images/bartender.webp')] bg-cover bg-no-repeat rounded-full bg-center z-20">
               <div className="absolute inset-0 bg-black/30 z-10 pointer-events-none" />
             </div>
           </div>
           <div className="right flex-1 flex justify-start align-center items-center">
-            <div className="text-left bg-white/40 p-6 rounded-lg z-20 drop-shadow-xl backdrop-blur-md">
-              <p className="text-xl text-amber-600 font-medium mb-0">{t("purityHeading")}</p>
+            <div className="text-left bg-white/60 p-6 rounded-lg z-20 drop-shadow-xl backdrop-blur-md">
+              <p className="text-xl text-amber-600 font-semibold mb-0 uppercase">{t("adds")}</p>
               <div className="inline-flex items-center justify-center gap-0 mb-6">
-                <span className="text-[40px] font-semibold text-gray-800">Mejor</span>
+                <span className="text-[30px] lg:text-[40px] font-semibold text-gray-800 font-heading">{t("mejor")}</span>
                 <RotatingText
-                  texts={["Sabor", "Calidad", "Suavidad", "Para Combinar"]}
+                  texts={[t("one"), t("two"), t("three"), t("four")]}
                   colors={["text-orange-400", "text-sky-400", "text-green-400", "text-purple-400"]}
                   mainClassName="inline px-2 sm:px-2 md:px-3 text-black overflow-hidden py-0.5 sm:py-1 md:py-2 justify-center rounded-lg"
-                  splitLevelClassName="overflow-hidden  text-[40px] font-semibold text-gray-800"
+                  splitLevelClassName="overflow-hidden text-[30px] lg:text-[40px] font-heading font-semibold text-gray-800"
                   elementLevelClassName=""
                   splitBy="characters"
                   staggerFrom={"last"}
@@ -39,12 +39,11 @@ export default function PuritySection() {
                   rotationInterval={3000}
                 />
               </div>
-              <p>
-                La pureza excepcional de Blat Vodka transforma su experiencia de consumo, ofreciendo un Mejor Sabor que se disfruta tanto con hielo como sin él. Gracias a su proceso único, garantiza una Mejor Calidad que ayuda a reducir los efectos negativos de la resaca, haciendo que cada momento
-                sea más placentero.
+              <p className="text-gray-600 text-lg">
+                {t("p1")}
                 <br />
                 <br />
-                Además, su suavidad inigualable lo convierte en la Bebida Ideal para cualquier ocasión, ya sea en tragos cortos o largos. Blat Vodka también es Mejor para Combinar, ya que su pureza realza los sabores de otros ingredientes, permitiéndote crear cócteles verdaderamente excepcionales.
+                {t("p2")}
               </p>
             </div>
           </div>

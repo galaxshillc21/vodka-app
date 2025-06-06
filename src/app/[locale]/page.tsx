@@ -1,6 +1,6 @@
 // import { getTranslations } from "next-intl/server";
 import { Hero3 } from "@/src/components/section/HeroSection";
-import { BottleDesignParallax, BottleDesign } from "@/src/components/section/BottleDesignSection";
+import { BottleDesignParallax, BottleDesign, BottleDesign2 } from "@/src/components/section/BottleDesignSection";
 import PuritySection from "@/src/components/section/PuritySection";
 import { About2 } from "@/src/components/section/AboutSection";
 import Agua from "@/src/components/section/AguaSection";
@@ -20,7 +20,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <About2 />
       <Ciencia />
       <Agua />
-      <BottleDesign />
+      <BottleDesign2 />
     </>
   );
 }

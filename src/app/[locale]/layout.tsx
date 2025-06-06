@@ -1,6 +1,6 @@
 // app/[locale]/layout.tsx
 import type { Metadata } from "next";
-import { Montserrat, Poppins } from "next/font/google";
+import { Fraunces, Poppins } from "next/font/google";
 import "../globals.css"; // Adjust path as needed
 import NavBottom from "@/src/components/ui/navBottom";
 import Header from "@/src/components/ui/header"; // Import Header component
@@ -9,12 +9,16 @@ import { getMessages, setRequestLocale } from "next-intl/server"; // Changed uns
 import { NextIntlClientProvider } from "next-intl";
 import { locales } from "@/src/i18n/routing"; // Import locales from the new routing file
 
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
+// const montserrat = Montserrat({
+//   variable: "--font-montserrat",
+//   subsets: ["latin"],
+//   weight: ["400", "500", "600", "700"],
+// });
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"], // Added more weights for flexibility
 });
-
 const poppins = Poppins({
   variable: "--font-poppins",
   subsets: ["latin"],
@@ -50,11 +54,11 @@ export default async function RootLayout({ children, params: { locale } }: Reado
   const messages = await getMessages();
 
   return (
-    <html className="h-full scroll-smooth" lang={locale}>
-      <body className={`${montserrat.variable} ${poppins.variable} antialiased lang-${locale}`}>
+    <html className="" lang={locale}>
+      <body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main className="mt-[40px]">{children}</main>
+          <main className="mt-0 lg:mt-[40px]">{children}</main>
           <NavBottom />
         </NextIntlClientProvider>
       </body>

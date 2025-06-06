@@ -99,9 +99,6 @@
 * {
   box-sizing: border-box;
 }
-html {
-  @apply scroll-smooth;
-}
 html,
 body {
   height: 100vh; /* Full viewport height */
@@ -129,8 +126,8 @@ body {
     pointer-events: none;
     user-select: none;
   }
-  grid {
-    overflow-x: hidden;
+  .grid {
+    // overflow-x: hidden;
   }
 }
 
@@ -166,9 +163,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-montserrat);
+  font-family: var(--font-fraunces);
   // text-transform: uppercase;
   font-weight: 700;
+}
+.font-heading {
+  font-family: var(--font-fraunces) !important;
 }
 
 h1.main-title {
@@ -219,7 +219,7 @@ main {
   position: relative;
   height: 100%;
   width: 100%;
-  overflow-y: auto;
+  // overflow-y: auto;
   padding-bottom: 56px !important;
   // padding-left: 15px;
   // padding-right: 15px;

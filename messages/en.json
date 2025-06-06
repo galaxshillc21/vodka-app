@@ -1,51 +1,81 @@
 {
   "Index": {
     "title": "Blat Vodka",
-    "description": "The purest Vodka in the world.",
+    "description": "The purest vodka in the world.",
+    "purityHeading": "What does Purity Add?",
     "heroButton": "Read more",
-    "purityHeading": "What does Purity add?",
-    "puritySabor": "Better Taste",
+    "puritySabor": "Better Flavor",
     "purityCalidad": "Better Quality",
     "purityCombinar": "Better for Mixing",
-    "puritySuavidad": "More Smoothness",
-    "purity1": "with and without ice",
-    "purity2": "reduces the negative effects of a hangover",
+    "puritySuavidad": "Smoother",
+    "purity1": "with or without ice",
+    "purity2": "reduces negative hangover effects",
     "purity3": "flavors are enhanced",
     "purity4": "short or long, it's the ideal drink",
     "qualities": {
       "quality1": "0.0 mg/L <br/>of Impurities",
-      "quality2": "100% French<br />wheat",
-      "quality3": "Water from <br />the Atlantic",
+      "quality2": "100% <br/>French wheat",
+      "quality3": "Atlantic <br/>Water",
       "sub1": "No detected impurities",
-      "sub2": "Non-genetically modified",
+      "sub2": "Non-GMO",
       "sub3": "Filtered through volcanic rock",
-      "desc1": "The only vodka on the market with certified analysis guaranteeing total absence of impurities.",
-      "desc2": "Premium ingredient approved by the French government, ensuring natural and high-quality origin.",
-      "desc3": "Sourced from horizontal rain in the Canary Islands, delivering exceptional purity to the product."
+      "desc1": "It’s the only vodka on the market with certified analysis guaranteeing total absence of impurities.",
+      "desc2": "Premium ingredient approved by the French government, ensuring quality and natural origin.",
+      "desc3": "Sourced from horizontal rain in the Canary Islands, providing exceptional purity to the product."
     }
   },
-  "BottleShow": {
-    "title": "Blat Vodka achieves what no other Premium Vodka has"
+  "BottleDesign": {
+    "title": "Blat Vodka achieves what no other premium vodka has accomplished",
+    "title2": "Design that Reflects Purity",
+    "p1": "The Blat Vodka bottle is a reflection of its contents: ",
+    "span1": "Clean, crystalline, and uniquely elegant.",
+    "p2": "Designed by the prestigious ",
+    "span21": "Peter Schmidt Group",
+    "p22": ", whose works are even exhibited at the Metropolitan Museum of Modern Art in New York, our bottle has been awarded ",
+    "span22": "three international prizes.",
+    "p3": "Its design is cleverly inspired by the traditional vodka glass, incorporating embossed lettering for a distinctive and tactile aesthetic."
   },
-
   "About": {
-    "title": "About Blat Vodka",
-    "heading1": "Creators with Legacy",
-    "description1": "Fernando and Esteban Banús, third-generation distillers, transformed their family heritage into Blat Vodka — a revolutionary vodka born in the Canary Islands.",
-    "heading2": "Uncompromising Quality",
-    "description2": "Crafted with French wheat and water filtered through volcanic rock, Blat Vodka achieves a certified purity of 0.0%. Its smoothness and flavor make it the purest vodka in the world.",
-    "heading3": "Design with Essence",
-    "description3": "The bottle, designed by the Peter Schmidt Group, reflects the vodka’s purity. It has won international awards for its elegance and crystal-clear simplicity."
+    "title": "Our Heritage of Excellence",
+    "heading1": "Legacy Creators",
+    "p1": "Fernando and Esteban are the third generation of a family of alcohol experts since 1987.",
+    "p2": "For 40 years, the family company COGRAMI S.A.E. were the owners and producers of Pernod and Bols.",
+    "p3": "In 1993, Esteban and Fernando decided to take over the family distillery located in the Canary Islands and established their own company, COGRAMI CANARIAS S.L. Today, they continue to produce their own products and distribute them worldwide.",
+    "p4": "Over the years, the Banús brothers have dedicated themselves to researching different processes to eliminate fermentation impurities and developed a unique method. Using this process, they managed to create the purest vodka in the world: Blat Vodka.",
+    "p5": "Fernando and Esteban are the third generation of a family of alcohol experts since 1987.",
+    "heading2": "Quality Without Compromise",
+    "description2": "With French wheat and water filtered through volcanic rock, Blat Vodka reaches a certified purity of 0.0%. Its smoothness and flavor make it the purest vodka in the world.",
+    "heading3": "Design With Essence",
+    "description3": "The bottle, designed by Peter Schmidt Group, reflects the vodka's purity. It has won international awards for its elegance and crystal-clear simplicity."
   },
   "Agua": {
-    "heading1": "From the Earth to Your Glass:",
+    "heading1": "From Earth to Your Glass",
     "heading2": "The Essence of Blat Vodka",
 
     "title1": "Premium French Wheat",
-    "description1": "We exclusively select the finest French wheat grains for the distillation of Blat Vodka. Strict control by the French government ensures our wheat is non-genetically modified, guaranteeing the exceptional quality of our ingredients.",
+    "description1": "We exclusively select the finest French wheat grains for distilling Blat Vodka. Strict French government oversight ensures our wheat is non-GMO, guaranteeing the exceptional quality of our ingredients.",
 
     "title2": "Pure Essence of the Atlantic",
-    "description2": "The distillate is blended with pure Atlantic water, known as horizontal rain, which is naturally filtered through the volcanic rocks of the Canary Islands mountains. This unique environment and the pure Atlantic air are key to the final purity of our product."
+    "description2": "The distillate merges with pure Atlantic water, known as horizontal rain, which naturally filters through the volcanic rocks of the Canary Island mountains. This unique environment and the Atlantic’s pure air are key to the final purity of our product."
+  },
+  "Purity": {
+    "adds": "What does Purity Add?",
+    "mejor": "Better",
+    "one": "Taste",
+    "two": "Quality",
+    "three": "Smoothness",
+    "four": "For Mixing",
+    "p1": "The exceptional purity of Blat Vodka transforms your drinking experience, offering Better Taste enjoyed both with and without ice. Thanks to its unique process, it guarantees Better Quality that helps reduce the negative effects of hangovers, making every moment more enjoyable.",
+    "p2": "Moreover, its unmatched smoothness makes it the Ideal Drink for any occasion, whether in short or long drinks. Blat Vodka is also Better for Mixing, as its purity enhances the flavors of other ingredients, allowing you to create truly exceptional cocktails."
+  },
+  "Ciencia": {
+    "title": "The Science Behind Unmatched Purity",
+    "p1": "The Banús brothers dedicated years to researching and developing a unique process that removes fermentation impurities without compromising flavor. This patented method allows us to produce Blat Vodka with",
+    "span1": " 0.0mg/L of detected impurities",
+    "p1a": ", establishing it as the purest vodka in the world.",
+    "p2": "Our purity is certified: An independent U.S. laboratory, accredited by the TTB, has confirmed that Blat Vodka contains no detectable impurities, including 1-butanol, active amyl alcohol, isoamyl alcohol, isobutanol, methanol, n-propanol, DB acetaldehyde, and DB ethyl acetate.",
+    "marcaH": "brand",
+    "impH": "Impurities (mg/L)"
   },
   "Navigation": {
     "home": "Home",
@@ -53,31 +83,34 @@
     "contact": "Contact",
     "news": "News",
     "search": "Search",
+    "tiendas": "Stores",
+    "events": "Events",
+    "cocktails": "Cocktails",
     "backToHome": "Back to Home"
   },
   "SearchPage": {
-    "heroTitlePart1": "Find your Blat distributor",
-    "heroTitlePart2": "closest to you",
-    "zipcodePlaceholder": "Enter Zipcode",
+    "heroTitlePart1": "Find your closest",
+    "heroTitlePart2": "Blat distributor",
+    "zipcodePlaceholder": "Enter postal code",
     "searchButton": "Search",
     "tabStores": "Stores",
     "tabEvents": "Events",
     "tabFavorites": "Favorites",
-    "closestStoresHeading": "Closest Stores",
+    "closestStoresHeading": "Closest stores",
     "viewAllStoresLink": "View all stores",
-    "closestEventsHeading": "Closest Events",
-    "error1": "An error occurred while fetching the data."
+    "closestEventsHeading": "Closest events",
+    "error1": "An error occurred while fetching data."
   },
   "NewsPage": {
     "title": "Latest News",
-    "description": "Stay updated with the latest news about Blat Vodka."
+    "description": "Stay up to date with the latest news about Blat Vodka."
   },
   "NotFound": {
-    "title": "Page Not Found",
-    "description": "The page you're looking for doesn't exist."
+    "title": "Page not found",
+    "description": "The page you’re looking for doesn’t exist."
   },
   "LocaleLayout": {
-    "title": "next-intl example"
+    "title": "next-intl Example"
   },
   "LocaleSwitcher": {
     "label": "Language",
@@ -85,32 +118,32 @@
     "es": "Spanish"
   },
   "Error": {
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
+    "description": "<p>Unfortunately, an error has occurred.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>",
     "title": "Something went wrong!"
   },
   "Manifest": {
-    "name": "next-intl example"
+    "name": "next-intl Example"
   },
   "NotFoundPage": {
-    "description": "Please double-check the browser address bar or use the navigation to go to a known page.",
+    "description": "Check that the address in your browser’s address bar is correct or use the navigation to go to a known page.",
     "title": "Page not found"
   },
   "PageLayout": {
     "links": {
       "docs": {
-        "description": "Learn more about next-intl in the official docs.",
+        "description": "Learn more about next-intl in the official documentation.",
         "href": "https://next-intl.dev",
-        "title": "Docs"
+        "title": "Documentation"
       },
       "source": {
-        "description": "Browse the source code of this example on GitHub.",
+        "description": "Explore this example’s source code on GitHub.",
         "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
         "title": "Source code"
       }
     }
   },
   "PathnamesPage": {
-    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
+    "description": "<p>Pathnames are also internationalized.</p><p>If you’re using the default language, English, you’ll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you switch the language to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
     "title": "Pathnames"
   }
 }

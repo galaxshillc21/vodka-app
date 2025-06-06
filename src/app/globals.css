@@ -96,10 +96,6 @@
   box-sizing: border-box;
 }
 
-html {
-  @apply scroll-smooth;
-}
-
 html,
 body {
   height: 100vh; /* Full viewport height */
@@ -127,10 +123,6 @@ body::before {
      -moz-user-select: none;
           user-select: none;
 }
-body grid {
-  overflow-x: hidden;
-}
-
 .bg-bottle {
   background-image: url("../../public/images/blat_bottle.jpg");
   background-repeat: no-repeat;
@@ -160,8 +152,12 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-montserrat);
+  font-family: var(--font-fraunces);
   font-weight: 700;
+}
+
+.font-heading {
+  font-family: var(--font-fraunces) !important;
 }
 
 h1.main-title {
@@ -213,7 +209,6 @@ main {
   position: relative;
   height: 100%;
   width: 100%;
-  overflow-y: auto;
   padding-bottom: 56px !important;
 }
 main .heroBG {
