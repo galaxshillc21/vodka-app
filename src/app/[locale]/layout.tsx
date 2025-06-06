@@ -15,53 +15,57 @@ import { locales } from "@/src/i18n/routing"; // Import locales from the new rou
 //   weight: ["400", "500", "600", "700"],
 // });
 const fraunces = Fraunces({
-  variable: "--font-fraunces",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800", "900"], // Added more weights for flexibility
+	variable: "--font-fraunces",
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700", "800", "900"], // Added more weights for flexibility
 });
 const poppins = Poppins({
-  variable: "--font-poppins",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+	variable: "--font-poppins",
+	subsets: ["latin"],
+	weight: ["400", "500", "600", "700"],
 });
 
 // Define metadata for your root layout (can be locale-specific)
-export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
-  const { locale } = await params; // Await params before destructuring locale [2]
-  const messages = (await import(`@/messages/${locale}.json`)).default;
-  return {
-    title: messages.Index.title, // Access translated title
-    description: messages.Index.description, // Access translated description
-  };
+export async function generateMetadata({
+	params,
+}: {
+	params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+	const { locale } = await params; // Await params before destructuring locale [2]
+	const messages = (await import(`@/messages/${locale}.json`)).default;
+	return {
+		title: messages.Index.title, // Access translated title
+		description: messages.Index.description, // Access translated description
+	};
 }
 
 // Add generateStaticParams to prerender all locales
 export function generateStaticParams() {
-  return locales.map((locale) => ({ locale }));
+	return locales.map((locale) => ({ locale }));
 }
 
 type Props = {
-  children: React.ReactNode;
-  params: { locale: string };
+	children: React.ReactNode;
+	params: { locale: string };
 };
 
 export default async function RootLayout({ children, params: { locale } }: Readonly<Props>) {
-  // Validate that the incoming `locale` parameter is valid
-  if (!locales.includes(locale as any)) notFound();
+	// Validate that the incoming `locale` parameter is valid
+	if (!locales.includes(locale as (typeof locales)[number])) notFound();
 
-  setRequestLocale(locale); // Corrected API call [1]
+	setRequestLocale(locale); // Corrected API call [1]
 
-  const messages = await getMessages();
+	const messages = await getMessages();
 
-  return (
-    <html className="" lang={locale}>
-      <body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
-        <NextIntlClientProvider messages={messages}>
-          <Header />
-          <main className="mt-0 lg:mt-[40px]">{children}</main>
-          <NavBottom />
-        </NextIntlClientProvider>
-      </body>
-    </html>
-  );
+	return (
+		<html className="" lang={locale}>
+			<body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
+				<NextIntlClientProvider messages={messages}>
+					<Header />
+					<main className="mt-0 lg:mt-[40px]">{children}</main>
+					<NavBottom />
+				</NextIntlClientProvider>
+			</body>
+		</html>
+	);
 }
