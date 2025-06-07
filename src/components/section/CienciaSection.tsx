@@ -92,7 +92,7 @@ export function Ciencia() {
 						<p className="text-lg mb-4 text-gray-700">{t("p2")}</p>
 					</div>
 					<SpotlightCard
-						className="shadow-md p-2! lg:p-4! flex-1 flex flex-col justify-center items-center rounded-lg custom-spotlight-card overflow-visible!"
+						className="SpotlightCard shadow-md p-none! lg:p-none! flex-1 flex flex-col justify-center items-center rounded-lg custom-spotlight-card overflow-visible!"
 						spotlightColor="rgba(0, 229, 255, 0.2)"
 					>
 						<Table>

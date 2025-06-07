@@ -1,5 +1,5 @@
 import { Phone, Clock10, Star, Navigation } from "lucide-react";
-import Map from "@/src/components/Map";
+import InlineMap from "@/src/components/InlineMap"; // ✅ NOT the full Map
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
 import type { Store } from "@/src/types/store"; // <-- Create this type if not present
 
@@ -25,7 +25,10 @@ TiendasTabProps) => {
 				<ul>
 					{closestStores.map((store) => (
 						//  onClick={() => handleStoreClick(store.id)}
-						<li key={store.id} className="frosted-card store relative shadow-md">
+						<li
+							key={store.id}
+							className="store relative shadow-md bg-blue-50/30 rounded-xl p-4 mb-6"
+						>
 							<Tabs defaultValue="info" className="w-full">
 								<div className="flex justify-center items-center">
 									<TabsList className="frosted-tabs mb-2">
@@ -46,7 +49,7 @@ TiendasTabProps) => {
 									</div>
 								</TabsContent>
 								<TabsContent value="mapa" className="relative">
-									<Map
+									<InlineMap
 										key={`${store.latitude}-${store.longitude}`}
 										center={[store.longitude, store.latitude]}
 										zoom={13}

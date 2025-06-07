@@ -4,9 +4,9 @@ import { Home, Newspaper, Search, Store, Martini } from "lucide-react";
 
 export default function Footer() {
 	return (
-		<footer className="relative w-full mt-10">
+		<footer className="relative w-full ">
 			<SpotlightCard
-				className="w-full px-6  rounded-t-xl rounded-b-none flex flex-col items-center gap-6 h-full"
+				className="w-full px-6 rounded-t-xl rounded-b-none flex flex-col items-center gap-6 h-full pb-[90px] lg:pb-0"
 				spotlightColor="rgba(0, 229, 255, 0.2)"
 			>
 				<nav className="flex flex-wrap justify-center gap-6 mb-4">

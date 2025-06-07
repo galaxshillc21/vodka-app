@@ -96,6 +96,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   margin: 0;
@@ -201,13 +205,18 @@ p.store-title {
   color: var(--primary-color);
 }
 
+.custom-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
 /* Header Nav */
 /* Main Container */
 main {
   position: relative;
   height: 100%;
   width: 100%;
-  padding-bottom: 56px !important;
 }
 main .heroBG {
   background-image: url("../../public/images/muted-glass.jpg");
@@ -296,15 +305,6 @@ main #Hero .lower-zip input::placeholder {
 }
 
 /* Map */
-.maplibregl-map {
-  margin-top: 10px;
-  margin-bottom: 30px;
-}
-.maplibregl-map canvas {
-  border: 1px solid white;
-  border-radius: 10px;
-}
-
 /* Text Colors */
 .text-teal {
   color: var(--muted-teal) !important;

@@ -109,7 +109,7 @@ const CocktailsPage: React.FC = () => {
 	};
 
 	return (
-		<div className="min-h-screen pt-[80px] bg-gradient-to-br from-amber-50 to-gray-200 flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8">
+		<div className="min-h-screen pt-[80px] bg-gradient-to-br from-amber-50 to-white flex flex-col items-center py-12 px-4 sm:px-6 lg:px-8 justify-center">
 			<div className="max-w-3xl w-full bg-white p-8 rounded-2xl shadow-xl">
 				<h1 className="text-4xl sm:text-5xl font-extrabold text-center text-amber-700 mb-8">
 					Crea Tu Cóctel ✨ con Blat Vodka

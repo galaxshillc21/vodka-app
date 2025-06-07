@@ -14,9 +14,11 @@ footer .card-spotlight {
 	border-top-left-radius: 10px;
 	border-top-right-radius: 10px;
 	border: 1px solid white;
-	padding: none;
+	padding-bottom: 80px;
 }
-
+.SpotlightCard {
+	padding: 1 !important;
+}
 .card-spotlight::before {
 	content: "";
 	position: absolute;

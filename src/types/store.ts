@@ -1,10 +1,11 @@
-export interface Store {
+export type Store = {
 	id: string | number;
 	name: string;
 	latitude: number;
 	longitude: number;
-	// Add other properties as needed, e.g.:
-	// address?: string;
-	// [key: string]: any;
 	distance?: number;
-}
+	hours: string;
+	phone: string;
+	address: string;
+	// Add other properties as needed
+};

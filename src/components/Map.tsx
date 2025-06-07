@@ -11,7 +11,7 @@ interface MapProps {
 	stores: Store[];
 	selectedStore: Store | null;
 }
-
+// Key: 1vVunb6izrFWlkamr2Is
 const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
 	const mapRef = useRef<maplibregl.Map | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -61,7 +61,7 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
 		});
 	}, [selectedStore]);
 
-	return <div ref={containerRef} className="w-full h-full rounded-lg" />;
+	return <div ref={containerRef} className="w-full h-full" />;
 };
 
 export default Map;

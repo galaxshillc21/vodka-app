@@ -99,6 +99,9 @@
 * {
 	box-sizing: border-box;
 }
+html {
+	scroll-behavior: smooth;
+}
 html,
 body {
 	// height: 100vh; /* Full viewport height */
@@ -212,6 +215,11 @@ p {
 .text-bronze {
 	color: var(--primary-color);
 }
+.custom-scroll {
+	scrollbar-width: none;
+	-ms-overflow-style: none;
+	-webkit-overflow-scrolling: touch;
+}
 /* Header Nav */
 
 /* Main Container */
@@ -220,7 +228,7 @@ main {
 	height: 100%;
 	width: 100%;
 	// overflow-y: auto;
-	padding-bottom: 56px !important;
+	// padding-bottom: 56px !important;
 	// padding-left: 15px;
 	// padding-right: 15px;
 
@@ -328,12 +336,12 @@ main {
 
 /* Map */
 .maplibregl-map {
-	margin-top: 10px;
-	margin-bottom: 30px;
+	// margin-top: 10px;
+	// margin-bottom: 30px;
 
 	canvas {
-		border: 1px solid white;
-		border-radius: 10px;
+		// border: 1px solid white;
+		// border-radius: 10px;
 	}
 }
 

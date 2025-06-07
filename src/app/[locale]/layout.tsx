@@ -59,11 +59,11 @@ export default async function RootLayout({ children, params: { locale } }: Reado
 	const messages = await getMessages();
 
 	return (
-		<html className="" lang={locale}>
+		<html className="custom-scroll" lang={locale}>
 			<body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
 				<NextIntlClientProvider messages={messages}>
 					<Header />
-					<main className="mt-0 lg:mt-[40px]">{children}</main>
+					<main className="">{children}</main>
 					<NavBottom />
 					<Footer />
 				</NextIntlClientProvider>

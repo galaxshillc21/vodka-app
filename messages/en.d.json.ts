@@ -92,8 +92,8 @@ declare const messages: {
 		"backToHome": "Back to Home"
 	},
 	"SearchPage": {
-		"heroTitlePart1": "Find your closest",
-		"heroTitlePart2": "Blat distributor",
+		"heroTitlePart1": "Find your closest Blat distributor",
+		"heroTitlePart2": "",
 		"zipcodePlaceholder": "Enter postal code",
 		"searchButton": "Search",
 		"tabStores": "Stores",

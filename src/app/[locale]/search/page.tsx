@@ -15,7 +15,7 @@ import { haversineDistance } from "@/src/utils/distance";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import type { Store } from "@/src/types/store"; // <-- Create this type if not present
+import type { Store } from "@/src/types/store";
 
 // Dynamic import of map to avoid SSR issues
 const MapComponent = dynamic(() => import("@/src/components/Map"), { ssr: false });
@@ -50,9 +50,8 @@ export default function Search() {
 	const findClosestStoreByZipcode = useCallback(
 		async (zipcode: string) => {
 			try {
-				const response = await fetch(
-					`https://nominatim.openstreetmap.org/search?q=${zipcode}&format=json&addressdetails=1&countrycodes=ES`
-				);
+				const response = await fetch(`/api/geo?q=${zipcode}`);
+
 				const data = await response.json();
 
 				if (!data.length) return;
@@ -123,10 +122,14 @@ export default function Search() {
 	}, [favorites]);
 
 	return (
-		<section className="container mx-auto px-2 py-4 bg-bottle">
-			<div className="flex flex-col md:flex-row h-screen gap-4">
+		<section className="pb-0">
+			<div className="flex flex-col md:flex-row h-[100vh] lg:h-[100vh] max-h-screen relative">
+				<div className="absolute w-full h-[40px] rounded-t-xl lg:rounded-t-none bg-gradient-to-b lg:top-0 top-[35vh] lg:w-[30px] lg:h-full lg:left-[60vw] lg:bg-gradient-to-r from-white from-40% to-transparent to-90% z-[9] "></div>
 				{/* LEFT: Content */}
-				<div className="md:w-1/2 w-full overflow-y-auto p-4">
+				<div
+					id="Content"
+					className="bg-white shadow-[0_-10px_10px_#00000014] rounded-t-xl lg:rounded-t-none relative md:w-[60vw] w-full h-[75vh] md:h-full overflow-y-auto custom-scroll p-8 lg:pt-20 order-last md:order-first mt-[-20px] lg:mt-0"
+				>
 					<div className="flex justify-center mb-4">
 						<Image
 							src="/images/blat_logo_bronze.png"
@@ -134,6 +137,7 @@ export default function Search() {
 							width={100}
 							height={100}
 							priority
+							className="invisible"
 						/>
 					</div>
 					<h4 className="subTitle text-center">{t("heroTitlePart1")}</h4>
@@ -214,7 +218,7 @@ export default function Search() {
 				</div>
 
 				{/* RIGHT: Map */}
-				<div className="md:w-1/2 w-full h-[30vh] md:h-full sticky top-0 z-10">
+				<div id="Map" className="md:w-[40vw] w-full h-[45vh] md:h-full order-first md:order-last">
 					<MapComponent
 						userCoords={userCoords}
 						stores={closestStores}
