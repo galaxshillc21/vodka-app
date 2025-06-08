@@ -92,9 +92,9 @@ declare const messages: {
 		"backToHome": "Back to Home"
 	},
 	"SearchPage": {
-		"heroTitlePart1": "Find your closest Blat distributor",
-		"heroTitlePart2": "",
-		"zipcodePlaceholder": "Enter postal code",
+		"heroTitlePart1": "Find your Blat distributor",
+		"heroTitlePart2": "closest to you",
+		"zipcodePlaceholder": "Enter the postal code",
 		"searchButton": "Search",
 		"tabStores": "Stores",
 		"tabEvents": "Events",
@@ -102,11 +102,26 @@ declare const messages: {
 		"closestStoresHeading": "Closest stores",
 		"viewAllStoresLink": "View all stores",
 		"closestEventsHeading": "Closest events",
-		"error1": "An error occurred while fetching data."
+		"error1": "An error occurred while fetching data.",
+		"callStore": "Call",
+		"navigateToStore": "Navigate"
 	},
 	"NewsPage": {
 		"title": "Latest News",
 		"description": "Stay up to date with the latest news about Blat Vodka."
+	},
+	"CocktailsPage": {
+		"title": "Create Your ✨ Cocktail with Blat Vodka",
+		"description": "Describe your flavor preferences, the ingredients you have, or the kind of cocktail you're in the mood for. Our AI will suggest the perfect recipe for Blat Vodka!",
+		"question1": "What type of cocktail would you like to prepare?",
+		"placeholder": "E.g.: 'a citrusy and refreshing cocktail with mint', 'something exotic with passion fruit and a spicy kick', 'a classic like the Martini, but with a unique twist'...",
+		"loadingBtn": "Generating Cocktail...",
+		"textBtn": "Generate Cocktail ✨",
+		"error!": "Error!",
+		"describe": "Please describe the type of cocktail you’d like.",
+		"tryAgain": "Sorry, I couldn’t generate a cocktail recipe. Please try again.",
+		"error1": "Error generating the cocktail:",
+		"error2": "An error occurred while generating the cocktail. Please try again later."
 	},
 	"NotFound": {
 		"title": "Page not found",
