@@ -135,11 +135,11 @@ export function About2() {
 					</motion.div>
 
 					{/* Contenido central */}
-					<div className="px-2 py-4 mt-12 col-span-2">
+					<div className="px-2 py-4 mt-4  col-span-2">
 						<h2 className="text-3xl text-center font-semibold text-gray-700 mb-3">
 							{t("heading1")}
 						</h2>
-						<p className="text-gray-600 text-lg mt-10">
+						<p className="text-gray-600 text-lg mt-10 text-center lg:text-left">
 							{t("p1")}
 							<br></br>
 							{t("p2")}
@@ -147,17 +147,17 @@ export function About2() {
 						<Image
 							src="/images/blatvodka-barrels.webp"
 							alt="Botella izquierda"
-							className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md"
+							className="mt-4 w-full border-amber-600 border-2 rounded-lg drop-shadow-md"
 							width={500}
 							height={200}
 							style={{ objectFit: "contain" }}
 						/>
-						<p className="text-gray-600 text-lg mt-10">{t("p3")}</p>
-						<p className="text-gray-600 text-lg mt-2">{t("p4")}</p>
+						<p className="text-gray-600 text-lg mt-10 text-center lg:text-left">{t("p3")}</p>
+						<p className="text-gray-600 text-lg mt-2 text-center lg:text-left">{t("p4")}</p>
 						<Image
 							src="/images/agua.webp"
 							alt="Botella izquierda"
-							className="mt-4 w-full border border-amber-600 border-2 rounded-lg drop-shadow-md"
+							className="mt-4 w-full border-amber-600 border-2 rounded-lg drop-shadow-md"
 							width={500}
 							height={200}
 							style={{ objectFit: "contain" }}

@@ -457,5 +457,11 @@ button {
 
 /* Maps */
 .maplibregl-ctrl-bottom-right {
-	display: none;
+	// display: none;
+}
+
+@media screen and (max-width: 768px) {
+	.maplibregl-control-container .maplibregl-ctrl-bottom-right {
+		bottom: 40px;
+	}
 }

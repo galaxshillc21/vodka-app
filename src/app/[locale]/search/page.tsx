@@ -128,9 +128,9 @@ export default function Search() {
 				{/* LEFT: Content */}
 				<div
 					id="Content"
-					className="bg-white shadow-[0_-10px_10px_#00000014] rounded-t-xl lg:rounded-t-none relative md:w-[60vw] w-full h-[75vh] md:h-full overflow-y-auto custom-scroll p-8 lg:pt-20 order-last md:order-first mt-[-20px] lg:mt-0"
+					className="bg-white shadow-[0_-10px_10px_#00000014] rounded-t-xl lg:rounded-t-none relative md:w-[60vw] w-full h-[75vh] md:h-full overflow-y-auto custom-scroll p-4 lg:p-8 lg:pt-20 order-last md:order-first mt-[-20px] lg:mt-0"
 				>
-					<div className="flex justify-center mb-4">
+					<div className="justify-center mb-4 hidden lg:flex ">
 						<Image
 							src="/images/blat_logo_bronze.png"
 							alt="Blat Logo Bronze"
@@ -188,7 +188,8 @@ export default function Search() {
 										formatDistance={formatDistance}
 										favorites={favorites}
 										toggleFavorite={toggleFavorite}
-										onStoreSelect={(store) => setSelectedStore(store)} // Pass clicked store to zoom
+										onStoreSelect={(store) => setSelectedStore(store)} // 👈 hook to update map center
+										selectedStore={selectedStore} // 👈 PASS THIS
 									/>
 									<div className="text-center mt-2">
 										<Link href="/stores" className="text-primary underline">

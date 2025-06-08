@@ -70,7 +70,7 @@ export function Ciencia() {
 		},
 	];
 	return (
-		<section className="relative bg-white py-20 h-auto" id="Ciencia">
+		<section className="relative bg-white py-10 lg:py-20 h-auto" id="Ciencia">
 			<div className="container mx-auto  px-4 h-full">
 				<div className="w-full text-center mx-auto flex flex-col items-center justify-center">
 					<BlurText
@@ -82,14 +82,14 @@ export function Ciencia() {
 						className="font-heading text-4xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mt-6 text-center text-amber-600 mb-6 leading-tight justify-center"
 					/>
 				</div>
-				<div className="flex-[0-1-10%] flex flex-col lg:flex-row mt-12 align-items-center justify-center gap-12 h-auto">
-					<div className="flex-1 flex flex-col justify-center items-center pr-12">
-						<p className="text-lg mb-4 text-gray-700">
+				<div className="flex-[0-1-10%] flex flex-col lg:flex-row mt-3 lg:mt-12 align-items-center justify-center gap-12 h-auto">
+					<div className="flex-1 flex flex-col justify-center items-center lg:pr-12">
+						<p className="text-lg mb-4 text-gray-700 text-center lg:text-left">
 							{t("p1")}
 							<span className="font-bold text-amber-600">{t("span1")}</span>
 							{t("p1a")}
 						</p>
-						<p className="text-lg mb-4 text-gray-700">{t("p2")}</p>
+						<p className="text-lg mb-4 text-gray-700 text-center lg:text-left">{t("p2")}</p>
 					</div>
 					<SpotlightCard
 						className="SpotlightCard shadow-md p-none! lg:p-none! flex-1 flex flex-col justify-center items-center rounded-lg custom-spotlight-card overflow-visible!"

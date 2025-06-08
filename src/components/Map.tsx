@@ -2,7 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import maplibregl from "maplibre-gl";
+import maplibregl, { NavigationControl, AttributionControl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Store } from "@/src/types/store";
 
@@ -11,7 +11,9 @@ interface MapProps {
 	stores: Store[];
 	selectedStore: Store | null;
 }
-// Key: 1vVunb6izrFWlkamr2Is
+
+const MADRID_COORDS: [number, number] = [-3.7038, 40.4168]; // default fallback
+
 const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
 	const mapRef = useRef<maplibregl.Map | null>(null);
 	const containerRef = useRef<HTMLDivElement>(null);
@@ -19,13 +21,30 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
 	useEffect(() => {
 		if (!containerRef.current || mapRef.current) return;
 
+		const isCoordsAvailable = userCoords !== null;
+
 		mapRef.current = new maplibregl.Map({
 			container: containerRef.current,
 			style: "https://api.maptiler.com/maps/streets-v2/style.json?key=1vVunb6izrFWlkamr2Is",
-			center: userCoords ?? [0, 0],
-			zoom: 10,
+			center: isCoordsAvailable ? userCoords! : MADRID_COORDS,
+			zoom: isCoordsAvailable ? 10 : 5,
+			attributionControl: false,
 		});
+		mapRef.current.addControl(
+			new NavigationControl({
+				showCompass: true,
+				showZoom: true,
+				visualizePitch: false,
+			}),
 
+			"bottom-right"
+		);
+		mapRef.current.addControl(
+			new AttributionControl({
+				compact: false,
+			}),
+			"top-right"
+		);
 		return () => {
 			mapRef.current?.remove();
 			mapRef.current = null;
@@ -59,9 +78,10 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
 			speed: 1.2,
 			essential: true,
 		});
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [selectedStore]);
 
-	return <div ref={containerRef} className="w-full h-full" />;
+	return <div ref={containerRef} className="w-full h-full relative" />;
 };
 
 export default Map;

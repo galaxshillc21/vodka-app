@@ -11,8 +11,8 @@ export default function Agua() {
 		console.log("Animation completed!");
 	};
 	return (
-		<section className="py-20 px-4 sm:px-6 lg:px-8 h-auto" id="Agua">
-			<div className="container mx-auto py-12">
+		<section className="lg:py-20 py-10 px-4 sm:px-6 lg:px-8 h-auto" id="Agua">
+			<div className="container mx-auto lg:py-12 py-0">
 				<p className="text-md flex justify-center text-center font-semibold mb-[-20px]">
 					{t("heading1")}
 				</p>

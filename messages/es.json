@@ -99,11 +99,26 @@
 		"closestStoresHeading": "Tiendas más cercanas",
 		"viewAllStoresLink": "Ver todas las tiendas",
 		"closestEventsHeading": "Eventos más cercanos",
-		"error1": "Ocurrió un error al obtener los datos."
+		"error1": "Ocurrió un error al obtener los datos.",
+		"callStore": "Llamar",
+		"navigateToStore": "Navegar"
 	},
 	"NewsPage": {
 		"title": "Últimas Noticias",
 		"description": "Mantente al día con las últimas noticias sobre Blat Vodka."
+	},
+	"CocktailsPage": {
+		"title": "Crea Tu Cóctel ✨ con Blat Vodka",
+		"description": "Describe tus preferencias de sabor, los ingredientes que tienes, o el tipo de cóctel que te apetece. ¡Nuestra IA te sugerirá la receta perfecta para Blat Vodka!",
+		"question1": "¿Qué tipo de cóctel te gustaría preparar?",
+		"placeholder": "Ej: 'un cóctel cítrico y refrescante con menta', 'algo exótico con fruta de la pasión y un toque picante', 'un clásico como el Martini, pero con un giro único'...",
+		"loadingBtn": "Generando Cóctel...",
+		"textBtn": "Generar Cóctel ✨",
+		"error!": "¡Error!",
+		"describe": "Por favor, describe qué tipo de cóctel te gustaría.",
+		"tryAgain": "Lo siento, no pude generar una receta de cóctel. Inténtalo de nuevo.",
+		"error1": "Error al generar el cóctel:",
+		"error2": "Ocurrió un error al generar el cóctel. Por favor, inténtalo más tarde."
 	},
 	"NotFound": {
 		"title": "Página no encontrada",
