@@ -95,7 +95,7 @@ const CocktailsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-amber-50 to-white flex flex-row items-stretch  bg-[url('/images/blat_citrus.jpg')] lg:bg-none bg-cover bg-center">
+    <div className="min-h-screen w-full from-amber-50 to-white flex flex-row items-stretch  bg-[url('/images/blat_citrus.jpg')] lg:bg-gradient-to-br bg-cover bg-center">
       <div className="basis-2/5 min-h-screen bg-[url('/images/blat_citrus.jpg')] bg-cover bg-center hidden lg:block"></div>
       <div className="basis-1/1 lg:basis-3/5 pt-[80px] w-full flex flex-col items-center justify-center p-4 lg:p-8">
         <div className="Card text-center max-w-3xl mb-8 py-4 lg:py-12 px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-white/40 rounded-lg shadow-lg lg:shadow-none lg:bg-none">
