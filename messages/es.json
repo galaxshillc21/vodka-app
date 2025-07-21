@@ -26,7 +26,10 @@
   },
   "Events": {
     "title": "Vive la Experiencia Blat",
-    "description": "Eventos exclusivos donde la pureza se disfruta al máximo"
+    "description": "Eventos exclusivos donde la pureza se disfruta al máximo",
+    "thursday": "Jueves",
+    "july": "Julio",
+    "verEventos": "Ver Eventos"
   },
   "BottleDesign": {
     "title": "Blat Vodka Logra lo que Ningún Otro Vodka Premium ha Logrado",

@@ -51,14 +51,14 @@ export function MainEvent() {
           <div className="flex flex-row items-center justify-center h-full w-full mt-8">
             <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-amber-600 py-5">
               <div className="text-center">
-                <p className="text-amber-600 font-medium text-xl">Jueves</p>
-                <h2 className="text-4xl">24 Julio</h2>
+                <p className="text-amber-600 font-medium text-xl">{t("thursday")}</p>
+                <h2 className="text-4xl">24 {t("july")}</h2>
               </div>
             </div>
             <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">
               <h2 className="text-xxl lg:text-5xl">Mambo Lounge Bar</h2>
               <p>Rooftop CC Sandia Playa del Ingles</p>
-              <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors">Ver Eventos</button>
+              <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors">{t("verEventos")}</button>
             </div>
           </div>
         </div>
