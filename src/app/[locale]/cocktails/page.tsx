@@ -42,7 +42,7 @@ const CocktailsPage: React.FC = () => {
 
     try {
       const prompt = `Receta breve de cóctel con Blat Vodka: "${cocktailInput}". Solo nombre, ingredientes y pasos. Responde en Markdown usa HTML headings. Sé conciso.`;
-      const response = await fetch(`${baseUrl}/api/gemini-ai-model`, {
+      const response = await fetch(`/api/gemini-ai-model`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: prompt }), // el campo que espera tu API
