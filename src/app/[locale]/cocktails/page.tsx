@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
 
-const baseUrl = "http://localhost:3000"; // or your hosted domain
+const baseUrl = process.env.BASE_URL; // or your hosted domain
 
 /**
  * Fetches the response from the Gemini AI model API.
