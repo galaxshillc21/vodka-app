@@ -1,164 +1,168 @@
 {
-	"Index": {
-		"title": "Blat Vodka",
-		"description": "El Vodka Más Puro del Mundo.",
-		"purityHeading": "Que añade la Pureza?",
-		"heroButton": "Leer más",
-		"puritySabor": "Mejor Sabor",
-		"purityCalidad": "Mejor Calidad",
-		"purityCombinar": "Mejor para Combinar",
-		"puritySuavidad": "Mas Suavidad",
-		"purity1": "con y sin hielo",
-		"purity2": "reduce los efectos negativos de la resaca",
-		"purity3": "los sabores se realzan",
-		"purity4": "corto o largo, es la bebida ideal",
-		"qualities": {
-			"quality1": "0.0 mg/L <br/>de Impurezas",
-			"quality2": "100% trigo<br/>francés",
-			"quality3": "Agua del <br/>Atlántico",
-			"sub1": "Sin impurezas detectadas",
-			"sub2": "Sin modificación genética",
-			"sub3": "Filtrada por roca volcánica",
-			"desc1": "Es el único vodka del mercado con análisis certificados que garantizan ausencia total de impurezas.",
-			"desc2": "Ingrediente premium aprobado por el gobierno francés, asegurando calidad y origen natural.",
-			"desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
-		}
-	},
-	"BottleDesign": {
-		"title": "Blat Vodka Logra lo que Ningún Otro Vodka Premium ha Logrado",
-		"title2": "Diseño que Refleja la Pureza",
-		"p1": "La botella de Blat Vodka es un reflejo de su contenido: ",
-		"span1": "Limpia, cristalina y de una elegancia singular.",
-		"p2": "Diseñada por el prestigioso ",
-		"span21": "Peter Schmidt Group",
-		"p22": ", cuyas obras son exhibidas incluso en el Museo Metropolitano de Arte Moderno de Nueva York, nuestra botella ha sido galardonada con ",
-		"span22": "tres premios internacionales.",
-		"p3": "Su diseño está ingeniosamente inspirado en el tradicional vaso de vodka, incorporando los relieves del propio nombre para una estética distintiva y táctil."
-	},
-	"About": {
-		"title": "Nuestra Herencia de Excelencia",
-		"heading1": "Creadores con Legado",
-		"p1": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
-		"p2": "Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.",
-		"p3": "En 1993 Esteban y Fernando decidieron hacerse con la destilería familiar ubicada en las Islas Canarias y estable- cieron su propia empresa, COGRAMI CANARIAS S.L. En la actualidad, siguen fabricando sus propios productos y los distribuyen a nivel mundial.",
-		"p4": "Durante estos años, los hermanos Banús se han dedi- cado a investigar diferentes procesos para eliminar las impurezas de las fermentaciones y dieron con una elaboración única. Utilizando este proceso han consegui- do elaborar el vodka más puro del mundo, Blat Vodka.",
-		"p5": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
-		"heading2": "Calidad sin compromisos",
-		"description2": "Con trigo francés y agua filtrada por rocas volcánicas, Blat Vodka alcanza una pureza certificada del 0.0%. Su suavidad y sabor lo convierten en el vodka más puro del mundo.",
-		"heading3": "Diseño con esencia",
-		"description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
-	},
-	"Agua": {
-		"heading1": "De la Tierra a su Copa",
-		"heading2": "La Esencia de Blat Vodka",
+  "Index": {
+    "title": "Blat Vodka",
+    "description": "El Vodka Más Puro del Mundo.",
+    "purityHeading": "Que añade la Pureza?",
+    "heroButton": "Leer más",
+    "puritySabor": "Mejor Sabor",
+    "purityCalidad": "Mejor Calidad",
+    "purityCombinar": "Mejor para Combinar",
+    "puritySuavidad": "Mas Suavidad",
+    "purity1": "con y sin hielo",
+    "purity2": "reduce los efectos negativos de la resaca",
+    "purity3": "los sabores se realzan",
+    "purity4": "corto o largo, es la bebida ideal",
+    "qualities": {
+      "quality1": "0.0 mg/L <br/>de Impurezas",
+      "quality2": "100% trigo<br/>francés",
+      "quality3": "Agua del <br/>Atlántico",
+      "sub1": "Sin impurezas detectadas",
+      "sub2": "Sin modificación genética",
+      "sub3": "Filtrada por roca volcánica",
+      "desc1": "Es el único vodka del mercado con análisis certificados que garantizan ausencia total de impurezas.",
+      "desc2": "Ingrediente premium aprobado por el gobierno francés, asegurando calidad y origen natural.",
+      "desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
+    }
+  },
+  "Events": {
+    "title": "Vive la Experiencia Blat",
+    "description": "Eventos exclusivos donde la pureza se disfruta al máximo"
+  },
+  "BottleDesign": {
+    "title": "Blat Vodka Logra lo que Ningún Otro Vodka Premium ha Logrado",
+    "title2": "Diseño que Refleja la Pureza",
+    "p1": "La botella de Blat Vodka es un reflejo de su contenido: ",
+    "span1": "Limpia, cristalina y de una elegancia singular.",
+    "p2": "Diseñada por el prestigioso ",
+    "span21": "Peter Schmidt Group",
+    "p22": ", cuyas obras son exhibidas incluso en el Museo Metropolitano de Arte Moderno de Nueva York, nuestra botella ha sido galardonada con ",
+    "span22": "tres premios internacionales.",
+    "p3": "Su diseño está ingeniosamente inspirado en el tradicional vaso de vodka, incorporando los relieves del propio nombre para una estética distintiva y táctil."
+  },
+  "About": {
+    "title": "Nuestra Herencia de Excelencia",
+    "heading1": "Creadores con Legado",
+    "p1": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
+    "p2": "Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.",
+    "p3": "En 1993 Esteban y Fernando decidieron hacerse con la destilería familiar ubicada en las Islas Canarias y estable- cieron su propia empresa, COGRAMI CANARIAS S.L. En la actualidad, siguen fabricando sus propios productos y los distribuyen a nivel mundial.",
+    "p4": "Durante estos años, los hermanos Banús se han dedi- cado a investigar diferentes procesos para eliminar las impurezas de las fermentaciones y dieron con una elaboración única. Utilizando este proceso han consegui- do elaborar el vodka más puro del mundo, Blat Vodka.",
+    "p5": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
+    "heading2": "Calidad sin compromisos",
+    "description2": "Con trigo francés y agua filtrada por rocas volcánicas, Blat Vodka alcanza una pureza certificada del 0.0%. Su suavidad y sabor lo convierten en el vodka más puro del mundo.",
+    "heading3": "Diseño con esencia",
+    "description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
+  },
+  "Agua": {
+    "heading1": "De la Tierra a su Copa",
+    "heading2": "La Esencia de Blat Vodka",
 
-		"title1": "Trigo Francés Premium",
-		"description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
+    "title1": "Trigo Francés Premium",
+    "description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
 
-		"title2": "Pura Esencia del Atlántico",
-		"description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
-	},
-	"Purity": {
-		"adds": "Que añade la Pureza?",
-		"mejor": "Mejor",
-		"one": "Sabor",
-		"two": "Calidad",
-		"three": "Suavidad",
-		"four": "Para Combinar",
-		"p1": "La pureza excepcional de Blat Vodka transforma su experiencia de consumo, ofreciendo un Mejor Sabor que se disfruta tanto con hielo como sin él. Gracias a su proceso único, garantiza una Mejor Calidad que ayuda a reducir los efectos negativos de la resaca, haciendo que cada momento sea más placentero.",
-		"p2": "Además, su suavidad inigualable lo convierte en la Bebida Ideal para cualquier ocasión, ya sea en tragos cortos o largos. Blat Vodka también es Mejor para Combinar, ya que su pureza realza los sabores de otros ingredientes, permitiéndote crear cócteles verdaderamente excepcionales."
-	},
-	"Ciencia": {
-		"title": "La Ciencia Detrás de la Pureza Inigualable",
-		"p1": "Los hermanos Banús dedicaron años a investigar y desarrollar un proceso único que elimina las impurezas de la fermentación sin comprometer el sabor. Este método patentado nos permite elaborar Blat Vodka con",
-		"span1": " 0.0mg/L de impurezas detectadas",
-		"p1a": ", estableciéndolo como el vodka más puro del mundo.",
-		"p2": "Nuestra pureza está certificada: Un laboratorio independiente de EE.UU., acreditado por la TTB, ha confirmado que Blat Vodka no contiene impurezas detectables, incluyendo 1-butanol, alcohol amílico activo, alcohol isoamílico, isobutanol, metanol, n-propanol, DB acetaldehído y DB acetato de etilo.",
-		"marcaH": "Marca",
-		"impH": "Impurezas (mg/L)"
-	},
-	"Navigation": {
-		"home": "Inicio",
-		"about": "Sobre Nosotros",
-		"contact": "Contacto",
-		"news": "Noticias",
-		"search": "Buscar",
-		"tiendas": "Tiendas",
-		"events": "Eventos",
-		"cocktails": "Cócteles",
-		"backToHome": "Volver al inicio"
-	},
-	"SearchPage": {
-		"heroTitlePart1": "Encuentra tu distribuidor de Blat",
-		"heroTitlePart2": "más cercano a ti",
-		"zipcodePlaceholder": "Ingresa el código postal",
-		"searchButton": "Buscar",
-		"tabStores": "Tiendas",
-		"tabEvents": "Eventos",
-		"tabFavorites": "Favoritos",
-		"closestStoresHeading": "Tiendas más cercanas",
-		"viewAllStoresLink": "Ver todas las tiendas",
-		"closestEventsHeading": "Eventos más cercanos",
-		"error1": "Ocurrió un error al obtener los datos.",
-		"callStore": "Llamar",
-		"navigateToStore": "Navegar"
-	},
-	"NewsPage": {
-		"title": "Últimas Noticias",
-		"description": "Mantente al día con las últimas noticias sobre Blat Vodka."
-	},
-	"CocktailsPage": {
-		"title": "Crea Tu Cóctel ✨ con Blat Vodka",
-		"description": "Describe tus preferencias de sabor, los ingredientes que tienes, o el tipo de cóctel que te apetece. ¡Nuestra IA te sugerirá la receta perfecta para Blat Vodka!",
-		"question1": "¿Qué tipo de cóctel te gustaría preparar?",
-		"placeholder": "Ej: 'un cóctel cítrico y refrescante con menta', 'algo exótico con fruta de la pasión y un toque picante', 'un clásico como el Martini, pero con un giro único'...",
-		"loadingBtn": "Generando Cóctel...",
-		"textBtn": "Generar Cóctel ✨",
-		"error!": "¡Error!",
-		"describe": "Por favor, describe qué tipo de cóctel te gustaría.",
-		"tryAgain": "Lo siento, no pude generar una receta de cóctel. Inténtalo de nuevo.",
-		"error1": "Error al generar el cóctel:",
-		"error2": "Ocurrió un error al generar el cóctel. Por favor, inténtalo más tarde."
-	},
-	"NotFound": {
-		"title": "Página no encontrada",
-		"description": "La página que buscas no existe."
-	},
-	"LocaleLayout": {
-		"title": "Ejemplo de next-intl"
-	},
-	"LocaleSwitcher": {
-		"label": "Idioma",
-		"en": "Inglés",
-		"es": "Español"
-	},
-	"Error": {
-		"description": "<p>Desafortunadamente, hemos encontrado un error.</p><p>Puedes intentar <retry>recargar la página</retry> que estabas visitando.</p>",
-		"title": "¡Algo salió mal!"
-	},
-	"Manifest": {
-		"name": "Ejemplo de next-intl"
-	},
-	"NotFoundPage": {
-		"description": "Verifica que la dirección en la barra del navegador sea correcta o usa la navegación para ir a una página conocida.",
-		"title": "Página no encontrada"
-	},
-	"PageLayout": {
-		"links": {
-			"docs": {
-				"description": "Aprende más sobre next-intl en la documentación oficial.",
-				"href": "https://next-intl.dev",
-				"title": "Documentación"
-			},
-			"source": {
-				"description": "Explora el código fuente de este ejemplo en GitHub.",
-				"href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
-				"title": "Código fuente"
-			}
-		}
-	},
-	"PathnamesPage": {
-		"description": "<p>Los nombres de ruta también están internacionalizados.</p><p>Si estás usando el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a alemán, la URL se localiza en consecuencia (<code>/de/pfadnamen</code>).</p>",
-		"title": "Nombres de ruta"
-	}
+    "title2": "Pura Esencia del Atlántico",
+    "description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
+  },
+  "Purity": {
+    "adds": "Que añade la Pureza?",
+    "mejor": "Mejor",
+    "one": "Sabor",
+    "two": "Calidad",
+    "three": "Suavidad",
+    "four": "Para Combinar",
+    "p1": "La pureza excepcional de Blat Vodka transforma su experiencia de consumo, ofreciendo un Mejor Sabor que se disfruta tanto con hielo como sin él. Gracias a su proceso único, garantiza una Mejor Calidad que ayuda a reducir los efectos negativos de la resaca, haciendo que cada momento sea más placentero.",
+    "p2": "Además, su suavidad inigualable lo convierte en la Bebida Ideal para cualquier ocasión, ya sea en tragos cortos o largos. Blat Vodka también es Mejor para Combinar, ya que su pureza realza los sabores de otros ingredientes, permitiéndote crear cócteles verdaderamente excepcionales."
+  },
+  "Ciencia": {
+    "title": "La Ciencia Detrás de la Pureza Inigualable",
+    "p1": "Los hermanos Banús dedicaron años a investigar y desarrollar un proceso único que elimina las impurezas de la fermentación sin comprometer el sabor. Este método patentado nos permite elaborar Blat Vodka con",
+    "span1": " 0.0mg/L de impurezas detectadas",
+    "p1a": ", estableciéndolo como el vodka más puro del mundo.",
+    "p2": "Nuestra pureza está certificada: Un laboratorio independiente de EE.UU., acreditado por la TTB, ha confirmado que Blat Vodka no contiene impurezas detectables, incluyendo 1-butanol, alcohol amílico activo, alcohol isoamílico, isobutanol, metanol, n-propanol, DB acetaldehído y DB acetato de etilo.",
+    "marcaH": "Marca",
+    "impH": "Impurezas (mg/L)"
+  },
+  "Navigation": {
+    "home": "Inicio",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto",
+    "news": "Noticias",
+    "search": "Buscar",
+    "tiendas": "Tiendas",
+    "events": "Eventos",
+    "cocktails": "Cócteles",
+    "backToHome": "Volver al inicio"
+  },
+  "SearchPage": {
+    "heroTitlePart1": "Encuentra tu distribuidor de Blat",
+    "heroTitlePart2": "más cercano a ti",
+    "zipcodePlaceholder": "Ingresa el código postal",
+    "searchButton": "Buscar",
+    "tabStores": "Tiendas",
+    "tabEvents": "Eventos",
+    "tabFavorites": "Favoritos",
+    "closestStoresHeading": "Tiendas más cercanas",
+    "viewAllStoresLink": "Ver todas las tiendas",
+    "closestEventsHeading": "Eventos más cercanos",
+    "error1": "Ocurrió un error al obtener los datos.",
+    "callStore": "Llamar",
+    "navigateToStore": "Navegar"
+  },
+  "NewsPage": {
+    "title": "Últimas Noticias",
+    "description": "Mantente al día con las últimas noticias sobre Blat Vodka."
+  },
+  "CocktailsPage": {
+    "title": "Crea Tu Cóctel ✨ con Blat Vodka",
+    "description": "Describe tus preferencias de sabor, los ingredientes que tienes, o el tipo de cóctel que te apetece. ¡Nuestra IA te sugerirá la receta perfecta para Blat Vodka!",
+    "question1": "¿Qué tipo de cóctel te gustaría preparar?",
+    "placeholder": "Ej: 'un cóctel cítrico y refrescante con menta', 'algo exótico con fruta de la pasión y un toque picante', 'un clásico como el Martini, pero con un giro único'...",
+    "loadingBtn": "Generando Cóctel...",
+    "textBtn": "Generar Cóctel ✨",
+    "error!": "¡Error!",
+    "describe": "Por favor, describe qué tipo de cóctel te gustaría.",
+    "tryAgain": "Lo siento, no pude generar una receta de cóctel. Inténtalo de nuevo.",
+    "error1": "Error al generar el cóctel:",
+    "error2": "Ocurrió un error al generar el cóctel. Por favor, inténtalo más tarde."
+  },
+  "NotFound": {
+    "title": "Página no encontrada",
+    "description": "La página que buscas no existe."
+  },
+  "LocaleLayout": {
+    "title": "Ejemplo de next-intl"
+  },
+  "LocaleSwitcher": {
+    "label": "Idioma",
+    "en": "Inglés",
+    "es": "Español"
+  },
+  "Error": {
+    "description": "<p>Desafortunadamente, hemos encontrado un error.</p><p>Puedes intentar <retry>recargar la página</retry> que estabas visitando.</p>",
+    "title": "¡Algo salió mal!"
+  },
+  "Manifest": {
+    "name": "Ejemplo de next-intl"
+  },
+  "NotFoundPage": {
+    "description": "Verifica que la dirección en la barra del navegador sea correcta o usa la navegación para ir a una página conocida.",
+    "title": "Página no encontrada"
+  },
+  "PageLayout": {
+    "links": {
+      "docs": {
+        "description": "Aprende más sobre next-intl en la documentación oficial.",
+        "href": "https://next-intl.dev",
+        "title": "Documentación"
+      },
+      "source": {
+        "description": "Explora el código fuente de este ejemplo en GitHub.",
+        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router",
+        "title": "Código fuente"
+      }
+    }
+  },
+  "PathnamesPage": {
+    "description": "<p>Los nombres de ruta también están internacionalizados.</p><p>Si estás usando el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a alemán, la URL se localiza en consecuencia (<code>/de/pfadnamen</code>).</p>",
+    "title": "Nombres de ruta"
+  }
 }

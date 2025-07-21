@@ -95,56 +95,59 @@ const CocktailsPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen pt-[80px] bg-gradient-to-br from-amber-50 to-white flex flex-col items-center py-4 lg:py-12 px-4 sm:px-6 lg:px-8 justify-start lg:justify-center">
-      <div className="max-w-3xl w-full bg-white p-8 rounded-2xl shadow-xl">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-center text-amber-700 mb-8">{t("title")}</h1>
-        <p className="text-lg text-gray-700 text-center mb-10">{t("description")}</p>
+    <div className="min-h-screen w-full bg-gradient-to-br from-amber-50 to-white flex flex-row items-stretch  bg-[url('/images/blat_citrus.jpg')] lg:bg-none bg-cover bg-center">
+      <div className="basis-2/5 min-h-screen bg-[url('/images/blat_citrus.jpg')] bg-cover bg-center hidden lg:block"></div>
+      <div className="basis-1/1 lg:basis-3/5 pt-[80px] w-full flex flex-col items-center justify-center p-4 lg:p-8">
+        <div className="Card text-center max-w-3xl mb-8 py-4 lg:py-12 px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-white/40 rounded-lg shadow-lg lg:shadow-none lg:bg-none">
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-center text-amber-700 mb-8">{t("title")}</h1>
+          <p className="text-md text-gray-700 text-center mb-10">{t("description")}</p>
 
-        <div className="mb-8">
-          <label htmlFor="cocktailInput" className="block text-xl font-semibold text-gray-800 mb-3">
-            {t("question1")}
-          </label>
-          <textarea
-            id="cocktailInput"
-            className="w-full p-4 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 text-gray-700 placeholder-gray-500 transition-all duration-200 resize-y"
-            rows={5}
-            placeholder={t("placeholder")}
-            value={cocktailInput}
-            onChange={(e) => setCocktailInput(e.target.value)}
+          <div className="mb-8">
+            <label htmlFor="cocktailInput" className="block lg:none text-xl font-semibold text-gray-800 mb-3">
+              {t("question1")}
+            </label>
+            <textarea
+              id="cocktailInput"
+              className="w-full text-sm p-4 border border-gray-300 rounded-lg focus:ring-amber-500 focus:border-amber-500 text-gray-700 placeholder-gray-500 transition-all duration-200 resize-y"
+              rows={4}
+              placeholder={t("placeholder")}
+              value={cocktailInput}
+              onChange={(e) => setCocktailInput(e.target.value)}
+              disabled={isLoading}
+            ></textarea>
+          </div>
+
+          <button
+            onClick={generateCocktail}
+            className="w-full flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white font-semibold py-3 px-6 rounded-full text-md transition-all duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-500 focus:ring-opacity-50"
             disabled={isLoading}
-          ></textarea>
-        </div>
+          >
+            {isLoading ? (
+              <>
+                <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                {t("loadingBtn")}
+              </>
+            ) : (
+              t("textBtn")
+            )}
+          </button>
 
-        <button
-          onClick={generateCocktail}
-          className="w-full flex items-center justify-center bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg focus:outline-none focus:ring-4 focus:ring-amber-500 focus:ring-opacity-50"
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <>
-              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-              </svg>
-              {t("loadingBtn")}
-            </>
-          ) : (
-            t("textBtn")
+          {error && (
+            <div className="mt-8 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative" role="alert">
+              <strong className="font-bold">¡Error!</strong>
+              <span className="block sm:inline ml-2">{error}</span>
+            </div>
           )}
-        </button>
 
-        {error && (
-          <div className="mt-8 bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg relative" role="alert">
-            <strong className="font-bold">¡Error!</strong>
-            <span className="block sm:inline ml-2">{error}</span>
-          </div>
-        )}
-
-        {cocktailOutput && (
-          <div className="mt-12 p-8 bg-white border border-amber-200 rounded-xl shadow-lg">
-            <div className="text-gray-900 leading-relaxed" dangerouslySetInnerHTML={{ __html: parseMarkdown(cocktailOutput) }}></div>
-          </div>
-        )}
+          {cocktailOutput && (
+            <div className="mt-12 p-8 bg-white border border-amber-200 rounded-xl shadow-lg">
+              <div className="text-gray-900 leading-relaxed" dangerouslySetInnerHTML={{ __html: parseMarkdown(cocktailOutput) }}></div>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

@@ -43,7 +43,7 @@
   --background: #ededed;
   --foreground: 262.5deg 7.48% 41.96%;
   --links: 262.5deg 7.48% 26;
-  --primary-color: #be7d3f;
+  --primary-color: oklch(66.6% 0.179 58.318);
   --text-color: 262.5deg 7.48% 41.96%;
   --font-montserrat: "Montserrat", sans-serif;
   --font-poppins: "Poppins", sans-serif;
