@@ -51,9 +51,9 @@ export default function NavBottom() {
           <span className="text-xs">{t("home")}</span>
         </Link>
         {/* News Button */}
-        <Link href="/news" className={`flex flex-col items-center ${pathname === "/news" ? currentPageClass : "text-gray-600 hover:text-black"}`} onClick={() => handleLinkClick("/news")}>
-          {renderIcon("/news", Newspaper)}
-          <span className="text-xs">{t("news")}</span>
+        <Link href="/events" className={`flex flex-col items-center ${pathname === "/events" ? currentPageClass : "text-gray-600 hover:text-black"}`} onClick={() => handleLinkClick("/events")}>
+          {renderIcon("/events", Newspaper)}
+          <span className="text-xs">{t("events")}</span>
         </Link>
 
         {/* Search Button */}

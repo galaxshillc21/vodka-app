@@ -7,6 +7,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/src/components/ui/car
 import BlurText from "@/src/components/BlurText";
 import { useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
+import Link from "next/link";
 
 export function MainEvent() {
   const t = useTranslations("Events");
@@ -29,7 +30,7 @@ export function MainEvent() {
   }, [controls, inView]);
 
   return (
-    <section id="MainEvent" className="w-full mt-6 flex flex-col items-center justify-center">
+    <section id="MainEvent" className="w-full mt-[80px] flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center h-full">
           <BlurText text={t("title")} delay={80} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete} className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mt-6 text-center text-amber-600 mb-6 leading-tight justify-center" />
@@ -58,7 +59,9 @@ export function MainEvent() {
             <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">
               <h2 className="text-xxl lg:text-5xl">Mambo Lounge Bar</h2>
               <p>Rooftop CC Sandia Playa del Ingles</p>
-              <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors">{t("verEventos")}</button>
+              <Link href="/events">
+                <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors">{t("verEventos")}</button>
+              </Link>
             </div>
           </div>
         </div>

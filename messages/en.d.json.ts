@@ -6,7 +6,7 @@ declare const messages: {
     "title": "Blat Vodka",
     "description": "The Purest Vodka in the World.",
     "purityHeading": "What does Purity Add?",
-    "heroButton": "Read more",
+    "heroButton": "See Closest Stores",
     "puritySabor": "Better Flavor",
     "purityCalidad": "Better Quality",
     "purityCombinar": "Better for Mixing",
@@ -32,7 +32,14 @@ declare const messages: {
     "description": "Exclusive events where purity is enjoyed to the fullest",
     "thursday": "Thursday",
     "july": "July",
-    "verEventos": "View Events"
+    "verEventos": "View Events",
+    "pageTitle": "Blat Vodka Events",
+    "pageDescription": "Join us at exclusive Blat Vodka events and experience the purest vodka in unique settings.",
+    "eventDate": "Date",
+    "eventLocation": "Location",
+    "eventWebsite": "Event Website",
+    "visitWebsite": "Visit Website",
+    "noEvents": "No events scheduled at the moment. Check back soon!"
   },
   "BottleDesign": {
     "title": "Blat Vodka Achieves What No Other Premium Vodka Has",
@@ -91,12 +98,35 @@ declare const messages: {
     "home": "Home",
     "about": "About Us",
     "contact": "Contact",
-    "news": "News",
+    "events": "Events",
     "search": "Search",
     "tiendas": "Stores",
-    "events": "Events",
     "cocktails": "Cocktails",
     "backToHome": "Back to Home"
+  },
+  "Footer": {
+    "home": "Home",
+    "events": "Events",
+    "search": "Search",
+    "stores": "Stores",
+    "cocktails": "Cocktails",
+    "copyright": "All rights reserved",
+    "contact": "Contact",
+    "privacy": "Privacy Policy",
+    "createdBy": "created by"
+  },
+  "Privacy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated",
+    "introduction": "At Blat Vodka, we are committed to protecting your privacy and ensuring the security of your personal information. This Privacy Policy explains how we collect, use, and safeguard your data when you visit our website.",
+    "informationCollected": "Information We Collect",
+    "informationCollectedDesc": "We may collect personal information such as your name, email address, and location when you voluntarily provide it to us through contact forms or when searching for stores near you.",
+    "howWeUse": "How We Use Your Information",
+    "howWeUseDesc": "We use your information to provide you with the best possible experience on our website, including helping you find Blat Vodka distributors near you and responding to your inquiries.",
+    "dataProtection": "Data Protection",
+    "dataProtectionDesc": "We implement appropriate security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction.",
+    "contact": "Contact Us",
+    "contactDesc": "If you have any questions about this Privacy Policy, please contact us at"
   },
   "SearchPage": {
     "heroTitlePart1": "Find your Blat distributor",
@@ -128,7 +158,13 @@ declare const messages: {
     "describe": "Please describe the type of cocktail you’d like.",
     "tryAgain": "Sorry, I couldn’t generate a cocktail recipe. Please try again.",
     "error1": "Error generating the cocktail:",
-    "error2": "An error occurred while generating the cocktail. Please try again later."
+    "error2": "An error occurred while generating the cocktail. Please try again later.",
+    "disclaimer": "* This AI cocktail generator is for entertainment only and may suggest inaccurate or incompatible ingredients. It doesn’t account for allergens or dietary restrictions, so always double-check recipes before use. We’re not liable for any adverse effects or outcomes. Users must be of legal drinking age and are responsible for consuming alcohol responsibly. This tool is not a substitute for professional advice, and all use is at your own risk."
+  },
+  "AISection": {
+    "title": "Create Your Perfect Cocktail with AI",
+    "description": "Discover unique cocktail recipes crafted specifically for Blat Vodka using artificial intelligence. Describe your preferences and let our AI suggest the perfect mix for any occasion.",
+    "button": "Try Our AI Bartender"
   },
   "NotFound": {
     "title": "Page not found",

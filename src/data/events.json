@@ -11,7 +11,7 @@
       "longitude": -15.57064
     },
     "website": "https://granvodkaevent.com",
-    "image": "https://fakeimage.com/event1.jpg"
+    "image": "img1.jpg"
   },
   {
     "id": 2,
@@ -25,7 +25,7 @@
       "longitude": -15.43626
     },
     "website": "https://vodkanightfest.com",
-    "image": "https://fakeimage.com/event2.jpg"
+    "image": "img2.jpg"
   },
   {
     "id": 3,
@@ -39,6 +39,6 @@
       "longitude": -15.55028
     },
     "website": "https://mercadovodkateror.com",
-    "image": "https://fakeimage.com/event3.jpg"
+    "image": "img3.jpg"
   }
 ]

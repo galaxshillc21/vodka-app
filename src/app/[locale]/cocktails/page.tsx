@@ -147,6 +147,9 @@ const CocktailsPage: React.FC = () => {
               <div className="text-gray-900 leading-relaxed" dangerouslySetInnerHTML={{ __html: parseMarkdown(cocktailOutput) }}></div>
             </div>
           )}
+          <div className="mt-8 text-sm text-gray-500">
+            <small>{t("disclaimer")}</small>
+          </div>
         </div>
       </div>
     </div>

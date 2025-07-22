@@ -6,7 +6,8 @@ import PuritySection from "@/src/components/section/PuritySection";
 import { About2 } from "@/src/components/section/AboutSection";
 import Agua from "@/src/components/section/AguaSection";
 import { Ciencia } from "@/src/components/section/CienciaSection";
-import { Qualities } from "@/src/components/section/QualitiesSection";
+// import { Qualities } from "@/src/components/section/QualitiesSection";
+import AISection from "@/src/components/section/AISection";
 
 export default async function HomePage() {
   return (
@@ -17,7 +18,8 @@ export default async function HomePage() {
       <PuritySection />
       <About2 />
       <Ciencia />
-      <Qualities />
+      {/* <Qualities /> */}
+      <AISection />
       <Agua />
       <BottleDesign2 />
     </>
