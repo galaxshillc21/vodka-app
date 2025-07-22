@@ -30,8 +30,8 @@ export default function EventsPage() {
         <div className="max-w-6xl mx-auto">
           {/* Header */}
           <div className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 mb-4 font-fraunces">{t("pageTitle")}</h1>
-            <p className="text-gray-600 text-lg max-w-2xl mx-auto">{t("pageDescription")}</p>
+            <h1 className="text-3xl font-bold text-gray-900 mb-4 font-fraunces">{t("pageTitle")}</h1>
+            <p className="text-gray-600 text-md lg:text-lg max-w-2xl mx-auto">{t("pageDescription")}</p>
           </div>
 
           {/* Events Grid */}
@@ -56,15 +56,15 @@ export default function EventsPage() {
                     {/* Event Details */}
                     <div className="space-y-3 mb-4">
                       {/* Date */}
-                      <div className="flex items-center text-gray-700">
+                      <div className="flex items-start text-gray-700">
                         <Calendar size={16} className="mr-2 text-amber-600" />
                         <span className="text-sm">
-                          <strong>{t("eventDate")}:</strong> (event.date)
+                          <strong>{t("eventDate")}:</strong> {event.date}
                         </span>
                       </div>
 
                       {/* Location */}
-                      <div className="flex items-center text-gray-700">
+                      <div className="flex items-start text-gray-700">
                         <MapPin size={16} className="mr-2 text-amber-600" />
                         <span className="text-sm">
                           <strong>{t("eventLocation")}:</strong> {event.location.town}, {event.location.municipality}
@@ -96,7 +96,7 @@ export default function EventsPage() {
           ) : (
             <div className="text-center py-16">
               <Calendar size={64} className="mx-auto text-gray-400 mb-4" />
-              <p className="text-gray-600 text-lg">{t("noEvents")}</p>
+              <p className="text-gray-600 text-md lg:text-lg">{t("noEvents")}</p>
             </div>
           )}
         </div>

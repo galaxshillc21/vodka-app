@@ -141,7 +141,11 @@ declare const messages: {
     "closestEventsHeading": "Closest events",
     "error1": "An error occurred while fetching data.",
     "callStore": "Call",
-    "navigateToStore": "Navigate"
+    "navigateToStore": "Navigate",
+    "noStoresFound": "No stores found",
+    "noStoresMessage": "Add your zip code or use your location to see the closest Blat Vodka stores near you.",
+    "useLocation": "Use your location",
+    "enterZipCode": "Enter zip code"
   },
   "NewsPage": {
     "title": "Latest News",

@@ -70,12 +70,12 @@ export function Ciencia() {
         </div>
         <div className="flex-[0-1-10%] flex flex-col lg:flex-row mt-3 lg:mt-12 align-items-center justify-center gap-12 h-auto">
           <div className="flex-1 flex flex-col justify-center items-center lg:pr-12">
-            <p className="text-lg mb-4 text-gray-700 text-center lg:text-left">
+            <p className="text-md lg:text-lg mb-4 text-gray-700 text-center lg:text-left">
               {t("p1")}
               <span className="font-bold text-amber-600">{t("span1")}</span>
               {t("p1a")}
             </p>
-            <p className="text-lg mb-4 text-gray-700 text-center lg:text-left">{t("p2")}</p>
+            <p className="text-md lg:text-lg mb-4 text-gray-700 text-center lg:text-left">{t("p2")}</p>
           </div>
           <SpotlightCard className="SpotlightCard shadow-md p-none! lg:p-none! flex-1 flex flex-col justify-center items-center rounded-lg custom-spotlight-card overflow-visible!" spotlightColor="rgba(0, 229, 255, 0.2)">
             <Table>
@@ -89,8 +89,8 @@ export function Ciencia() {
                 {marcas.map((marca) => (
                   <TableRow key={marca.marca}>
                     {/* if marca.marca is Blat Vodka make it bold */}
-                    <TableCell className={`pl-5 font-medium ${marca.marca === "Blat Vodka" ? "text-gray-900 font-bold text-lg" : ""}`}>{marca.marca}</TableCell>
-                    <TableCell className={`relative font-medium ${marca.impurezas === "0.0" ? "text-gray-900 font-bold text-lg" : ""}`}>
+                    <TableCell className={`pl-5 font-medium ${marca.marca === "Blat Vodka" ? "text-gray-900 font-bold text-md lg:text-lg" : ""}`}>{marca.marca}</TableCell>
+                    <TableCell className={`relative font-medium ${marca.impurezas === "0.0" ? "text-gray-900 font-bold text-md lg:text-lg" : ""}`}>
                       {/* <div
 												className={`h-[20px] z-0 absolute`}
 												style={{

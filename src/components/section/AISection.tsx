@@ -28,10 +28,10 @@ export default function AISection() {
                 <Sparkles className="w-8 h-8 text-amber-600" />
               </div>
 
-              <p className="text-lg text-gray-700 mb-10 leading-relaxed">{t("description")}</p>
+              <p className="text-md lg:text-lg text-gray-700 mb-10 leading-relaxed">{t("description")}</p>
 
               <Link href="/cocktails">
-                <Button size="lg" className="rounded-full h-14 px-12 bg-amber-600 text-white text-lg hover:bg-amber-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
+                <Button size="lg" className="rounded-full h-14 px-12 bg-amber-600 text-white text-md lg:text-lg hover:bg-amber-700 transition-all duration-300 transform hover:scale-105 shadow-lg">
                   <Sparkles className="w-5 h-5 mr-2" />
                   {t("button")}
                 </Button>

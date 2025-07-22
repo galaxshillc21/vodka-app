@@ -53,13 +53,13 @@ export function BottleDesign() {
                 <blockquote className="pl-3 border-l-2">
                   <h2 className="font-heading font-bold text-amber-600 text-2xl leading-relaxed mb-3 italic">{t("span1")}</h2>
                 </blockquote>
-                <p className="text-xl mb-4 text-gray-600">{t("p1")}</p>
-                <p className="text-xl mb-4 text-gray-600">
+                <p className="text-md lg:text-lg mb-4 text-gray-600">{t("p1")}</p>
+                <p className="text-md lg:text-lg mb-4 text-gray-600">
                   {t("p2")} <span className="font-semibold">{t("span21")}</span>
                   {t("p22")}
                   <span className="font-semibold">{t("span22")}</span>
                 </p>
-                <p className="text-xl text-gray-600">{t("p3")}</p>
+                <p className="text-md lg:text-lg text-gray-600">{t("p3")}</p>
               </div>
             </div>
           </div>
@@ -91,13 +91,13 @@ export function BottleDesign2() {
                 <blockquote className="pl-3 border-l-2">
                   <h2 className="font-heading font-bold text-amber-600 text-2xl leading-relaxed mb-3 italic">{t("span1")}</h2>
                 </blockquote>
-                <p className="text-xl mb-4 text-gray-600">{t("p1")}</p>
-                <p className="text-xl mb-4 text-gray-600">
+                <p className="text-md lg:text-lg mb-4 text-gray-600">{t("p1")}</p>
+                <p className="text-md lg:text-lg mb-4 text-gray-600">
                   {t("p2")} <span className="font-semibold">{t("span21")}</span>
                   {t("p22")}
                   <span className="font-semibold">{t("span22")}</span>
                 </p>
-                <p className="text-xl text-gray-600">{t("p3")}</p>
+                <p className="text-md lg:text-lg text-gray-600">{t("p3")}</p>
               </div>
               <div className="flex lg:hidden flex-1">
                 <Image src="/images/blatvodka-bottle-full.webp" alt="Blat Vodka Bottle" className="rotate-[-10deg]" width={250} height={800} loading="lazy" />

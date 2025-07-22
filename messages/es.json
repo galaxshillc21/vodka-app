@@ -3,7 +3,7 @@
     "title": "Blat Vodka",
     "description": "El Vodka Más Puro del Mundo.",
     "purityHeading": "Que añade la Pureza?",
-    "heroButton": "Ver Tiendas Cercanas",
+    "heroButton": "Tiendas Cercanas",
     "puritySabor": "Mejor Sabor",
     "purityCalidad": "Mejor Calidad",
     "purityCombinar": "Mejor para Combinar",
@@ -138,7 +138,11 @@
     "closestEventsHeading": "Eventos más cercanos",
     "error1": "Ocurrió un error al obtener los datos.",
     "callStore": "Llamar",
-    "navigateToStore": "Navegar"
+    "navigateToStore": "Navegar",
+    "noStoresFound": "No se encontraron tiendas",
+    "noStoresMessage": "Agrega tu código postal o usa tu ubicación para ver las tiendas de Blat Vodka más cercanas a ti.",
+    "useLocation": "Usar tu ubicación",
+    "enterZipCode": "Ingresa código postal"
   },
   "NewsPage": {
     "title": "Últimas Noticias",

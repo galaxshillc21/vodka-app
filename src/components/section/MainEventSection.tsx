@@ -30,7 +30,7 @@ export function MainEvent() {
   }, [controls, inView]);
 
   return (
-    <section id="MainEvent" className="w-full mt-[80px] flex flex-col items-center justify-center">
+    <section id="MainEvent" className="w-full mt-0 lg:mt-[0px] flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center h-full">
           <BlurText text={t("title")} delay={80} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete} className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mt-6 text-center text-amber-600 mb-6 leading-tight justify-center" />
@@ -50,10 +50,10 @@ export function MainEvent() {
             </CarouselContent>
           </Carousel>
           <div className="flex flex-row items-center justify-center h-full w-full mt-8">
-            <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-amber-600 py-5">
+            <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-amber-600 py-5 items-center lg:items-end">
               <div className="text-center">
                 <p className="text-amber-600 font-medium text-xl">{t("thursday")}</p>
-                <h2 className="text-4xl">24 {t("july")}</h2>
+                <h2 className="text-3xl">24 {t("july")}</h2>
               </div>
             </div>
             <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">

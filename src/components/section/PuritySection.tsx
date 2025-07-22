@@ -39,7 +39,7 @@ export default function PuritySection() {
                   rotationInterval={3000}
                 />
               </div>
-              <p className="text-gray-600 text-lg">
+              <p className="text-gray-600 text-md lg:text-lg">
                 {t("p1")}
                 <br />
                 <br />

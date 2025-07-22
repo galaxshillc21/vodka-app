@@ -3,15 +3,15 @@
 import SpotlightCard from "@/src/components/SpotlightCard";
 import { Link } from "@/src/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Home, Newspaper, Search, Store, Martini, Instagram } from "lucide-react";
+import { Home, Newspaper, Store, Martini, Instagram } from "lucide-react";
 
 export default function Footer() {
   const t = useTranslations("Footer");
 
   return (
     <footer className="relative w-full ">
-      <SpotlightCard className="w-full px-6 rounded-t-xl rounded-b-none flex flex-col items-center gap-6 h-full pb-[90px] lg:pb-0" spotlightColor="rgba(0, 229, 255, 0.2)">
-        <nav className="flex flex-wrap justify-center gap-6 mb-4">
+      <SpotlightCard className="w-full px-6 rounded-t-xl rounded-b-none flex flex-col items-center gap-3 lg:gap-6 h-full pb-[90px] lg:pb-0" spotlightColor="rgba(0, 229, 255, 0.2)">
+        <nav className="flex flex-wrap justify-center gap-3 lg:gap-6 mb-4">
           <Link href="/" className="flex items-center gap-1 hover:underline">
             <Home size={18} />
             {t("home")}
@@ -21,10 +21,6 @@ export default function Footer() {
             {t("events")}
           </Link>
           <Link href="/search" className="flex items-center gap-1 hover:underline">
-            <Search size={18} />
-            {t("search")}
-          </Link>
-          <Link href="/stores" className="flex items-center gap-1 hover:underline">
             <Store size={18} />
             {t("stores")}
           </Link>

@@ -139,7 +139,7 @@ export default function Search() {
           </form>
 
           <Tabs defaultValue="tiendas" className="mt-6">
-            <TabsList className="w-full bg-bronze-muted rounded-md">
+            <TabsList className="w-full bg-bronze-muted rounded-md hidden">
               <TabsTrigger value="tiendas" className="w-1/2">
                 {t("tabStores")}
               </TabsTrigger>
@@ -162,11 +162,11 @@ export default function Search() {
                     onStoreSelect={(store) => setSelectedStore(store)} // 👈 hook to update map center
                     selectedStore={selectedStore} // 👈 PASS THIS
                   />
-                  <div className="text-center mt-2">
+                  {/* <div className="text-center mt-2">
                     <Link href="/stores" className="text-primary underline">
                       {t("viewAllStoresLink")}
                     </Link>
-                  </div>
+                  </div> */}
                 </>
               )}
             </TabsContent>

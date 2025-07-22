@@ -98,12 +98,12 @@ const CocktailsPage: React.FC = () => {
     <div className="min-h-screen w-full from-amber-50 to-white flex flex-row items-stretch  bg-[url('/images/blat_citrus.webp')] lg:bg-gradient-to-br bg-cover bg-center">
       <div className="basis-2/5 min-h-screen bg-[url('/images/blat_citrus.webp')] bg-cover bg-center hidden lg:block"></div>
       <div className="basis-1/1 lg:basis-3/5 pt-[80px] w-full flex flex-col items-center justify-center p-4 lg:p-8">
-        <div className="Card text-center max-w-3xl mb-8 py-4 lg:py-12 px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-white/40 rounded-lg shadow-lg lg:shadow-none lg:bg-none">
-          <h1 className="text-3xl lg:text-4xl font-extrabold text-center text-amber-700 mb-8">{t("title")}</h1>
+        <div className="Card text-center max-w-3xl mb-8 py-4 lg:py-12 px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-white/60 rounded-lg shadow-lg lg:shadow-none lg:bg-none">
+          <h1 className="text-2xl lg:text-4xl font-extrabold text-center text-amber-700 mb-8">{t("title")}</h1>
           <p className="text-md text-gray-700 text-center mb-10">{t("description")}</p>
 
           <div className="mb-8">
-            <label htmlFor="cocktailInput" className="block lg:none text-xl font-semibold text-gray-800 mb-3">
+            <label htmlFor="cocktailInput" className="block lg:none text-md lg:text-lg font-semibold text-gray-800 mb-3">
               {t("question1")}
             </label>
             <textarea
