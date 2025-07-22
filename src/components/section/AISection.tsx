@@ -16,7 +16,7 @@ export default function AISection() {
         <div className=" flex flex-col lg:flex-row items-center justify-center">
           {/* Image Section - Left side on desktop, top on mobile */}
           <motion.div initial={{ x: 0, opacity: 0, filter: "blur(10px)" }} animate={{ x: 0, opacity: 1, filter: "blur(0px)" }} transition={{ duration: 0.8, ease: "easeOut" }}>
-            <Image src="/images/blat_citrus.jpg" alt="Blat Bottle at the Beach" width={600} height={600} priority className="rounded-3xl w-auto max-h-[300px] lg:max-h-[500px] lg:max-w-none" />
+            <Image src="/images/blat_citrus.webp" alt="Blat Bottle at the Beach" width={600} height={600} loading="lazy" className="rounded-3xl w-auto max-h-[300px] lg:max-h-[500px] lg:max-w-none" />
           </motion.div>
 
           {/* Content Section - Right side on desktop, bottom on mobile */}

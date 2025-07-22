@@ -44,7 +44,7 @@ export function MainEvent() {
             <CarouselContent>
               {images.map((src, i) => (
                 <CarouselItem key={i} className="basis-2/3 lg:basis-1/3">
-                  <Image src={src} alt={`Evento mambo ${i + 1}`} width={800} height={600} className="hover:cursor-grab active:cursor-grabbing rounded-md" />
+                  <Image src={src} loading="lazy" alt={`Evento mambo ${i + 1}`} width={800} height={600} className="hover:cursor-grab active:cursor-grabbing rounded-md" />
                 </CarouselItem>
               ))}
             </CarouselContent>

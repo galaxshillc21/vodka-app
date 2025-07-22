@@ -126,7 +126,7 @@ body::before {
           user-select: none;
 }
 .bg-bottle {
-  background-image: url("../../public/images/blat_bottle.jpg");
+  background-image: url("../../public/images/blat_bottle.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -219,7 +219,6 @@ main {
   width: 100%;
 }
 main .heroBG {
-  background-image: url("../../public/images/muted-glass.jpg");
   background-color: linear-gradient(red, white);
   background-size: cover;
   border-top-left-radius: 0;

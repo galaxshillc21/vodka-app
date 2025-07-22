@@ -18,7 +18,7 @@ export function Hero() {
     <section id="Hero" className="bg-gray-100 w-full min-h-screen flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="fixed z-20 left-20 top-10">
-          <Image src="/images/blat_beach.jpg" alt="Blat Bottle on the beach" width={350} height={900} priority className="drop-shadow-sm nav-logo logo" />
+          <Image src="/images/blat_beach.webp" alt="Blat Bottle on the beach" width={350} height={900} priority className="drop-shadow-sm nav-logo logo" />
         </div>
         <div ref={ref} className="h-[600px] rounded-3xl relative overflow-hidden">
           <motion.div style={{ y }} className="absolute inset-0 bg-cover bg-center bg-[url('/images/blatvodka-barrels.webp')]" />
@@ -59,7 +59,7 @@ export function Hero3() {
         <div className="flex flex-col-reverse lg:flex-row justify-between items-center gap-8 lg:gap-12">
           {/* Image goes last on mobile, side-by-side on desktop */}
           <div className="imageWrapper overflow-hidden w-full flex justify-center lg:justify-end">
-            <Image src="/images/blat_beach.jpg" alt="Blat Bottle at the Beach" width={600} height={600} priority className="rounded-3xl w-full max-w-[300px] lg:max-w-[550px] lg:max-w-none" />
+            <Image src="/images/blat_beach.webp" alt="Blat Bottle at the Beach" width={600} height={600} priority className="rounded-3xl w-full max-w-[300px] lg:!max-w-[520px] lg:max-w-none" />
           </div>
 
           {/* Text content */}

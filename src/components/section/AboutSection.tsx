@@ -31,7 +31,7 @@ export function About1() {
         <div className="grid grid-cols-1 md:grid-cols-3 items-center w-full mx-auto gap-8">
           {/* Botella izquierda */}
           <motion.div ref={ref} initial={{ x: -100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full">
-            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg mt-12" width={300} height={600} />
+            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg mt-12" width={300} height={600} loading="lazy" />
           </motion.div>
 
           {/* Contenido central */}
@@ -54,7 +54,7 @@ export function About1() {
 
           {/* Botella derecha */}
           <motion.div ref={ref} initial={{ x: 100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="hidden md:flex justify-center drop-shadow-lg w-full">
-            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg mt-12" width={300} height={600} />
+            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg mt-12" width={300} height={600} loading="lazy" />
           </motion.div>
         </div>
       </div>
@@ -91,7 +91,7 @@ export function About2() {
         <div className="grid grid-cols-1 md:grid-cols-4 items-start w-full mx-auto gap-8 relative">
           {/* Botella izquierda */}
           <motion.div ref={ref} initial={{ y: -100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="mt-[60px] hidden md:flex justify-center drop-shadow-lg w-full sticky top-[160px]">
-            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} />
+            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} loading="lazy" />
           </motion.div>
 
           {/* Contenido central */}
@@ -102,15 +102,15 @@ export function About2() {
               <br></br>
               {t("p2")}
             </p>
-            <Image src="/images/blatvodka-barrels.webp" alt="Botella izquierda" className="mt-4 w-full border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
+            <Image src="/images/blatvodka-barrels.webp" alt="Botella izquierda" className="mt-4 w-full border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} loading="lazy" />
             <p className="text-gray-600 text-lg mt-10 text-center lg:text-left">{t("p3")}</p>
             <p className="text-gray-600 text-lg mt-2 text-center lg:text-left">{t("p4")}</p>
-            <Image src="/images/agua.webp" alt="Botella izquierda" className="mt-4 w-full border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} />
+            <Image src="/images/agua.webp" alt="Botella izquierda" className="mt-4 w-full border-amber-600 border-2 rounded-lg drop-shadow-md" width={500} height={200} style={{ objectFit: "contain" }} loading="lazy" />
           </div>
 
           {/* Botella derecha */}
           <motion.div ref={ref} initial={{ y: -100, opacity: 0, filter: "blur(10px)" }} animate={controls} className="mt-[60px] hidden md:flex justify-center drop-shadow-lg w-full sticky top-[160px]">
-            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} />
+            <Image src="/images/blatvodka-bottle-full.webp" alt="Botella izquierda" className="drop-shadow-lg" width={350} height={600} loading="lazy" />
           </motion.div>
         </div>
       </div>

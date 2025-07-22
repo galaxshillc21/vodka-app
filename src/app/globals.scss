@@ -136,7 +136,7 @@ body {
 }
 
 .bg-bottle {
-  background-image: url("../../public/images/blat_bottle.jpg");
+  background-image: url("../../public/images/blat_bottle.webp");
   background-repeat: no-repeat;
   background-position: center;
   background-size: contain;
@@ -148,7 +148,7 @@ body {
   pointer-events: none; /* Allows clicks to pass through the noise layer to elements beneath */
 }
 #LoadingScreen {
-  // background-image: url("../../public/images/blat_bottle.jpg");
+  // background-image: url("../../public/images/blat_bottle.webp");
   // background-repeat: no-repeat;
   // background-position: center;
   // background-size: cover;
@@ -234,7 +234,7 @@ main {
   // padding-right: 15px;
 
   .heroBG {
-    background-image: url("../../public/images/muted-glass.jpg");
+    // background-image: url("../../public/images/muted-glass.jpg");
     background-color: linear-gradient(red, white);
     background-size: cover;
     border-top-left-radius: 0;
