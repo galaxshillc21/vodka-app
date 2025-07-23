@@ -4,11 +4,11 @@ import { Fraunces, Poppins } from "next/font/google";
 import "../globals.css"; // Adjust path as needed
 import NavBottom from "@/src/components/ui/navBottom";
 import Header from "@/src/components/ui/Header";
-import Footer from "@/src/components/ui/Footer";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server"; // Changed unstable_setRequestLocale to setRequestLocale [1]
 import { NextIntlClientProvider } from "next-intl";
 import { locales } from "@/src/i18n/routing"; // Import locales from the new routing file
+import dynamic from "next/dynamic";
 
 // const montserrat = Montserrat({
 //   variable: "--font-montserrat",
@@ -47,6 +47,25 @@ type Props = {
   params: { locale: string };
 };
 
+// Footer is always below the fold
+const Footer = dynamic(() => import("@/src/components/ui/Footer"), {
+  loading: () => (
+    <footer className="bg-gray-900 py-12">
+      <div className="container mx-auto px-4 animate-pulse">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+          {[...Array(4)].map((_, i) => (
+            <div key={i} className="space-y-4">
+              <div className="h-6 bg-gray-700 rounded w-3/4"></div>
+              <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+              <div className="h-4 bg-gray-700 rounded w-2/3"></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </footer>
+  ),
+});
+
 export default async function RootLayout({ children, params: { locale } }: Readonly<Props>) {
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as (typeof locales)[number])) notFound();
@@ -62,6 +81,7 @@ export default async function RootLayout({ children, params: { locale } }: Reado
           <Header />
           <main className="">{children}</main>
           <NavBottom />
+          {/* Footer is always below the fold */}
           <Footer />
         </NextIntlClientProvider>
       </body>

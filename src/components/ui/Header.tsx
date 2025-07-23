@@ -5,14 +5,20 @@ import { Menubar, MenubarMenu, MenubarSeparator } from "@/src/components/ui/menu
 import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
 import { Link, usePathname } from "@/src/i18n/navigation"; // Import useRouter
 import { useTranslations } from "next-intl";
-import LocaleSwitcher from "@/src/components/LocaleSwitcher";
 import { Logo } from "../Logo";
 import { useState, useEffect } from "react"; // Import useState and useEffect
+import dynamic from "next/dynamic";
 
 export default function Header() {
   const t = useTranslations("Navigation");
   const pathname = usePathname();
   const [loadingPath, setLoadingPath] = useState<string | null>(null); // State to track which link is loading
+
+  // Language switcher dropdown
+  const LocaleSwitcher = dynamic(() => import("@/src/components/LocaleSwitcher"), {
+    loading: () => <div className="w-8 h-8 bg-gray-200 rounded animate-pulse" />,
+    ssr: false,
+  });
 
   const isActive = (href: string) => {
     if (href === "/") {

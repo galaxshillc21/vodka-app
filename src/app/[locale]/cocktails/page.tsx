@@ -1,7 +1,7 @@
 "use client"; // Marca este componente como un Client Component en Next.js
 
 import React, { useState } from "react";
-import { useTranslations } from "next-intl"; // Import useTranslations
+import { useTranslations, useLocale } from "next-intl"; // Import useTranslations
 
 /**
  * Fetches the response from the Gemini AI model API.
@@ -12,6 +12,7 @@ import { useTranslations } from "next-intl"; // Import useTranslations
 
 const CocktailsPage: React.FC = () => {
   const t = useTranslations("CocktailsPage");
+  const locale = useLocale(); // Get current locale (en, es, etc.)
   const [cocktailInput, setCocktailInput] = useState<string>("");
   const [cocktailOutput, setCocktailOutput] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -39,7 +40,16 @@ const CocktailsPage: React.FC = () => {
     setError(null);
 
     try {
-      const prompt = `Receta breve de cóctel con Blat Vodka: "${cocktailInput}". Solo nombre, ingredientes y pasos. Responde en Markdown usa HTML headings. Sé conciso.`;
+      // Map locale to specific language instruction
+      const languageMap = {
+        en: "English",
+        es: "Spanish (español)",
+        fr: "French",
+      };
+
+      const language = languageMap[locale] || "English";
+      const prompt = `Cocktail with Blat Vodka: ${cocktailInput}. Format in Markdown: # Name, ## Ingredients, ## Instructions. No intro, no acknowledgments. Be concise. Respond in ${language}.`;
+
       const response = await fetch(`/api/gemini-ai-model`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -98,7 +108,7 @@ const CocktailsPage: React.FC = () => {
     <div className="min-h-screen w-full from-amber-50 to-white flex flex-row items-stretch  bg-[url('/images/blat_citrus.webp')] lg:bg-gradient-to-br bg-cover bg-center">
       <div className="basis-2/5 min-h-screen bg-[url('/images/blat_citrus.webp')] bg-cover bg-center hidden lg:block"></div>
       <div className="basis-1/1 lg:basis-3/5 pt-[80px] w-full flex flex-col items-center justify-center p-4 lg:p-8">
-        <div className="Card text-center max-w-3xl mb-8 py-4 lg:py-12 px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-white/60 rounded-lg shadow-lg lg:shadow-none lg:bg-none">
+        <div className="Card text-center max-w-3xl mb-8 py-4 lg:py-12 px-4 sm:px-6 lg:px-8 backdrop-blur-sm bg-white/60 rounded-lg shadow-lg lg:shadow-none lg:bg-transparent shadow-amber-200">
           <h1 className="text-2xl lg:text-4xl font-extrabold text-center text-amber-700 mb-8">{t("title")}</h1>
           <p className="text-md text-gray-700 text-center mb-10">{t("description")}</p>
 
@@ -143,7 +153,7 @@ const CocktailsPage: React.FC = () => {
           )}
 
           {cocktailOutput && (
-            <div className="mt-12 p-8 bg-white border border-amber-200 rounded-xl shadow-lg">
+            <div className="mt-12 p-8 bg-white border border-amber-200 rounded-xl shadow-lg text-left">
               <div className="text-gray-900 leading-relaxed" dangerouslySetInnerHTML={{ __html: parseMarkdown(cocktailOutput) }}></div>
             </div>
           )}

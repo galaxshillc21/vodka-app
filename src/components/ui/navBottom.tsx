@@ -5,7 +5,7 @@
 import { Link, usePathname } from "@/src/i18n/navigation"; // Changed from "next/link"
 import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
 import { useTranslations } from "next-intl";
-import LocaleSwitcherFooter from "@/src/components/LocaleFooter";
+import dynamic from "next/dynamic";
 import { useState, useEffect } from "react"; // Import useState and useEffect
 
 export default function NavBottom() {
@@ -14,6 +14,12 @@ export default function NavBottom() {
   const [loadingPath, setLoadingPath] = useState<string | null>(null); // State to track which link is loading
 
   const currentPageClass = "current-page text-bronze"; // Class for the current page
+
+  // Language switcher dropdown
+  const LocaleSwitcherFooter = dynamic(() => import("@/src/components/LocaleFooter"), {
+    loading: () => <div className="w-8 h-8 bg-gray-100 rounded animate-pulse" />,
+    ssr: false,
+  });
 
   // Effect to listen for route changes and clear loading state
   useEffect(() => {
