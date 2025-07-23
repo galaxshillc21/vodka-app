@@ -1,16 +1,6 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { ComponentProps } from "react";
-
-interface LazyBlurTextProps extends ComponentProps<any> {
-  text: string;
-  className?: string;
-  delay?: number;
-  animateBy?: "words" | "characters";
-  direction?: "top" | "bottom" | "left" | "right";
-  onAnimationComplete?: () => void;
-}
 
 // Lazy load BlurText with properly typed loading placeholder
 const BlurText = dynamic(() => import("@/src/components/BlurText"), {
