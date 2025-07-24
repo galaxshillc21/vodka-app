@@ -3,7 +3,7 @@
 import React from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
 // import Image from "next/image";
-import BlurText from "@/src/components/BlurText";
+import BlurText from "@/components/BlurText";
 
 export default function Agua() {
   const t = useTranslations("Agua"); // Use the translations for the About section

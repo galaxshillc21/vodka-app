@@ -2,7 +2,7 @@
 
 import React, { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useState } from "react";
 import { motion, AnimatePresence, Transition, type VariantLabels, type Target, type AnimationControls, type TargetAndTransition } from "framer-motion";
-import "@/src/components/css/RotatingText.css"; // Ensure this path is correct based on your project structure
+import "@/components/css/RotatingText.css"; // Ensure this path is correct based on your project structure
 
 function cn(...classes: (string | undefined | null | boolean)[]): string {
   return classes.filter(Boolean).join(" ");

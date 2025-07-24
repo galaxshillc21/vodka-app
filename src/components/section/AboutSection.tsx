@@ -5,7 +5,7 @@ import { useTranslations } from "next-intl"; // Import useTranslations
 import Image from "next/image";
 import { motion, useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
-import BlurText from "@/src/components/BlurText";
+import BlurText from "@/components/BlurText";
 
 export function About1() {
   const t = useTranslations("About"); // Use the translations for the About section

@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import RotatingText from "@/src/components/RotatingText";
+import RotatingText from "@/components/RotatingText";
 
 export default function PuritySection() {
   const t = useTranslations("Purity");

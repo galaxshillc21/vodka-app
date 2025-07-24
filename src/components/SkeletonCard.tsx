@@ -1,4 +1,4 @@
-import { Skeleton } from "@/src/components/ui/skeleton";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export const SkeletonTiendas = () => (
   <div className="space-y-4">

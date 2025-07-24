@@ -2,7 +2,7 @@
 
 import { useTranslations } from "next-intl";
 import { Calendar, MapPin } from "lucide-react";
-import events from "@/src/data/events.json";
+import events from "@/data/events.json";
 
 type EventLocation = {
   latitude: number;

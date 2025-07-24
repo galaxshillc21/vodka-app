@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl"; // Import useTranslations
-import { Button } from "@/src/components/ui/button";
-import LazyBlurText from "@/src/components/LazyBlurText";
+import { Button } from "@/components/ui/button";
+import LazyBlurText from "@/components/LazyBlurText";
 
 export function Hero() {
   const t = useTranslations("Index");

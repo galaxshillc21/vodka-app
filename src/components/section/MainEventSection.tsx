@@ -3,8 +3,8 @@
 import Image from "next/image";
 import React from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
-import { Carousel, CarouselContent, CarouselItem } from "@/src/components/ui/carousel";
-import BlurText from "@/src/components/BlurText";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import BlurText from "@/components/BlurText";
 import { useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
 import Link from "next/link";

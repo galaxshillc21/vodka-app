@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 
 // Lazy load BlurText with properly typed loading placeholder
-const BlurText = dynamic(() => import("@/src/components/BlurText"), {
+const BlurText = dynamic(() => import("@/components/BlurText"), {
   loading: () => {
     // Render a generic placeholder while loading
     return (

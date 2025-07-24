@@ -1,9 +1,9 @@
 // import { getTranslations } from "next-intl/server";
-import { Hero } from "@/src/components/section/HeroSection";
+import { Hero } from "@/components/section/HeroSection";
 import dynamic from "next/dynamic";
 
 // Lazy load all below-the-fold sections with loading states
-const MainEvent = dynamic(() => import("@/src/components/section/MainEventSection").then((mod) => ({ default: mod.MainEvent })), {
+const MainEvent = dynamic(() => import("@/components/section/MainEventSection").then((mod) => ({ default: mod.MainEvent })), {
   loading: () => (
     <section className="w-full py-20">
       <div className="container mx-auto px-4">
@@ -21,7 +21,7 @@ const MainEvent = dynamic(() => import("@/src/components/section/MainEventSectio
   ),
 });
 
-const BottleDesignParallax = dynamic(() => import("@/src/components/section/BottleDesignSection").then((mod) => ({ default: mod.BottleDesignParallax })), {
+const BottleDesignParallax = dynamic(() => import("@/components/section/BottleDesignSection").then((mod) => ({ default: mod.BottleDesignParallax })), {
   loading: () => (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -34,7 +34,7 @@ const BottleDesignParallax = dynamic(() => import("@/src/components/section/Bott
   ),
 });
 
-const PuritySection = dynamic(() => import("@/src/components/section/PuritySection"), {
+const PuritySection = dynamic(() => import("@/components/section/PuritySection"), {
   loading: () => (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -55,7 +55,7 @@ const PuritySection = dynamic(() => import("@/src/components/section/PuritySecti
   ),
 });
 
-const About2 = dynamic(() => import("@/src/components/section/AboutSection").then((mod) => ({ default: mod.About2 })), {
+const About2 = dynamic(() => import("@/components/section/AboutSection").then((mod) => ({ default: mod.About2 })), {
   loading: () => (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -73,7 +73,7 @@ const About2 = dynamic(() => import("@/src/components/section/AboutSection").the
   ),
 });
 
-const Ciencia = dynamic(() => import("@/src/components/section/CienciaSection").then((mod) => ({ default: mod.Ciencia })), {
+const Ciencia = dynamic(() => import("@/components/section/CienciaSection").then((mod) => ({ default: mod.Ciencia })), {
   loading: () => (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -87,7 +87,7 @@ const Ciencia = dynamic(() => import("@/src/components/section/CienciaSection").
   ),
 });
 
-const AISection = dynamic(() => import("@/src/components/section/AISection"), {
+const AISection = dynamic(() => import("@/components/section/AISection"), {
   loading: () => (
     <section className="py-20 bg-gradient-to-br from-sky-100 to-white">
       <div className="container mx-auto px-4">
@@ -105,7 +105,7 @@ const AISection = dynamic(() => import("@/src/components/section/AISection"), {
   ),
 });
 
-const Agua = dynamic(() => import("@/src/components/section/AguaSection"), {
+const Agua = dynamic(() => import("@/components/section/AguaSection"), {
   loading: () => (
     <section className="py-20">
       <div className="container mx-auto px-4">
@@ -118,7 +118,7 @@ const Agua = dynamic(() => import("@/src/components/section/AguaSection"), {
   ),
 });
 
-const BottleDesign2 = dynamic(() => import("@/src/components/section/BottleDesignSection").then((mod) => ({ default: mod.BottleDesign2 })), {
+const BottleDesign2 = dynamic(() => import("@/components/section/BottleDesignSection").then((mod) => ({ default: mod.BottleDesign2 })), {
   loading: () => (
     <section className="py-20">
       <div className="container mx-auto px-4">

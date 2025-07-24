@@ -3,23 +3,23 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { Search as SearchIcon, LocateFixed } from "lucide-react";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/src/components/ui/tabs";
-import { SkeletonTiendas } from "@/src/components/SkeletonCard";
-import stores from "@/src/data/stores.json";
-import { haversineDistance } from "@/src/utils/distance";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { SkeletonTiendas } from "@/components/SkeletonCard";
+import stores from "@/data/stores.json";
+import { haversineDistance } from "@/utils/distance";
 // import { motion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
-import type { Store } from "@/src/types/store";
+import type { Store } from "@/types/store";
 
 // Lazy load tab components - they only load when their tab is active
-const TiendasTab = dynamic(() => import("@/src/components/TiendasTab"), {
+const TiendasTab = dynamic(() => import("@/components/TiendasTab"), {
   loading: () => <SkeletonTiendas />,
   ssr: false,
 });
 
-const FavoritosTab = dynamic(() => import("@/src/components/FavoritosTab"), {
+const FavoritosTab = dynamic(() => import("@/components/FavoritosTab"), {
   loading: () => (
     <div className="space-y-4">
       <div className="animate-pulse">
@@ -34,7 +34,7 @@ const FavoritosTab = dynamic(() => import("@/src/components/FavoritosTab"), {
 });
 
 // Dynamic import of map to avoid SSR issues (already optimized ✅)
-const MapComponent = dynamic(() => import("@/src/components/Map"), {
+const MapComponent = dynamic(() => import("@/components/Map"), {
   ssr: false,
   loading: () => (
     <div className="h-[400px] bg-gray-200 rounded-lg animate-pulse flex items-center justify-center">

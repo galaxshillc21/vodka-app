@@ -1,6 +1,6 @@
 // src/components/TiendasTab.tsx
 import { Phone, Clock10, Star, Navigation } from "lucide-react";
-import type { Store } from "@/src/types/store";
+import type { Store } from "@/types/store";
 import { useTranslations } from "next-intl";
 
 type TiendasTabProps = {

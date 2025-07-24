@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useTranslations } from "next-intl"; // Import useTranslations
-import BlurText from "@/src/components/BlurText";
-import SpotlightCard from "@/src/components/SpotlightCard";
+import BlurText from "@/components/BlurText";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export function BottleDesignParallax() {
   const t = useTranslations("BottleDesign");

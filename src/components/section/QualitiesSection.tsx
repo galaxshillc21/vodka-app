@@ -2,7 +2,7 @@
 
 import React from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
-import SpotlightCard from "@/src/components/SpotlightCard";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export function Qualities() {
   const t = useTranslations("Index"); // Use the translations for the About section

@@ -2,9 +2,9 @@
 
 import React from "react";
 import { useTranslations } from "next-intl"; // Import useTranslations
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/src/components/ui/table";
-import BlurText from "@/src/components/BlurText";
-import SpotlightCard from "@/src/components/SpotlightCard";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import BlurText from "@/components/BlurText";
+import SpotlightCard from "@/components/SpotlightCard";
 
 export function Ciencia() {
   const t = useTranslations("Ciencia");

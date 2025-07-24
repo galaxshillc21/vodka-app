@@ -2,7 +2,7 @@
 "use client";
 
 // Import Link from next-intl/navigation for i18n compatible links
-import { Link, usePathname } from "@/src/i18n/navigation"; // Changed from "next/link"
+import { Link, usePathname } from "@/i18n/navigation"; // Changed from "next/link"
 import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
@@ -16,7 +16,7 @@ export default function NavBottom() {
   const currentPageClass = "current-page text-bronze"; // Class for the current page
 
   // Language switcher dropdown
-  const LocaleSwitcherFooter = dynamic(() => import("@/src/components/LocaleFooter"), {
+  const LocaleSwitcherFooter = dynamic(() => import("@/components/LocaleFooter"), {
     loading: () => <div className="w-8 h-8 bg-gray-100 rounded animate-pulse" />,
     ssr: false,
   });

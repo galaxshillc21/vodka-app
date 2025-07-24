@@ -2,12 +2,12 @@
 import type { Metadata } from "next";
 import { Fraunces, Poppins } from "next/font/google";
 import "../globals.css"; // Adjust path as needed
-import NavBottom from "@/src/components/ui/navBottom";
-import Header from "@/src/components/ui/Header";
+import NavBottom from "@/components/ui/navBottom";
+import Header from "@/components/ui/Header";
 import { notFound } from "next/navigation";
 import { getMessages, setRequestLocale } from "next-intl/server"; // Changed unstable_setRequestLocale to setRequestLocale [1]
 import { NextIntlClientProvider } from "next-intl";
-import { locales } from "@/src/i18n/routing"; // Import locales from the new routing file
+import { locales } from "@/i18n/routing"; // Import locales from the new routing file
 import dynamic from "next/dynamic";
 
 // const montserrat = Montserrat({
@@ -48,7 +48,7 @@ type Props = {
 };
 
 // Footer is always below the fold
-const Footer = dynamic(() => import("@/src/components/ui/Footer"), {
+const Footer = dynamic(() => import("@/components/ui/Footer"), {
   loading: () => (
     <footer className="bg-gray-900 py-12">
       <div className="container mx-auto px-4 animate-pulse">

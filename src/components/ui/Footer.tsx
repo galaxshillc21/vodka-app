@@ -1,7 +1,7 @@
 "use client";
 
-import SpotlightCard from "@/src/components/SpotlightCard";
-import { Link } from "@/src/i18n/navigation";
+import SpotlightCard from "@/components/SpotlightCard";
+import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { Home, Newspaper, Store, Martini, Instagram } from "lucide-react";
 
