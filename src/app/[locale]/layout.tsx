@@ -29,7 +29,7 @@ const poppins = Poppins({
 // Define metadata for your root layout (can be locale-specific)
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params; // 👈 Esto es lo que Next.js espera internamente aquí
-  const messages = (await import(`@/messages/${locale}.json`)).default;
+  const messages = (await import(`@/../messages/${locale}.json`)).default;
 
   return {
     title: messages.Index.title,
