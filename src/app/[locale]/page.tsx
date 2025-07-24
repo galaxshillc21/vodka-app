@@ -143,7 +143,6 @@ export default async function HomePage() {
     <>
       {/* Above the fold - keep eager loading */}
       <Hero />
-
       {/* Below the fold - lazy load everything */}
       <MainEvent />
       <BottleDesignParallax />

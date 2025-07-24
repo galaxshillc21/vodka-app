@@ -24,6 +24,14 @@
       "desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
     }
   },
+  "AgeVerification": {
+    "title": "Bienvenido a Blat",
+    "question": "¿Eres mayor de edad legal para beber en tu país?",
+    "yes": "Sí, lo soy",
+    "no": "No, no lo soy",
+    "entering": "Entrando...",
+    "disclaimer": "* Al hacer clic en 'Sí', confirmas que tienes la edad legal para beber en tu país."
+  },
   "Events": {
     "title": "Vive la Experiencia Blat",
     "description": "Eventos exclusivos donde la pureza se disfruta al máximo",

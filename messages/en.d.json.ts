@@ -27,6 +27,14 @@ declare const messages: {
       "desc3": "Sourced from horizontal rain in the Canary Islands, providing exceptional purity to the product."
     }
   },
+  "AgeVerification": {
+    "title": "Welcome to Blat",
+    "question": "Are you of legal drinking age in your country?",
+    "yes": "Yes, I am",
+    "no": "No, I'm not",
+    "entering": "Entering...",
+    "disclaimer": "* By clicking 'Yes', you confirm that you are of legal drinking age in your country."
+  },
   "Events": {
     "title": "Live the Blat Experience",
     "description": "Exclusive events where purity is enjoyed to the fullest",

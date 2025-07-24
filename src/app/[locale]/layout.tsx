@@ -47,6 +47,11 @@ type Props = {
   params: { locale: string };
 };
 
+// Lazy load the age verification modal
+const AgeVerificationModal = dynamic(() => import("@/components/AgeVerificationModal"), {
+  loading: () => null, // No loading state needed
+});
+
 // Footer is always below the fold
 const Footer = dynamic(() => import("@/components/ui/Footer"), {
   loading: () => (
@@ -79,10 +84,12 @@ export default async function RootLayout({ children, params: { locale } }: Reado
       <body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
         <NextIntlClientProvider messages={messages}>
           <Header />
-          <main className="">{children}</main>
+          <main>{children}</main>
           <NavBottom />
-          {/* Footer is always below the fold */}
           <Footer />
+
+          {/* Age Verification Modal - no props needed */}
+          <AgeVerificationModal />
         </NextIntlClientProvider>
       </body>
     </html>
