@@ -9,12 +9,9 @@ import { getMessages, setRequestLocale } from "next-intl/server"; // Changed uns
 import { NextIntlClientProvider } from "next-intl";
 import { locales } from "@/i18n/routing"; // Import locales from the new routing file
 import dynamic from "next/dynamic";
+import { GoogleTagManager } from "@next/third-parties/google";
+import GTMTracker from "@/lib/gtm-spa-tracking";
 
-// const montserrat = Montserrat({
-//   variable: "--font-montserrat",
-//   subsets: ["latin"],
-//   weight: ["400", "500", "600", "700"],
-// });
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
@@ -54,21 +51,7 @@ const AgeVerificationModal = dynamic(() => import("@/components/AgeVerificationM
 
 // Footer is always below the fold
 const Footer = dynamic(() => import("@/components/ui/Footer"), {
-  loading: () => (
-    <footer className="bg-gray-900 py-12">
-      <div className="container mx-auto px-4 animate-pulse">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {[...Array(4)].map((_, i) => (
-            <div key={i} className="space-y-4">
-              <div className="h-6 bg-gray-700 rounded w-3/4"></div>
-              <div className="h-4 bg-gray-700 rounded w-1/2"></div>
-              <div className="h-4 bg-gray-700 rounded w-2/3"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </footer>
-  ),
+  loading: () => null,
 });
 
 export default async function RootLayout({ children, params: { locale } }: Readonly<Props>) {
@@ -78,10 +61,22 @@ export default async function RootLayout({ children, params: { locale } }: Reado
   setRequestLocale(locale); // Corrected API call [1]
 
   const messages = await getMessages();
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID; // Ensure this is set in your .env file
+  const appEnv = process.env.NEXT_PUBLIC_APP_ENV;
 
   return (
     <html className="custom-scroll" lang={locale}>
       <body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
+        {/* Google Tag Manager */}
+        <script
+          id="init-datalayer"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];window.dataLayer.push({app_env: "${appEnv}"});
+            `,
+          }}
+        />
+        <GoogleTagManager gtmId={gtmId} />
         <NextIntlClientProvider messages={messages}>
           <Header />
           <main>{children}</main>
@@ -90,6 +85,7 @@ export default async function RootLayout({ children, params: { locale } }: Reado
 
           {/* Age Verification Modal - no props needed */}
           <AgeVerificationModal />
+          <GTMTracker />
         </NextIntlClientProvider>
       </body>
     </html>
