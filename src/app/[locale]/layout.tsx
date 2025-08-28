@@ -11,6 +11,8 @@ import { locales } from "@/i18n/routing"; // Import locales from the new routing
 import dynamic from "next/dynamic";
 import { GoogleTagManager } from "@next/third-parties/google";
 import GTMTracker from "@/lib/gtm-spa-tracking";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
+import Script from "next/script";
 
 const fraunces = Fraunces({
   variable: "--font-fraunces",
@@ -66,13 +68,15 @@ export default async function RootLayout({ children, params: { locale } }: Reado
 
   return (
     <html className="custom-scroll" lang={locale}>
-      <body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`}>
+      <body className={`${fraunces.variable} ${poppins.variable} antialiased lang-${locale}`} suppressHydrationWarning>
         {/* Google Tag Manager */}
-        <script
-          id="init-datalayer"
+        <Script
+          id="google-tag-manager-init"
+          strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `
-              window.dataLayer = window.dataLayer || [];window.dataLayer.push({app_env: "${appEnv}"});
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({app_env: "${appEnv}"});
             `,
           }}
         />
@@ -86,6 +90,7 @@ export default async function RootLayout({ children, params: { locale } }: Reado
           {/* Age Verification Modal - no props needed */}
           <AgeVerificationModal />
           <GTMTracker />
+          <CookieConsentBanner />
         </NextIntlClientProvider>
       </body>
     </html>
