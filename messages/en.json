@@ -118,7 +118,10 @@
     "copyright": "All rights reserved",
     "contact": "Contact",
     "privacy": "Privacy Policy",
-    "createdBy": "created by"
+    "createdBy": "created by",
+    "cookieConsentMessage": "We use cookies to analyze how our website is used so we can improve your experience. You can accept or decline. Declining will not affect your ability to use the site.",
+    "accept": "Accept",
+    "decline": "Decline"
   },
   "Privacy": {
     "title": "Privacy Policy",

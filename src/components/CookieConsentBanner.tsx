@@ -1,6 +1,8 @@
 "use client";
 
 import CookieConsent from "react-cookie-consent";
+import { useTranslations } from "next-intl";
+
 // import { useEffect } from "react";
 
 export default function CookieConsentBanner() {
@@ -13,12 +15,13 @@ export default function CookieConsentBanner() {
   //     analytics_storage: "denied",
   //   });
   // }, []);
+  const t = useTranslations("Footer");
 
   return (
     <CookieConsent
       location="bottom"
-      buttonText="Accept"
-      declineButtonText="Decline"
+      buttonText={t("accept")}
+      declineButtonText={t("decline")}
       enableDeclineButton
       style={{
         background: "#93939354",
@@ -61,7 +64,7 @@ export default function CookieConsentBanner() {
         });
       }}
     >
-      We use cookies to analyze how our website is used so we can improve your experience. You can accept or decline. Declining will not affect your ability to use the site.
+      {t("cookieConsentMessage")}
     </CookieConsent>
   );
 }

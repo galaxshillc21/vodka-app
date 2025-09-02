@@ -118,7 +118,10 @@
     "copyright": "Todos los derechos reservados",
     "contact": "Contacto",
     "privacy": "Política de Privacidad",
-    "createdBy": "creado por"
+    "createdBy": "creado por",
+    "cookieConsentMessage": "Utilizamos cookies para analizar cómo se usa nuestro sitio web y así poder mejorar tu experiencia. Puedes aceptarlas o rechazarlas. Rechazarlas no afectará tu capacidad para usar el sitio.",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
   },
   "Privacy": {
     "title": "Política de Privacidad",

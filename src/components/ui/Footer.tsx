@@ -36,7 +36,6 @@ export default function Footer() {
             <Instagram size={20} />
             <span>@blat_vodka</span>
           </a>
-          {/* <span className="text-gray-400">•</span> */}
         </div>
 
         <div className="text-center text-sm text-gray-600 dark:text-gray-300">
@@ -50,7 +49,18 @@ export default function Footer() {
             |{" "}
             <Link href="/privacy" className="underline hover:text-orange-600">
               {t("privacy")}
-            </Link>
+            </Link>{" "}
+            {/*|{" "}
+             <Link
+              href="#"
+              className="underline hover:text-orange-600"
+              onClick={(e) => {
+                e.preventDefault(); // Prevent navigation
+                setShowCookieSettings(true); // Show the banner
+              }}
+            >
+              Cookie Settings
+            </Link> */}
           </div>
         </div>
       </SpotlightCard>
