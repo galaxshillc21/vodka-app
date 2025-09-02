@@ -124,7 +124,9 @@ declare const messages: {
     "createdBy": "created by",
     "cookieConsentMessage": "We use cookies to analyze how our website is used so we can improve your experience. You can accept or decline. Declining will not affect your ability to use the site.",
     "accept": "Accept",
-    "decline": "Decline"
+    "decline": "Decline",
+    "installApp": "Install Blat Vodka App",
+    "AppDescription": "This will install your app directly on your homescreen"
   },
   "Privacy": {
     "pageTitle": "Privacy Policy",
@@ -249,6 +251,12 @@ declare const messages: {
   "PathnamesPage": {
     "description": "<p>Pathnames are also internationalized.</p><p>If you’re using the default language, English, you’ll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you switch the language to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>",
     "title": "Pathnames"
+  },
+  "PWA": {
+    "installPrompt": {
+      "title": "Install App",
+      "description": "Do you want to install the app on your device?"
+    }
   }
 };
 export default messages;

@@ -123,7 +123,9 @@
     "createdBy": "creado por",
     "cookieConsentMessage": "Utilizamos cookies para analizar cómo se usa nuestro sitio web y así poder mejorar tu experiencia. Puedes aceptarlas o rechazarlas. Rechazarlas no afectará tu capacidad para usar el sitio.",
     "accept": "Aceptar",
-    "decline": "Rechazar"
+    "decline": "Rechazar",
+    "installApp": "Instalar la App de Blat Vodka",
+    "AppDescription": "Esto instalará tu app directamente en la pantalla de inicio"
   },
   "Privacy": {
     "title": "Política de Privacidad",
@@ -242,5 +244,11 @@
   "PathnamesPage": {
     "description": "<p>Los nombres de ruta también están internacionalizados.</p><p>Si estás usando el idioma predeterminado, inglés, verás <code>/en/pathnames</code> en la barra de direcciones del navegador en esta página.</p><p>Si cambias el idioma a alemán, la URL se localiza en consecuencia (<code>/de/pfadnamen</code>).</p>",
     "title": "Nombres de ruta"
+  },
+  "PWA": {
+    "installPrompt": {
+      "title": "Instalar la aplicación",
+      "description": "¿Quieres instalar la aplicación en tu dispositivo?"
+    }
   }
 }

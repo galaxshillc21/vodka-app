@@ -1,9 +1,11 @@
-"use client";
+// @components/ui/Footer.tsx
 
 import SpotlightCard from "@/components/SpotlightCard";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Home, Newspaper, Store, Martini, Instagram } from "lucide-react";
+import { Home, Newspaper, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
+import InstallPrompt from "@/components/InstallPrompt";
+import { Button } from "@/components/ui/button";
 
 export default function Footer() {
   const t = useTranslations("Footer");
@@ -62,6 +64,14 @@ export default function Footer() {
               Cookie Settings
             </Link> */}
           </div>
+        </div>
+        <div className="mt-8 InstallPrompt text-center">
+          <InstallPrompt>
+            <Button size="lg" className="rounded-full h-12 px-12 bg-amber-600 text-white text-md sm:text-md hover:bg-amber-700 transition-colors">
+              <MonitorSmartphone size={20} className="inline-block mr-2" />
+              {t("installApp")}
+            </Button>
+          </InstallPrompt>
         </div>
       </SpotlightCard>
       <div className="absolute left-0 right-0 bottom-2 text-center text-xs text-gray-400">

@@ -125,6 +125,7 @@ body::before {
      -moz-user-select: none;
           user-select: none;
 }
+
 .bg-bottle {
   background-image: url("../../public/images/blat_bottle.webp");
   background-repeat: no-repeat;
@@ -410,5 +411,14 @@ button.glass-btn::before {
 @media screen and (max-width: 768px) {
   .maplibregl-control-container .maplibregl-ctrl-bottom-right {
     bottom: 40px;
+  }
+  /* Cookie Consent Banner */
+  .CookieConsent div {
+    display: flex;
+    width: 100%;
+  }
+  .CookieConsent #rcc-decline-button,
+  .CookieConsent #rcc-confirm-button {
+    flex: 0 1 auto !important;
   }
 }/*# sourceMappingURL=globals.css.map */

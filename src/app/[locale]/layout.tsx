@@ -33,6 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: messages.Index.title,
     description: messages.Index.description,
+    manifest: "/manifest.webmanifest",
   };
 }
 

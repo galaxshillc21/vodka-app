@@ -130,9 +130,6 @@ body {
     pointer-events: none;
     user-select: none;
   }
-  .grid {
-    // overflow-x: hidden;
-  }
 }
 
 .bg-bottle {
@@ -464,5 +461,16 @@ button {
 @media screen and (max-width: 768px) {
   .maplibregl-control-container .maplibregl-ctrl-bottom-right {
     bottom: 40px;
+  }
+  /* Cookie Consent Banner */
+  .CookieConsent {
+    div {
+      display: flex;
+      width: 100%;
+    }
+    #rcc-decline-button,
+    #rcc-confirm-button {
+      flex: 0 1 auto !important;
+    }
   }
 }
