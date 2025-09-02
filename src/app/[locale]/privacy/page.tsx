@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 
 export default function PrivacyPage() {
@@ -105,4 +103,15 @@ export default function PrivacyPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata({ params }) {
+  const messages = (await import(`@/../messages/${params.locale}.json`)).default;
+  const title = messages.Privacy?.pageTitle || "Privacy Policy";
+  const description = messages.Privacy?.pageDescription || "Learn how Blat Vodka collects, uses, and protects your personal data in accordance with GDPR regulations.";
+
+  return {
+    title,
+    description,
+  };
 }

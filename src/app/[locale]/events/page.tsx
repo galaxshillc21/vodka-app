@@ -1,5 +1,3 @@
-"use client";
-
 import { useTranslations } from "next-intl";
 import { Calendar, MapPin } from "lucide-react";
 import events from "@/data/events.json";
@@ -103,4 +101,16 @@ export default function EventsPage() {
       </div>
     </div>
   );
+}
+
+export async function generateMetadata({ params }) {
+  // Import translations for the current locale
+  const messages = (await import(`@/../messages/${params.locale}.json`)).default;
+  const title = messages.Events?.pageTitle || "Events – Blat Vodka";
+  const description = messages.Events?.pageDescription || "Discover upcoming Blat Vodka events and experiences.";
+
+  return {
+    title,
+    description,
+  };
 }

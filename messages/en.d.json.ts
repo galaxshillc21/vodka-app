@@ -36,13 +36,13 @@ declare const messages: {
     "disclaimer": "* By clicking 'Yes', you confirm that you are of legal drinking age in your country."
   },
   "Events": {
+    "pageTitle": "Blat Vodka Events",
+    "pageDescription": "Join us at exclusive Blat Vodka events and experience the purest vodka in unique settings.",
     "title": "Live the Blat Experience",
     "description": "Exclusive events where purity is enjoyed to the fullest",
     "thursday": "Thursday",
     "july": "July",
     "verEventos": "View Events",
-    "pageTitle": "Blat Vodka Events",
-    "pageDescription": "Join us at exclusive Blat Vodka events and experience the purest vodka in unique settings.",
     "eventDate": "Date",
     "eventLocation": "Location",
     "eventWebsite": "Event Website",
@@ -127,6 +127,8 @@ declare const messages: {
     "decline": "Decline"
   },
   "Privacy": {
+    "pageTitle": "Privacy Policy",
+    "pageDescription": "Learn how Blat Vodka collects, uses, and protects your personal data in accordance with GDPR regulations.",
     "title": "Privacy Policy",
     "introduction": "Your privacy is important to us. This policy explains how we handle your information.",
     "controller": "Identity and Contact Details of the Data Controller",
@@ -162,6 +164,8 @@ declare const messages: {
     "dataProtectionDesc": "We take appropriate measures to protect your data and ensure its security. Access to your data is restricted to authorized personnel only."
   },
   "SearchPage": {
+    "pageTitle": "Find Blat Vodka Stores Near You",
+    "pageDescription": "Search for Blat Vodka retailers near you by location or zip code.",
     "heroTitlePart1": "Find your Blat distributor",
     "heroTitlePart2": "closest to you",
     "zipcodePlaceholder": "Enter the postal code",
@@ -185,6 +189,8 @@ declare const messages: {
     "description": "Stay up to date with the latest news about Blat Vodka."
   },
   "CocktailsPage": {
+    "pageTitle": "Blat Vodka Cocktail Generator",
+    "pageDescription": "Discover and create cocktails with Blat Vodka using AI-powered recipes.",
     "title": "Create Your ✨ Cocktail with Blat Vodka",
     "description": "Describe your flavor preferences, the ingredients you have, or the kind of cocktail you're in the mood for. Our AI will suggest the perfect recipe for Blat Vodka!",
     "question1": "What type of cocktail would you like to prepare?",
