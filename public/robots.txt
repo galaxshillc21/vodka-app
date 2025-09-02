@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://blat.netlify.app
+
+# Sitemaps
+Sitemap: https://blat.netlify.app/sitemap.xml
