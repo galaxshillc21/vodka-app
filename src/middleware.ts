@@ -2,6 +2,10 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
 import { NextRequest } from "next/server";
 
+// === Locale config toggle ===
+export const useGeo = false; // Change to true to enable country-based locale detection
+export const defaultLocale = "es"; // Default locale if useGeo is false
+
 // Country to locale mapping
 const countryToLocale: Record<string, string> = {
   // Spanish-speaking countries
@@ -100,15 +104,28 @@ function getLocaleFromCountry(request: NextRequest): string {
 const intlMiddleware = createMiddleware(routing);
 
 export default function middleware(request: NextRequest) {
-  // Check if the URL already has a locale
   const pathname = request.nextUrl.pathname;
   const hasLocale = routing.locales.some((locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`);
 
-  // If no locale in URL, detect from country and redirect
+  // If no locale in URL, detect from config
   if (!hasLocale && pathname !== "/") {
-    const detectedLocale = getLocaleFromCountry(request);
+    let detectedLocale = defaultLocale;
+    if (useGeo) {
+      detectedLocale = getLocaleFromCountry(request);
+    }
     const url = request.nextUrl.clone();
     url.pathname = `/${detectedLocale}${pathname}`;
+    return Response.redirect(url);
+  }
+
+  // If root path, redirect to locale root
+  if (pathname === "/") {
+    let detectedLocale = defaultLocale;
+    if (useGeo) {
+      detectedLocale = getLocaleFromCountry(request);
+    }
+    const url = request.nextUrl.clone();
+    url.pathname = `/${detectedLocale}`;
     return Response.redirect(url);
   }
 
