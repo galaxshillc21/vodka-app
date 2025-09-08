@@ -7,7 +7,7 @@ import BlurText from "@/components/BlurText";
 import SpotlightCard from "@/components/SpotlightCard";
 
 export function Ciencia() {
-  const t = useTranslations("Ciencia");
+  const t = useTranslations("Index.CienciaSection");
   // const t = useTranslations("Index"); // Use the translations for the About section
   const handleAnimationComplete = () => {
     console.log("Animation completed!");

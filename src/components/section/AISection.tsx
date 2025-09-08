@@ -8,7 +8,7 @@ import { Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function AISection() {
-  const t = useTranslations("AISection");
+  const t = useTranslations("Index.AISection");
 
   return (
     <section className="h-auto w-full bg-gradient-to-br from-sky-100 to-white py-[80px]">

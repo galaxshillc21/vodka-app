@@ -6,7 +6,7 @@ import BlurText from "@/components/BlurText";
 import SpotlightCard from "@/components/SpotlightCard";
 
 export function BottleDesignParallax() {
-  const t = useTranslations("BottleDesign");
+  const t = useTranslations("Index.BottleDesignSection");
   const handleAnimationComplete = () => {
     console.log("Animation completed!");
   };
@@ -32,7 +32,7 @@ export function BottleDesignParallax() {
 }
 
 export function BottleDesign() {
-  const t = useTranslations("BottleDesign");
+  const t = useTranslations("Index.BottleDesignSection");
   const handleAnimationComplete = () => {
     console.log("Animation completed!");
   };
@@ -70,7 +70,7 @@ export function BottleDesign() {
 }
 
 export function BottleDesign2() {
-  const t = useTranslations("BottleDesign");
+  const t = useTranslations("Index.BottleDesignSection");
   const handleAnimationComplete = () => {
     console.log("Animation completed!");
   };

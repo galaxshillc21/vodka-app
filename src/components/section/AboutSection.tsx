@@ -63,7 +63,7 @@ export function About1() {
 }
 
 export function About2() {
-  const t = useTranslations("About"); // Use the translations for the About section
+  const t = useTranslations("Index.AboutSection"); // Use the translations for the About section
   const controls = useAnimation();
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref);

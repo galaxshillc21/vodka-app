@@ -10,7 +10,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 
 export function MainEvent() {
-  const t = useTranslations("Events");
+  const t = useTranslations("Index.EventsSection");
   const images = ["/images/eventos/mambo/img1.jpg", "/images/eventos/mambo/img2.jpg", "/images/eventos/mambo/img3.jpg", "/images/eventos/mambo/img4.jpg", "/images/eventos/mambo/img5.jpg"];
   const controls = useAnimation();
   const ref = React.useRef<HTMLDivElement>(null);

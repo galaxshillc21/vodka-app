@@ -5,7 +5,7 @@ import Image from "next/image";
 import RotatingText from "@/components/RotatingText";
 
 export default function PuritySection() {
-  const t = useTranslations("Purity");
+  const t = useTranslations("Index.PuritySection");
   return (
     <section className="h-auto py-20 bg-gray-100 text-center Purity flex items-center justify-center relative">
       <div className="absolute w-full h-full top-0 overflow-x-hidden object-cover pointer-events-none user-select-none z-0">

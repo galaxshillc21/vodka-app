@@ -6,7 +6,7 @@ import { useTranslations } from "next-intl"; // Import useTranslations
 import BlurText from "@/components/BlurText";
 
 export default function Agua() {
-  const t = useTranslations("Agua"); // Use the translations for the About section
+  const t = useTranslations("Index.AguaSection"); // Use the translations for the About section
   const handleAnimationComplete = () => {
     console.log("Animation completed!");
   };

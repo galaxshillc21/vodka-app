@@ -12,7 +12,7 @@
     "purity2": "reduce los efectos negativos de la resaca",
     "purity3": "los sabores se realzan",
     "purity4": "corto o largo, es la bebida ideal",
-    "qualities": {
+    "QualitySection": {
       "quality1": "0.0 mg/L <br/>de Impurezas",
       "quality2": "100% trigo<br/>francés",
       "quality3": "Agua del <br/>Atlántico",
@@ -22,6 +22,78 @@
       "desc1": "Es el único vodka del mercado con análisis certificados que garantizan ausencia total de impurezas.",
       "desc2": "Ingrediente premium aprobado por el gobierno francés, asegurando calidad y origen natural.",
       "desc3": "Proveniente de lluvia horizontal de las Islas Canarias, aporta pureza excepcional al producto."
+    },
+    "EventsSection": {
+      "pageTitle": "Eventos Blat Vodka",
+      "pageDescription": "Únete a nosotros en eventos exclusivos de Blat Vodka y experimenta el vodka más puro en entornos únicos.",
+      "title": "Vive la Experiencia Blat",
+      "description": "Eventos exclusivos donde la pureza se disfruta al máximo",
+      "thursday": "Jueves",
+      "july": "Julio",
+      "verEventos": "Ver Eventos",
+      "eventDate": "Fecha",
+      "eventLocation": "Ubicación",
+      "eventWebsite": "Sitio Web del Evento",
+      "visitWebsite": "Visitar Sitio Web",
+      "noEvents": "No hay eventos programados en este momento. ¡Vuelve pronto!"
+    },
+    "BottleDesignSection": {
+      "title": "Blat Vodka Logra lo que Ningún Otro Vodka Premium ha Logrado",
+      "title2": "Diseño que Refleja la Pureza",
+      "p1": "La botella de Blat Vodka es un reflejo de su contenido: ",
+      "span1": "Limpia, cristalina y de una elegancia singular.",
+      "p2": "Diseñada por el prestigioso ",
+      "span21": "Peter Schmidt Group",
+      "p22": ", cuyas obras son exhibidas incluso en el Museo Metropolitano de Arte Moderno de Nueva York, nuestra botella ha sido galardonada con ",
+      "span22": "tres premios internacionales.",
+      "p3": "Su diseño está ingeniosamente inspirado en el tradicional vaso de vodka, incorporando los relieves del propio nombre para una estética distintiva y táctil."
+    },
+    "PuritySection": {
+      "adds": "Que añade la Pureza?",
+      "mejor": "Mejor",
+      "one": "Sabor",
+      "two": "Calidad",
+      "three": "Suavidad",
+      "four": "Para Combinar",
+      "p1": "La pureza excepcional de Blat Vodka transforma su experiencia de consumo, ofreciendo un Mejor Sabor que se disfruta tanto con hielo como sin él. Gracias a su proceso único, garantiza una Mejor Calidad que ayuda a reducir los efectos negativos de la resaca, haciendo que cada momento sea más placentero.",
+      "p2": "Además, su suavidad inigualable lo convierte en la Bebida Ideal para cualquier ocasión, ya sea en tragos cortos o largos. Blat Vodka también es Mejor para Combinar, ya que su pureza realza los sabores de otros ingredientes, permitiéndote crear cócteles verdaderamente excepcionales."
+    },
+    "AboutSection": {
+      "title": "Nuestra Herencia de Excelencia",
+      "heading1": "Creadores con Legado",
+      "p1": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
+      "p2": "Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.",
+      "p3": "En 1993 Esteban y Fernando decidieron hacerse con la destilería familiar ubicada en las Islas Canarias y estable- cieron su propia empresa, COGRAMI CANARIAS S.L. En la actualidad, siguen fabricando sus propios productos y los distribuyen a nivel mundial.",
+      "p4": "Durante estos años, los hermanos Banús se han dedi- cado a investigar diferentes procesos para eliminar las impurezas de las fermentaciones y dieron con una elaboración única. Utilizando este proceso han consegui- do elaborar el vodka más puro del mundo, Blat Vodka.",
+      "p5": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
+      "heading2": "Calidad sin compromisos",
+      "description2": "Con trigo francés y agua filtrada por rocas volcánicas, Blat Vodka alcanza una pureza certificada del 0.0%. Su suavidad y sabor lo convierten en el vodka más puro del mundo.",
+      "heading3": "Diseño con esencia",
+      "description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
+    },
+    "AguaSection": {
+      "heading1": "De la Tierra a su Copa",
+      "heading2": "La Esencia de Blat Vodka",
+
+      "title1": "Trigo Francés Premium",
+      "description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
+
+      "title2": "Pura Esencia del Atlántico",
+      "description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
+    },
+    "AISection": {
+      "title": "Crea Tu Cóctel Perfecto con IA",
+      "description": "Descubre recetas únicas de cócteles creadas específicamente para Blat Vodka usando inteligencia artificial. Describe tus preferencias y deja que nuestra IA sugiera la mezcla perfecta para cualquier ocasión.",
+      "button": "Prueba Nuestro Bartender IA"
+    },
+    "CienciaSection": {
+      "title": "La Ciencia Detrás de la Pureza Inigualable",
+      "p1": "Los hermanos Banús dedicaron años a investigar y desarrollar un proceso único que elimina las impurezas de la fermentación sin comprometer el sabor. Este método patentado nos permite elaborar Blat Vodka con",
+      "span1": " 0.0mg/L de impurezas detectadas",
+      "p1a": ", estableciéndolo como el vodka más puro del mundo.",
+      "p2": "Nuestra pureza está certificada: Un laboratorio independiente de EE.UU., acreditado por la TTB, ha confirmado que Blat Vodka no contiene impurezas detectables, incluyendo 1-butanol, alcohol amílico activo, alcohol isoamílico, isobutanol, metanol, n-propanol, DB acetaldehído y DB acetato de etilo.",
+      "marcaH": "Marca",
+      "impH": "Impurezas (mg/L)"
     }
   },
   "AgeVerification": {
@@ -31,75 +103,6 @@
     "no": "No, no lo soy",
     "entering": "Entrando...",
     "disclaimer": "* Al hacer clic en 'Sí', confirmas que tienes la edad legal para beber en tu país."
-  },
-  "Events": {
-    "pageTitle": "Eventos Blat Vodka",
-    "pageDescription": "Únete a nosotros en eventos exclusivos de Blat Vodka y experimenta el vodka más puro en entornos únicos.",
-    "title": "Vive la Experiencia Blat",
-    "description": "Eventos exclusivos donde la pureza se disfruta al máximo",
-    "thursday": "Jueves",
-    "july": "Julio",
-    "verEventos": "Ver Eventos",
-    "pageTitle": "Eventos Blat Vodka",
-    "pageDescription": "Únete a nosotros en eventos exclusivos de Blat Vodka y experimenta el vodka más puro en entornos únicos.",
-    "eventDate": "Fecha",
-    "eventLocation": "Ubicación",
-    "eventWebsite": "Sitio Web del Evento",
-    "visitWebsite": "Visitar Sitio Web",
-    "noEvents": "No hay eventos programados en este momento. ¡Vuelve pronto!"
-  },
-  "BottleDesign": {
-    "title": "Blat Vodka Logra lo que Ningún Otro Vodka Premium ha Logrado",
-    "title2": "Diseño que Refleja la Pureza",
-    "p1": "La botella de Blat Vodka es un reflejo de su contenido: ",
-    "span1": "Limpia, cristalina y de una elegancia singular.",
-    "p2": "Diseñada por el prestigioso ",
-    "span21": "Peter Schmidt Group",
-    "p22": ", cuyas obras son exhibidas incluso en el Museo Metropolitano de Arte Moderno de Nueva York, nuestra botella ha sido galardonada con ",
-    "span22": "tres premios internacionales.",
-    "p3": "Su diseño está ingeniosamente inspirado en el tradicional vaso de vodka, incorporando los relieves del propio nombre para una estética distintiva y táctil."
-  },
-  "About": {
-    "title": "Nuestra Herencia de Excelencia",
-    "heading1": "Creadores con Legado",
-    "p1": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
-    "p2": "Durante 40 años la empresa familiar COGRAMI S.A.E. fueron los dueños y fabricantes de Pernod y Bols.",
-    "p3": "En 1993 Esteban y Fernando decidieron hacerse con la destilería familiar ubicada en las Islas Canarias y estable- cieron su propia empresa, COGRAMI CANARIAS S.L. En la actualidad, siguen fabricando sus propios productos y los distribuyen a nivel mundial.",
-    "p4": "Durante estos años, los hermanos Banús se han dedi- cado a investigar diferentes procesos para eliminar las impurezas de las fermentaciones y dieron con una elaboración única. Utilizando este proceso han consegui- do elaborar el vodka más puro del mundo, Blat Vodka.",
-    "p5": "Fernando y Esteban son la tercera generación de una familia experta en el mundo de los alcoholes desde 1987.",
-    "heading2": "Calidad sin compromisos",
-    "description2": "Con trigo francés y agua filtrada por rocas volcánicas, Blat Vodka alcanza una pureza certificada del 0.0%. Su suavidad y sabor lo convierten en el vodka más puro del mundo.",
-    "heading3": "Diseño con esencia",
-    "description3": "La botella, diseñada por Peter Schmidt Group, refleja la pureza del vodka. Ha ganado premios internacionales por su elegancia y simplicidad cristalina."
-  },
-  "Agua": {
-    "heading1": "De la Tierra a su Copa",
-    "heading2": "La Esencia de Blat Vodka",
-
-    "title1": "Trigo Francés Premium",
-    "description1": "Seleccionamos exclusivamente los mejores granos de trigo francés para la destilación de Blat Vodka. El estricto control del gobierno francés asegura que nuestro trigo no es genéticamente alterado, garantizando así la excepcional calidad de nuestros ingredientes.",
-
-    "title2": "Pura Esencia del Atlántico",
-    "description2": "El destilado se fusiona con agua pura del Atlántico, conocida como lluvia horizontal, que se filtra naturalmente a través de las rocas volcánicas de las montañas de las Islas Canarias. Este entorno único y el aire puro del Atlántico son clave para la pureza final de nuestro producto."
-  },
-  "Purity": {
-    "adds": "Que añade la Pureza?",
-    "mejor": "Mejor",
-    "one": "Sabor",
-    "two": "Calidad",
-    "three": "Suavidad",
-    "four": "Para Combinar",
-    "p1": "La pureza excepcional de Blat Vodka transforma su experiencia de consumo, ofreciendo un Mejor Sabor que se disfruta tanto con hielo como sin él. Gracias a su proceso único, garantiza una Mejor Calidad que ayuda a reducir los efectos negativos de la resaca, haciendo que cada momento sea más placentero.",
-    "p2": "Además, su suavidad inigualable lo convierte en la Bebida Ideal para cualquier ocasión, ya sea en tragos cortos o largos. Blat Vodka también es Mejor para Combinar, ya que su pureza realza los sabores de otros ingredientes, permitiéndote crear cócteles verdaderamente excepcionales."
-  },
-  "Ciencia": {
-    "title": "La Ciencia Detrás de la Pureza Inigualable",
-    "p1": "Los hermanos Banús dedicaron años a investigar y desarrollar un proceso único que elimina las impurezas de la fermentación sin comprometer el sabor. Este método patentado nos permite elaborar Blat Vodka con",
-    "span1": " 0.0mg/L de impurezas detectadas",
-    "p1a": ", estableciéndolo como el vodka más puro del mundo.",
-    "p2": "Nuestra pureza está certificada: Un laboratorio independiente de EE.UU., acreditado por la TTB, ha confirmado que Blat Vodka no contiene impurezas detectables, incluyendo 1-butanol, alcohol amílico activo, alcohol isoamílico, isobutanol, metanol, n-propanol, DB acetaldehído y DB acetato de etilo.",
-    "marcaH": "Marca",
-    "impH": "Impurezas (mg/L)"
   },
   "Navigation": {
     "home": "Inicio",
@@ -199,11 +202,7 @@
     "error2": "Ocurrió un error al generar el cóctel. Por favor, inténtalo más tarde.",
     "disclaimer": "* Este generador de cócteles con IA es solo para entretenimiento y puede sugerir ingredientes inexactos o incompatibles. No tiene en cuenta alérgenos ni restricciones dietéticas, por lo que siempre debes verificar las recetas antes de usarlas. No nos hacemos responsables de efectos adversos o resultados. Los usuarios deben ser mayores de edad y consumir alcohol de forma responsable. Esta herramienta no sustituye el consejo profesional y su uso es bajo tu propio riesgo."
   },
-  "AISection": {
-    "title": "Crea Tu Cóctel Perfecto con IA",
-    "description": "Descubre recetas únicas de cócteles creadas específicamente para Blat Vodka usando inteligencia artificial. Describe tus preferencias y deja que nuestra IA sugiera la mezcla perfecta para cualquier ocasión.",
-    "button": "Prueba Nuestro Bartender IA"
-  },
+
   "NotFound": {
     "title": "Página no encontrada",
     "description": "La página que buscas no existe."
