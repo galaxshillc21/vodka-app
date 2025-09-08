@@ -20,7 +20,7 @@ type Event = {
 };
 
 export default function EventsPage() {
-  const t = useTranslations("Events");
+  const t = useTranslations("Index.EventsSection");
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-[120px]">
