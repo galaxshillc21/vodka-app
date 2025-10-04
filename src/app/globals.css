@@ -11,34 +11,6 @@
     --foreground: 262.5deg 7.48% 41.96%;
   }
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: rgb(17, 22, 29) !important;
-    --foreground: #999caa !important;
-  }
-  body {
-    background: black !important;
-    background-size: 220%;
-    background-position: 60% -10%;
-    color: white !important;
-    text-shadow: none !important;
-  }
-  body::before {
-    content: none !important;
-  }
-  /* Frosted Card */
-  .frosted-card {
-    background-color: rgba(129, 129, 129, 0.7882352941);
-    border: 1px solid #959595;
-    text-shadow: 0px 2px 1px rgba(103, 103, 103, 0.831372549) !important;
-  }
-  .frosted-card.selected-store {
-    border-color: var(--primary-color);
-  }
-  a {
-    color: hsl(var(--foreground)) !important;
-  }
-}
 :root {
   --background: #ededed;
   --foreground: 262.5deg 7.48% 41.96%;

@@ -14,33 +14,33 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: rgb(17, 22, 29) !important;
-    --foreground: #999caa !important;
-  }
-  body {
-    // background-image: url("../../public/images/vodka-blat.jpg") !important;
-    background: black !important;
-    background-size: 220%;
-    background-position: 60% -10%;
-    color: white !important;
-    text-shadow: none !important;
-    &::before {
-      content: none !important;
-    }
-  }
-  /* Frosted Card */
-  .frosted-card {
-    background-color: #818181c9;
-    border: 1px solid #959595;
-    text-shadow: 0px 2px 1px #676767d4 !important;
-    &.selected-store {
-      border-color: var(--primary-color);
-    }
-  }
-  a {
-    color: hsl(var(--foreground)) !important;
-  }
+  // :root {
+  //   --background: rgb(17, 22, 29) !important;
+  //   --foreground: #999caa !important;
+  // }
+  // body {
+  //   // background-image: url("../../public/images/vodka-blat.jpg") !important;
+  //   background: black !important;
+  //   background-size: 220%;
+  //   background-position: 60% -10%;
+  //   color: white !important;
+  //   text-shadow: none !important;
+  //   &::before {
+  //     content: none !important;
+  //   }
+  // }
+  // /* Frosted Card */
+  // .frosted-card {
+  //   background-color: #818181c9;
+  //   border: 1px solid #959595;
+  //   text-shadow: 0px 2px 1px #676767d4 !important;
+  //   &.selected-store {
+  //     border-color: var(--primary-color);
+  //   }
+  // }
+  // a {
+  //   color: hsl(var(--foreground)) !important;
+  // }
 }
 
 :root {
