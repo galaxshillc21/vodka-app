@@ -33,7 +33,8 @@ export default function CocktailGenerator() {
         fr: "French",
       };
       const language = languageMap[locale] || "English";
-      const prompt = `Cocktail with Blat Vodka: ${cocktailInput}. Format in Markdown: # Name, ## Ingredients, ## Instructions. No intro, no acknowledgments. Be concise. Respond in ${language}.`;
+      // const prompt = `Cocktail with Blat Vodka: ${cocktailInput}. Format in Markdown: # Name, ## Ingredients, ## Instructions. No intro, no acknowledgments. Be concise. Respond in ${language}.`;
+      const prompt = `Create a complete Blat Vodka cocktail recipe for: ${cocktailInput}. Use markdown format: # Name, ## Ingredients, ## Instructions. No questions. Respond in ${language}.`;
 
       const response = await fetch(`/api/gemini-ai-model`, {
         method: "POST",
