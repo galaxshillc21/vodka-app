@@ -116,7 +116,7 @@ const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
         canScrollNext,
       }}
     >
-      <div ref={ref} onKeyDownCapture={handleKeyDown} className={cn("relative", className)} role="region" aria-roledescription="carousel" {...props}>
+      <div ref={ref} onKeyDownCapture={handleKeyDown} className={cn("relative w-full", className)} role="region" aria-roledescription="carousel" {...props}>
         {children}
       </div>
     </CarouselContext.Provider>
