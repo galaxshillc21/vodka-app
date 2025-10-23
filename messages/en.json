@@ -170,10 +170,10 @@
   "SearchPage": {
     "pageTitle": "Find Blat Vodka Stores Near You",
     "pageDescription": "Search for Blat Vodka retailers near you by location or zip code.",
-    "heroTitlePart1": "Find your Blat distributor",
+    "heroTitlePart1": "Find your Blat Distributor",
     "heroTitlePart2": "closest to you",
-    "heroTitleStore": "Find your Blat store",
-    "heroTitleDistributor": "Find your Blat distributor",
+    "heroTitleStore": "Find your Blat Store",
+    "heroTitleDistributor": "Find your Blat Distributor",
     "zipcodePlaceholder": "Enter the postal code",
     "searchButton": "Search",
     "tabStores": "Stores",

@@ -166,10 +166,10 @@
     "dataProtectionDesc": "Tomamos medidas apropiadas para proteger tus datos y garantizar su seguridad. El acceso a tus datos está restringido únicamente al personal autorizado."
   },
   "SearchPage": {
-    "heroTitlePart1": "Encuentra tu distribuidor de Blat",
+    "heroTitlePart1": "Encuentra tu Distribuidor de Blat",
     "heroTitlePart2": "más cercano a ti",
-    "heroTitleStore": "Encuentra tu tienda de Blat",
-    "heroTitleDistributor": "Encuentra tu distribuidor de Blat",
+    "heroTitleStore": "Encuentra tu Tienda de Blat",
+    "heroTitleDistributor": "Encuentra tu Distribuidor de Blat",
     "zipcodePlaceholder": "Ingresa el código postal",
     "searchButton": "Buscar",
     "tabStores": "Tiendas",
