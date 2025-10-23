@@ -10,9 +10,11 @@ type TiendasTabProps = {
   toggleFavorite: (store: Store) => void;
   onStoreSelect: (store: Store) => void;
   selectedStore: Store | null; // 👈 NEW
+  noFoundMessage?: string;
+  noFoundTitle?: string;
 };
 
-const TiendasTab = ({ closestStores, formatDistance, favorites, toggleFavorite, onStoreSelect, selectedStore }: TiendasTabProps) => {
+const TiendasTab = ({ closestStores, formatDistance, favorites, toggleFavorite, onStoreSelect, selectedStore, noFoundMessage, noFoundTitle }: TiendasTabProps) => {
   const t = useTranslations("SearchPage");
 
   return (
@@ -61,8 +63,8 @@ const TiendasTab = ({ closestStores, formatDistance, favorites, toggleFavorite, 
           <div className="bg-gray-100 rounded-full p-6 mb-4">
             <Navigation size={32} className="text-gray-400 mx-auto" />
           </div>
-          <h3 className="text-lg font-semibold text-gray-700 mb-2">{t("noStoresFound")}</h3>
-          <p className="text-gray-500 mb-4 max-w-md">{t("noStoresMessage")}</p>
+          <h3 className="text-lg font-semibold text-gray-700 mb-2">{noFoundTitle || t("noStoresFound")}</h3>
+          <p className="text-gray-500 mb-4 max-w-md">{noFoundMessage || t("noStoresMessage")}</p>
           <div className="flex flex-col sm:flex-row gap-2 text-sm text-gray-600">
             <span className="flex items-center gap-1">
               <Navigation size={14} />

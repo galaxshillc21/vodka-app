@@ -5,6 +5,7 @@ import { Search as SearchIcon, LocateFixed } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SkeletonTiendas } from "@/components/SkeletonCard";
 import stores from "@/data/stores.json";
+import distributors from "@/data/distributors.json";
 import { haversineDistance } from "@/utils/distance";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
@@ -41,29 +42,39 @@ const MapComponent = dynamic(() => import("@/components/Map"), {
 export default function SearchClient() {
   const t = useTranslations("SearchPage");
   const [zipcode, setZipcode] = useState("");
-  const [closestStores, setClosestStores] = useState<Store[]>([]);
-  const [selectedStore, setSelectedStore] = useState<Store | null>(null);
+  const [closestItems, setClosestItems] = useState<Store[]>([]);
+  const [selectedItem, setSelectedItem] = useState<Store | null>(null);
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState<Store[]>([]);
+  const [storeType, setStoreType] = useState<"stores" | "distributors">("stores");
 
-  const findClosestStore = useCallback(async (coords: [number, number]) => {
-    try {
-      const sortedStores = stores
-        .map((store: Store) => {
-          const storeCoords: [number, number] = [store.longitude, store.latitude];
-          const distance = haversineDistance(coords, storeCoords);
-          return { ...store, distance };
-        })
-        .sort((a, b) => a.distance - b.distance);
+  // Get the appropriate data source based on current selection
+  const getCurrentData = useCallback(() => {
+    return storeType === "stores" ? stores : distributors;
+  }, [storeType]);
 
-      setClosestStores(sortedStores.slice(0, 5));
-    } catch (error) {
-      console.error("Error finding closest store:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+  const findClosestStore = useCallback(
+    async (coords: [number, number]) => {
+      try {
+        const currentData = getCurrentData();
+        const sortedItems = currentData
+          .map((item: Store) => {
+            const itemCoords: [number, number] = [item.longitude, item.latitude];
+            const distance = haversineDistance(coords, itemCoords);
+            return { ...item, distance };
+          })
+          .sort((a, b) => a.distance - b.distance);
+
+        setClosestItems(sortedItems.slice(0, 5));
+      } catch (error) {
+        console.error("Error finding closest store:", error);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [getCurrentData]
+  );
 
   const findClosestStoreByZipcode = useCallback(
     async (zipcode: string) => {
@@ -131,6 +142,16 @@ export default function SearchClient() {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
 
+  // Effect to refresh data when storeType changes
+  useEffect(() => {
+    setSelectedItem(null); // Clear selection when switching types
+    if (userCoords) {
+      findClosestStore(userCoords);
+    } else if (zipcode) {
+      findClosestStoreByZipcode(zipcode);
+    }
+  }, [storeType, userCoords, zipcode, findClosestStore, findClosestStoreByZipcode]);
+
   return (
     <section className="pb-0">
       <div className="flex flex-col md:flex-row h-[100vh] lg:h-[100vh] max-h-screen relative">
@@ -140,7 +161,20 @@ export default function SearchClient() {
           <div className="justify-center mb-4 hidden lg:flex ">
             <Image src="/images/blat_logo_bronze.png" alt="Blat Logo Bronze" width={100} height={100} priority className="invisible" />
           </div>
-          <h4 className="subTitle text-center">{t("heroTitlePart1")}</h4>
+
+          {/* Store/Distributor Toggle */}
+          <Tabs value={storeType} onValueChange={(value) => setStoreType(value as "stores" | "distributors")} className="mb-4">
+            <TabsList className="w-full bg-bronze-muted rounded-md h-12">
+              <TabsTrigger value="stores" className="w-1/2 text-base font-medium">
+                {t("tabStores")}
+              </TabsTrigger>
+              <TabsTrigger value="distributors" className="w-1/2 text-base font-medium">
+                {t("tabDistributors")}
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
+
+          <h4 className="subTitle text-center">{storeType === "stores" ? t("heroTitleStore") : t("heroTitleDistributor")}</h4>
 
           <form onSubmit={handleZipcodeSubmit} className="mt-4 space-y-2">
             <div className="flex gap-2">
@@ -165,12 +199,28 @@ export default function SearchClient() {
             </TabsList>
 
             <TabsContent value="tiendas">
-              {loading ? (
+              {storeType === "stores" ? (
+                loading ? (
+                  <SkeletonTiendas />
+                ) : (
+                  <>
+                    <TiendasTab closestStores={closestItems} formatDistance={formatDistance} favorites={favorites} toggleFavorite={toggleFavorite} onStoreSelect={(store) => setSelectedItem(store)} selectedStore={selectedItem} noFoundMessage={t("noStoresMessage")} noFoundTitle={t("noStoresFound")} />
+                  </>
+                )
+              ) : loading ? (
                 <SkeletonTiendas />
               ) : (
                 <>
-                  <h3 className="mt-4 mb-2 text-center">{t("closestStoresHeading")}</h3>
-                  <TiendasTab closestStores={closestStores} formatDistance={formatDistance} favorites={favorites} toggleFavorite={toggleFavorite} onStoreSelect={(store) => setSelectedStore(store)} selectedStore={selectedStore} />
+                  <TiendasTab
+                    closestStores={closestItems}
+                    formatDistance={formatDistance}
+                    favorites={favorites}
+                    toggleFavorite={toggleFavorite}
+                    onStoreSelect={(store) => setSelectedItem(store)}
+                    selectedStore={selectedItem}
+                    noFoundMessage={t("noDistributorsMessage")}
+                    noFoundTitle={t("noDistributorsFound")}
+                  />
                 </>
               )}
             </TabsContent>
@@ -183,7 +233,7 @@ export default function SearchClient() {
 
         {/* RIGHT: Map */}
         <div id="Map" className="md:w-[60vw] w-full h-[45vh] md:h-full order-first md:order-last">
-          <MapComponent userCoords={userCoords} stores={closestStores} selectedStore={selectedStore} />
+          <MapComponent userCoords={userCoords} stores={closestItems} selectedStore={selectedItem} />
         </div>
       </div>
     </section>
