@@ -109,7 +109,6 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
     if (!containerRef.current || mapRef.current || isInitializedRef.current) return;
 
     isInitializedRef.current = true;
-    const isCoordsAvailable = userCoords !== null;
 
     try {
       mapRef.current = new maplibregl.Map({
@@ -167,7 +166,8 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
       }
       isInitializedRef.current = false;
     };
-  }, []); // Remove userCoords dependency to prevent recreation
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []); // Intentionally empty to create map only once
 
   // Separate effect to handle coordinate changes without recreating the map
   useEffect(() => {

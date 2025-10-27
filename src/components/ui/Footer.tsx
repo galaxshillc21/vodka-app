@@ -3,7 +3,7 @@
 import SpotlightCard from "@/components/SpotlightCard";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Home, Newspaper, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
+import { Home, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
 import InstallPrompt from "@/components/InstallPrompt";
 import { Button } from "@/components/ui/button";
 

@@ -11,21 +11,17 @@ import { useRef, useEffect } from "react";
 export function Hero() {
   const t = useTranslations("Index");
   const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"], // Try the original offset
-  });
 
-  // Alternative: Try using global scroll instead of target-specific
+  // Use global scroll for parallax
   const { scrollY } = useScroll();
 
   // Different parallax rates - Image is left column, Text is right column
   const imageColumnY = useTransform(scrollY, [0, 1000], [0, -150]); // Left column (image) - faster
-  const textColumnY = useTransform(scrollY, [0, 1000], [0, 150]); // Right column (text) - slower
+  const textColumnY = useTransform(scrollY, [0, 1000], [0, -80]); // Right column (text) - slower
 
   // Debug: Log scroll progress and parallax values
   useEffect(() => {
-    const unsubscribe = scrollY.on("change", (latest) => {
+    const unsubscribe = scrollY.on("change", () => {
       // console.log("Scroll Y:", latest);
       // console.log("Image Y:", imageColumnY.get());
       // console.log("Text Y:", textColumnY.get());
