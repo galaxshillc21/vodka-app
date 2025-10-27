@@ -45,7 +45,7 @@ export default function Footer() {
             Blat Vodka &copy; {new Date().getFullYear()} | {t("copyright")}.
           </div>
           <div className="mt-2">
-            <a href="mailto:info@galaxshi.com" className="underline hover:text-orange-600">
+            <a href="mailto:fbanus@blatvodka.com" className="underline hover:text-orange-600">
               {t("contact")}
             </a>{" "}
             |{" "}

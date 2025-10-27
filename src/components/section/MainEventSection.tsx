@@ -7,7 +7,7 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import BlurText from "@/components/BlurText";
 import { useAnimation, useInView } from "framer-motion";
 import { useEffect } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 export function MainEvent() {
   const t = useTranslations("Index.EventsSection");

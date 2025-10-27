@@ -4,7 +4,7 @@ import { NextRequest } from "next/server";
 
 // === Locale config toggle ===
 export const useGeo = false; // Change to true to enable country-based locale detection
-export const defaultLocale = "es"; // Default locale if useGeo is false
+export const defaultLocale = "en"; // Default locale if useGeo is false - matches routing.ts
 
 // Country to locale mapping
 const countryToLocale: Record<string, string> = {
