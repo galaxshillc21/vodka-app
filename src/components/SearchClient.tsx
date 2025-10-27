@@ -4,13 +4,16 @@ import { useState, useEffect, useCallback } from "react";
 import { Search as SearchIcon, LocateFixed } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SkeletonTiendas } from "@/components/SkeletonCard";
-import stores from "@/data/stores.json";
-import distributors from "@/data/distributors.json";
 import { haversineDistance } from "@/utils/distance";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import type { Store } from "@/types/store";
+
+interface SearchClientProps {
+  initialStores: Store[];
+  initialDistributors: Store[];
+}
 
 // Lazy load tab components
 const TiendasTab = dynamic(() => import("@/components/TiendasTab"), {
@@ -39,7 +42,7 @@ const MapComponent = dynamic(() => import("@/components/Map"), {
   ),
 });
 
-export default function SearchClient() {
+export default function SearchClient({ initialStores, initialDistributors }: SearchClientProps) {
   const t = useTranslations("SearchPage");
   const [zipcode, setZipcode] = useState("");
   const [closestItems, setClosestItems] = useState<Store[]>([]);
@@ -47,28 +50,35 @@ export default function SearchClient() {
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState<Store[]>([]);
-  const [storeType, setStoreType] = useState<"stores" | "distributors">("stores");
+  const [storeType, setStoreType] = useState<"stores" | "distributors">("distributors"); // Default to distributors
 
   // Get the appropriate data source based on current selection
   const getCurrentData = useCallback(() => {
-    return storeType === "stores" ? stores : distributors;
-  }, [storeType]);
+    const data = storeType === "stores" ? initialStores : initialDistributors;
+    return data || [];
+  }, [storeType, initialStores, initialDistributors]);
 
   const findClosestStore = useCallback(
     async (coords: [number, number]) => {
       try {
         const currentData = getCurrentData();
+        if (!currentData || currentData.length === 0) {
+          setClosestItems([]);
+          return;
+        }
+
         const sortedItems = currentData
           .map((item: Store) => {
             const itemCoords: [number, number] = [item.longitude, item.latitude];
             const distance = haversineDistance(coords, itemCoords);
             return { ...item, distance };
           })
-          .sort((a, b) => a.distance - b.distance);
+          .sort((a, b) => (a.distance || 0) - (b.distance || 0));
 
         setClosestItems(sortedItems.slice(0, 5));
       } catch (error) {
         console.error("Error finding closest store:", error);
+        setClosestItems([]);
       } finally {
         setLoading(false);
       }
@@ -100,8 +110,17 @@ export default function SearchClient() {
     if (savedZip) {
       setZipcode(savedZip);
       findClosestStoreByZipcode(savedZip);
+    } else {
+      // No saved zipcode, initialize with default location
+      // Default coordinates for Gran Canaria, Spain
+      const defaultCoords: [number, number] = [-15.4581, 28.1098];
+      // Alternative: Madrid, Spain coordinates (uncomment to use Madrid as default)
+      // const defaultCoords: [number, number] = [-3.7038, 40.4168];
+
+      setUserCoords(defaultCoords);
+      findClosestStore(defaultCoords);
     }
-  }, [findClosestStoreByZipcode]);
+  }, [findClosestStoreByZipcode, findClosestStore]);
 
   const handleZipcodeSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -131,13 +150,15 @@ export default function SearchClient() {
     setFavorites((prev) => (prev.some((fav) => fav.id === store.id) ? prev.filter((fav) => fav.id !== store.id) : [...prev, store]));
   };
 
-  const formatDistance = (d: number) => (d < 1 ? `${(d * 1000).toFixed(0)} m` : `${d.toFixed(2)} km`);
+  const formatDistance = (d: number | undefined) => {
+    if (typeof d !== "number" || isNaN(d)) return "";
+    return d < 1 ? `${(d * 1000).toFixed(0)} m` : `${d.toFixed(2)} km`;
+  };
 
   useEffect(() => {
     const saved = localStorage.getItem("favorites");
     if (saved) setFavorites(JSON.parse(saved));
   }, []);
-
   useEffect(() => {
     localStorage.setItem("favorites", JSON.stringify(favorites));
   }, [favorites]);
@@ -163,18 +184,19 @@ export default function SearchClient() {
           </div>
 
           {/* Store/Distributor Toggle */}
-          <Tabs value={storeType} onValueChange={(value) => setStoreType(value as "stores" | "distributors")} className="mb-4">
-            <TabsList className="w-full bg-bronze-muted rounded-md h-12">
-              <TabsTrigger value="stores" className="w-1/2 text-base font-medium">
-                {t("tabStores")}
-              </TabsTrigger>
-              <TabsTrigger value="distributors" className="w-1/2 text-base font-medium">
+          <Tabs value={storeType} onValueChange={(value) => setStoreType(value as "stores" | "distributors")} className="mb-4 hidden">
+            <TabsList className="w-full bg-transparent rounded-md h-12">
+              <TabsTrigger value="distributors" className="w-full text-base font-medium rounded-full bg-teal-600">
                 {t("tabDistributors")}
               </TabsTrigger>
+              {/* Stores tab commented out as requested */}
+              {/* <TabsTrigger value="stores" className="w-1/2 text-base font-medium">
+                {t("tabStores")}
+              </TabsTrigger> */}
             </TabsList>
           </Tabs>
 
-          <h4 className="subTitle text-center">{storeType === "stores" ? t("heroTitleStore") : t("heroTitleDistributor")}</h4>
+          <h4 className="subTitle text-center">{t("heroTitleDistributor")}</h4>
 
           <form onSubmit={handleZipcodeSubmit} className="mt-4 space-y-2">
             <div className="flex gap-2">
@@ -199,29 +221,19 @@ export default function SearchClient() {
             </TabsList>
 
             <TabsContent value="tiendas">
-              {storeType === "stores" ? (
-                loading ? (
-                  <SkeletonTiendas />
-                ) : (
-                  <>
-                    <TiendasTab closestStores={closestItems} formatDistance={formatDistance} favorites={favorites} toggleFavorite={toggleFavorite} onStoreSelect={(store) => setSelectedItem(store)} selectedStore={selectedItem} noFoundMessage={t("noStoresMessage")} noFoundTitle={t("noStoresFound")} />
-                  </>
-                )
-              ) : loading ? (
+              {loading ? (
                 <SkeletonTiendas />
               ) : (
-                <>
-                  <TiendasTab
-                    closestStores={closestItems}
-                    formatDistance={formatDistance}
-                    favorites={favorites}
-                    toggleFavorite={toggleFavorite}
-                    onStoreSelect={(store) => setSelectedItem(store)}
-                    selectedStore={selectedItem}
-                    noFoundMessage={t("noDistributorsMessage")}
-                    noFoundTitle={t("noDistributorsFound")}
-                  />
-                </>
+                <TiendasTab
+                  closestStores={closestItems}
+                  formatDistance={formatDistance}
+                  favorites={favorites}
+                  toggleFavorite={toggleFavorite}
+                  onStoreSelect={(store) => setSelectedItem(store)}
+                  selectedStore={selectedItem}
+                  noFoundMessage={storeType === "stores" ? t("noStoresMessage") : t("noDistributorsMessage")}
+                  noFoundTitle={storeType === "stores" ? t("noStoresFound") : t("noDistributorsFound")}
+                />
               )}
             </TabsContent>
 

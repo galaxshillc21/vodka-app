@@ -35,7 +35,7 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
           <h3 style={{ margin: "0 0 8px 0", fontSize: "16px", fontWeight: "600", color: "#333" }}>{store.name}</h3>
           <p style={{ margin: "0 0 8px 0", fontSize: "14px", color: "#666", lineHeight: "1.4" }}>{store.address}</p>
           <div style={{ margin: "8px 0", fontSize: "13px", color: "#555" }}>
-            {store.distance && (
+            {store.distance && typeof store.distance === "number" && !isNaN(store.distance) && (
               <div style={{ marginBottom: "4px", fontWeight: "500", color: "#1976d2", display: "flex", alignItems: "center", gap: "4px" }}>
                 <MapPin size={14} />
                 {store.distance < 1 ? `${(store.distance * 1000).toFixed(0)} m` : `${store.distance.toFixed(2)} km`}

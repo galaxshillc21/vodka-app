@@ -6,7 +6,7 @@ declare const messages: {
     "title": "Blat Vodka",
     "description": "The Purest Vodka in the World.",
     "purityHeading": "What does Purity Add?",
-    "heroButton": "See Closest Stores",
+    "heroButton": "Find Distributor",
     "puritySabor": "Better Flavor",
     "purityCalidad": "Better Quality",
     "purityCombinar": "Better for Mixing",

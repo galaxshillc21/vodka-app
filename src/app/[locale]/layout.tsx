@@ -44,7 +44,7 @@ export function generateStaticParams() {
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
 // Lazy load the age verification modal
@@ -57,7 +57,8 @@ const Footer = dynamic(() => import("@/components/ui/Footer"), {
   loading: () => null,
 });
 
-export default async function RootLayout({ children, params: { locale } }: Readonly<Props>) {
+export default async function RootLayout({ children, params }: Readonly<Props>) {
+  const { locale } = await params;
   // Validate that the incoming `locale` parameter is valid
   if (!locales.includes(locale as (typeof locales)[number])) notFound();
 
