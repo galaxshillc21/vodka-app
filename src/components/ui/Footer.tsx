@@ -18,10 +18,10 @@ export default function Footer() {
             <Home size={18} />
             {t("home")}
           </Link>
-          <Link href="/events" className="flex items-center gap-1 hover:underline">
+          {/* <Link href="/events" className="flex items-center gap-1 hover:underline">
             <Newspaper size={18} />
             {t("events")}
-          </Link>
+          </Link> */}
           <Link href="/search" className="flex items-center gap-1 hover:underline">
             <Store size={18} />
             {t("stores")}

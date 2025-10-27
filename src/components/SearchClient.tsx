@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, memo } from "react";
 import { Search as SearchIcon, LocateFixed } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SkeletonTiendas } from "@/components/SkeletonCard";
@@ -33,14 +33,23 @@ const FavoritosTab = dynamic(() => import("@/components/FavoritosTab"), {
   ),
   ssr: false,
 });
-const MapComponent = dynamic(() => import("@/components/Map"), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[400px] bg-gray-200 rounded-lg animate-pulse flex items-center justify-center">
-      <div className="text-gray-500">Loading map...</div>
-    </div>
-  ),
-});
+const MapComponent = dynamic(
+  () =>
+    import("@/components/Map").then((mod) => ({
+      default: memo(mod.default, (prevProps, nextProps) => {
+        // Custom comparison to prevent unnecessary re-renders
+        return prevProps.userCoords?.[0] === nextProps.userCoords?.[0] && prevProps.userCoords?.[1] === nextProps.userCoords?.[1] && prevProps.stores.length === nextProps.stores.length && prevProps.selectedStore?.id === nextProps.selectedStore?.id;
+      }),
+    })),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="h-[400px] bg-gray-200 rounded-lg animate-pulse flex items-center justify-center">
+        <div className="text-gray-500">Loading map...</div>
+      </div>
+    ),
+  }
+);
 
 export default function SearchClient({ initialStores, initialDistributors }: SearchClientProps) {
   const t = useTranslations("SearchPage");
@@ -176,7 +185,7 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
   return (
     <section className="pb-0">
       <div className="flex flex-col md:flex-row h-[100vh] lg:h-[100vh] max-h-screen relative">
-        <div className="absolute w-full h-[40px] rounded-t-xl lg:rounded-t-none bg-gradient-to-b lg:top-0 top-[35vh] lg:w-[30px] lg:h-full lg:left-[40vw] lg:bg-gradient-to-r from-white from-40% to-transparent to-90% z-[9] "></div>
+        {/* <div className="absolute w-full h-[40px] rounded-t-xl lg:rounded-t-none bg-gradient-to-b lg:top-0 top-[35vh] lg:w-[30px] lg:h-full lg:left-[40vw] lg:bg-gradient-to-r from-white from-40% to-transparent to-90% z-[9] "></div> */}
         {/* LEFT: Content */}
         <div id="Content" className="bg-white shadow-[0_-10px_10px_#00000014] rounded-t-xl lg:rounded-t-none relative md:w-[40vw] w-full h-[75vh] md:h-full overflow-y-auto custom-scroll p-4 lg:p-8 lg:pt-20 order-last md:order-first mt-[-20px] lg:mt-0">
           <div className="justify-center mb-4 hidden lg:flex ">
@@ -245,7 +254,7 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
 
         {/* RIGHT: Map */}
         <div id="Map" className="md:w-[60vw] w-full h-[45vh] md:h-full order-first md:order-last">
-          <MapComponent userCoords={userCoords} stores={closestItems} selectedStore={selectedItem} />
+          <MapComponent key="main-map" userCoords={userCoords} stores={closestItems} selectedStore={selectedItem} />
         </div>
       </div>
     </section>

@@ -5,7 +5,7 @@
 // 1. Edit mapStyles.ts and change DEFAULT_MAP_STYLE
 // 2. Or uncomment one of the alternative styles below in the maplibregl.Map constructor
 
-import { useEffect, useRef, useCallback } from "react";
+import { useEffect, useRef, useCallback, useMemo } from "react";
 import maplibregl, { NavigationControl, AttributionControl } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import { Store } from "@/types/store";
@@ -25,7 +25,13 @@ const MADRID_COORDS: [number, number] = [-3.7038, 40.4168]; // default fallback
 const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
   const mapRef = useRef<maplibregl.Map | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
+  const isInitializedRef = useRef(false);
   const t = useTranslations("SearchPage");
+
+  // Memoize the initial coordinates to prevent unnecessary re-renders
+  const initialCoords = useMemo(() => {
+    return userCoords !== null ? userCoords : MADRID_COORDS;
+  }, [userCoords]);
 
   // Helper function to create popup content with Lucide icons
   const createPopupContent = useCallback(
@@ -100,41 +106,79 @@ const Map: React.FC<MapProps> = ({ userCoords, stores, selectedStore }) => {
   );
 
   useEffect(() => {
-    if (!containerRef.current || mapRef.current) return;
+    if (!containerRef.current || mapRef.current || isInitializedRef.current) return;
 
+    isInitializedRef.current = true;
     const isCoordsAvailable = userCoords !== null;
 
-    mapRef.current = new maplibregl.Map({
-      container: containerRef.current,
-      // style: DEFAULT_MAP_STYLE, // Google Maps-like appearance
-      // Alternative styles you can try:
-      // style: mapStyles.bright, // More colorful
-      style: mapStyles.streetsv4, // With terrain
-      // style: mapStyles.outdoor, // With terrain
-      // style: mapStyles.hybrid, // Satellite with labels
-      center: isCoordsAvailable ? userCoords! : MADRID_COORDS,
-      zoom: isCoordsAvailable ? 10 : 5,
-      attributionControl: false,
-    });
-    mapRef.current.addControl(
-      new NavigationControl({
-        showCompass: true,
-        showZoom: true,
-        visualizePitch: false,
-      }),
+    try {
+      mapRef.current = new maplibregl.Map({
+        container: containerRef.current,
+        // style: DEFAULT_MAP_STYLE, // Google Maps-like appearance
+        // Alternative styles you can try:
+        // style: mapStyles.bright, // More colorful
+        style: mapStyles.streetsv4, // With terrain
+        // style: mapStyles.outdoor, // With terrain
+        // style: mapStyles.hybrid, // Satellite with labels
+        center: initialCoords,
+        zoom: userCoords !== null ? 10 : 5,
+        attributionControl: false,
+      });
 
-      "bottom-right"
-    );
-    mapRef.current.addControl(
-      new AttributionControl({
-        compact: false,
-      }),
-      "top-right"
-    );
+      // Add error handling for map load errors
+      mapRef.current.on("error", (e) => {
+        console.warn("Map load error (this is normal if requests are aborted):", e);
+        // Don't throw error, just log it to prevent app crashes
+      });
+
+      // Handle style load events
+      mapRef.current.on("styledata", () => {
+        // Style has loaded successfully
+      });
+
+      mapRef.current.on("sourcedataloading", () => {
+        // Suppress the "signal is aborted" errors in console by handling source loading
+      });
+
+      mapRef.current.addControl(
+        new NavigationControl({
+          showCompass: true,
+          showZoom: true,
+          visualizePitch: false,
+        }),
+        "bottom-right"
+      );
+
+      mapRef.current.addControl(
+        new AttributionControl({
+          compact: false,
+        }),
+        "top-right"
+      );
+    } catch (error) {
+      console.error("Error initializing map:", error);
+      isInitializedRef.current = false;
+    }
+
     return () => {
-      mapRef.current?.remove();
-      mapRef.current = null;
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
+      isInitializedRef.current = false;
     };
+  }, []); // Remove userCoords dependency to prevent recreation
+
+  // Separate effect to handle coordinate changes without recreating the map
+  useEffect(() => {
+    if (!mapRef.current || !userCoords) return;
+
+    mapRef.current.flyTo({
+      center: userCoords,
+      zoom: 10,
+      speed: 1.2,
+      essential: true,
+    });
   }, [userCoords]);
 
   useEffect(() => {
