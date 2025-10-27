@@ -41,9 +41,6 @@ export default function Footer() {
         </div>
 
         <div className="text-center text-sm text-gray-600 dark:text-gray-300">
-          <div>
-            Blat Vodka &copy; {new Date().getFullYear()} | {t("copyright")}.
-          </div>
           <div className="mt-2">
             <a href="mailto:fbanus@blatvodka.com" className="underline hover:text-orange-600">
               {t("contact")}
@@ -73,13 +70,11 @@ export default function Footer() {
             </Button>
           </InstallPrompt>
         </div>
+        <div>
+          Blat Vodka &copy; {new Date().getFullYear()} | {t("copyright")}.
+        </div>
       </SpotlightCard>
-      <div className="absolute left-0 right-0 bottom-2 text-center text-xs text-gray-400">
-        {t("createdBy")}{" "}
-        <a href="https://galaxshi.com" target="_blank" className="underline hover:text-orange-600">
-          Galaxshi LLC.
-        </a>
-      </div>
+      <div className="absolute left-0 right-0 bottom-2 text-center text-xs text-gray-400">{t("createdBy")} Galaxshi LLC.</div>
     </footer>
   );
 }
