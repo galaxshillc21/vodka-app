@@ -3,7 +3,7 @@
 import SpotlightCard from "@/components/SpotlightCard";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Home, Newspaper, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
+import { Home, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
 import InstallPrompt from "@/components/InstallPrompt";
 import { Button } from "@/components/ui/button";
 
@@ -18,10 +18,10 @@ export default function Footer() {
             <Home size={18} />
             {t("home")}
           </Link>
-          <Link href="/events" className="flex items-center gap-1 hover:underline">
+          {/* <Link href="/events" className="flex items-center gap-1 hover:underline">
             <Newspaper size={18} />
             {t("events")}
-          </Link>
+          </Link> */}
           <Link href="/search" className="flex items-center gap-1 hover:underline">
             <Store size={18} />
             {t("stores")}
@@ -41,15 +41,12 @@ export default function Footer() {
         </div>
 
         <div className="text-center text-sm text-gray-600 dark:text-gray-300">
-          <div>
-            Blat Vodka &copy; {new Date().getFullYear()} | {t("copyright")}.
-          </div>
           <div className="mt-2">
             <Link href="/admin/dashboard" className="underline hover:text-orange-600">
               Panel
             </Link>{" "}
             |{" "}
-            <a href="mailto:info@galaxshi.com" className="underline hover:text-orange-600">
+            <a href="mailto:fbanus@blatvodka.com" className="underline hover:text-orange-600">
               {t("contact")}
             </a>{" "}
             |{" "}
@@ -77,13 +74,11 @@ export default function Footer() {
             </Button>
           </InstallPrompt>
         </div>
+        <div>
+          Blat Vodka &copy; {new Date().getFullYear()} | {t("copyright")}.
+        </div>
       </SpotlightCard>
-      <div className="absolute left-0 right-0 bottom-2 text-center text-xs text-gray-400">
-        {t("createdBy")}{" "}
-        <a href="https://galaxshi.com" target="_blank" className="underline hover:text-orange-600">
-          Galaxshi LLC.
-        </a>
-      </div>
+      <div className="absolute left-0 right-0 bottom-2 text-center text-xs text-gray-400">{t("createdBy")} Galaxshi LLC.</div>
     </footer>
   );
 }

@@ -6,9 +6,9 @@ import { useTranslations } from "next-intl"; // Import useTranslations
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import BlurText from "@/components/BlurText";
 import { useAnimation, useInView } from "framer-motion";
-import Link from "next/link";
 import { EventService } from "@/lib/eventService";
 import { Event } from "@/types/event";
+import { Link } from "@/i18n/navigation";
 
 export function MainEvent() {
   const t = useTranslations("Index.EventsSection");

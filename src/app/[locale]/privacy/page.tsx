@@ -93,7 +93,7 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-bold text-gray-800 mb-4 font-fraunces">{t("contact")}</h2>
               <p className="text-gray-700 leading-relaxed">
                 {t("contactDesc")}{" "}
-                <a href="mailto:info@galaxshi.com" className="text-amber-600 hover:text-amber-700 underline">
+                <a href="mailto:fbanus@blatvodka.com" className="text-amber-600 hover:text-amber-700 underline">
                   Blat Vodka
                 </a>
               </p>

@@ -1,6 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
-import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react";
+// import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react";
+import { Home, Store, Martini, Loader2 } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
@@ -13,7 +14,7 @@ export default function HeaderClient() {
   const [loadingPath, setLoadingPath] = useState<string | null>(null);
 
   const LocaleSwitcher = dynamic(() => import("@/components/LocaleSwitcher"), {
-    loading: () => <div className="w-8 h-8 bg-gray-200 rounded animate-pulse" />,
+    loading: () => <div className="w-[50px] h-[40px] bg-gray-100 rounded animate-pulse" />,
     ssr: false,
   });
 
@@ -67,12 +68,12 @@ export default function HeaderClient() {
                   <span className="">{t("home")}</span>
                 </Link>
               </MenubarMenu>
-              <MenubarMenu>
+              {/* <MenubarMenu>
                 <Link href="/events" className={`flex items-center gap-1 px-3 py-2 hover:cursor-pointer rounded-full transition-colors duration-200 ${isActive("/events") ? "bg-gray-600/20 text-foreground" : "hover:bg-gray-600/10 hover:text-foreground"}`} onClick={() => handleLinkClick("/events")}>
                   {renderIcon("/events", Newspaper)}
                   <span className="">{t("events")}</span>
                 </Link>
-              </MenubarMenu>
+              </MenubarMenu> */}
               <MenubarMenu>
                 <Link href="/search" className={`flex items-center gap-1 px-3 py-2 hover:cursor-pointer rounded-full transition-colors duration-200 ${isActive("/search") ? "bg-gray-600/20 text-foreground" : "hover:bg-gray-600/10 hover:text-foreground"}`} onClick={() => handleLinkClick("/search")}>
                   {renderIcon("/search", Store)}
