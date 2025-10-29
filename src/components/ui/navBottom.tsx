@@ -4,7 +4,7 @@
 // Import Link from next-intl/navigation for i18n compatible links
 import { Link, usePathname } from "@/i18n/navigation"; // Changed from "next/link"
 // Newspaper
-import { Home, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
+import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react"; // Import useState and useEffect
@@ -18,7 +18,7 @@ export default function NavBottom() {
 
   // Language switcher dropdown
   const LocaleSwitcherFooter = dynamic(() => import("@/components/LocaleFooter"), {
-    loading: () => <div className="w-8 h-8 bg-gray-100 rounded animate-pulse" />,
+    loading: () => <div className="w-[91px] h-[56px] bg-gray-50 rounded animate-pulse" />,
     ssr: false,
   });
 
@@ -58,10 +58,10 @@ export default function NavBottom() {
           <span className="text-xs">{t("home")}</span>
         </Link>
         {/* Events Button */}
-        {/* <Link href="/events" className={`flex flex-col items-center ${pathname === "/events" ? currentPageClass : "text-gray-600 hover:text-black"}`} onClick={() => handleLinkClick("/events")}>
+        <Link href="/events" className={`hidden flex flex-col items-center ${pathname === "/events" ? currentPageClass : "text-gray-600 hover:text-black"}`} onClick={() => handleLinkClick("/events")}>
           {renderIcon("/events", Newspaper)}
           <span className="text-xs">{t("events")}</span>
-        </Link> */}
+        </Link>
 
         {/* Search Button */}
         <Link href="/search" className={`flex flex-col items-center ${pathname === "/search" ? currentPageClass : "text-gray-600 hover:text-black"}`} onClick={() => handleLinkClick("/search")}>

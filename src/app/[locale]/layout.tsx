@@ -37,6 +37,15 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: messages.Index.metaTitle,
     description: messages.Index.metaDescription,
     manifest: "/manifest.webmanifest",
+    icons: {
+      icon: [
+        { url: "/favicon.ico", sizes: "16x16 32x32", type: "image/x-icon" },
+        { url: "/icon0.svg", type: "image/svg+xml" },
+        { url: "/icon1.png", type: "image/png", sizes: "96x96" },
+      ],
+      apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+      shortcut: "/favicon.ico",
+    },
     alternates: {
       languages: {
         en: `${baseUrl}/en`,
@@ -66,6 +75,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       title: messages.Index.metaTitle,
       description: messages.Index.metaDescription,
       images: [`${baseUrl}/images/blat_beach.webp`],
+    },
+    other: {
+      // Additional meta tags for favicon discovery
+      "msapplication-TileColor": "#d97706",
+      "msapplication-config": "none",
     },
     robots: {
       index: true,
