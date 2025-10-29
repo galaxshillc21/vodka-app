@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { Calendar, MapPin, ExternalLink, Share2, Tag, CalendarPlus } from "lucide-react";
 import { Event } from "@/types/event";
+import { EventService } from "@/lib/eventService";
 import { Link } from "@/i18n/navigation";
 import InlineMap from "@/components/InlineMap";
 import Image from "next/image";
@@ -11,7 +12,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { downloadICSFile, CalendarEvent } from "@/utils/calendar";
 
 interface EventDetailClientProps {
-  event: Event;
+  eventId: string;
 }
 
 // Helper function to extract coordinates from Google Maps link
@@ -52,10 +53,35 @@ function extractCoordinatesFromGoogleMapsLink(link: string): [number, number] | 
   }
 }
 
-export default function EventDetailClient({ event }: EventDetailClientProps) {
+export default function EventDetailClient({ eventId }: EventDetailClientProps) {
   const t = useTranslations("Index.EventsSection");
   const locale = useLocale();
+  const [event, setEvent] = useState<Event | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [mapCoordinates, setMapCoordinates] = useState<[number, number] | null>(null);
+
+  // Fetch event data on client side
+  useEffect(() => {
+    const fetchEvent = async () => {
+      try {
+        setLoading(true);
+        const eventData = await EventService.getEventById(eventId);
+        if (eventData) {
+          setEvent(eventData);
+        } else {
+          setError(true);
+        }
+      } catch (err) {
+        console.error("Failed to fetch event:", err);
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchEvent();
+  }, [eventId]);
 
   // Helper function to format date with proper locale
   const formatEventDate = (dateString: string) => {
@@ -93,6 +119,8 @@ export default function EventDetailClient({ event }: EventDetailClientProps) {
 
   // Try to get coordinates for map display
   useEffect(() => {
+    if (!event) return;
+
     let coordinates: [number, number] | null = null;
 
     // First, try existing lat/lng if available
@@ -106,6 +134,45 @@ export default function EventDetailClient({ event }: EventDetailClientProps) {
 
     setMapCoordinates(coordinates);
   }, [event]);
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-[120px]">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg p-8">
+              <div className="animate-pulse">
+                <div className="h-8 bg-gray-200 rounded w-3/4 mb-4"></div>
+                <div className="h-4 bg-gray-200 rounded w-1/2 mb-2"></div>
+                <div className="h-4 bg-gray-200 rounded w-2/3 mb-2"></div>
+                <div className="h-32 bg-gray-200 rounded mb-4"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Error state
+  if (error || !event) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-white py-[120px]">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
+              <h1 className="text-2xl font-bold text-gray-900 mb-4">{t("eventNotFound") || "Event Not Found"}</h1>
+              <p className="text-gray-600 mb-6">{t("eventNotFoundDescription") || "The event you're looking for could not be found."}</p>
+              <Link href="/events" className="inline-flex items-center text-amber-600 hover:text-amber-700 transition-colors">
+                ← {t("backToEvents") || "Back to Events"}
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   const handleShare = async () => {
     const shareData = {

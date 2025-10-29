@@ -1,5 +1,3 @@
-import { notFound } from "next/navigation";
-import { EventService } from "@/lib/eventService";
 import EventDetailClient from "./EventDetailClient";
 
 interface EventPageProps {
@@ -9,47 +7,19 @@ interface EventPageProps {
 export default async function EventPage({ params }: EventPageProps) {
   const { id } = await params;
 
-  try {
-    const event = await EventService.getEventById(id);
-
-    if (!event) {
-      notFound();
-    }
-
-    return <EventDetailClient event={event} />;
-  } catch {
-    console.error("Error fetching event");
-    notFound();
-  }
+  // Pass only the ID to the client component - no server-side data fetching
+  return <EventDetailClient eventId={id} />;
 }
 
-export async function generateMetadata({ params }: EventPageProps) {
-  const { id } = await params;
-
-  try {
-    const event = await EventService.getEventById(id);
-
-    if (!event) {
-      return {
-        title: "Event Not Found",
-        description: "The requested event could not be found.",
-      };
-    }
-
-    return {
-      title: `${event.name} - Blat Vodka Events`,
-      description: event.description,
-      openGraph: {
-        title: event.name,
-        description: event.description,
-        images: event.images.length > 0 ? [{ url: event.images[0] }] : [],
-        type: "article",
-      },
-    };
-  } catch {
-    return {
-      title: "Event Not Found",
-      description: "The requested event could not be found.",
-    };
-  }
+export async function generateMetadata() {
+  // Static metadata - no data fetching during build
+  return {
+    title: "Event Details - Blat Vodka Events",
+    description: "Discover exclusive Blat Vodka events and experiences.",
+    openGraph: {
+      title: "Blat Vodka Events",
+      description: "Discover exclusive Blat Vodka events and experiences.",
+      type: "article",
+    },
+  };
 }

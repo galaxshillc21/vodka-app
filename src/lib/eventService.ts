@@ -123,9 +123,14 @@ export class EventService {
     }
   }
 
-  // Get all events
+  // Get all events - client-side Firebase calls only
   static async getAllEvents(): Promise<Event[]> {
     try {
+      if (!db) {
+        console.warn("Firebase not initialized");
+        return [];
+      }
+
       const q = query(collection(db, EVENTS_COLLECTION), orderBy("date", "desc"));
       const querySnapshot = await getDocs(q);
 
@@ -138,13 +143,18 @@ export class EventService {
       );
     } catch (error) {
       console.error("Error fetching events:", error);
-      throw error;
+      return [];
     }
   }
 
-  // Get a single event by ID
+  // Get a single event by ID - client-side Firebase calls only
   static async getEventById(eventId: string): Promise<Event | null> {
     try {
+      if (!db) {
+        console.warn("Firebase not initialized");
+        return null;
+      }
+
       const eventRef = doc(db, EVENTS_COLLECTION, eventId);
       const eventDoc = await getDoc(eventRef);
 
@@ -158,7 +168,7 @@ export class EventService {
       return null;
     } catch (error) {
       console.error("Error fetching event by ID:", error);
-      throw error;
+      return null;
     }
   }
 
@@ -194,9 +204,14 @@ export class EventService {
     }
   }
 
-  // Get the featured event
+  // Get the featured event - client-side Firebase calls only
   static async getFeaturedEvent(): Promise<Event | null> {
     try {
+      if (!db) {
+        console.warn("Firebase not initialized");
+        return null;
+      }
+
       const eventsQuery = query(collection(db, EVENTS_COLLECTION));
       const querySnapshot = await getDocs(eventsQuery);
 
@@ -208,7 +223,7 @@ export class EventService {
       return events.find((event) => event.featured) || null;
     } catch (error) {
       console.error("Error getting featured event:", error);
-      throw error;
+      return null;
     }
   }
 
