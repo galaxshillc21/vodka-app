@@ -1,5 +1,5 @@
 module.exports = {
-  siteUrl: "https://blat.netlify.app", // Change to your domain
+  siteUrl: "https://blatvodka.com", // Updated to new domain
   generateRobotsTxt: true,
   // Add more options if needed
 };

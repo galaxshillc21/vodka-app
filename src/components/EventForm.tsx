@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,7 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CreateEventData, Event } from "@/types/event";
 import { EventService } from "@/lib/eventService";
 import { ImageProcessor, ProcessedImage } from "@/lib/imageProcessor";
-import { Upload, X, MapPin, Calendar, Globe, FileText, Image as ImageIcon, Zap } from "lucide-react";
+import { Upload, X, MapPin, Calendar, Globe, FileText, Image as ImageIcon } from "lucide-react";
 
 interface EventFormProps {
   onSuccess: () => void;
@@ -32,9 +33,12 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
   });
 
   const [selectedImages, setSelectedImages] = useState<ProcessedImage[]>([]);
+  const [existingImages, setExistingImages] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isProcessingImages, setIsProcessingImages] = useState(false);
+  const [isDeletingImage, setIsDeletingImage] = useState<string | null>(null);
   const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const [dragActive, setDragActive] = useState(false);
 
   // Populate form when editing an event
@@ -48,7 +52,8 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
         website: editingEvent.website,
         images: [],
       });
-      setSelectedImages([]); // Reset images when editing
+      setSelectedImages([]); // Reset new images when editing
+      setExistingImages(editingEvent.images || []); // Set existing images
     } else {
       // Reset form when creating new event
       setFormData({
@@ -56,15 +61,20 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
         date: "",
         description: "",
         location: {
+          venue: "",
           town: "",
           municipality: "",
           latitude: 0,
           longitude: 0,
+          googleMapsLink: "",
         },
         website: "",
         images: [],
       });
       setSelectedImages([]);
+      setExistingImages([]);
+      setError("");
+      setSuccessMessage("");
     }
   }, [editingEvent]);
 
@@ -73,6 +83,18 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
 
     if (name.startsWith("location.")) {
       const locationField = name.split(".")[1];
+
+      // Validate Google Maps link format
+      if (locationField === "googleMapsLink" && value) {
+        const isValidGoogleMapsLink = value.includes("maps.app.goo.gl") || value.includes("google.com/maps") || value.includes("maps.google.com");
+
+        if (!isValidGoogleMapsLink) {
+          setError("Por favor, ingresa un enlace válido de Google Maps");
+        } else {
+          setError(""); // Clear error if link is valid
+        }
+      }
+
       setFormData((prev) => ({
         ...prev,
         location: {
@@ -116,6 +138,29 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
     setSelectedImages((prev) => prev.filter((_, i) => i !== index));
   };
 
+  const removeExistingImage = async (imageUrl: string) => {
+    if (!editingEvent) return;
+
+    // Show confirmation dialog before deleting
+    const confirmed = window.confirm("¿Estás seguro de que deseas eliminar esta imagen? Esta acción no se puede deshacer y la imagen se eliminará permanentemente del almacenamiento.");
+
+    if (!confirmed) return;
+
+    setIsDeletingImage(imageUrl);
+    try {
+      await EventService.deleteEventImage(editingEvent.id, imageUrl);
+      setExistingImages((prev) => prev.filter((img) => img !== imageUrl));
+      setError(""); // Clear any previous errors
+      setSuccessMessage("Imagen eliminada correctamente");
+      // Clear success message after 3 seconds
+      setTimeout(() => setSuccessMessage(""), 3000);
+    } catch (error) {
+      console.error("Error deleting image:", error);
+      setError("Error al eliminar la imagen. Por favor, inténtalo de nuevo.");
+    } finally {
+      setIsDeletingImage(null);
+    }
+  };
   const handleDrag = (e: React.DragEvent) => {
     e.preventDefault();
     e.stopPropagation();
@@ -144,6 +189,7 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
     e.preventDefault();
     setIsLoading(true);
     setError("");
+    setSuccessMessage("");
 
     try {
       // Validate required fields
@@ -167,9 +213,12 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
             editingEvent.id,
             selectedImages.map((img) => img.file)
           );
-          // Append new images to existing ones
-          const updatedImages = [...(editingEvent.images || []), ...imageUrls];
-          await EventService.updateEventImages(editingEvent.id, updatedImages);
+          // Combine existing images with new images
+          const allImages = [...existingImages, ...imageUrls];
+          await EventService.updateEventImages(editingEvent.id, allImages);
+        } else if (existingImages.length !== editingEvent.images?.length) {
+          // Update images if existing images were removed but no new ones added
+          await EventService.updateEventImages(editingEvent.id, existingImages);
         }
       } else {
         // Create new event
@@ -186,8 +235,9 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
       }
 
       onSuccess();
-    } catch (err: any) {
-      setError(err.message || "Error al crear el evento");
+    } catch (err: unknown) {
+      const error = err as { message?: string };
+      setError(error.message || "Error al crear el evento");
     } finally {
       setIsLoading(false);
     }
@@ -247,6 +297,15 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
             </Label>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="location.venue" className="text-sm text-gray-600 flex items-center gap-2">
+                  <MapPin className="w-4 h-4" />
+                  Nombre del Lugar (Opcional)
+                </Label>
+                <Input id="location.venue" name="location.venue" value={formData.location.venue || ""} onChange={handleInputChange} placeholder="Ej: Palacio Rocha, Hotel Seaside Sandy Beach, Auditorio Alfredo Kraus" className="bg-white/80 border-gray-200" />
+                <p className="text-xs text-gray-500">Nombre específico del lugar, hotel, centro de convenciones, etc.</p>
+              </div>
+
               <div className="space-y-2">
                 <Label htmlFor="location.town" className="text-sm text-gray-600">
                   Ciudad
@@ -261,18 +320,20 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
                 <Input id="location.municipality" name="location.municipality" value={formData.location.municipality} onChange={handleInputChange} placeholder="Ej: Las Palmas de Gran Canaria" className="bg-white/80 border-gray-200" />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="location.latitude" className="text-sm text-gray-600">
-                  Latitud
+              <div className="space-y-2 md:col-span-2">
+                <Label htmlFor="location.googleMapsLink" className="text-sm text-gray-600 flex items-center gap-2">
+                  <Globe className="w-4 h-4" />
+                  Enlace de Google Maps (Recomendado)
                 </Label>
-                <Input id="location.latitude" name="location.latitude" type="number" step="any" value={formData.location.latitude || ""} onChange={handleInputChange} placeholder="28.12355" className="bg-white/80 border-gray-200" />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="location.longitude" className="text-sm text-gray-600">
-                  Longitud
-                </Label>
-                <Input id="location.longitude" name="location.longitude" type="number" step="any" value={formData.location.longitude || ""} onChange={handleInputChange} placeholder="-15.43626" className="bg-white/80 border-gray-200" />
+                <Input id="location.googleMapsLink" name="location.googleMapsLink" type="url" value={formData.location.googleMapsLink || ""} onChange={handleInputChange} placeholder="https://maps.app.goo.gl/S7J2vWzTTTjupSRu9" className="bg-white/80 border-gray-200" />
+                <div className="bg-blue-50 border border-blue-200 rounded-lg p-3">
+                  <p className="text-xs text-blue-700 font-medium mb-1">💡 Cómo obtener el enlace:</p>
+                  <ol className="text-xs text-blue-600 space-y-1 ml-4 list-decimal">
+                    <li>Ve a Google Maps y busca la ubicación</li>
+                    <li>Haz clic en &quot;Compartir&quot;</li>
+                    <li>Copia el enlace y pégalo aquí</li>
+                  </ol>
+                </div>
               </div>
             </div>
           </div>
@@ -294,7 +355,13 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
             </Label>
 
             {/* Drag and Drop Area */}
-            <div className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${dragActive ? "border-amber-500 bg-amber-50" : "border-gray-300 bg-white/50"}`} onDragEnter={handleDrag} onDragLeave={handleDrag} onDragOver={handleDrag} onDrop={handleDrop}>
+            <div
+              className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${dragActive ? "border-amber-500 bg-amber-50" : "border-gray-300 bg-white/50"} ${isProcessingImages || isDeletingImage ? "opacity-50 pointer-events-none" : ""}`}
+              onDragEnter={handleDrag}
+              onDragLeave={handleDrag}
+              onDragOver={handleDrag}
+              onDrop={handleDrop}
+            >
               <Upload className="w-8 h-8 text-gray-400 mx-auto mb-2" />
               <p className="text-gray-600 mb-2">
                 Arrastra las imágenes aquí o{" "}
@@ -307,22 +374,69 @@ export default function EventForm({ onSuccess, onCancel, editingEvent }: EventFo
             </div>
 
             {/* Selected Images Preview */}
-            {selectedImages.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {selectedImages.map((image, index) => (
-                  <div key={index} className="relative">
-                    <img src={image.url} alt={`Preview ${index + 1}`} className="w-full h-24 object-cover rounded-lg" />
-                    <button type="button" onClick={() => removeImage(index)} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600">
-                      <X className="w-3 h-3" />
-                    </button>
+            {(existingImages.length > 0 || selectedImages.length > 0) && (
+              <div className="space-y-4">
+                {/* Existing Images */}
+                {existingImages.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
+                      <ImageIcon className="w-4 h-4" />
+                      Imágenes Existentes ({existingImages.length})
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {existingImages.map((imageUrl, index) => (
+                        <div key={`existing-${index}`} className="relative group">
+                          <div className="relative w-full h-24">
+                            <Image src={imageUrl} alt={`Existing ${index + 1}`} fill className="object-cover rounded-lg border-2 border-blue-200" />
+                          </div>
+                          <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition-all duration-200 rounded-lg flex items-center justify-center">
+                            <button
+                              type="button"
+                              onClick={() => removeExistingImage(imageUrl)}
+                              disabled={isDeletingImage === imageUrl}
+                              className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                            >
+                              {isDeletingImage === imageUrl ? <div className="w-3 h-3 border border-white border-t-transparent rounded-full animate-spin" /> : <X className="w-3 h-3" />}
+                            </button>
+                          </div>
+                          <div className="absolute bottom-1 left-1 bg-blue-600 text-white text-xs px-2 py-1 rounded">Existente</div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
+                )}
+
+                {/* New Images */}
+                {selectedImages.length > 0 && (
+                  <div>
+                    <h4 className="text-sm font-medium text-gray-700 mb-3 flex items-center gap-2">
+                      <Upload className="w-4 h-4" />
+                      Nuevas Imágenes ({selectedImages.length})
+                    </h4>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                      {selectedImages.map((image, index) => (
+                        <div key={`new-${index}`} className="relative group">
+                          <div className="relative w-full h-24">
+                            <Image src={image.url} alt={`Preview ${index + 1}`} fill className="object-cover rounded-lg border-2 border-green-200" />
+                          </div>
+                          <button type="button" onClick={() => removeImage(index)} className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-red-600">
+                            <X className="w-3 h-3" />
+                          </button>
+                          <div className="absolute bottom-1 left-1 bg-green-600 text-white text-xs px-2 py-1 rounded">Nueva</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             )}
           </div>
 
           {/* Error Message */}
           {error && <div className="p-3 rounded-lg bg-red-50 border border-red-200 text-red-700 text-sm">{error}</div>}
+
+          {/* Success Message */}
+          {successMessage && <div className="p-3 rounded-lg bg-green-50 border border-green-200 text-green-700 text-sm">{successMessage}</div>}
 
           {/* Form Actions */}
           <div className="flex gap-4 pt-4">

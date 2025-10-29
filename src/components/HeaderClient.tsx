@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-// import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react";
+// Newspaper
 import { Home, Store, Martini, Loader2 } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";

@@ -2,21 +2,24 @@
 
 import Image from "next/image";
 import React, { useState, useEffect } from "react";
-import { useTranslations } from "next-intl"; // Import useTranslations
+import { useTranslations, useLocale } from "next-intl"; // Import useTranslations and useLocale
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { Skeleton } from "@/components/ui/skeleton";
 import BlurText from "@/components/BlurText";
 import { useAnimation, useInView } from "framer-motion";
 import { EventService } from "@/lib/eventService";
 import { Event } from "@/types/event";
-import { Link } from "@/i18n/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
+import { MapPin, Loader2, CalendarPlus } from "lucide-react";
+import { downloadICSFile, CalendarEvent } from "@/utils/calendar";
 
 export function MainEvent() {
   const t = useTranslations("Index.EventsSection");
+  const locale = useLocale();
+  const pathname = usePathname();
   const [featuredEvent, setFeaturedEvent] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-
-  // Fallback images for when no featured event exists
-  const fallbackImages = ["/images/eventos/mambo/img1.jpg", "/images/eventos/mambo/img2.jpg", "/images/eventos/mambo/img3.jpg", "/images/eventos/mambo/img4.jpg", "/images/eventos/mambo/img5.jpg"];
+  const [loadingPath, setLoadingPath] = useState<string | null>(null);
 
   const controls = useAnimation();
   const ref = React.useRef<HTMLDivElement>(null);
@@ -45,6 +48,12 @@ export function MainEvent() {
   };
 
   useEffect(() => {
+    if (loadingPath && pathname === loadingPath) {
+      setLoadingPath(null);
+    }
+  }, [pathname, loadingPath]);
+
+  useEffect(() => {
     if (inView) {
       controls.start({
         x: 0,
@@ -55,79 +64,183 @@ export function MainEvent() {
     }
   }, [controls, inView]);
 
-  // Use featured event images if available, otherwise use fallback
-  const displayImages = featuredEvent?.images && featuredEvent.images.length > 0 ? featuredEvent.images : fallbackImages;
-
   // Format date for display
   const formatEventDate = (dateString: string) => {
     const date = new Date(dateString);
+    const localeCode = locale === "es" ? "es-ES" : "en-US";
+
     const day = date.getDate();
-    const month = date.toLocaleDateString("es-ES", { month: "long" });
-    const weekday = date.toLocaleDateString("es-ES", { weekday: "long" });
-    return { day, month, weekday };
+    const month = date.toLocaleDateString(localeCode, { month: "long" });
+    const weekday = date.toLocaleDateString(localeCode, { weekday: "long" });
+
+    // Add ordinal suffix for English dates
+    const getOrdinalSuffix = (day: number) => {
+      if (locale === "en") {
+        if (day > 3 && day < 21) return "th";
+        switch (day % 10) {
+          case 1:
+            return "st";
+          case 2:
+            return "nd";
+          case 3:
+            return "rd";
+          default:
+            return "th";
+        }
+      }
+      return "";
+    };
+
+    const ordinalSuffix = getOrdinalSuffix(day);
+
+    return {
+      day,
+      month: month.charAt(0).toUpperCase() + month.slice(1), // Capitalize first letter
+      weekday: weekday.charAt(0).toUpperCase() + weekday.slice(1), // Capitalize first letter
+      ordinalSuffix,
+    };
   };
 
-  // Get event date info (either featured event or fallback)
-  const eventDateInfo = featuredEvent ? formatEventDate(featuredEvent.date) : { day: 24, month: t("july"), weekday: t("thursday") };
+  const handleLinkClick = (href: string) => {
+    setLoadingPath(href);
+  };
 
-  // Get event details (either featured event or fallback)
-  const eventName = featuredEvent?.name || "Mambo Lounge Bar";
-  const eventLocation = featuredEvent?.location ? `${featuredEvent.location.town}, ${featuredEvent.location.municipality}` : "Rooftop CC Sandia Playa del Ingles";
+  const handleAddToCalendar = (event: Event, e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent any navigation
+    e.stopPropagation();
+
+    const locationText = event.location.venue ? `${event.location.venue}, ${event.location.town}, ${event.location.municipality}` : `${event.location.town}, ${event.location.municipality}`;
+
+    const calendarEvent: CalendarEvent = {
+      title: event.name,
+      description: event.description,
+      startDate: event.date,
+      location: locationText,
+      url: `${window.location.origin}/events/${event.id}`,
+    };
+
+    downloadICSFile(calendarEvent);
+  };
+
+  // Loading skeleton component
+  const LoadingSkeleton = () => (
+    <div className="w-full">
+      {/* Skeleton carousel */}
+      <div className="flex gap-4 mb-8">
+        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-2/3 lg:basis-1/3" />
+        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-2/3 lg:basis-1/3" />
+        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-2/3 lg:basis-1/3" />
+      </div>
+
+      {/* Skeleton event details */}
+      <div className="flex flex-row items-center justify-center h-full w-full mt-8">
+        <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-gray-200 py-5 items-center lg:items-end">
+          <div className="text-center">
+            <Skeleton className="h-6 w-20 mb-2" />
+            <Skeleton className="h-8 w-24" />
+          </div>
+        </div>
+        <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">
+          <Skeleton className="h-12 w-48 mb-2" />
+          <Skeleton className="h-4 w-36 mb-4" />
+          <Skeleton className="h-10 w-[150px] lg:w-[200px] rounded-full" />
+        </div>
+      </div>
+    </div>
+  );
 
   return (
     <section id="MainEvent" className="w-full mt-0 lg:mt-[0px] flex flex-col items-center justify-center">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center justify-center h-full">
+          {/* Title and description always show */}
           <BlurText text={t("title")} delay={80} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete} className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mt-6 text-center text-amber-600 mb-6 leading-tight justify-center" />
-          <p className="text-lg mb-8 text-center">{t("description")}</p>
+          <BlurText text={t("description")} delay={120} animateBy="words" direction="top" className="text-lg mb-8 text-center" />
 
-          {/* Featured event indicator */}
-          {!isLoading && featuredEvent && (
-            <div className="mb-4 px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium flex items-center gap-2">
-              <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
-              Evento Destacado
-            </div>
-          )}
-
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-          >
-            <CarouselContent>
-              {displayImages.map((src, i) => (
-                <CarouselItem key={i} className="basis-2/3 lg:basis-1/3">
-                  <div className="relative h-64 md:h-80 lg:h-96 w-full overflow-hidden rounded-md">
-                    <Image src={src} loading="lazy" alt={`Evento ${featuredEvent?.name || "mambo"} ${i + 1}`} fill sizes="(max-width: 768px) 66vw, (max-width: 1024px) 50vw, 33vw" className="hover:cursor-grab active:cursor-grabbing object-cover transition-transform duration-300 hover:scale-105" />
-                  </div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-          </Carousel>
-          <div className="flex flex-row items-center justify-center h-full w-full mt-8">
-            <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-amber-600 py-5 items-center lg:items-end">
-              <div className="text-center">
-                <p className="text-amber-600 font-medium text-xl">{eventDateInfo.weekday}</p>
-                <h2 className="text-3xl">
-                  {eventDateInfo.day} {eventDateInfo.month}
-                </h2>
-              </div>
-            </div>
-            <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">
-              {featuredEvent?.website ? (
-                <a href={featuredEvent.website} target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors">
-                  <h2 className="text-xxl lg:text-5xl">{eventName}</h2>
-                </a>
-              ) : (
-                <h2 className="text-xxl lg:text-5xl">{eventName}</h2>
-              )}
-              <p>{eventLocation}</p>
-              <Link href="/events">
-                <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors">{t("verEventos")}</button>
+          {/* Conditional content based on loading and event state */}
+          {isLoading ? (
+            <LoadingSkeleton />
+          ) : !featuredEvent ? (
+            <div className="text-center py-12">
+              <p className="text-gray-500 mb-4">No hay eventos destacados en este momento</p>
+              <Link href="/events" onClick={() => handleLinkClick("/events")}>
+                <button className="bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition-colors flex items-center justify-center gap-2 mx-auto">
+                  {loadingPath === "/events" ? (
+                    <>
+                      <Loader2 size={16} className="animate-spin" />
+                      {t("verEventos")}
+                    </>
+                  ) : (
+                    t("verEventos")
+                  )}
+                </button>
               </Link>
             </div>
-          </div>
+          ) : (
+            <>
+              {/* Featured event indicator */}
+              <div className="mb-4 px-3 py-1 bg-amber-100 text-amber-800 rounded-full text-sm font-medium flex items-center gap-2">
+                <span className="w-2 h-2 bg-amber-500 rounded-full"></span>
+                {t("featuredEvent")}
+              </div>
+
+              <Carousel
+                opts={{
+                  align: "start",
+                  loop: true,
+                }}
+              >
+                <CarouselContent>
+                  {featuredEvent.images.map((src, i) => (
+                    <CarouselItem key={i} className="basis-2/3 lg:basis-1/3">
+                      <div className="relative h-64 md:h-80 lg:h-96 w-full overflow-hidden rounded-md">
+                        <Image src={src} loading="lazy" alt={`Evento ${featuredEvent.name} ${i + 1}`} fill sizes="(max-width: 768px) 66vw, (max-width: 1024px) 50vw, 33vw" className="hover:cursor-grab active:cursor-grabbing object-cover transition-transform duration-300 hover:scale-105" />
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+              <div className="flex flex-row items-center justify-center h-full w-full mt-8">
+                <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-amber-600 py-5 items-center lg:items-end">
+                  <div className="text-center">
+                    <p className="text-amber-600 font-medium text-xl">{formatEventDate(featuredEvent.date).weekday}</p>
+                    <h2 className="text-3xl mb-2">
+                      {locale === "en" ? `${formatEventDate(featuredEvent.date).month} ${formatEventDate(featuredEvent.date).day}${formatEventDate(featuredEvent.date).ordinalSuffix}` : `${formatEventDate(featuredEvent.date).day} ${formatEventDate(featuredEvent.date).month}`}
+                    </h2>
+                    <button onClick={(e) => handleAddToCalendar(featuredEvent, e)} className="inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 underline transition-colors">
+                      <CalendarPlus size={14} />
+                      {t("addToCalendar")}
+                    </button>
+                  </div>
+                </div>
+                <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">
+                  {featuredEvent.website ? (
+                    <a href={featuredEvent.website} target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors">
+                      <h2 className="text-xxl lg:text-5xl">{featuredEvent.name}</h2>
+                    </a>
+                  ) : (
+                    <h2 className="text-xxl lg:text-5xl">{featuredEvent.name}</h2>
+                  )}
+                  <a href={featuredEvent.location.googleMapsLink || `https://www.google.com/maps/search/?api=1&query=${featuredEvent.location.latitude},${featuredEvent.location.longitude}`} target="_blank" rel="noopener noreferrer" className="mt-2">
+                    <MapPin className="inline-block mr-1" />
+                    {featuredEvent.location.venue ? `${featuredEvent.location.venue}, ${featuredEvent.location.town}, ${featuredEvent.location.municipality}` : `${featuredEvent.location.town}, ${featuredEvent.location.municipality}`}
+                  </a>
+                  <Link href={`/events/${featuredEvent.id}`} onClick={() => handleLinkClick(`/events/${featuredEvent.id}`)}>
+                    <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors flex items-center justify-center gap-2">
+                      {loadingPath === `/events/${featuredEvent.id}` ? (
+                        <>
+                          <Loader2 size={16} className="animate-spin" />
+                          {t("verEventos")}
+                        </>
+                      ) : (
+                        t("verEventos")
+                      )}
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </>
+          )}
         </div>
       </div>
     </section>

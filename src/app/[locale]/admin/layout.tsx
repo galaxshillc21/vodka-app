@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { AuthProvider } from "@/contexts/AuthContext";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
@@ -11,9 +10,9 @@ export async function generateMetadata(): Promise<Metadata> {
 
 type Props = {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export default function AdminLayout({ children }: Readonly<Props>) {
+export default function AdminLayout({ children }: Props) {
   return <AuthProvider>{children}</AuthProvider>;
 }

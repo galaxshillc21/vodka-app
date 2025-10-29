@@ -1,8 +1,10 @@
 export interface EventLocation {
+  venue?: string; // Optional venue/place name
   town: string;
   municipality: string;
-  latitude: number;
-  longitude: number;
+  latitude?: number; // Made optional for backward compatibility
+  longitude?: number; // Made optional for backward compatibility
+  googleMapsLink?: string; // New field for Google Maps share links
 }
 
 export interface Event {

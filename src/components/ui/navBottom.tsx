@@ -3,7 +3,7 @@
 
 // Import Link from next-intl/navigation for i18n compatible links
 import { Link, usePathname } from "@/i18n/navigation"; // Changed from "next/link"
-// import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
+// Newspaper
 import { Home, Store, Martini, Loader2 } from "lucide-react"; // Import Loader2
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
@@ -57,7 +57,7 @@ export default function NavBottom() {
           {renderIcon("/", Home)} {/* Use the helper to render the icon */}
           <span className="text-xs">{t("home")}</span>
         </Link>
-        {/* News Button */}
+        {/* Events Button */}
         {/* <Link href="/events" className={`flex flex-col items-center ${pathname === "/events" ? currentPageClass : "text-gray-600 hover:text-black"}`} onClick={() => handleLinkClick("/events")}>
           {renderIcon("/events", Newspaper)}
           <span className="text-xs">{t("events")}</span>

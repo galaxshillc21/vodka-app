@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Event } from "@/types/event";
@@ -25,7 +26,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
       const fetchedEvents = await EventService.getAllEvents();
       setEvents(fetchedEvents);
       setError("");
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError("Error al cargar los eventos");
       console.error("Error fetching events:", err);
     } finally {
@@ -46,7 +47,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
       setDeletingEventId(eventId);
       await EventService.deleteEvent(eventId);
       await fetchEvents(); // Refresh the list
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError("Error al eliminar el evento");
       console.error("Error deleting event:", err);
     } finally {
@@ -67,7 +68,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
       }
 
       await fetchEvents(); // Refresh the list
-    } catch (err: any) {
+    } catch (err: unknown) {
       setError("Error al cambiar el estado destacado del evento");
       console.error("Error toggling featured status:", err);
     } finally {
@@ -134,7 +135,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
                 {/* Event Image */}
                 <div className="relative h-48 bg-gray-100">
                   {getMainImage(event) ? (
-                    <img src={getMainImage(event)!} alt={event.name} className="w-full h-full object-cover" />
+                    <Image src={getMainImage(event)!} alt={event.name} fill className="object-cover" />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-100 to-orange-100">
                       <ImageIcon className="w-12 h-12 text-amber-400" />

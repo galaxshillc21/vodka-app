@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy, Timestamp } from "firebase/firestore";
+import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject, listAll } from "firebase/storage";
 import { db, storage } from "@/lib/firebase";
 import { Event, CreateEventData } from "@/types/event";
@@ -64,6 +64,65 @@ export class EventService {
     }
   }
 
+  // Delete a specific image from an event and Firebase Storage
+  static async deleteEventImage(eventId: string, imageUrl: string): Promise<void> {
+    try {
+      // Extract the file path from the URL to delete from storage
+      const url = new URL(imageUrl);
+      const pathMatch = url.pathname.match(/\/o\/(.+?)\?/);
+
+      if (pathMatch) {
+        const filePath = decodeURIComponent(pathMatch[1]);
+        const imageRef = ref(storage, filePath);
+
+        // Delete from storage
+        await deleteObject(imageRef);
+
+        // Update the event document to remove this image URL
+        const eventRef = doc(db, EVENTS_COLLECTION, eventId);
+        const eventDoc = await getDoc(eventRef);
+
+        if (eventDoc.exists()) {
+          const currentImages = eventDoc.data().images || [];
+          const updatedImages = currentImages.filter((img: string) => img !== imageUrl);
+
+          await updateDoc(eventRef, {
+            images: updatedImages,
+            updatedAt: new Date().toISOString(),
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Error deleting event image:", error);
+      throw error;
+    }
+  }
+
+  // Remove image from event without deleting from storage (for bulk operations)
+  static async removeImageFromEvent(eventId: string, imageUrl: string): Promise<string[]> {
+    try {
+      const eventRef = doc(db, EVENTS_COLLECTION, eventId);
+      const eventDoc = await getDoc(eventRef);
+
+      if (eventDoc.exists()) {
+        const currentImages = eventDoc.data().images || [];
+        const updatedImages = currentImages.filter((img: string) => img !== imageUrl);
+
+        await updateDoc(eventRef, {
+          images: updatedImages,
+          updatedAt: new Date().toISOString(),
+        });
+
+        return updatedImages;
+      }
+
+      return [];
+    } catch (error) {
+      console.error("Error removing image from event:", error);
+      throw error;
+    }
+  }
+
   // Get all events
   static async getAllEvents(): Promise<Event[]> {
     try {
@@ -79,6 +138,26 @@ export class EventService {
       );
     } catch (error) {
       console.error("Error fetching events:", error);
+      throw error;
+    }
+  }
+
+  // Get a single event by ID
+  static async getEventById(eventId: string): Promise<Event | null> {
+    try {
+      const eventRef = doc(db, EVENTS_COLLECTION, eventId);
+      const eventDoc = await getDoc(eventRef);
+
+      if (eventDoc.exists()) {
+        return {
+          id: eventDoc.id,
+          ...eventDoc.data(),
+        } as Event;
+      }
+
+      return null;
+    } catch (error) {
+      console.error("Error fetching event by ID:", error);
       throw error;
     }
   }

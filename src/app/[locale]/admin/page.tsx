@@ -34,11 +34,12 @@ export default function AdminLoginPage() {
     try {
       await login(email, password);
       // The redirect will happen automatically via the useEffect above
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error("Login error:", err);
 
       // Handle specific Firebase auth errors
-      switch (err.code) {
+      const error = err as { code?: string; message?: string };
+      switch (error.code) {
         case "auth/user-not-found":
           setError("No existe un usuario con este correo electrónico.");
           break;

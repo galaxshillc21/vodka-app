@@ -3,7 +3,7 @@
 import SpotlightCard from "@/components/SpotlightCard";
 import { Link } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Home, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
+import { Home, Newspaper, Store, Martini, Instagram, MonitorSmartphone } from "lucide-react";
 import InstallPrompt from "@/components/InstallPrompt";
 import { Button } from "@/components/ui/button";
 
@@ -18,10 +18,10 @@ export default function Footer() {
             <Home size={18} />
             {t("home")}
           </Link>
-          {/* <Link href="/events" className="flex items-center gap-1 hover:underline">
+          <Link href="/events" className="flex items-center gap-1 hover:underline">
             <Newspaper size={18} />
             {t("events")}
-          </Link> */}
+          </Link>
           <Link href="/search" className="flex items-center gap-1 hover:underline">
             <Store size={18} />
             {t("stores")}
@@ -42,10 +42,10 @@ export default function Footer() {
 
         <div className="text-center text-sm text-gray-600 dark:text-gray-300">
           <div className="mt-2">
-            <Link href="/admin/dashboard" className="underline hover:text-orange-600">
+            {/* <Link href="/admin/dashboard" className="underline hover:text-orange-600">
               Panel
             </Link>{" "}
-            |{" "}
+            |{" "} */}
             <a href="mailto:fbanus@blatvodka.com" className="underline hover:text-orange-600">
               {t("contact")}
             </a>{" "}

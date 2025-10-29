@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://blat.netlify.app
+Host: https://blatvodka.com
 
 # Sitemaps
-Sitemap: https://blat.netlify.app/sitemap.xml
+Sitemap: https://blatvodka.com/sitemap.xml
