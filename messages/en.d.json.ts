@@ -5,6 +5,8 @@ declare const messages: {
   "Index": {
     "title": "Blat Vodka",
     "description": "The Purest Vodka in the World.",
+    "metaTitle": "Blat Vodka - The Purest Vodka in the World",
+    "metaDescription": "Discover Blat Vodka, the purest vodka in the world with 0.0 mg/L of impurities. The exceptional purity of Blat Vodka transforms your drinking experience, offering Better Taste enjoyed both with and without ice.",
     "purityHeading": "What does Purity Add?",
     "heroButton": "Find Distributors",
     "puritySabor": "Better Flavor",
@@ -51,6 +53,8 @@ declare const messages: {
       "openInGoogleMaps": "Open in Google Maps",
       "viewOnGoogleMaps": "View on Google Maps",
       "addToCalendar": "Add to Calendar",
+      "eventNotFound": "Event Not Found",
+      "eventNotFoundDescription": "The event you're looking for could not be found.",
       "noEvents": "No events scheduled at the moment. Check back soon!"
     },
     "BottleDesignSection": {

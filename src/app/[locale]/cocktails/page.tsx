@@ -12,12 +12,31 @@ export default function CocktailsPage() {
 }
 
 export async function generateMetadata({ params }) {
-  const messages = (await import(`@/../messages/${params.locale}.json`)).default;
+  const { locale } = await params;
+  const messages = (await import(`@/../messages/${locale}.json`)).default;
   const title = messages.CocktailsPage?.pageTitle || "Blat Vodka Cocktail Generator";
   const description = messages.CocktailsPage?.pageDescription || "Discover and create cocktails with Blat Vodka using AI-powered recipes.";
+
+  const baseUrl = "https://blatvodka.com";
 
   return {
     title,
     description,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en/cocktails`,
+        es: `${baseUrl}/es/cocktails`,
+        "x-default": `${baseUrl}/en/cocktails`,
+      },
+      canonical: `${baseUrl}/${locale}/cocktails`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/cocktails`,
+      siteName: "Blat Vodka",
+      locale: locale,
+      type: "website",
+    },
   };
 }

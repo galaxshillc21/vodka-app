@@ -106,12 +106,31 @@ export default function PrivacyPage() {
 }
 
 export async function generateMetadata({ params }) {
-  const messages = (await import(`@/../messages/${params.locale}.json`)).default;
+  const { locale } = await params;
+  const messages = (await import(`@/../messages/${locale}.json`)).default;
   const title = messages.Privacy?.pageTitle || "Privacy Policy";
   const description = messages.Privacy?.pageDescription || "Learn how Blat Vodka collects, uses, and protects your personal data in accordance with GDPR regulations.";
+
+  const baseUrl = "https://blatvodka.com";
 
   return {
     title,
     description,
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en/privacy`,
+        es: `${baseUrl}/es/privacy`,
+        "x-default": `${baseUrl}/en/privacy`,
+      },
+      canonical: `${baseUrl}/${locale}/privacy`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${baseUrl}/${locale}/privacy`,
+      siteName: "Blat Vodka",
+      locale: locale,
+      type: "website",
+    },
   };
 }

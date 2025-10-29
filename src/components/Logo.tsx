@@ -6,7 +6,7 @@ export function Logo({ hexColor, hideSecondPart }) {
   const validHexColor = /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(hexColor) ? hexColor : "#000000"; // Default black
 
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 1751 702" version="1.1" style={{ fillRule: "evenodd", clipRule: "evenodd", strokeLinejoin: "round", strokeMiterlimit: 2 }}>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" width="100%" height="100%" viewBox="0 0 1751 702" version="1.1" style={{ fillRule: "evenodd", clipRule: "evenodd", strokeLinejoin: "round", strokeMiterlimit: 2 }} role="img" aria-label="Blat Vodka Logo">
       <g transform="matrix(1,0,0,1,-817.56,-252.772)">
         {/* Background shape - always visible */}
         <g transform="matrix(643.932,0,0,-646.072,1692.83,505.015)">

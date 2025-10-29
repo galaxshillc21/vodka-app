@@ -30,10 +30,54 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params; // 👈 Esto es lo que Next.js espera internamente aquí
   const messages = (await import(`@/../messages/${locale}.json`)).default;
 
+  // Get current path for hreflang
+  const baseUrl = "https://blatvodka.com";
+
   return {
-    title: messages.Index.title,
-    description: messages.Index.description,
+    title: messages.Index.metaTitle,
+    description: messages.Index.metaDescription,
     manifest: "/manifest.webmanifest",
+    alternates: {
+      languages: {
+        en: `${baseUrl}/en`,
+        es: `${baseUrl}/es`,
+        "x-default": `${baseUrl}/en`, // Default language for unknown locales
+      },
+      canonical: `${baseUrl}/${locale}`, // Canonical URL for current page
+    },
+    openGraph: {
+      title: messages.Index.metaTitle,
+      description: messages.Index.metaDescription,
+      url: `${baseUrl}/${locale}`,
+      siteName: "Blat Vodka",
+      images: [
+        {
+          url: `${baseUrl}/images/blat_beach.webp`,
+          width: 1200,
+          height: 630,
+          alt: "Blat Vodka - The Purest Vodka in the World.",
+        },
+      ],
+      locale: locale,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: messages.Index.metaTitle,
+      description: messages.Index.metaDescription,
+      images: [`${baseUrl}/images/blat_beach.webp`],
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
+    },
   };
 }
 

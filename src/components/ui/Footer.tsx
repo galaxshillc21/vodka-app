@@ -18,10 +18,10 @@ export default function Footer() {
             <Home size={18} />
             {t("home")}
           </Link>
-          <Link href="/events" className="flex items-center gap-1 hover:underline">
+          {/* <Link href="/events" className="flex items-center gap-1 hover:underline">
             <Newspaper size={18} />
             {t("events")}
-          </Link>
+          </Link> */}
           <Link href="/search" className="flex items-center gap-1 hover:underline">
             <Store size={18} />
             {t("stores")}
@@ -75,7 +75,10 @@ export default function Footer() {
           </InstallPrompt>
         </div>
         <div>
-          Blat Vodka &copy; {new Date().getFullYear()} | {t("copyright")}.
+          <Link href="/" className="hover:text-orange-600 transition-colors">
+            Blat Vodka
+          </Link>{" "}
+          &copy; {new Date().getFullYear()} | {t("copyright")}.
         </div>
       </SpotlightCard>
       <div className="absolute left-0 right-0 bottom-2 text-center text-xs text-gray-400">{t("createdBy")} Galaxshi LLC.</div>

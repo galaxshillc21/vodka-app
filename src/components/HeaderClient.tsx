@@ -1,7 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
 // Newspaper
-import { Home, Store, Martini, Loader2 } from "lucide-react";
+import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
@@ -45,18 +45,20 @@ export default function HeaderClient() {
   return (
     <nav className="fixed top-0 left-0 py-3 right-0 m-auto z-[999] bg-gradient-to-b from-orange-50 from-40% to-transparent to-90%">
       <div className="flex flex-row sm:flex lg:hidden justify-center items-center backdrop-blur-sm border-b border-white/20 pb-2">
-        <Link href="/">
+        <Link href="/" className="flex flex-col items-center group" aria-label="Blat Vodka - Return to homepage">
           <div className="w-[100px]">
             <Logo hexColor="#d87500" hideSecondPart={false} />
           </div>
+          <span className="sr-only">Blat Vodka</span>
         </Link>
       </div>
       <div className="hidden lg:flex flex-row">
         <div className="flex-[0_1_25%] flex items-center justify-end">
-          <Link href="/">
+          <Link href="/" className="flex flex-col items-center group" aria-label="Blat Vodka - Return to homepage">
             <div className="w-[100px]">
               <Logo hexColor="#d87500" hideSecondPart={false} />
             </div>
+            <span className="sr-only">Blat Vodka</span>
           </Link>
         </div>
         <div className="flex-1">
