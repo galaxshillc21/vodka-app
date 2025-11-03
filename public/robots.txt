@@ -2,6 +2,20 @@
 User-agent: *
 Allow: /
 
+# Block admin and authentication pages from indexing
+Disallow: /*/admin/
+Disallow: /*/admin-setup/
+Disallow: /*/auth/
+Disallow: /en/admin/
+Disallow: /es/admin/
+Disallow: /en/admin-setup/
+Disallow: /es/admin-setup/
+Disallow: /en/auth/
+Disallow: /es/auth/
+
+# Block API routes from indexing
+Disallow: /api/
+
 # Host
 Host: https://blatvodka.com
 

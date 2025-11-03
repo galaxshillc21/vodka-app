@@ -1,31 +1,50 @@
-import { collection, addDoc, getDocs, doc, updateDoc, deleteDoc, query, orderBy, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc, query, orderBy, getDoc } from "firebase/firestore";
 import { ref, uploadBytes, getDownloadURL, deleteObject, listAll } from "firebase/storage";
 import { db, storage } from "@/lib/firebase";
+import { auth } from "@/lib/firebase";
 import { Event, CreateEventData } from "@/types/event";
 
 const EVENTS_COLLECTION = "events";
 
 export class EventService {
-  // Create a new event
+  // Helper method to get auth token for API calls
+  private static async getAuthToken(): Promise<string> {
+    const user = auth.currentUser;
+    if (!user) {
+      throw new Error("User not authenticated");
+    }
+    return await user.getIdToken();
+  }
+
+  // Create a new event (via API route)
   static async createEvent(eventData: CreateEventData): Promise<string> {
     try {
-      const now = new Date().toISOString();
+      const token = await this.getAuthToken();
 
-      // Create event document without images first
-      const eventDoc = {
-        name: eventData.name,
-        date: eventData.date,
-        description: eventData.description,
-        location: eventData.location,
-        website: eventData.website,
-        images: [], // Will be populated after image upload
-        featured: false, // default to not featured
-        createdAt: now,
-        updatedAt: now,
-      };
+      const response = await fetch("/api/events", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          name: eventData.name,
+          date: eventData.date,
+          description: eventData.description,
+          location: eventData.location,
+          website: eventData.website,
+          images: [], // Will be populated after image upload
+          featured: false,
+        }),
+      });
 
-      const docRef = await addDoc(collection(db, EVENTS_COLLECTION), eventDoc);
-      return docRef.id;
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to create event");
+      }
+
+      const result = await response.json();
+      return result.id;
     } catch (error) {
       console.error("Error creating event:", error);
       throw error;
@@ -50,14 +69,26 @@ export class EventService {
     }
   }
 
-  // Update event with image URLs
+  // Update event with image URLs (via API route)
   static async updateEventImages(eventId: string, imageUrls: string[]): Promise<void> {
     try {
-      const eventRef = doc(db, EVENTS_COLLECTION, eventId);
-      await updateDoc(eventRef, {
-        images: imageUrls,
-        updatedAt: new Date().toISOString(),
+      const token = await this.getAuthToken();
+
+      const response = await fetch(`/api/events/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          images: imageUrls,
+        }),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to update event images");
+      }
     } catch (error) {
       console.error("Error updating event images:", error);
       throw error;
@@ -78,18 +109,28 @@ export class EventService {
         // Delete from storage
         await deleteObject(imageRef);
 
-        // Update the event document to remove this image URL
-        const eventRef = doc(db, EVENTS_COLLECTION, eventId);
-        const eventDoc = await getDoc(eventRef);
+        // Get current event data to update images array
+        const event = await this.getEventById(eventId);
+        if (event) {
+          const updatedImages = event.images.filter((img: string) => img !== imageUrl);
 
-        if (eventDoc.exists()) {
-          const currentImages = eventDoc.data().images || [];
-          const updatedImages = currentImages.filter((img: string) => img !== imageUrl);
-
-          await updateDoc(eventRef, {
-            images: updatedImages,
-            updatedAt: new Date().toISOString(),
+          // Update via API route
+          const token = await this.getAuthToken();
+          const response = await fetch(`/api/events/${eventId}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              images: updatedImages,
+            }),
           });
+
+          if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || "Failed to update event after image deletion");
+          }
         }
       }
     } catch (error) {
@@ -101,17 +142,29 @@ export class EventService {
   // Remove image from event without deleting from storage (for bulk operations)
   static async removeImageFromEvent(eventId: string, imageUrl: string): Promise<string[]> {
     try {
-      const eventRef = doc(db, EVENTS_COLLECTION, eventId);
-      const eventDoc = await getDoc(eventRef);
+      // Get current event data
+      const event = await this.getEventById(eventId);
 
-      if (eventDoc.exists()) {
-        const currentImages = eventDoc.data().images || [];
-        const updatedImages = currentImages.filter((img: string) => img !== imageUrl);
+      if (event) {
+        const updatedImages = event.images.filter((img: string) => img !== imageUrl);
 
-        await updateDoc(eventRef, {
-          images: updatedImages,
-          updatedAt: new Date().toISOString(),
+        // Update via API route
+        const token = await this.getAuthToken();
+        const response = await fetch(`/api/events/${eventId}`, {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            images: updatedImages,
+          }),
         });
+
+        if (!response.ok) {
+          const error = await response.json();
+          throw new Error(error.error || "Failed to remove image from event");
+        }
 
         return updatedImages;
       }
@@ -172,32 +225,53 @@ export class EventService {
     }
   }
 
-  // Update an event
+  // Update an event (via API route)
   static async updateEvent(eventId: string, eventData: Partial<Event>): Promise<void> {
     try {
-      const eventRef = doc(db, EVENTS_COLLECTION, eventId);
-      await updateDoc(eventRef, {
-        ...eventData,
-        updatedAt: new Date().toISOString(),
+      const token = await this.getAuthToken();
+
+      const response = await fetch(`/api/events/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(eventData),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to update event");
+      }
     } catch (error) {
       console.error("Error updating event:", error);
       throw error;
     }
   }
 
-  // Delete an event and its images
+  // Delete an event and its images (via API route)
   static async deleteEvent(eventId: string): Promise<void> {
     try {
-      // Delete images from storage
+      // Delete images from storage first
       const eventImagesRef = ref(storage, `events/${eventId}`);
       const imageList = await listAll(eventImagesRef);
 
       const deletePromises = imageList.items.map((imageRef) => deleteObject(imageRef));
       await Promise.all(deletePromises);
 
-      // Delete event document
-      await deleteDoc(doc(db, EVENTS_COLLECTION, eventId));
+      // Delete event document via API
+      const token = await this.getAuthToken();
+      const response = await fetch(`/api/events/${eventId}`, {
+        method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to delete event");
+      }
     } catch (error) {
       console.error("Error deleting event:", error);
       throw error;
@@ -227,43 +301,66 @@ export class EventService {
     }
   }
 
-  // Set an event as featured (only one can be featured)
+  // Set an event as featured (only one can be featured) - via API route
   static async setFeaturedEvent(eventId: string): Promise<void> {
     try {
       // First, remove featured status from all events
-      const eventsQuery = query(collection(db, EVENTS_COLLECTION));
-      const querySnapshot = await getDocs(eventsQuery);
+      const events = await this.getAllEvents();
+      const token = await this.getAuthToken();
 
-      const unfeaturedPromises = querySnapshot.docs.map((docSnapshot) => {
-        if (docSnapshot.data().featured) {
-          return updateDoc(doc(db, EVENTS_COLLECTION, docSnapshot.id), {
-            featured: false,
-            updatedAt: new Date().toISOString(),
-          });
-        }
-        return Promise.resolve();
-      });
+      const unfeaturedPromises = events
+        .filter((event) => event.featured)
+        .map((event) =>
+          fetch(`/api/events/${event.id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({ featured: false }),
+          })
+        );
 
       await Promise.all(unfeaturedPromises);
 
       // Now set the selected event as featured
-      await updateDoc(doc(db, EVENTS_COLLECTION, eventId), {
-        featured: true,
-        updatedAt: new Date().toISOString(),
+      const response = await fetch(`/api/events/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ featured: true }),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to set featured event");
+      }
     } catch (error) {
       console.error("Error setting featured event:", error);
       throw error;
     }
   }
 
-  // Remove featured status from an event
+  // Remove featured status from an event (via API route)
   static async removeFeaturedEvent(eventId: string): Promise<void> {
     try {
-      await updateDoc(doc(db, EVENTS_COLLECTION, eventId), {
-        featured: false,
-        updatedAt: new Date().toISOString(),
+      const token = await this.getAuthToken();
+
+      const response = await fetch(`/api/events/${eventId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ featured: false }),
       });
+
+      if (!response.ok) {
+        const error = await response.json();
+        throw new Error(error.error || "Failed to remove featured status");
+      }
     } catch (error) {
       console.error("Error removing featured status:", error);
       throw error;

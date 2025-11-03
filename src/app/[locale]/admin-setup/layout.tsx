@@ -1,10 +1,9 @@
 import type { Metadata } from "next";
-import ProtectedRoute from "@/components/ProtectedRoute";
 
 export async function generateMetadata(): Promise<Metadata> {
   return {
-    title: "Dashboard - Blat Vodka Admin",
-    description: "Panel de control administrativo",
+    title: "Setup Admin - Blat Vodka",
+    description: "Configuración de administrador para Blat Vodka",
     robots: {
       index: false,
       follow: false,
@@ -24,6 +23,6 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function DashboardLayout({ children }: Readonly<Props>) {
-  return <ProtectedRoute>{children}</ProtectedRoute>;
+export default function AdminSetupLayout({ children }: Readonly<Props>) {
+  return <>{children}</>;
 }
