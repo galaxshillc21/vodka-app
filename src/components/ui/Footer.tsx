@@ -74,8 +74,8 @@ export default function Footer() {
             </Button>
           </InstallPrompt>
         </div>
-        <div>
-          <Link href="/" className="hover:text-orange-600 transition-colors">
+        <div className="text-sm mt-3">
+          <Link href="/" className="text-sm hover:text-orange-600 transition-colors">
             Blat Vodka
           </Link>{" "}
           &copy; {new Date().getFullYear()} | {t("copyright")}.
