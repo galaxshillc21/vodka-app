@@ -35,7 +35,7 @@ export default function CocktailGenerator() {
       const language = languageMap[locale] || "English";
       // const prompt = `Cocktail with Blat Vodka: ${cocktailInput}. Format in Markdown: # Name, ## Ingredients, ## Instructions. No intro, no acknowledgments. Be concise. Respond in ${language}.`;
       // const prompt = `Create a complete Blat Vodka cocktail recipe for: ${cocktailInput}. Use markdown format: # Name, ## Ingredients, ## Instructions. No questions. Respond in ${language}.`;
-      const prompt = `Generate a refined Blat Vodka cocktail recipe based on the user’s preference: "${cocktailInput}". Include the cocktail name, ingredients with quantities (e.g. 50 ml Blat Vodka), and clear instructions. Highlight Blat Vodka’s purity and smoothness. No introduction or questions needed, Respond in ${language} using Markdown: # Title, ## Ingredients, ## Instructions.`;
+      const prompt = `Generate a refined Blat Vodka cocktail recipe based on the user’s preference: "${cocktailInput}". Include a creative cocktail name, ingredients with quantities (e.g. 50 ml Blat Vodka), and clear instructions. Highlight Blat Vodka’s purity and smoothness. No introduction or questions needed, Respond in ${language} using Markdown: # Title, ## Ingredients, ## Instructions.`;
 
       const response = await fetch(`/api/gemini-ai-model`, {
         method: "POST",
