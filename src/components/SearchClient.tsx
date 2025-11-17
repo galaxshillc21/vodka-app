@@ -10,11 +10,6 @@ import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import type { Store } from "@/types/store";
 
-interface SearchClientProps {
-  initialStores: Store[];
-  initialDistributors: Store[];
-}
-
 // Lazy load tab components
 const TiendasTab = dynamic(() => import("@/components/TiendasTab"), {
   loading: () => <SkeletonTiendas />,
@@ -51,7 +46,7 @@ const MapComponent = dynamic(
   }
 );
 
-export default function SearchClient({ initialStores, initialDistributors }: SearchClientProps) {
+export default function SearchClient() {
   const t = useTranslations("SearchPage");
   const [zipcode, setZipcode] = useState("");
   const [closestItems, setClosestItems] = useState<Store[]>([]);
@@ -59,13 +54,38 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
   const [userCoords, setUserCoords] = useState<[number, number] | null>(null);
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState<Store[]>([]);
-  const [storeType, setStoreType] = useState<"stores" | "distributors">("distributors"); // Default to distributors
+  const [storeType, setStoreType] = useState<"stores" | "distributors">("distributors");
   const [filterPublic, setFilterPublic] = useState(true);
   const [filterPrivate, setFilterPrivate] = useState(true);
+  const [stores, setStores] = useState<Store[]>([]);
+  const [distributors, setDistributors] = useState<Store[]>([]);
+
+  // Fetch stores and distributors on mount
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const [storesRes, distributorsRes] = await Promise.all([fetch("/api/stores"), fetch("/api/distributors")]);
+
+        if (storesRes.ok) {
+          const storesData = await storesRes.json();
+          setStores(storesData);
+        }
+
+        if (distributorsRes.ok) {
+          const distributorsData = await distributorsRes.json();
+          setDistributors(distributorsData);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   // Get the appropriate data source based on current selection
   const getCurrentData = useCallback(() => {
-    let data = storeType === "stores" ? initialStores : initialDistributors;
+    let data = storeType === "stores" ? stores : distributors;
 
     // Apply filters only for stores (not distributors)
     if (storeType === "stores" && data) {
@@ -78,7 +98,7 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
     }
 
     return data || [];
-  }, [storeType, initialStores, initialDistributors, filterPublic, filterPrivate]);
+  }, [storeType, stores, distributors, filterPublic, filterPrivate]);
 
   const findClosestStore = useCallback(
     async (coords: [number, number]) => {

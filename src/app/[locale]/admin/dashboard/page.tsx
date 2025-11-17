@@ -3,13 +3,14 @@
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, Plus, CalendarDays, Store as StoreIcon, Truck } from "lucide-react";
+import { LogOut, Plus, CalendarDays, Store as StoreIcon, Truck, Database, Loader2 } from "lucide-react";
 import EventForm from "@/components/EventForm";
 import EventList from "@/components/EventList";
 import StoreForm from "@/components/StoreForm";
 import StoreList from "@/components/StoreList";
 import { Event } from "@/types/event";
 import { Store } from "@/types/store";
+import { auth } from "@/lib/firebase";
 
 type ViewMode = "list" | "create" | "edit";
 type Section = "events" | "stores" | "distributors";
@@ -21,6 +22,8 @@ export default function AdminDashboard() {
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
   const [editingStore, setEditingStore] = useState<Store | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
+  const [isMigrating, setIsMigrating] = useState(false);
+  const [migrationComplete, setMigrationComplete] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -75,6 +78,42 @@ export default function AdminDashboard() {
     setEditingStore(null);
   };
 
+  const handleMigrateData = async () => {
+    if (!confirm("¿Migrar datos de JSON a Firestore? Esta acción copiará todos los stores y distribuidores a la base de datos.")) {
+      return;
+    }
+
+    try {
+      setIsMigrating(true);
+      const user = auth.currentUser;
+      if (!user) {
+        throw new Error("Not authenticated");
+      }
+
+      const token = await user.getIdToken();
+      const response = await fetch("/api/migrate-data", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Migration failed");
+      }
+
+      const result = await response.json();
+      alert(`✅ Migración completada!\n${result.storesCount} tiendas y ${result.distributorsCount} distribuidores migrados.`);
+      setMigrationComplete(true);
+      setRefreshTrigger((prev) => prev + 1);
+    } catch (error) {
+      console.error("Migration error:", error);
+      alert("❌ Error durante la migración");
+    } finally {
+      setIsMigrating(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 p-4">
       {/* Header */}
@@ -86,10 +125,27 @@ export default function AdminDashboard() {
               Bienvenido de vuelta, <b>{getUserDisplayName()}</b>
             </p>
           </div>
-          <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2 border-gray-200 hover:bg-red-50 hover:border-red-200 hover:text-red-600">
-            <LogOut className="w-4 h-4" />
-            Cerrar Sesión
-          </Button>
+          <div className="flex gap-3">
+            {!migrationComplete && (
+              <Button onClick={handleMigrateData} disabled={isMigrating} variant="outline" className="flex items-center gap-2 border-blue-200 hover:bg-blue-50 hover:border-blue-300 hover:text-blue-600">
+                {isMigrating ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Migrando...
+                  </>
+                ) : (
+                  <>
+                    <Database className="w-4 h-4" />
+                    Migrar Datos
+                  </>
+                )}
+              </Button>
+            )}
+            <Button onClick={handleLogout} variant="outline" className="flex items-center gap-2 border-gray-200 hover:bg-red-50 hover:border-red-200 hover:text-red-600">
+              <LogOut className="w-4 h-4" />
+              Cerrar Sesión
+            </Button>
+          </div>
         </div>
       </div>
 
