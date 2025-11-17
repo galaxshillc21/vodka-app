@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, memo } from "react";
-import { Search as SearchIcon, LocateFixed } from "lucide-react";
+import { Search as SearchIcon, LocateFixed, Filter } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SkeletonTiendas } from "@/components/SkeletonCard";
 import { haversineDistance } from "@/utils/distance";
@@ -60,12 +60,25 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
   const [loading, setLoading] = useState(false);
   const [favorites, setFavorites] = useState<Store[]>([]);
   const [storeType, setStoreType] = useState<"stores" | "distributors">("distributors"); // Default to distributors
+  const [filterPublic, setFilterPublic] = useState(true);
+  const [filterPrivate, setFilterPrivate] = useState(true);
 
   // Get the appropriate data source based on current selection
   const getCurrentData = useCallback(() => {
-    const data = storeType === "stores" ? initialStores : initialDistributors;
+    let data = storeType === "stores" ? initialStores : initialDistributors;
+
+    // Apply filters only for stores (not distributors)
+    if (storeType === "stores" && data) {
+      data = data.filter((store) => {
+        if (!store.storeType) return true; // Include stores without storeType
+        if (filterPublic && store.storeType === "public") return true;
+        if (filterPrivate && store.storeType === "private") return true;
+        return false;
+      });
+    }
+
     return data || [];
-  }, [storeType, initialStores, initialDistributors]);
+  }, [storeType, initialStores, initialDistributors, filterPublic, filterPrivate]);
 
   const findClosestStore = useCallback(
     async (coords: [number, number]) => {
@@ -77,8 +90,9 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
         }
 
         const sortedItems = currentData
+          .filter((item: Store) => item.latitude && item.longitude) // Only include items with valid coordinates
           .map((item: Store) => {
-            const itemCoords: [number, number] = [item.longitude, item.latitude];
+            const itemCoords: [number, number] = [item.longitude!, item.latitude!];
             const distance = haversineDistance(coords, itemCoords);
             return { ...item, distance };
           })
@@ -192,39 +206,58 @@ export default function SearchClient({ initialStores, initialDistributors }: Sea
             <Image src="/images/blat_logo_bronze.png" alt="Blat Logo Bronze" width={100} height={100} priority className="invisible" />
           </div>
 
+          <h4 className="subTitle text-center mb-4">{t("heroTitleDistributor")}</h4>
+
           {/* Store/Distributor Toggle */}
-          <Tabs value={storeType} onValueChange={(value) => setStoreType(value as "stores" | "distributors")} className="mb-4 hidden">
-            <TabsList className="w-full bg-transparent rounded-md h-12">
-              <TabsTrigger value="distributors" className="w-full text-base font-medium rounded-full bg-teal-600">
+          <Tabs value={storeType} onValueChange={(value) => setStoreType(value as "stores" | "distributors")} className="mb-4 md:flex md:justify-center">
+            <TabsList className="w-full md:w-[500px] md:max-w-full m-auto p-[5px] rounded-full h-12 gap-1 bg-amber-600/30 shadow-md">
+              <TabsTrigger value="distributors" className="w-full text-base font-medium rounded-full bg-teal-600 h-full rounded-r-none data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=inactive]:bg-white data-[state=inactive]:text-gray-700">
                 {t("tabDistributors")}
               </TabsTrigger>
               {/* Stores tab commented out as requested */}
-              {/* <TabsTrigger value="stores" className="w-1/2 text-base font-medium">
+              <TabsTrigger value="stores" className="w-1/2 w-full text-base font-medium rounded-full bg-teal-600 h-full rounded-l-none data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=inactive]:bg-white data-[state=inactive]:text-gray-700">
                 {t("tabStores")}
-              </TabsTrigger> */}
+              </TabsTrigger>
             </TabsList>
           </Tabs>
-
-          <h4 className="subTitle text-center">{t("heroTitleDistributor")}</h4>
-
           <form onSubmit={handleZipcodeSubmit} className="mt-4 space-y-2">
             <div className="flex gap-2">
-              <input type="text" value={zipcode} onChange={(e) => setZipcode(e.target.value)} placeholder={t("zipcodePlaceholder")} className="p-2 w-full border rounded" />
-              <button type="submit" className="bg-primary text-white px-4 py-2 rounded">
+              <input type="text" value={zipcode} onChange={(e) => setZipcode(e.target.value)} placeholder={t("zipcodePlaceholder")} className="p-2 w-full border rounded shadow-md" />
+              <button type="submit" className="bg-primary shadow-md text-white px-4 py-2 rounded">
                 <SearchIcon size={16} />
               </button>
-              <button type="button" onClick={handleLocationShare} className="bg-primary text-white px-2 py-2 rounded">
+              <button type="button" onClick={handleLocationShare} className="shadow-md bg-primary text-white px-2 py-2 rounded">
                 <LocateFixed size={16} />
               </button>
             </div>
           </form>
 
+          {/* Filter Section - Only show for stores */}
+          {storeType === "stores" && (
+            <div className="mt-4 p-3 rounded-lg border border-amber-400 flex align-items-center justify-start gap-4 bg-amber-600/20 shadow-md">
+              <div className="flex items-center align-items-centergap-2">
+                <Filter size={16} className="text-gray-600" />
+                <span className="text-xs md:text-sm font-medium text-gray-700">{t("filter")}</span>
+              </div>
+              <div className="flex gap-4">
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={filterPublic} onChange={(e) => setFilterPublic(e.target.checked)} className="w-4 h-4 text-amber-600 rounded focus:ring-amber-500" />
+                  <span className="text-xs md:text-sm text-gray-700">{t("filterPublic")}</span>
+                </label>
+                <label className="flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" checked={filterPrivate} onChange={(e) => setFilterPrivate(e.target.checked)} className="w-4 h-4 text-amber-600 rounded focus:ring-amber-500" />
+                  <span className="text-xs md:text-sm text-gray-700">{t("filterPrivate")}</span>
+                </label>
+              </div>
+            </div>
+          )}
+
           <Tabs defaultValue="tiendas" className="mt-6">
             <TabsList className="w-full bg-bronze-muted rounded-md hidden">
-              <TabsTrigger value="tiendas" className="w-1/2">
+              <TabsTrigger value="tiendas" className="w-1/2 data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600">
                 {t("tabStores")}
               </TabsTrigger>
-              <TabsTrigger value="favoritos" className="w-1/2">
+              <TabsTrigger value="favoritos" className="w-1/2 data-[state=active]:bg-amber-600 data-[state=active]:text-white data-[state=inactive]:bg-transparent data-[state=inactive]:text-gray-600">
                 {t("tabFavorites")}
               </TabsTrigger>
             </TabsList>

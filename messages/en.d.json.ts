@@ -193,7 +193,7 @@ declare const messages: {
     "heroTitlePart1": "Find your Blat Distributor",
     "heroTitlePart2": "closest to you",
     "heroTitleStore": "Find your Blat Store",
-    "heroTitleDistributor": "Find your Blat Distributor",
+    "heroTitleDistributor": "Find your Blat Store or Distributor",
     "zipcodePlaceholder": "Enter the postal code",
     "searchButton": "Search",
     "tabStores": "Stores",
@@ -212,7 +212,10 @@ declare const messages: {
     "noStoresMessage": "Add your zip code or use your location to see the closest Blat Vodka stores near you.",
     "noDistributorsMessage": "Add your zip code or use your location to see the closest Blat Vodka distributors near you.",
     "useLocation": "Use your location",
-    "enterZipCode": "Enter zip code"
+    "enterZipCode": "Enter zip code",
+    "filter": "Filter",
+    "filterPublic": "Public (Retail)",
+    "filterPrivate": "Private (Wholesale)"
   },
   "NewsPage": {
     "title": "Latest News",

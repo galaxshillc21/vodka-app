@@ -1,6 +1,30 @@
 import SearchClient from "@/components/SearchClient";
-import stores from "@/data/stores.json";
-import distributors from "@/data/distributors.json";
+
+async function getStores() {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/stores`, {
+      cache: "no-store", // Always get fresh data
+    });
+    if (!response.ok) return [];
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching stores:", error);
+    return [];
+  }
+}
+
+async function getDistributors() {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000"}/api/distributors`, {
+      cache: "no-store", // Always get fresh data
+    });
+    if (!response.ok) return [];
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching distributors:", error);
+    return [];
+  }
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -32,7 +56,9 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export default function SearchPage() {
+export default async function SearchPage() {
   // Load data server-side for faster initial rendering
+  const [stores, distributors] = await Promise.all([getStores(), getDistributors()]);
+
   return <SearchClient initialStores={stores} initialDistributors={distributors} />;
 }

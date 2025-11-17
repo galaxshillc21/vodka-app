@@ -42,10 +42,10 @@ export default function Footer() {
 
         <div className="text-center text-sm text-gray-600 dark:text-gray-300">
           <div className="mt-2">
-            {/* <Link href="/admin/dashboard" className="underline hover:text-orange-600">
+            <Link href="/admin/dashboard" className="underline hover:text-orange-600">
               Panel
             </Link>{" "}
-            |{" "} */}
+            |{" "}
             <a href="mailto:fbanus@blatvodka.com" className="underline hover:text-orange-600">
               {t("contact")}
             </a>{" "}

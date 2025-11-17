@@ -3,17 +3,23 @@
 import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, Plus, List } from "lucide-react";
+import { LogOut, Plus, CalendarDays, Store as StoreIcon, Truck } from "lucide-react";
 import EventForm from "@/components/EventForm";
 import EventList from "@/components/EventList";
+import StoreForm from "@/components/StoreForm";
+import StoreList from "@/components/StoreList";
 import { Event } from "@/types/event";
+import { Store } from "@/types/store";
 
 type ViewMode = "list" | "create" | "edit";
+type Section = "events" | "stores" | "distributors";
 
 export default function AdminDashboard() {
   const { logout, user } = useAuth();
+  const [section, setSection] = useState<Section>("events");
   const [viewMode, setViewMode] = useState<ViewMode>("list");
   const [editingEvent, setEditingEvent] = useState<Event | null>(null);
+  const [editingStore, setEditingStore] = useState<Store | null>(null);
   const [refreshTrigger, setRefreshTrigger] = useState(0);
 
   const handleLogout = async () => {
@@ -36,7 +42,7 @@ export default function AdminDashboard() {
 
   const handleCreateSuccess = () => {
     setViewMode("list");
-    setRefreshTrigger((prev) => prev + 1); // Trigger EventList refresh
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   const handleEditEvent = (event: Event) => {
@@ -44,15 +50,29 @@ export default function AdminDashboard() {
     setViewMode("edit");
   };
 
+  const handleEditStore = (store: Store) => {
+    setEditingStore(store);
+    setViewMode("edit");
+  };
+
   const handleEditSuccess = () => {
     setViewMode("list");
     setEditingEvent(null);
-    setRefreshTrigger((prev) => prev + 1); // Trigger EventList refresh
+    setEditingStore(null);
+    setRefreshTrigger((prev) => prev + 1);
   };
 
   const handleCancel = () => {
     setViewMode("list");
     setEditingEvent(null);
+    setEditingStore(null);
+  };
+
+  const handleSectionChange = (newSection: Section) => {
+    setSection(newSection);
+    setViewMode("list");
+    setEditingEvent(null);
+    setEditingStore(null);
   };
 
   return (
@@ -73,26 +93,64 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      {/* Navigation Tabs */}
+      {/* Navigation */}
       <div className="mb-6">
-        <div className="flex gap-2 bg-white/70 backdrop-blur-md border border-white/50 rounded-lg p-2 shadow-lg">
-          <Button onClick={() => setViewMode("list")} variant={viewMode === "list" ? "default" : "outline"} className={`flex items-center gap-2 ${viewMode === "list" ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white" : "border-amber-200 hover:bg-amber-50"}`}>
-            <List className="w-4 h-4" />
-            Lista de Eventos
-          </Button>
+        <div className="flex justify-between items-center bg-white/70 backdrop-blur-md border border-white/50 rounded-lg p-2 shadow-lg">
+          <div className="flex gap-2">
+            <Button onClick={() => handleSectionChange("events")} variant={section === "events" ? "default" : "outline"} className={`flex items-center gap-2 ${section === "events" ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white" : "border-amber-200 hover:bg-amber-50"}`}>
+              <CalendarDays className="w-4 h-4" />
+              Eventos
+            </Button>
 
-          <Button onClick={() => setViewMode("create")} variant={viewMode === "create" ? "default" : "outline"} className={`flex items-center gap-2 ${viewMode === "create" ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white" : "border-amber-200 hover:bg-amber-50"}`}>
-            <Plus className="w-4 h-4" />
-            Crear Evento
-          </Button>
+            <Button onClick={() => handleSectionChange("stores")} variant={section === "stores" ? "default" : "outline"} className={`flex items-center gap-2 ${section === "stores" ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white" : "border-amber-200 hover:bg-amber-50"}`}>
+              <StoreIcon className="w-4 h-4" />
+              Tiendas
+            </Button>
+
+            <Button
+              onClick={() => handleSectionChange("distributors")}
+              variant={section === "distributors" ? "default" : "outline"}
+              className={`flex items-center gap-2 ${section === "distributors" ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white" : "border-amber-200 hover:bg-amber-50"}`}
+            >
+              <Truck className="w-4 h-4" />
+              Distribuidores
+            </Button>
+          </div>
+
+          {viewMode === "list" && (
+            <Button onClick={() => setViewMode("create")} className="flex items-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white hover:from-amber-700 hover:to-orange-700">
+              <Plus className="w-4 h-4" />
+              {section === "events" ? "Crear Evento" : section === "stores" ? "Crear Tienda" : "Crear Distribuidor"}
+            </Button>
+          )}
         </div>
       </div>
 
       {/* Content Area */}
       <div className="space-y-6">
-        {viewMode === "list" && <EventList onEdit={handleEditEvent} refreshTrigger={refreshTrigger} />}
+        {section === "events" && (
+          <>
+            {viewMode === "list" && <EventList onEdit={handleEditEvent} refreshTrigger={refreshTrigger} />}
 
-        {(viewMode === "create" || viewMode === "edit") && <EventForm onSuccess={viewMode === "create" ? handleCreateSuccess : handleEditSuccess} onCancel={handleCancel} editingEvent={editingEvent} />}
+            {(viewMode === "create" || viewMode === "edit") && <EventForm onSuccess={viewMode === "create" ? handleCreateSuccess : handleEditSuccess} onCancel={handleCancel} editingEvent={editingEvent} />}
+          </>
+        )}
+
+        {section === "stores" && (
+          <>
+            {viewMode === "list" && <StoreList onEdit={handleEditStore} refreshTrigger={refreshTrigger} type="store" />}
+
+            {(viewMode === "create" || viewMode === "edit") && <StoreForm onSuccess={handleEditSuccess} onCancel={handleCancel} editingStore={editingStore} type="store" />}
+          </>
+        )}
+
+        {section === "distributors" && (
+          <>
+            {viewMode === "list" && <StoreList onEdit={handleEditStore} refreshTrigger={refreshTrigger} type="distributor" />}
+
+            {(viewMode === "create" || viewMode === "edit") && <StoreForm onSuccess={handleEditSuccess} onCancel={handleCancel} editingStore={editingStore} type="distributor" />}
+          </>
+        )}
       </div>
     </div>
   );

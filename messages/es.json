@@ -184,7 +184,7 @@
     "heroTitlePart1": "Encuentra tu Distribuidor de Blat",
     "heroTitlePart2": "más cercano a ti",
     "heroTitleStore": "Encuentra tu Tienda de Blat",
-    "heroTitleDistributor": "Encuentra tu Distribuidor de Blat",
+    "heroTitleDistributor": "Encuentra tu Tienda o Distribuidor de Blat",
     "zipcodePlaceholder": "Ingresa el código postal",
     "searchButton": "Buscar",
     "tabStores": "Tiendas",
@@ -203,7 +203,10 @@
     "noStoresMessage": "Agrega tu código postal o usa tu ubicación para ver las tiendas de Blat Vodka más cercanas a ti.",
     "noDistributorsMessage": "Agrega tu código postal o usa tu ubicación para ver los distribuidores de Blat Vodka más cercanos a ti.",
     "useLocation": "Usar tu ubicación",
-    "enterZipCode": "Ingresa código postal"
+    "enterZipCode": "Ingresa código postal",
+    "filter": "Filtrar",
+    "filterPublic": "Público (Minorista)",
+    "filterPrivate": "Privado (Mayorista)"
   },
   "NewsPage": {
     "title": "Últimas Noticias",

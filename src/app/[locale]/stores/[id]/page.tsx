@@ -3,8 +3,7 @@
 
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
-import stores from "@/data/stores.json";
-import Map from "@/components/InlineMap"; // Use InlineMap if it accepts center/zoom
+import Map from "@/components/InlineMap";
 import type { Store } from "@/types/store";
 
 const StoreDetails = () => {
@@ -14,24 +13,48 @@ const StoreDetails = () => {
   const { id } = params as { id: string };
 
   const [store, setStore] = useState<Store | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!id) return;
 
-    const selectedStore = stores.find((s) => s.id.toString() === id);
+    const fetchStore = async () => {
+      try {
+        const response = await fetch(`/api/stores/${id}`);
+        if (!response.ok) {
+          console.warn("Store not found for ID:", id);
+          router.push("/stores");
+          return;
+        }
+        const data = await response.json();
+        setStore(data);
+      } catch (error) {
+        console.error("Error fetching store:", error);
+        router.push("/stores");
+      } finally {
+        setLoading(false);
+      }
+    };
 
-    if (!selectedStore) {
-      console.warn("Store not found for ID:", id);
-      router.push("/stores");
-      return;
-    }
-
-    setStore(selectedStore);
+    fetchStore();
   }, [id, router]);
 
-  if (!store) return <p className="text-center p-8">Loading...</p>;
+  if (loading) return <p className="text-center p-8">Loading...</p>;
+  if (!store) return <p className="text-center p-8">Store not found</p>;
 
   const { latitude, longitude, name, address, phone, hours } = store;
+
+  // Ensure coordinates exist
+  if (!latitude || !longitude) {
+    return (
+      <div className="container mx-auto p-4">
+        <button onClick={() => router.push("/")} className="mb-4 p-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+          ← Back to Home
+        </button>
+        <p className="text-center text-red-600">Store coordinates not available</p>
+      </div>
+    );
+  }
 
   return (
     <div className="container mx-auto p-4">

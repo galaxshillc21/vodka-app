@@ -91,7 +91,7 @@ export default function EventsPageClient({ events, featuredEvent }: EventsPageCl
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
                     <div>
                       <h3 className="text-3xl font-bold mb-4 font-fraunces">{featuredEvent.name}</h3>
-                      <p className="text-amber-100 mb-6 text-lg leading-relaxed">{featuredEvent.description}</p>
+                      <p className="text-amber-100 mb-6 text-lg leading-relaxed line-clamp-3">{featuredEvent.description}</p>
 
                       <div className="space-y-3">
                         <div className="flex items-start">
@@ -116,8 +116,8 @@ export default function EventsPageClient({ events, featuredEvent }: EventsPageCl
                     </div>
 
                     {featuredEvent.images.length > 0 && (
-                      <div className="relative h-64 lg:h-80">
-                        <Image src={featuredEvent.images[0]} alt={featuredEvent.name} fill className="object-cover rounded-xl shadow-lg" />
+                      <div className="relative h-64 lg:h-[350px] flex items-center justify-end">
+                        <Image src={featuredEvent.images[0]} alt={featuredEvent.name} width={600} height={350} className="object-contain h-full w-auto rounded-xl shadow-lg" />
                       </div>
                     )}
                   </div>

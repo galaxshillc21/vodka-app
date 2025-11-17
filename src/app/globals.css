@@ -317,6 +317,11 @@ button.glass-btn::before {
   stroke: var(--primary-color);
 }
 
+/* Carousel */
+#Carousel > .overflow-hidden {
+  width: 100%;
+}
+
 /* Tabs */
 .frosted-tabs {
   background-color: transparent;

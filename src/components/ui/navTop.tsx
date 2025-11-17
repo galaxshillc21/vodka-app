@@ -1,14 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
-// Newspaper
-import { Home, Newspaper, Store, Martini, Loader2 } from "lucide-react";
+import { Home, CalendarDays, Store, Martini, Loader2 } from "lucide-react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 import { Logo } from "@/components/Logo";
 import { Menubar, MenubarMenu, MenubarSeparator } from "@/components/ui/menubar";
 
-export default function HeaderClient() {
+export default function NavTop() {
   const t = useTranslations("Navigation");
   const pathname = usePathname();
   const [loadingPath, setLoadingPath] = useState<string | null>(null);
@@ -71,12 +70,8 @@ export default function HeaderClient() {
                 </Link>
               </MenubarMenu>
               <MenubarMenu>
-                <Link
-                  href="/events"
-                  className={`hidden flex items-center gap-1 px-3 py-2 hover:cursor-pointer rounded-full transition-colors duration-200 ${isActive("/events") ? "bg-gray-600/20 text-foreground" : "hover:bg-gray-600/10 hover:text-foreground"}`}
-                  onClick={() => handleLinkClick("/events")}
-                >
-                  {renderIcon("/events", Newspaper)}
+                <Link href="/events" className={`flex items-center gap-1 px-3 py-2 hover:cursor-pointer rounded-full transition-colors duration-200 ${isActive("/events") ? "bg-gray-600/20 text-foreground" : "hover:bg-gray-600/10 hover:text-foreground"}`} onClick={() => handleLinkClick("/events")}>
+                  {renderIcon("/events", CalendarDays)}
                   <span className="">{t("events")}</span>
                 </Link>
               </MenubarMenu>

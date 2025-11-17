@@ -10,7 +10,7 @@ import { useAnimation, useInView } from "framer-motion";
 import { EventService } from "@/lib/eventService";
 import { Event } from "@/types/event";
 import { Link, usePathname } from "@/i18n/navigation";
-import { MapPin, Loader2, CalendarPlus } from "lucide-react";
+import { MapPin, Loader2, CalendarPlus, CalendarDays } from "lucide-react";
 import { downloadICSFile, CalendarEvent } from "@/utils/calendar";
 
 export function MainEvent() {
@@ -127,9 +127,9 @@ export function MainEvent() {
     <div className="w-full">
       {/* Skeleton carousel */}
       <div className="flex gap-4 mb-8">
-        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-2/3 lg:basis-1/3" />
-        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-2/3 lg:basis-1/3" />
-        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-2/3 lg:basis-1/3" />
+        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-3/4 md:basis-2/3 lg:basis-1/3" />
+        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-3/4 md:basis-2/3 lg:basis-1/3" />
+        <Skeleton className="h-64 md:h-80 lg:h-96 w-full rounded-md basis-3/4 md:basis-2/3 lg:basis-1/3 hidden lg:block" />
       </div>
 
       {/* Skeleton event details */}
@@ -155,14 +155,14 @@ export function MainEvent() {
         <div className="flex flex-col items-center justify-center h-full">
           {/* Title and description always show */}
           <BlurText text={t("title")} delay={80} animateBy="words" direction="top" onAnimationComplete={handleAnimationComplete} className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-5xl font-bold mt-6 text-center text-amber-600 mb-6 leading-tight justify-center" />
-          <BlurText text={t("description")} delay={120} animateBy="words" direction="top" className="text-lg mb-8 text-center" />
+          <BlurText text={t("description")} delay={120} animateBy="words" direction="top" className="text-lg text-center justify-center mb-8 text-center" />
 
           {/* Conditional content based on loading and event state */}
           {isLoading ? (
             <LoadingSkeleton />
           ) : !featuredEvent ? (
             <div className="text-center py-12">
-              <p className="text-gray-500 mb-4">No hay eventos destacados en este momento</p>
+              <p className="text-gray-500 mb-4">No hay eventos destacados en este momento</p> {/* Spanish fallback text */}
               <Link href="/events" onClick={() => handleLinkClick("/events")}>
                 <button className="bg-amber-600 text-white px-6 py-2 rounded-full hover:bg-amber-700 transition-colors flex items-center justify-center gap-2 mx-auto">
                   {loadingPath === "/events" ? (
@@ -186,57 +186,106 @@ export function MainEvent() {
 
               <Carousel
                 opts={{
-                  align: "start",
-                  loop: true,
+                  align: featuredEvent.images.length < 3 ? "center" : "start",
+                  loop: featuredEvent.images.length > 1,
                 }}
+                id="Carousel"
+                className={featuredEvent.images.length < 3 ? "w-full flex justify-center" : "w-full"}
               >
-                <CarouselContent>
+                <CarouselContent className={featuredEvent.images.length < 3 ? "justify-center" : ""}>
                   {featuredEvent.images.map((src, i) => (
-                    <CarouselItem key={i} className="basis-2/3 lg:basis-1/3">
-                      <div className="relative h-64 md:h-80 lg:h-96 w-full overflow-hidden rounded-md">
-                        <Image src={src} loading="lazy" alt={`Evento ${featuredEvent.name} ${i + 1}`} fill sizes="(max-width: 768px) 66vw, (max-width: 1024px) 50vw, 33vw" className="hover:cursor-grab active:cursor-grabbing object-cover transition-transform duration-300 hover:scale-105" />
+                    <CarouselItem key={i} className="basis-auto pl-4">
+                      <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden rounded-md flex items-center justify-center bg-gray-100">
+                        <Image src={src} loading="lazy" alt={`Evento ${featuredEvent.name} ${i + 1}`} width={600} height={384} className="hover:cursor-grab active:cursor-grabbing h-full w-auto object-contain transition-transform duration-300 hover:scale-105" />
                       </div>
                     </CarouselItem>
                   ))}
                 </CarouselContent>
               </Carousel>
-              <div className="flex flex-row items-center justify-center h-full w-full mt-8">
-                <div className="basis-1/3 flex flex-col items-end lg:px-6 px-0 border-r-2 border-amber-600 py-5 items-center lg:items-end">
+              {/* Desktop View */}
+              <div className="hidden md:block ">
+                <div className="flex flex-col items-center justify-center h-full w-full mt-8">
                   <div className="text-center">
-                    <p className="text-amber-600 font-medium text-xl">{formatEventDate(featuredEvent.date).weekday}</p>
-                    <h2 className="text-3xl mb-2">
+                    <p className="text-amber-600 font-medium text-xl">
+                      {formatEventDate(featuredEvent.date).weekday} |{" "}
                       {locale === "en" ? `${formatEventDate(featuredEvent.date).month} ${formatEventDate(featuredEvent.date).day}${formatEventDate(featuredEvent.date).ordinalSuffix}` : `${formatEventDate(featuredEvent.date).day} ${formatEventDate(featuredEvent.date).month}`}
-                    </h2>
+                    </p>
+                  </div>
+                  <h2 className="text-xxl lg:text-3xl font-bold flex items-center gap-2">{featuredEvent.name}</h2>
+                  <a href={featuredEvent.location.googleMapsLink || `https://www.google.com/maps/search/?api=1&query=${featuredEvent.location.latitude},${featuredEvent.location.longitude}`} target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors">
+                    <MapPin className="inline-block mr-1" />
+                    {featuredEvent.location.venue ? `${featuredEvent.location.venue}, ${featuredEvent.location.town}, ${featuredEvent.location.municipality}` : `${featuredEvent.location.town}, ${featuredEvent.location.municipality}`}
+                  </a>
+                  {/* {featuredEvent.website && (
+                        <a href={featuredEvent.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 transition-colors">
+                          <ExternalLink size={14} />
+                          {featuredEvent.website.replace(/^https?:\/\//, "")}
+                        </a>
+                      )} */}
+                  <div className="flex flex-row gap-8 items-center justify-center mt-6">
+                    <Link href={`/events/${featuredEvent.id}`} onClick={() => handleLinkClick(`/events/${featuredEvent.id}`)}>
+                      <button className=" w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors flex items-center justify-center gap-2">
+                        {loadingPath === `/events/${featuredEvent.id}` ? (
+                          <>
+                            <Loader2 size={16} className="animate-spin" />
+                            {t("verEventos")}
+                          </>
+                        ) : (
+                          <>
+                            <CalendarDays className="text-white" size={20} /> {t("verEventos")}
+                          </>
+                        )}
+                      </button>
+                    </Link>
+                    <button onClick={(e) => handleAddToCalendar(featuredEvent, e)} className="inline-flex items-center gap-1 text-lg text-amber-600 hover:text-amber-700 underline transition-colors">
+                      <CalendarPlus size={20} />
+                      {t("addToCalendar")}
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {/* Mobile View */}
+              <div className="block md:hidden ">
+                <div className="flex flex-col text-center items-center justify-center h-full w-full mt-8">
+                  <div className="my-2">
+                    <p className="text-amber-600 font-sm text-lg">
+                      {formatEventDate(featuredEvent.date).weekday} |{" "}
+                      {locale === "en" ? `${formatEventDate(featuredEvent.date).month} ${formatEventDate(featuredEvent.date).day}${formatEventDate(featuredEvent.date).ordinalSuffix}` : `${formatEventDate(featuredEvent.date).day} ${formatEventDate(featuredEvent.date).month}`}
+                    </p>
+                  </div>
+                  <h2 className="text-xxl lg:text-3xl font-bold flex items-center gap-2">{featuredEvent.name}</h2>
+                  <div className="mt-2 flex flex-col items-center gap-3">
+                    <a href={featuredEvent.location.googleMapsLink || `https://www.google.com/maps/search/?api=1&query=${featuredEvent.location.latitude},${featuredEvent.location.longitude}`} target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors">
+                      <MapPin className="inline-block mr-1" />
+                      {featuredEvent.location.venue ? `${featuredEvent.location.venue}, ${featuredEvent.location.town}, ${featuredEvent.location.municipality}` : `${featuredEvent.location.town}, ${featuredEvent.location.municipality}`}
+                    </a>
+                    {/* {featuredEvent.website && (
+                      <a href={featuredEvent.website} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 transition-colors">
+                        <ExternalLink size={14} />
+                        {featuredEvent.website.replace(/^https?:\/\//, "")}
+                      </a>
+                    )} */}
+                  </div>
+                  <div className="flex align-items-center justify-center mt-4 gap-2">
+                    <Link href={`/events/${featuredEvent.id}`} onClick={() => handleLinkClick(`/events/${featuredEvent.id}`)}>
+                      <button className="w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors flex items-center justify-center gap-2">
+                        {loadingPath === `/events/${featuredEvent.id}` ? (
+                          <>
+                            <Loader2 size={16} className="animate-spin" />
+                            {t("verEventos")}
+                          </>
+                        ) : (
+                          <>
+                            <CalendarDays className="text-white" size={20} /> {t("verEventos")}
+                          </>
+                        )}
+                      </button>
+                    </Link>
                     <button onClick={(e) => handleAddToCalendar(featuredEvent, e)} className="inline-flex items-center gap-1 text-sm text-amber-600 hover:text-amber-700 underline transition-colors">
                       <CalendarPlus size={14} />
                       {t("addToCalendar")}
                     </button>
                   </div>
-                </div>
-                <div className="basis-2/3 px-6 lg:pr-6 pr-0 flex flex-col">
-                  {featuredEvent.website ? (
-                    <a href={featuredEvent.website} target="_blank" rel="noopener noreferrer" className="hover:text-amber-600 transition-colors">
-                      <h2 className="text-xxl lg:text-5xl">{featuredEvent.name}</h2>
-                    </a>
-                  ) : (
-                    <h2 className="text-xxl lg:text-5xl">{featuredEvent.name}</h2>
-                  )}
-                  <a href={featuredEvent.location.googleMapsLink || `https://www.google.com/maps/search/?api=1&query=${featuredEvent.location.latitude},${featuredEvent.location.longitude}`} target="_blank" rel="noopener noreferrer" className="mt-2">
-                    <MapPin className="inline-block mr-1" />
-                    {featuredEvent.location.venue ? `${featuredEvent.location.venue}, ${featuredEvent.location.town}, ${featuredEvent.location.municipality}` : `${featuredEvent.location.town}, ${featuredEvent.location.municipality}`}
-                  </a>
-                  <Link href={`/events/${featuredEvent.id}`} onClick={() => handleLinkClick(`/events/${featuredEvent.id}`)}>
-                    <button className="mt-4 w-[150px] lg:w-[200px] bg-amber-600 text-white px-1 py-2 rounded-full hover:bg-amber-700 transition-colors flex items-center justify-center gap-2">
-                      {loadingPath === `/events/${featuredEvent.id}` ? (
-                        <>
-                          <Loader2 size={16} className="animate-spin" />
-                          {t("verEventos")}
-                        </>
-                      ) : (
-                        t("verEventos")
-                      )}
-                    </button>
-                  </Link>
                 </div>
               </div>
             </>
