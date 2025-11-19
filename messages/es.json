@@ -205,8 +205,8 @@
     "useLocation": "Usar tu ubicación",
     "enterZipCode": "Ingresa código postal",
     "filter": "Filtrar",
-    "filterPublic": "Público (Minorista)",
-    "filterPrivate": "Privado (Mayorista)"
+    "filterPublic": "Particular",
+    "filterPrivate": "Profesional"
   },
   "NewsPage": {
     "title": "Últimas Noticias",

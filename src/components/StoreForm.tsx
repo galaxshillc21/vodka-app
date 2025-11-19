@@ -156,8 +156,8 @@ export default function StoreForm({ onSuccess, onCancel, editingStore, type }: S
             <div>
               <Label htmlFor="storeType">Tipo de Tienda</Label>
               <select id="storeType" name="storeType" value={formData.storeType || "public"} onChange={handleInputChange} className="w-full p-2 border rounded-md bg-white">
-                <option value="public">Público (Minorista)</option>
-                <option value="private">Privado (Mayorista)</option>
+                <option value="public">Particular</option>
+                <option value="private">Profesional</option>
               </select>
             </div>
           )}

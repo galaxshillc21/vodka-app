@@ -133,7 +133,7 @@ export default function StoreList({ onEdit, refreshTrigger, type }: StoreListPro
 
                         {type === "store" && store.storeType && (
                           <div className="mt-2">
-                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${store.storeType === "public" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"}`}>{store.storeType === "public" ? "Público" : "Privado"}</span>
+                            <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${store.storeType === "public" ? "bg-green-100 text-green-700" : "bg-blue-100 text-blue-700"}`}>{store.storeType === "public" ? "Particular" : "Profesional"}</span>
                           </div>
                         )}
                       </div>

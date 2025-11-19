@@ -214,8 +214,8 @@ declare const messages: {
     "useLocation": "Use your location",
     "enterZipCode": "Enter zip code",
     "filter": "Filter",
-    "filterPublic": "Public (Retail)",
-    "filterPrivate": "Private (Wholesale)"
+    "filterPublic": "Public",
+    "filterPrivate": "Professional"
   },
   "NewsPage": {
     "title": "Latest News",
