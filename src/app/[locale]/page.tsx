@@ -3,23 +3,23 @@ import { Hero } from "@/components/section/HeroSection";
 import dynamic from "next/dynamic";
 
 // Lazy load all below-the-fold sections with loading states
-const MainEvent = dynamic(() => import("@/components/section/MainEventSection").then((mod) => ({ default: mod.MainEvent })), {
-  loading: () => (
-    <section className="w-full py-20">
-      <div className="container mx-auto px-4">
-        <div className="animate-pulse space-y-8">
-          <div className="h-12 bg-gray-200 rounded-lg mx-auto w-1/2"></div>
-          <div className="h-6 bg-gray-200 rounded-lg mx-auto w-1/3"></div>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-            {[...Array(5)].map((_, i) => (
-              <div key={i} className="h-32 bg-gray-200 rounded-lg"></div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  ),
-});
+// const MainEvent = dynamic(() => import("@/components/section/MainEventSection").then((mod) => ({ default: mod.MainEvent })), {
+//   loading: () => (
+//     <section className="w-full py-20">
+//       <div className="container mx-auto px-4">
+//         <div className="animate-pulse space-y-8">
+//           <div className="h-12 bg-gray-200 rounded-lg mx-auto w-1/2"></div>
+//           <div className="h-6 bg-gray-200 rounded-lg mx-auto w-1/3"></div>
+//           <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+//             {[...Array(5)].map((_, i) => (
+//               <div key={i} className="h-32 bg-gray-200 rounded-lg"></div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   ),
+// });
 
 const BottleDesignParallax = dynamic(() => import("@/components/section/BottleDesignSection").then((mod) => ({ default: mod.BottleDesignParallax })), {
   loading: () => (
@@ -144,7 +144,7 @@ export default async function HomePage() {
       {/* Above the fold - keep eager loading */}
       <Hero />
       {/* Below the fold - lazy load everything */}
-      <MainEvent />
+      {/* <MainEvent /> */}
       <BottleDesignParallax />
       <PuritySection />
       <About2 />
