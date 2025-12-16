@@ -22,6 +22,7 @@ export default function StoreForm({ onSuccess, onCancel, editingStore, type }: S
     address: "",
     googleMapsUrl: "",
     phone: "",
+    email: "",
     hours: "",
     storeType: "public",
   });
@@ -40,6 +41,7 @@ export default function StoreForm({ onSuccess, onCancel, editingStore, type }: S
         address: "",
         googleMapsUrl: "",
         phone: "",
+        email: "",
         hours: "",
         storeType: "public",
       });
@@ -143,6 +145,12 @@ export default function StoreForm({ onSuccess, onCancel, editingStore, type }: S
           <div>
             <Label htmlFor="phone">Teléfono</Label>
             <Input id="phone" name="phone" value={formData.phone} onChange={handleInputChange} className="bg-white" />
+          </div>
+
+          {/* Email */}
+          <div>
+            <Label htmlFor="email">Email</Label>
+            <Input id="email" name="email" type="email" value={formData.email || ""} onChange={handleInputChange} placeholder="ejemplo@correo.com" className="bg-white" />
           </div>
 
           {/* Hours */}

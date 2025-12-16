@@ -7,6 +7,7 @@ export type Store = {
   distance?: number;
   hours: string;
   phone: string;
+  email?: string;
   address: string;
   storeType?: "public" | "private"; // public: retail stores for any customer, private: wholesale/big retail
   // Add other properties as needed

@@ -1,5 +1,5 @@
 // src/components/TiendasTab.tsx
-import { Phone, Clock10, Star, Navigation } from "lucide-react";
+import { Phone, Clock10, Star, Navigation, Mail } from "lucide-react";
 import type { Store } from "@/types/store";
 import { useTranslations } from "next-intl";
 
@@ -34,6 +34,11 @@ const TiendasTab = ({ closestStores, formatDistance, favorites, toggleFavorite, 
                     <p className="hours">
                       <Clock10 size={15} className="inline" /> {store.hours}
                     </p>
+                    {store.email && (
+                      <p className="email">
+                        <Mail size={15} className="inline" /> {store.email}
+                      </p>
+                    )}
                   </div>
                   <div className="action-links flex gap-4 mt-3">
                     <a href={`tel:${store.phone.replace(/\s+/g, "")}`} className="text-bronze hover:underline">
