@@ -1,6 +1,9 @@
 import { EventService } from "@/lib/eventService";
 import EventsPageClient from "./EventsPageClient";
 
+export const revalidate = 0; // Disable automatic static optimization
+export const dynamic = "force-dynamic"; // Ensure fresh data on each request
+
 export default async function EventsPage() {
   const events = await EventService.getAllEvents();
   const featuredEvent = await EventService.getFeaturedEvent();

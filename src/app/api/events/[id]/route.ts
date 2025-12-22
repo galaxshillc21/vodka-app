@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 import { getAuth } from "firebase-admin/auth";
 import { getFirestore } from "firebase-admin/firestore";
 import { initializeApp, getApps, cert } from "firebase-admin/app";
@@ -105,6 +106,11 @@ export async function PUT(request: NextRequest, context: { params: Promise<{ id:
 
     await eventRef.update(updateData);
 
+    // Revalidate events pages
+    revalidatePath("/[locale]/events", "page");
+    revalidatePath("/en/events");
+    revalidatePath("/es/events");
+
     return NextResponse.json({
       id,
       message: "Event updated successfully",
@@ -135,6 +141,11 @@ export async function DELETE(request: NextRequest, context: { params: Promise<{ 
     }
 
     await eventRef.delete();
+
+    // Revalidate events pages
+    revalidatePath("/[locale]/events", "page");
+    revalidatePath("/en/events");
+    revalidatePath("/es/events");
 
     return NextResponse.json({
       message: "Event deleted successfully",
