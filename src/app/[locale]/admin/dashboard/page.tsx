@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
-import { LogOut, Plus, CalendarDays, Store as StoreIcon, Truck, Database, Loader2 } from "lucide-react";
+import { LogOut, Plus, CalendarDays, Store as StoreIcon, Truck, Database, Loader2, Settings } from "lucide-react";
 import EventForm from "@/components/EventForm";
 import EventList from "@/components/EventList";
 import StoreForm from "@/components/StoreForm";
@@ -11,9 +11,12 @@ import StoreList from "@/components/StoreList";
 import { Event } from "@/types/event";
 import { Store } from "@/types/store";
 import { auth } from "@/lib/firebase";
+import { SettingsService } from "@/lib/settingsService";
+import { Switch } from "@/components/ui/switch";
+import { Label } from "@/components/ui/label";
 
 type ViewMode = "list" | "create" | "edit";
-type Section = "events" | "stores" | "distributors";
+type Section = "events" | "stores" | "distributors" | "settings";
 
 export default function AdminDashboard() {
   const { logout, user } = useAuth();
@@ -24,6 +27,26 @@ export default function AdminDashboard() {
   const [refreshTrigger, setRefreshTrigger] = useState(0);
   const [isMigrating, setIsMigrating] = useState(false);
   const [migrationComplete, setMigrationComplete] = useState(false);
+  const [showFeaturedEvent, setShowFeaturedEvent] = useState(true);
+  const [isLoadingSettings, setIsLoadingSettings] = useState(false);
+  const [isSavingSettings, setIsSavingSettings] = useState(false);
+
+  // Load settings on component mount
+  useEffect(() => {
+    const loadSettings = async () => {
+      try {
+        setIsLoadingSettings(true);
+        const settings = await SettingsService.getHomepageSettings();
+        setShowFeaturedEvent(settings.showFeaturedEvent);
+      } catch (error) {
+        console.error("Error loading settings:", error);
+      } finally {
+        setIsLoadingSettings(false);
+      }
+    };
+
+    loadSettings();
+  }, []);
 
   const handleLogout = async () => {
     try {
@@ -114,6 +137,19 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleToggleFeaturedEvent = async (checked: boolean) => {
+    try {
+      setIsSavingSettings(true);
+      await SettingsService.updateHomepageSettings({ showFeaturedEvent: checked });
+      setShowFeaturedEvent(checked);
+    } catch (error) {
+      console.error("Error updating settings:", error);
+      alert("❌ Error al actualizar la configuración");
+    } finally {
+      setIsSavingSettings(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-amber-50 via-orange-50 to-amber-100 p-4">
       {/* Header */}
@@ -171,6 +207,11 @@ export default function AdminDashboard() {
               <Truck className="w-4 h-4" />
               Distribuidores
             </Button>
+
+            <Button onClick={() => handleSectionChange("settings")} variant={section === "settings" ? "default" : "outline"} className={`flex items-center gap-2 ${section === "settings" ? "bg-gradient-to-r from-amber-600 to-orange-600 text-white" : "border-amber-200 hover:bg-amber-50"}`}>
+              <Settings className="w-4 h-4" />
+              Configuración
+            </Button>
           </div>
 
           {viewMode === "list" && (
@@ -206,6 +247,27 @@ export default function AdminDashboard() {
 
             {(viewMode === "create" || viewMode === "edit") && <StoreForm onSuccess={handleEditSuccess} onCancel={handleCancel} editingStore={editingStore} type="distributor" />}
           </>
+        )}
+
+        {section === "settings" && (
+          <div className="bg-white/70 backdrop-blur-md border border-white/50 rounded-xl p-6 shadow-lg">
+            <h2 className="text-2xl font-bold mb-6 text-gray-800">Configuración de la Página Principal</h2>
+
+            <div className="space-y-6">
+              <div className="flex items-center justify-between p-4 bg-white/50 rounded-lg border border-gray-200">
+                <div className="flex-1">
+                  <Label htmlFor="featured-event-toggle" className="text-base font-medium text-gray-900 cursor-pointer">
+                    Mostrar evento destacado en página principal
+                  </Label>
+                  <p className="text-sm text-gray-600 mt-1">Cuando está activado, el evento destacado aparece en la sección principal de la página de inicio</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  {isSavingSettings && <Loader2 className="w-4 h-4 animate-spin text-amber-600" />}
+                  <Switch id="featured-event-toggle" checked={showFeaturedEvent} onCheckedChange={handleToggleFeaturedEvent} disabled={isLoadingSettings || isSavingSettings} />
+                </div>
+              </div>
+            </div>
+          </div>
         )}
       </div>
     </div>

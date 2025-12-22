@@ -8,6 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import BlurText from "@/components/BlurText";
 import { useAnimation, useInView } from "framer-motion";
 import { EventService } from "@/lib/eventService";
+import { SettingsService } from "@/lib/settingsService";
 import { Event } from "@/types/event";
 import { Link, usePathname } from "@/i18n/navigation";
 import { MapPin, Loader2, CalendarPlus, CalendarDays } from "lucide-react";
@@ -20,27 +21,30 @@ export function MainEvent() {
   const [featuredEvent, setFeaturedEvent] = useState<Event | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [loadingPath, setLoadingPath] = useState<string | null>(null);
+  const [showSection, setShowSection] = useState(true);
 
   const controls = useAnimation();
   const ref = React.useRef<HTMLDivElement>(null);
   const inView = useInView(ref);
 
-  // Fetch featured event on component mount
+  // Fetch featured event and settings on component mount
   useEffect(() => {
-    const fetchFeaturedEvent = async () => {
+    const fetchData = async () => {
       try {
         setIsLoading(true);
-        const event = await EventService.getFeaturedEvent();
+        const [event, settings] = await Promise.all([EventService.getFeaturedEvent(), SettingsService.getHomepageSettings()]);
         setFeaturedEvent(event);
+        setShowSection(settings.showFeaturedEvent);
       } catch (error) {
-        console.error("Error fetching featured event:", error);
+        console.error("Error fetching data:", error);
         setFeaturedEvent(null);
+        setShowSection(true); // Default to showing on error
       } finally {
         setIsLoading(false);
       }
     };
 
-    fetchFeaturedEvent();
+    fetchData();
   }, []);
 
   const handleAnimationComplete = () => {
@@ -148,6 +152,11 @@ export function MainEvent() {
       </div>
     </div>
   );
+
+  // If section is disabled, don't render anything
+  if (!showSection) {
+    return null;
+  }
 
   return (
     <section id="MainEvent" className="w-full mt-0 lg:mt-[0px] flex flex-col items-center justify-center">
