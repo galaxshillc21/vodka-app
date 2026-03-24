@@ -37,6 +37,11 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
     title: messages.Index.metaTitle,
     description: messages.Index.metaDescription,
     manifest: "/manifest.webmanifest",
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: "default",
+      title: "Blat Vodka",
+    },
     icons: {
       icon: [
         { url: "/favicon.ico", sizes: "16x16 32x32", type: "image/x-icon" },
@@ -80,6 +85,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       // Additional meta tags for favicon discovery
       "msapplication-TileColor": "#d97706",
       "msapplication-config": "none",
+      "apple-mobile-web-app-capable": "yes",
     },
     robots: {
       index: true,

@@ -10,7 +10,6 @@ import StoreForm from "@/components/StoreForm";
 import StoreList from "@/components/StoreList";
 import { Event } from "@/types/event";
 import { Store } from "@/types/store";
-import { auth } from "@/lib/firebase";
 import { SettingsService } from "@/lib/settingsService";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";

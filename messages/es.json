@@ -271,7 +271,13 @@
   "PWA": {
     "installPrompt": {
       "title": "Instalar la aplicación",
-      "description": "¿Quieres instalar la aplicación en tu dispositivo?"
+      "description": "¿Quieres instalar la aplicación en tu dispositivo?",
+      "iosTitle": "Instala Blat Vodka en tu iPhone",
+      "iosStep1": "Pulsa el botón Compartir en Safari",
+      "iosStep2": "Desplázate hacia abajo y elige Añadir a pantalla de inicio",
+      "iosStep3": "Confirma pulsando Añadir",
+      "iosHint": "Usa el menú Compartir de Safari para añadir esta app a tu pantalla de inicio.",
+      "unavailable": "La instalación de la app no está disponible ahora mismo en este dispositivo o navegador."
     }
   }
 }

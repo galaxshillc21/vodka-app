@@ -286,7 +286,13 @@ declare const messages: {
   "PWA": {
     "installPrompt": {
       "title": "Install App",
-      "description": "Do you want to install the app on your device?"
+      "description": "Do you want to install the app on your device?",
+      "iosTitle": "Install Blat Vodka on your iPhone",
+      "iosStep1": "Tap the Share button in Safari",
+      "iosStep2": "Scroll down and choose Add to Home Screen",
+      "iosStep3": "Confirm by tapping Add",
+      "iosHint": "Use Safari's Share menu to add this app to your Home Screen.",
+      "unavailable": "App installation is not available right now on this device or browser."
     }
   }
 };
