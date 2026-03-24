@@ -18,7 +18,7 @@ export default function Footer() {
             <Home size={18} />
             {t("home")}
           </Link>
-          <Link href="/events" className="sr-only flex items-center gap-1 hover:underline">
+          <Link href="/events" className="flex items-center gap-1 hover:underline">
             <Newspaper size={18} />
             {t("events")}
           </Link>

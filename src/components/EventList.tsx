@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Event } from "@/types/event";
 import { EventService } from "@/lib/eventService";
 import { Edit, Trash2, Calendar, MapPin, Globe, Image as ImageIcon, Star } from "lucide-react";
+import ImageLightbox from "@/components/ImageLightbox";
 
 interface EventListProps {
   onEdit: (event: Event) => void;
@@ -19,6 +20,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
   const [error, setError] = useState("");
   const [deletingEventId, setDeletingEventId] = useState<string | null>(null);
   const [togglingFeaturedId, setTogglingFeaturedId] = useState<string | null>(null);
+  const [lightboxImage, setLightboxImage] = useState<{ alt: string; imageUrl: string } | null>(null);
 
   const fetchEvents = async () => {
     try {
@@ -95,6 +97,10 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
     return event.images && event.images.length > 0 ? event.images[0] : null;
   };
 
+  const openLightbox = (imageUrl: string, alt: string) => {
+    setLightboxImage({ imageUrl, alt });
+  };
+
   if (isLoading) {
     return (
       <Card className="backdrop-blur-md bg-white/70 border-white/50 shadow-lg">
@@ -135,7 +141,9 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
                 {/* Event Image */}
                 <div className="relative h-48 bg-gray-100">
                   {getMainImage(event) ? (
-                    <Image src={getMainImage(event)!} alt={event.name} fill className="object-cover" />
+                    <button type="button" onClick={() => openLightbox(getMainImage(event)!, event.name)} className="absolute inset-0 cursor-zoom-in">
+                      <Image src={getMainImage(event)!} alt={event.name} fill className="object-cover" />
+                    </button>
                   ) : (
                     <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-amber-100 to-orange-100">
                       <ImageIcon className="w-12 h-12 text-amber-400" />
@@ -144,14 +152,14 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
 
                   {/* Featured Badge */}
                   {event.featured && (
-                    <div className="absolute top-2 left-2 bg-amber-500 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
+                    <div className="absolute top-2 left-2 z-10 bg-amber-500 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
                       <Star className="w-3 h-3 fill-current" />
                       Destacado
                     </div>
                   )}
 
                   {/* Image Count Badge */}
-                  {event.images && event.images.length > 1 && <div className="absolute top-2 right-2 bg-black/70 text-white text-xs px-2 py-1 rounded-full">+{event.images.length - 1}</div>}
+                  {event.images && event.images.length > 1 && <div className="absolute top-2 right-2 z-10 bg-black/70 text-white text-xs px-2 py-1 rounded-full">+{event.images.length - 1}</div>}
                 </div>
 
                 {/* Event Content */}
@@ -222,6 +230,8 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
           </div>
         )}
       </CardContent>
+
+      {lightboxImage && <ImageLightbox alt={lightboxImage.alt} imageUrl={lightboxImage.imageUrl} onClose={() => setLightboxImage(null)} />}
     </Card>
   );
 }

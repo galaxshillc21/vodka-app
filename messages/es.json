@@ -40,6 +40,7 @@
       "verEventos": "Ver Evento",
       "viewEventDetails": "Ver Detalles del Evento",
       "eventDate": "Fecha",
+      "eventTime": "Hora",
       "eventLocation": "Ubicación",
       "eventWebsite": "Sitio Web del Evento",
       "visitWebsite": "Visitar Sitio Web",

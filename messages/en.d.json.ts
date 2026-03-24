@@ -43,6 +43,7 @@ declare const messages: {
       "verEventos": "View Event",
       "viewEventDetails": "View Event Details",
       "eventDate": "Date",
+      "eventTime": "Time",
       "eventLocation": "Location",
       "eventWebsite": "Event Website",
       "visitWebsite": "Visit Website",
