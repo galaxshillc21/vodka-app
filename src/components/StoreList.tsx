@@ -98,7 +98,7 @@ export default function StoreList({ onEdit, refreshTrigger, type }: StoreListPro
         ) : (
           <div className="flex flex-wrap align-items-stretch row-gap-4">
             {stores.map((store) => (
-              <div key={store.id} className="p-3 w-1/3">
+              <div key={store.id} className="p-1 md:p-3 w-full md:w-1/3">
                 <div className="border border-gray-200 rounded-lg p-4 bg-white hover:shadow-md transition-shadow w-full h-full">
                   <div className="flex justify-between items-start">
                     <div className="flex-1">

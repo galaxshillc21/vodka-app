@@ -155,7 +155,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
                 </div>
 
                 {/* Event Content */}
-                <div className="p-4">
+                <div className="p-2 md:p-4">
                   <h3 className="font-semibold text-lg text-gray-800 mb-2 line-clamp-2">{event.name}</h3>
 
                   <div className="space-y-2 mb-4">
@@ -185,7 +185,7 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
                   <p className="text-sm text-gray-600 mb-4 line-clamp-3">{event.description}</p>
 
                   {/* Action Buttons */}
-                  <div className="flex gap-2">
+                  <div className="flex gap-1 md:gap-2">
                     <Button
                       onClick={() => handleToggleFeatured(event.id, event.featured)}
                       variant="outline"
@@ -193,17 +193,17 @@ export default function EventList({ onEdit, refreshTrigger }: EventListProps) {
                       disabled={togglingFeaturedId === event.id}
                       className={`${event.featured ? "border-amber-300 bg-amber-50 text-amber-700 hover:bg-amber-100" : "border-gray-200 hover:bg-amber-50 hover:border-amber-300"}`}
                     >
-                      {togglingFeaturedId === event.id ? <div className="w-4 h-4 border-2 border-amber-300 border-t-amber-600 rounded-full animate-spin mr-2" /> : <Star className={`w-4 h-4 mr-2 ${event.featured ? "fill-current" : ""}`} />}
+                      {togglingFeaturedId === event.id ? <div className="w-2 md:w-4 h-4 border-2 border-amber-300 border-t-amber-600 rounded-full animate-spin mr-2" /> : <Star className={`w-4 h-4 mr-2 ${event.featured ? "fill-current" : ""}`} />}
                       {event.featured ? "Destacado" : "Destacar"}
                     </Button>
 
                     <Button onClick={() => onEdit(event)} variant="outline" size="sm" className="border-blue-200 hover:bg-blue-50 hover:border-blue-300">
-                      <Edit className="w-4 h-4 mr-2" />
+                      <Edit className="w-2 md:w-4 h-4 mr-2" />
                       Editar
                     </Button>
 
-                    <Button onClick={() => handleDelete(event.id, event.name)} variant="outline" size="sm" disabled={deletingEventId === event.id} className="border-red-200 hover:bg-red-50 hover:border-red-300 hover:text-red-600">
-                      {deletingEventId === event.id ? <div className="w-4 h-4 border-2 border-red-300 border-t-red-600 rounded-full animate-spin mr-2" /> : <Trash2 className="w-4 h-4 mr-2" />}
+                    <Button onClick={() => handleDelete(event.id, event.name)} variant="outline" size="sm" disabled={deletingEventId === event.id} className="border-red-200 hover:bg-red-50 hover:border-red-300 hover:text-red-600 gap-0">
+                      {deletingEventId === event.id ? <div className="w-2 md:w-4 h-4 border-2 border-red-300 border-t-red-600 rounded-full animate-spin mr-2" /> : <Trash2 className="w-4 h-4 mr-2" />}
                       Eliminar
                     </Button>
                   </div>
